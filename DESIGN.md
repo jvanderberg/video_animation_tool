@@ -130,7 +130,9 @@ Common properties across all object types:
 #### Animatable Properties
 - `x`, `y` - Position
 - `rotation` - Rotation in degrees
-- `opacity` - Transparency
+- `opacity` - Transparency (0-1)
+- `scale` - Scale factor (1.0 = 100%, default)
+- `width`, `height` - Dimensions (for rectangles)
 - Any numeric property
 
 #### Easing Functions

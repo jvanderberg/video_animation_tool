@@ -56,6 +56,7 @@ export interface BaseObject {
   y?: number;
   rotation?: number;
   opacity?: number;
+  scale?: number;  // Scale factor (1.0 = 100%)
   z?: number;
   anchor?: AnchorType;
 }

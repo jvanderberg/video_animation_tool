@@ -113,12 +113,22 @@ export class Renderer {
     // Get animated properties for this frame
     const props = this.getPropertiesAtFrame(obj, frameNumber);
 
+    // Skip rendering if scale is 0 or negative (invisible)
+    // This also avoids canvas issues with degenerate transformation matrices
+    if (props.scale !== undefined && props.scale <= 0) {
+      return;
+    }
+
     // Save context state
     this.ctx.save();
 
     // Apply transforms
     if (props.x !== undefined || props.y !== undefined) {
       this.ctx.translate(props.x ?? 0, props.y ?? 0);
+    }
+
+    if (props.scale !== undefined && props.scale !== 1) {
+      this.ctx.scale(props.scale, props.scale);
     }
 
     if (props.rotation !== undefined && props.rotation !== 0) {
@@ -282,6 +292,7 @@ export class Renderer {
       y: obj.y ?? 0,
       rotation: obj.rotation ?? 0,
       opacity: obj.opacity ?? 1,
+      scale: obj.scale ?? 1,
     };
 
     // Add type-specific properties that might be animated

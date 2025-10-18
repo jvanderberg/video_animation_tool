@@ -50,7 +50,7 @@
         {
           "type": "group",
           "id": "bar-2015",
-          "x": 310,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -88,7 +88,7 @@
         {
           "type": "group",
           "id": "bar-2016",
-          "x": 470,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -126,7 +126,7 @@
         {
           "type": "group",
           "id": "bar-2017",
-          "x": 630,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -164,7 +164,7 @@
         {
           "type": "group",
           "id": "bar-2018",
-          "x": 790,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -202,7 +202,7 @@
         {
           "type": "group",
           "id": "bar-2019",
-          "x": 950,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -240,7 +240,7 @@
         {
           "type": "group",
           "id": "bar-2020",
-          "x": 1110,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -278,7 +278,7 @@
         {
           "type": "group",
           "id": "bar-2021",
-          "x": 1270,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -316,7 +316,7 @@
         {
           "type": "group",
           "id": "bar-2022",
-          "x": 1430,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -354,7 +354,7 @@
         {
           "type": "group",
           "id": "bar-2023",
-          "x": 1590,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -392,7 +392,7 @@
         {
           "type": "group",
           "id": "bar-2024",
-          "x": 1750,
+          "x": -200,
           "y": 850,
           "children": [
             {
@@ -457,176 +457,256 @@
           "target": "title",
           "property": "opacity",
           "keyframes": [
-            {"frame": 20, "value": 0},
-            {"frame": 40, "value": 1, "easing": "ease-in"}
+            {"frame": 40, "value": 0},
+            {"frame": 60, "value": 1, "easing": "ease-in"}
           ]
         },
         {
           "target": "subtitle",
           "property": "opacity",
           "keyframes": [
-            {"frame": 25, "value": 0},
-            {"frame": 45, "value": 1, "easing": "ease-in"}
+            {"frame": 40, "value": 0},
+            {"frame": 60, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2015",
+          "property": "x",
+          "keyframes": [
+            {"frame": 60, "value": -200},
+            {"frame": 75, "value": 310, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2015-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 50, "value": 0},
-            {"frame": 80, "value": 6, "easing": "ease-out"}
+            {"frame": 75, "value": 0},
+            {"frame": 90, "value": 6, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2015-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 80, "value": 0},
-            {"frame": 95, "value": 1, "easing": "ease-in"}
+            {"frame": 90, "value": 0},
+            {"frame": 100, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2016",
+          "property": "x",
+          "keyframes": [
+            {"frame": 64, "value": -200},
+            {"frame": 79, "value": 470, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2016-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 60, "value": 0},
-            {"frame": 90, "value": 78, "easing": "ease-out"}
+            {"frame": 79, "value": 0},
+            {"frame": 94, "value": 78, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2016-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 90, "value": 0},
-            {"frame": 105, "value": 1, "easing": "ease-in"}
+            {"frame": 94, "value": 0},
+            {"frame": 104, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2017",
+          "property": "x",
+          "keyframes": [
+            {"frame": 68, "value": -200},
+            {"frame": 83, "value": 630, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2017-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 70, "value": 0},
-            {"frame": 100, "value": 126, "easing": "ease-out"}
+            {"frame": 83, "value": 0},
+            {"frame": 98, "value": 126, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2017-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 100, "value": 0},
-            {"frame": 115, "value": 1, "easing": "ease-in"}
+            {"frame": 98, "value": 0},
+            {"frame": 108, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2018",
+          "property": "x",
+          "keyframes": [
+            {"frame": 72, "value": -200},
+            {"frame": 87, "value": 790, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2018-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 80, "value": 0},
-            {"frame": 110, "value": 144, "easing": "ease-out"}
+            {"frame": 87, "value": 0},
+            {"frame": 102, "value": 144, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2018-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 110, "value": 0},
-            {"frame": 125, "value": 1, "easing": "ease-in"}
+            {"frame": 102, "value": 0},
+            {"frame": 112, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2019",
+          "property": "x",
+          "keyframes": [
+            {"frame": 76, "value": -200},
+            {"frame": 91, "value": 950, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2019-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 90, "value": 0},
-            {"frame": 120, "value": 108, "easing": "ease-out"}
+            {"frame": 91, "value": 0},
+            {"frame": 106, "value": 108, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2019-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 120, "value": 0},
-            {"frame": 135, "value": 1, "easing": "ease-in"}
+            {"frame": 106, "value": 0},
+            {"frame": 116, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2020",
+          "property": "x",
+          "keyframes": [
+            {"frame": 80, "value": -200},
+            {"frame": 95, "value": 1110, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2020-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 100, "value": 0},
-            {"frame": 130, "value": 72, "easing": "ease-out"}
+            {"frame": 95, "value": 0},
+            {"frame": 110, "value": 72, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2020-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 130, "value": 0},
-            {"frame": 145, "value": 1, "easing": "ease-in"}
+            {"frame": 110, "value": 0},
+            {"frame": 120, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2021",
+          "property": "x",
+          "keyframes": [
+            {"frame": 84, "value": -200},
+            {"frame": 99, "value": 1270, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2021-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 110, "value": 0},
-            {"frame": 140, "value": 282, "easing": "ease-out"}
+            {"frame": 99, "value": 0},
+            {"frame": 114, "value": 282, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2021-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 140, "value": 0},
-            {"frame": 155, "value": 1, "easing": "ease-in"}
+            {"frame": 114, "value": 0},
+            {"frame": 124, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2022",
+          "property": "x",
+          "keyframes": [
+            {"frame": 88, "value": -200},
+            {"frame": 103, "value": 1430, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2022-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 120, "value": 0},
-            {"frame": 150, "value": 480, "easing": "ease-out"}
+            {"frame": 103, "value": 0},
+            {"frame": 118, "value": 480, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2022-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 150, "value": 0},
-            {"frame": 165, "value": 1, "easing": "ease-in"}
+            {"frame": 118, "value": 0},
+            {"frame": 128, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2023",
+          "property": "x",
+          "keyframes": [
+            {"frame": 92, "value": -200},
+            {"frame": 107, "value": 1590, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2023-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 130, "value": 0},
-            {"frame": 160, "value": 246, "easing": "ease-out"}
+            {"frame": 107, "value": 0},
+            {"frame": 122, "value": 246, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2023-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 160, "value": 0},
-            {"frame": 175, "value": 1, "easing": "ease-in"}
+            {"frame": 122, "value": 0},
+            {"frame": 132, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "bar-2024",
+          "property": "x",
+          "keyframes": [
+            {"frame": 96, "value": -200},
+            {"frame": 111, "value": 1750, "easing": "ease-out"}
           ]
         },
         {
           "target": "bar-2024-rect",
           "property": "height",
           "keyframes": [
-            {"frame": 140, "value": 0},
-            {"frame": 170, "value": 174, "easing": "ease-out"}
+            {"frame": 111, "value": 0},
+            {"frame": 126, "value": 174, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
           ]
         },
         {
           "target": "bar-2024-label",
           "property": "opacity",
           "keyframes": [
-            {"frame": 170, "value": 0},
-            {"frame": 185, "value": 1, "easing": "ease-in"}
+            {"frame": 126, "value": 0},
+            {"frame": 136, "value": 1, "easing": "ease-in"}
           ]
         }
       ]
