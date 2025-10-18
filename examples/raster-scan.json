@@ -1,0 +1,1970 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "frames": 960
+  },
+  "objects": [
+    {
+      "type": "text",
+      "id": "title",
+      "content": "CRT Raster Scan Simulation",
+      "x": 960,
+      "y": 80,
+      "size": 48,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "top-center",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "scanning-beam",
+      "x": 960,
+      "y": 520,
+      "x2": 400,
+      "y2": 200,
+      "stroke": "#88CCFF",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-0",
+      "x": 400,
+      "y": 200,
+      "x2": 400,
+      "y2": 200,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-1",
+      "x": 400,
+      "y": 222,
+      "x2": 400,
+      "y2": 222,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-2",
+      "x": 400,
+      "y": 244,
+      "x2": 400,
+      "y2": 244,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-3",
+      "x": 400,
+      "y": 266,
+      "x2": 400,
+      "y2": 266,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-4",
+      "x": 400,
+      "y": 288,
+      "x2": 400,
+      "y2": 288,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-5",
+      "x": 400,
+      "y": 310,
+      "x2": 400,
+      "y2": 310,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-6",
+      "x": 400,
+      "y": 332,
+      "x2": 400,
+      "y2": 332,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-7",
+      "x": 400,
+      "y": 354,
+      "x2": 400,
+      "y2": 354,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-8",
+      "x": 400,
+      "y": 376,
+      "x2": 400,
+      "y2": 376,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-9",
+      "x": 400,
+      "y": 398,
+      "x2": 400,
+      "y2": 398,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-10",
+      "x": 400,
+      "y": 420,
+      "x2": 400,
+      "y2": 420,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-11",
+      "x": 400,
+      "y": 442,
+      "x2": 400,
+      "y2": 442,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-12",
+      "x": 400,
+      "y": 464,
+      "x2": 400,
+      "y2": 464,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-13",
+      "x": 400,
+      "y": 486,
+      "x2": 400,
+      "y2": 486,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-14",
+      "x": 400,
+      "y": 508,
+      "x2": 400,
+      "y2": 508,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-15",
+      "x": 400,
+      "y": 530,
+      "x2": 400,
+      "y2": 530,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-16",
+      "x": 400,
+      "y": 552,
+      "x2": 400,
+      "y2": 552,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-17",
+      "x": 400,
+      "y": 574,
+      "x2": 400,
+      "y2": 574,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-18",
+      "x": 400,
+      "y": 596,
+      "x2": 400,
+      "y2": 596,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-19",
+      "x": 400,
+      "y": 618,
+      "x2": 400,
+      "y2": 618,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-20",
+      "x": 400,
+      "y": 640,
+      "x2": 400,
+      "y2": 640,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-21",
+      "x": 400,
+      "y": 662,
+      "x2": 400,
+      "y2": 662,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-22",
+      "x": 400,
+      "y": 684,
+      "x2": 400,
+      "y2": 684,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-23",
+      "x": 400,
+      "y": 706,
+      "x2": 400,
+      "y2": 706,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-24",
+      "x": 400,
+      "y": 728,
+      "x2": 400,
+      "y2": 728,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-25",
+      "x": 400,
+      "y": 750,
+      "x2": 400,
+      "y2": 750,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-26",
+      "x": 400,
+      "y": 772,
+      "x2": 400,
+      "y2": 772,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-27",
+      "x": 400,
+      "y": 794,
+      "x2": 400,
+      "y2": 794,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-28",
+      "x": 400,
+      "y": 816,
+      "x2": 400,
+      "y2": 816,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    },
+    {
+      "type": "line",
+      "id": "raster-29",
+      "x": 400,
+      "y": 838,
+      "x2": 400,
+      "y2": 838,
+      "stroke": "#00FF00",
+      "strokeWidth": 2,
+      "opacity": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "scanning",
+      "animations": [
+        {
+          "target": "title",
+          "effect": "pop",
+          "startTime": 0.0
+        },
+        {
+          "target": "scanning-beam",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 49,
+              "value": 0
+            },
+            {
+              "frame": 50,
+              "value": 0.8
+            },
+            {
+              "frame": 850,
+              "value": 0.8
+            },
+            {
+              "frame": 900,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "scanning-beam",
+          "property": "y2",
+          "keyframes": [
+            {
+              "frame": 50,
+              "value": 200
+            },
+            {
+              "frame": 75,
+              "value": 200
+            },
+            {
+              "frame": 76,
+              "value": 222
+            },
+            {
+              "frame": 101,
+              "value": 222
+            },
+            {
+              "frame": 102,
+              "value": 244
+            },
+            {
+              "frame": 127,
+              "value": 244
+            },
+            {
+              "frame": 128,
+              "value": 266
+            },
+            {
+              "frame": 153,
+              "value": 266
+            },
+            {
+              "frame": 154,
+              "value": 288
+            },
+            {
+              "frame": 179,
+              "value": 288
+            },
+            {
+              "frame": 180,
+              "value": 310
+            },
+            {
+              "frame": 205,
+              "value": 310
+            },
+            {
+              "frame": 206,
+              "value": 332
+            },
+            {
+              "frame": 231,
+              "value": 332
+            },
+            {
+              "frame": 232,
+              "value": 354
+            },
+            {
+              "frame": 257,
+              "value": 354
+            },
+            {
+              "frame": 258,
+              "value": 376
+            },
+            {
+              "frame": 283,
+              "value": 376
+            },
+            {
+              "frame": 284,
+              "value": 398
+            },
+            {
+              "frame": 309,
+              "value": 398
+            },
+            {
+              "frame": 310,
+              "value": 420
+            },
+            {
+              "frame": 335,
+              "value": 420
+            },
+            {
+              "frame": 336,
+              "value": 442
+            },
+            {
+              "frame": 361,
+              "value": 442
+            },
+            {
+              "frame": 362,
+              "value": 464
+            },
+            {
+              "frame": 387,
+              "value": 464
+            },
+            {
+              "frame": 388,
+              "value": 486
+            },
+            {
+              "frame": 413,
+              "value": 486
+            },
+            {
+              "frame": 414,
+              "value": 508
+            },
+            {
+              "frame": 439,
+              "value": 508
+            },
+            {
+              "frame": 440,
+              "value": 530
+            },
+            {
+              "frame": 465,
+              "value": 530
+            },
+            {
+              "frame": 466,
+              "value": 552
+            },
+            {
+              "frame": 491,
+              "value": 552
+            },
+            {
+              "frame": 492,
+              "value": 574
+            },
+            {
+              "frame": 517,
+              "value": 574
+            },
+            {
+              "frame": 518,
+              "value": 596
+            },
+            {
+              "frame": 543,
+              "value": 596
+            },
+            {
+              "frame": 544,
+              "value": 618
+            },
+            {
+              "frame": 569,
+              "value": 618
+            },
+            {
+              "frame": 570,
+              "value": 640
+            },
+            {
+              "frame": 595,
+              "value": 640
+            },
+            {
+              "frame": 596,
+              "value": 662
+            },
+            {
+              "frame": 621,
+              "value": 662
+            },
+            {
+              "frame": 622,
+              "value": 684
+            },
+            {
+              "frame": 647,
+              "value": 684
+            },
+            {
+              "frame": 648,
+              "value": 706
+            },
+            {
+              "frame": 673,
+              "value": 706
+            },
+            {
+              "frame": 674,
+              "value": 728
+            },
+            {
+              "frame": 699,
+              "value": 728
+            },
+            {
+              "frame": 700,
+              "value": 750
+            },
+            {
+              "frame": 725,
+              "value": 750
+            },
+            {
+              "frame": 726,
+              "value": 772
+            },
+            {
+              "frame": 751,
+              "value": 772
+            },
+            {
+              "frame": 752,
+              "value": 794
+            },
+            {
+              "frame": 777,
+              "value": 794
+            },
+            {
+              "frame": 778,
+              "value": 816
+            },
+            {
+              "frame": 803,
+              "value": 816
+            },
+            {
+              "frame": 804,
+              "value": 838
+            },
+            {
+              "frame": 829,
+              "value": 838
+            }
+          ]
+        },
+        {
+          "target": "scanning-beam",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 50,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 75,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 76,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 101,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 102,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 127,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 128,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 153,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 154,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 179,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 180,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 205,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 206,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 231,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 232,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 257,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 258,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 283,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 284,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 309,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 310,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 335,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 336,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 361,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 362,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 387,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 388,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 413,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 414,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 439,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 440,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 465,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 466,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 491,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 492,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 517,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 518,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 543,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 544,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 569,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 570,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 595,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 596,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 621,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 622,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 647,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 648,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 673,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 674,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 699,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 700,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 725,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 726,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 751,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 752,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 777,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 778,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 803,
+              "value": 1520,
+              "easing": "linear"
+            },
+            {
+              "frame": 804,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 829,
+              "value": 1520,
+              "easing": "linear"
+            }
+          ]
+        },
+        {
+          "target": "raster-0",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 50,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 75,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-0",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 50,
+              "value": 1
+            },
+            {
+              "frame": 135,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 165,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-1",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 76,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 101,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-1",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 76,
+              "value": 1
+            },
+            {
+              "frame": 161,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 191,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-2",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 102,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 127,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-2",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 102,
+              "value": 1
+            },
+            {
+              "frame": 187,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 217,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-3",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 128,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 153,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-3",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 128,
+              "value": 1
+            },
+            {
+              "frame": 213,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 243,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-4",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 154,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 179,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-4",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 154,
+              "value": 1
+            },
+            {
+              "frame": 239,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 269,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-5",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 180,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 205,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-5",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 180,
+              "value": 1
+            },
+            {
+              "frame": 265,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 295,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-6",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 206,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 231,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-6",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 206,
+              "value": 1
+            },
+            {
+              "frame": 291,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 321,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-7",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 232,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 257,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-7",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 232,
+              "value": 1
+            },
+            {
+              "frame": 317,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 347,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-8",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 258,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 283,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-8",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 258,
+              "value": 1
+            },
+            {
+              "frame": 343,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 373,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-9",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 284,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 309,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-9",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 284,
+              "value": 1
+            },
+            {
+              "frame": 369,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 399,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-10",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 310,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 335,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-10",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 310,
+              "value": 1
+            },
+            {
+              "frame": 395,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 425,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-11",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 336,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 361,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-11",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 336,
+              "value": 1
+            },
+            {
+              "frame": 421,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 451,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-12",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 362,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 387,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-12",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 362,
+              "value": 1
+            },
+            {
+              "frame": 447,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 477,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-13",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 388,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 413,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-13",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 388,
+              "value": 1
+            },
+            {
+              "frame": 473,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 503,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-14",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 414,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 439,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-14",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 414,
+              "value": 1
+            },
+            {
+              "frame": 499,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 529,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-15",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 440,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 465,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-15",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 440,
+              "value": 1
+            },
+            {
+              "frame": 525,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 555,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-16",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 466,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 491,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-16",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 466,
+              "value": 1
+            },
+            {
+              "frame": 551,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 581,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-17",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 492,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 517,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-17",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 492,
+              "value": 1
+            },
+            {
+              "frame": 577,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 607,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-18",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 518,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 543,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-18",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 518,
+              "value": 1
+            },
+            {
+              "frame": 603,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 633,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-19",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 544,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 569,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-19",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 544,
+              "value": 1
+            },
+            {
+              "frame": 629,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 659,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-20",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 570,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 595,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-20",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 570,
+              "value": 1
+            },
+            {
+              "frame": 655,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 685,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-21",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 596,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 621,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-21",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 596,
+              "value": 1
+            },
+            {
+              "frame": 681,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 711,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-22",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 622,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 647,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-22",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 622,
+              "value": 1
+            },
+            {
+              "frame": 707,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 737,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-23",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 648,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 673,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-23",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 648,
+              "value": 1
+            },
+            {
+              "frame": 733,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 763,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-24",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 674,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 699,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-24",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 674,
+              "value": 1
+            },
+            {
+              "frame": 759,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 789,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-25",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 700,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 725,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-25",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 700,
+              "value": 1
+            },
+            {
+              "frame": 785,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 815,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-26",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 726,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 751,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-26",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 726,
+              "value": 1
+            },
+            {
+              "frame": 811,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 841,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-27",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 752,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 777,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-27",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 752,
+              "value": 1
+            },
+            {
+              "frame": 837,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 867,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-28",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 778,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 803,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-28",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 778,
+              "value": 1
+            },
+            {
+              "frame": 863,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 893,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "target": "raster-29",
+          "property": "x2",
+          "keyframes": [
+            {
+              "frame": 804,
+              "value": 400,
+              "easing": "linear"
+            },
+            {
+              "frame": 829,
+              "value": 1520
+            }
+          ]
+        },
+        {
+          "target": "raster-29",
+          "property": "opacity",
+          "keyframes": [
+            {
+              "frame": 804,
+              "value": 1
+            },
+            {
+              "frame": 889,
+              "value": 1,
+              "easing": "linear"
+            },
+            {
+              "frame": 919,
+              "value": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

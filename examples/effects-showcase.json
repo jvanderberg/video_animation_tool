@@ -1,0 +1,173 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "frames": 700
+  },
+  "objects": [
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Effects Library Showcase",
+      "x": 960,
+      "y": 80,
+      "size": 56,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "top-center",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "pop-text",
+      "content": "Pop Effect",
+      "x": 960,
+      "y": 200,
+      "size": 48,
+      "color": "#FF6B6B",
+      "font": "Arial",
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "fadeIn-text",
+      "content": "Fade In Effect",
+      "x": 960,
+      "y": 300,
+      "size": 48,
+      "color": "#4ECDC4",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "fadeOut-text",
+      "content": "Fade Out Effect",
+      "x": 960,
+      "y": 400,
+      "size": 48,
+      "color": "#95E1D3",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 1
+    },
+    {
+      "type": "text",
+      "id": "slideInLeft-text",
+      "content": "Slide In Left Effect",
+      "x": 960,
+      "y": 500,
+      "size": 48,
+      "color": "#F38181",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "slideOutRight-text",
+      "content": "Slide Out Right Effect",
+      "x": 960,
+      "y": 600,
+      "size": 48,
+      "color": "#AA96DA",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 1
+    },
+    {
+      "type": "text",
+      "id": "bounce-text",
+      "content": "Bounce Effect",
+      "x": 960,
+      "y": 700,
+      "size": 48,
+      "color": "#FCBAD3",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 1
+    },
+    {
+      "type": "text",
+      "id": "spin-text",
+      "content": "Spin Effect",
+      "x": 960,
+      "y": 800,
+      "size": 48,
+      "color": "#FFFFD2",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 1
+    },
+    {
+      "type": "text",
+      "id": "dropIn-text",
+      "content": "Drop In Effect",
+      "x": 960,
+      "y": 900,
+      "size": 48,
+      "color": "#A8E6CF",
+      "font": "Arial",
+      "anchor": "center",
+      "scale": 10,
+      "opacity": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "showcase",
+      "animations": [
+        {
+          "target": "title",
+          "effect": "pop",
+          "startTime": 0.0
+        },
+        {
+          "target": "pop-text",
+          "effect": "pop",
+          "startTime": 1.0
+        },
+        {
+          "target": "fadeIn-text",
+          "effect": "fadeIn",
+          "startTime": 2.0
+        },
+        {
+          "target": "fadeOut-text",
+          "effect": "fadeOut",
+          "startTime": 3.0
+        },
+        {
+          "target": "slideInLeft-text",
+          "effect": "slideInLeft",
+          "startTime": 4.0
+        },
+        {
+          "target": "slideOutRight-text",
+          "effect": "slideOutRight",
+          "startTime": 5.0
+        },
+        {
+          "target": "bounce-text",
+          "effect": "bounce",
+          "startTime": 6.0
+        },
+        {
+          "target": "spin-text",
+          "effect": "spin",
+          "startTime": 7.0
+        },
+        {
+          "target": "dropIn-text",
+          "effect": "dropIn",
+          "startTime": 8.0
+        }
+      ]
+    }
+  ]
+}

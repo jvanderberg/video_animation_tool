@@ -5,6 +5,7 @@ import { join } from 'path';
 import { spawn } from 'child_process';
 import { cpus } from 'os';
 import { Renderer } from './renderer.js';
+import { preprocessAnimation } from './preprocessor.js';
 import type { AnimationFile } from './types.js';
 
 function streamToFFmpeg(renderer: Renderer, animation: AnimationFile, outputPath: string): Promise<void> {
@@ -99,12 +100,15 @@ async function main() {
     // Load animation file
     console.log(`Loading animation from ${animationPath}...`);
     const data = await readFile(animationPath, 'utf-8');
-    const animation: AnimationFile = JSON.parse(data);
+    let animation: AnimationFile = JSON.parse(data);
 
     // Validate basic structure
     if (!animation.project || !animation.objects) {
       throw new Error('Invalid animation file: missing project or objects');
     }
+
+    // Preprocess: expand effects and convert time to frames
+    animation = await preprocessAnimation(animation);
 
     console.log(`Project: ${animation.project.width}x${animation.project.height} @ ${animation.project.fps}fps`);
     console.log(`Frames: ${animation.project.frames}`);

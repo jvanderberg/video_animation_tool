@@ -24,6 +24,8 @@ Transforms are applied in this specific order:
 - Keyframes: `{frame: number, value: number, easing?: string}`
 - Objects must have an `id` to be animated
 
+### Traditional Property Animation
+
 ```json
 {
   "objects": [{"id": "box", "type": "rect", ...}],
@@ -36,6 +38,54 @@ Transforms are applied in this specific order:
   }]
 }
 ```
+
+### Effects System
+
+Pre-composed effects stored in `effects/library.json`. Use time-based references that convert to frame-based at load time.
+
+**Using effects:**
+```json
+{
+  "sequences": [{
+    "animations": [{
+      "target": "title",
+      "effect": "pop",
+      "startTime": 0.0  // seconds - converts to frames based on fps
+    }]
+  }]
+}
+```
+
+**Built-in effects:**
+- `pop` - Scale and fade in with bounce (0.33s)
+- `fadeIn` - Simple fade in (0.5s)
+- `fadeOut` - Simple fade out (0.5s)
+- `slideInLeft` - Slide in from left with fade (0.5s)
+- `slideOutRight` - Slide out to right with fade (0.5s)
+- `bounce` - Bounce in place (0.6s)
+- `spin` - 360 degree rotation (1.0s)
+
+**Why effects:**
+- Same effect works at any fps (30fps, 60fps, etc.)
+- Consistent timing across projects
+- Reusable animations
+- Less verbose than manual keyframes
+
+**Mixing effects and properties:**
+```json
+{
+  "animations": [
+    {"target": "title", "effect": "pop", "startTime": 0.0},
+    {"target": "title", "property": "x", "keyframes": [{"frame": 0, "value": 50}, {"frame": 60, "value": 150}]}
+  ]
+}
+```
+
+**Effect preprocessing:**
+- CLI loads `effects/library.json`
+- Expands effect references into property animations
+- Converts `startTime` (seconds) to `startFrame` using fps
+- Renderer always receives frame-based animations
 
 ## Rendering Engine
 
@@ -124,6 +174,13 @@ expect(pixel[3]).toBe(0); // Transparent
 4. **Pixel testing**: Use tolerance ranges, not exact values (antialiasing)
 5. **Frame indexing**: 0-indexed (frame 0 is first frame)
 6. **Easing**: Associated with target keyframe (where we're going TO), not source
+7. **Background transparency vs video encoding**:
+   - PNG frames render with transparent backgrounds (alpha channel)
+   - Video encoding (MP4) may render transparency as black background
+   - **Issue**: Black text on transparent background is visible in PNGs but invisible in video when rendered on black
+   - **Solution**: Always ask user about intended background OR set explicit background color
+   - **Best practice**: Default to non-black colors (white text, colored objects) unless background is explicitly specified
+   - If unsure, prompt user: "What background will this animation appear on?" or "Should I add a background color?"
 
 ## Commands
 

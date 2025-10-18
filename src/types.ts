@@ -27,18 +27,47 @@ export interface ProjectConfig {
   frames: number;
 }
 
-// Keyframe for animation
+// Keyframe for animation (frame-based)
 export interface Keyframe {
   frame: number;
   value: number;
   easing?: EasingType;
 }
 
-// Animation targeting a specific object (used in sequences)
-export interface SequenceAnimation {
+// Time-based keyframe (gets converted to frame-based during preprocessing)
+export interface TimeKeyframe {
+  time: number;  // 0.0 to 1.0 (normalized to effect duration)
+  value: number;
+  easing?: EasingType;
+}
+
+// Effect definition from library
+export interface EffectDefinition {
+  description?: string;
+  duration: number;  // seconds
+  properties: Record<string, TimeKeyframe[]>;
+}
+
+// Animation using an effect from library
+export interface EffectAnimation {
+  target: string;  // Object ID
+  effect: string;  // Name of effect in library
+  startTime: number;  // seconds (gets converted to startFrame)
+}
+
+// Traditional property animation
+export interface PropertyAnimation {
   target: string;  // Object ID
   property: string;
   keyframes: Keyframe[];
+}
+
+// Union type for all animation types
+export type SequenceAnimation = PropertyAnimation | EffectAnimation;
+
+// Effects library structure
+export interface EffectsLibrary {
+  [effectName: string]: EffectDefinition;
 }
 
 // Animation sequence - runs in order, animations within run in parallel
