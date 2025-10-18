@@ -1,0 +1,726 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "frames": 1920
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#0a0a0a",
+      "z": 0
+    },
+    {
+      "type": "text",
+      "id": "main-title",
+      "content": "Animation Tool - Kitchen Sink Demo",
+      "x": 960,
+      "y": 400,
+      "size": 72,
+      "font": "sans-serif",
+      "color": "#FFFFFF",
+      "anchor": "center",
+      "opacity": 0,
+      "scale": 0
+    },
+    {
+      "type": "text",
+      "id": "main-subtitle",
+      "content": "Showcasing all features and transforms",
+      "x": 960,
+      "y": 500,
+      "size": 32,
+      "font": "sans-serif",
+      "color": "#AAAAAA",
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "group",
+      "id": "easing-section",
+      "x": 0,
+      "y": 0,
+      "opacity": 0,
+      "children": [
+        {
+          "type": "text",
+          "content": "Easing Functions",
+          "x": 960,
+          "y": 150,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "text",
+          "content": "linear",
+          "x": 960,
+          "y": 280,
+          "size": 24,
+          "font": "sans-serif",
+          "color": "#888888",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "ease-linear",
+          "x": 200,
+          "y": 320,
+          "width": 60,
+          "height": 60,
+          "fill": "#FF6B6B",
+          "anchor": "top-left"
+        },
+        {
+          "type": "text",
+          "content": "ease-in",
+          "x": 960,
+          "y": 420,
+          "size": 24,
+          "font": "sans-serif",
+          "color": "#888888",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "ease-in",
+          "x": 200,
+          "y": 460,
+          "width": 60,
+          "height": 60,
+          "fill": "#4ECDC4",
+          "anchor": "top-left"
+        },
+        {
+          "type": "text",
+          "content": "ease-out",
+          "x": 960,
+          "y": 560,
+          "size": 24,
+          "font": "sans-serif",
+          "color": "#888888",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "ease-out",
+          "x": 200,
+          "y": 600,
+          "width": 60,
+          "height": 60,
+          "fill": "#95E1D3",
+          "anchor": "top-left"
+        },
+        {
+          "type": "text",
+          "content": "ease-in-out",
+          "x": 960,
+          "y": 700,
+          "size": 24,
+          "font": "sans-serif",
+          "color": "#888888",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "ease-in-out",
+          "x": 200,
+          "y": 740,
+          "width": 60,
+          "height": 60,
+          "fill": "#F38181",
+          "anchor": "top-left"
+        },
+        {
+          "type": "text",
+          "content": "bounce",
+          "x": 960,
+          "y": 840,
+          "size": 24,
+          "font": "sans-serif",
+          "color": "#888888",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "ease-bounce",
+          "x": 200,
+          "y": 880,
+          "width": 60,
+          "height": 60,
+          "fill": "#AA96DA",
+          "anchor": "top-left"
+        },
+        {
+          "type": "text",
+          "content": "elastic",
+          "x": 960,
+          "y": 980,
+          "size": 24,
+          "font": "sans-serif",
+          "color": "#888888",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "ease-elastic",
+          "x": 200,
+          "y": 1020,
+          "width": 60,
+          "height": 60,
+          "fill": "#FCBAD3",
+          "anchor": "top-left"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "id": "squash-section",
+      "x": 0,
+      "y": 0,
+      "opacity": 0,
+      "children": [
+        {
+          "type": "text",
+          "content": "Squash & Stretch",
+          "x": 960,
+          "y": 200,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "ball",
+          "x": 960,
+          "y": 400,
+          "width": 100,
+          "height": 100,
+          "fill": "#FFD93D",
+          "anchor": "center",
+          "scaleX": 1,
+          "scaleY": 1
+        },
+        {
+          "type": "rect",
+          "x": 760,
+          "y": 750,
+          "width": 400,
+          "height": 4,
+          "fill": "#555555"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "id": "rotation-section",
+      "x": 0,
+      "y": 0,
+      "opacity": 0,
+      "children": [
+        {
+          "type": "text",
+          "content": "Rotation & Scale",
+          "x": 960,
+          "y": 200,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "group",
+          "id": "spinning-group",
+          "x": 960,
+          "y": 540,
+          "rotation": 0,
+          "scale": 1,
+          "children": [
+            {
+              "type": "rect",
+              "x": -80,
+              "y": -80,
+              "width": 160,
+              "height": 160,
+              "fill": "#6C5CE7",
+              "anchor": "top-left"
+            },
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 100,
+              "fill": "#A29BFE",
+              "anchor": "center"
+            },
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 50,
+              "height": 50,
+              "fill": "#DFE6E9",
+              "anchor": "center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "id": "groups-section",
+      "x": 0,
+      "y": 0,
+      "opacity": 0,
+      "children": [
+        {
+          "type": "text",
+          "content": "Group Transforms",
+          "x": 960,
+          "y": 200,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "group",
+          "id": "nested-group",
+          "x": 960,
+          "y": 540,
+          "scale": 1,
+          "children": [
+            {
+              "type": "rect",
+              "x": -80,
+              "y": 0,
+              "width": 50,
+              "height": 50,
+              "fill": "#FF6348",
+              "anchor": "center"
+            },
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 50,
+              "height": 50,
+              "fill": "#FF7979",
+              "anchor": "center"
+            },
+            {
+              "type": "rect",
+              "x": 80,
+              "y": 0,
+              "width": 50,
+              "height": 50,
+              "fill": "#FFBE76",
+              "anchor": "center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "id": "anchors-section",
+      "x": 0,
+      "y": 0,
+      "opacity": 0,
+      "children": [
+        {
+          "type": "text",
+          "content": "Text Anchors",
+          "x": 960,
+          "y": 200,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "x": 960,
+          "y": 540,
+          "width": 8,
+          "height": 8,
+          "fill": "#FF0000"
+        },
+        {
+          "type": "text",
+          "content": "center",
+          "x": 960,
+          "y": 540,
+          "size": 48,
+          "font": "sans-serif",
+          "color": "#00D2FF",
+          "anchor": "center"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "id": "opacity-section",
+      "x": 0,
+      "y": 0,
+      "opacity": 0,
+      "children": [
+        {
+          "type": "text",
+          "content": "Opacity Fades",
+          "x": 960,
+          "y": 200,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "fade-rect-1",
+          "x": 810,
+          "y": 490,
+          "width": 100,
+          "height": 100,
+          "fill": "#E74C3C",
+          "opacity": 1
+        },
+        {
+          "type": "rect",
+          "id": "fade-rect-2",
+          "x": 960,
+          "y": 490,
+          "width": 100,
+          "height": 100,
+          "fill": "#F39C12",
+          "opacity": 1,
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "fade-rect-3",
+          "x": 1110,
+          "y": 490,
+          "width": 100,
+          "height": 100,
+          "fill": "#2ECC71",
+          "opacity": 1
+        }
+      ]
+    }
+  ],
+  "sequences": [
+    {
+      "name": "main-intro",
+      "animations": [
+        {
+          "target": "main-title",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 0, "value": 0},
+            {"frame": 30, "value": 1, "easing": "ease-out"},
+            {"frame": 100, "value": 1},
+            {"frame": 130, "value": 0, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "main-title",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 0, "value": 0},
+            {"frame": 30, "value": 1, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
+          ]
+        },
+        {
+          "target": "main-subtitle",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 15, "value": 0},
+            {"frame": 45, "value": 1, "easing": "ease-out"},
+            {"frame": 100, "value": 1},
+            {"frame": 130, "value": 0, "easing": "ease-in"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "easing-section",
+      "animations": [
+        {
+          "target": "easing-section",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 150, "value": 0},
+            {"frame": 170, "value": 1, "easing": "ease-out"},
+            {"frame": 410, "value": 1},
+            {"frame": 430, "value": 0, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "ease-linear",
+          "property": "x",
+          "keyframes": [
+            {"frame": 180, "value": 200},
+            {"frame": 240, "value": 1660, "easing": "linear"},
+            {"frame": 300, "value": 200, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "ease-in",
+          "property": "x",
+          "keyframes": [
+            {"frame": 190, "value": 200},
+            {"frame": 250, "value": 1660, "easing": "ease-in"},
+            {"frame": 310, "value": 200, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "ease-out",
+          "property": "x",
+          "keyframes": [
+            {"frame": 200, "value": 200},
+            {"frame": 260, "value": 1660, "easing": "ease-out"},
+            {"frame": 320, "value": 200, "easing": "ease-out"}
+          ]
+        },
+        {
+          "target": "ease-in-out",
+          "property": "x",
+          "keyframes": [
+            {"frame": 210, "value": 200},
+            {"frame": 270, "value": 1660, "easing": "ease-in-out"},
+            {"frame": 330, "value": 200, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "ease-bounce",
+          "property": "x",
+          "keyframes": [
+            {"frame": 220, "value": 200},
+            {"frame": 280, "value": 1660, "easing": "bounce"},
+            {"frame": 340, "value": 200, "easing": "bounce"}
+          ]
+        },
+        {
+          "target": "ease-elastic",
+          "property": "x",
+          "keyframes": [
+            {"frame": 230, "value": 200},
+            {"frame": 290, "value": 1660, "easing": "elastic"},
+            {"frame": 350, "value": 200, "easing": "elastic"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "squash-stretch",
+      "animations": [
+        {
+          "target": "squash-section",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 470, "value": 0},
+            {"frame": 490, "value": 1, "easing": "ease-out"},
+            {"frame": 710, "value": 1},
+            {"frame": 730, "value": 0, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "ball",
+          "property": "y",
+          "keyframes": [
+            {"frame": 500, "value": 400},
+            {"frame": 540, "value": 710, "easing": "ease-in"},
+            {"frame": 580, "value": 550, "easing": "ease-out"},
+            {"frame": 610, "value": 710, "easing": "ease-in"},
+            {"frame": 635, "value": 630, "easing": "ease-out"},
+            {"frame": 655, "value": 710, "easing": "ease-in"},
+            {"frame": 670, "value": 680, "easing": "ease-out"},
+            {"frame": 682, "value": 710, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "ball",
+          "property": "scaleX",
+          "keyframes": [
+            {"frame": 500, "value": 1.0},
+            {"frame": 537, "value": 1.0},
+            {"frame": 540, "value": 1.4},
+            {"frame": 545, "value": 1.0},
+            {"frame": 577, "value": 1.0},
+            {"frame": 580, "value": 1.2},
+            {"frame": 585, "value": 1.0},
+            {"frame": 607, "value": 1.0},
+            {"frame": 610, "value": 1.3},
+            {"frame": 615, "value": 1.0},
+            {"frame": 632, "value": 1.0},
+            {"frame": 635, "value": 1.2},
+            {"frame": 640, "value": 1.0},
+            {"frame": 652, "value": 1.0},
+            {"frame": 655, "value": 1.15},
+            {"frame": 660, "value": 1.0}
+          ]
+        },
+        {
+          "target": "ball",
+          "property": "scaleY",
+          "keyframes": [
+            {"frame": 500, "value": 1.0},
+            {"frame": 537, "value": 1.0},
+            {"frame": 540, "value": 0.6},
+            {"frame": 545, "value": 1.0},
+            {"frame": 577, "value": 1.0},
+            {"frame": 580, "value": 0.8},
+            {"frame": 585, "value": 1.0},
+            {"frame": 607, "value": 1.0},
+            {"frame": 610, "value": 0.7},
+            {"frame": 615, "value": 1.0},
+            {"frame": 632, "value": 1.0},
+            {"frame": 635, "value": 0.8},
+            {"frame": 640, "value": 1.0},
+            {"frame": 652, "value": 1.0},
+            {"frame": 655, "value": 0.85},
+            {"frame": 660, "value": 1.0}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rotation-scale",
+      "animations": [
+        {
+          "target": "rotation-section",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 770, "value": 0},
+            {"frame": 790, "value": 1, "easing": "ease-out"},
+            {"frame": 1010, "value": 1},
+            {"frame": 1030, "value": 0, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "spinning-group",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 800, "value": 0},
+            {"frame": 900, "value": 360, "easing": "linear"},
+            {"frame": 1000, "value": 720, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "spinning-group",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 800, "value": 1.0},
+            {"frame": 850, "value": 1.8, "easing": "ease-in-out"},
+            {"frame": 900, "value": 1.0, "easing": "ease-in-out"},
+            {"frame": 950, "value": 0.5, "easing": "ease-in-out"},
+            {"frame": 1000, "value": 1.0, "easing": "ease-in-out"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "group-transforms",
+      "animations": [
+        {
+          "target": "groups-section",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 1070, "value": 0},
+            {"frame": 1090, "value": 1, "easing": "ease-out"},
+            {"frame": 1260, "value": 1},
+            {"frame": 1280, "value": 0, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "nested-group",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 1100, "value": 1.0},
+            {"frame": 1140, "value": 2.0, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"},
+            {"frame": 1180, "value": 1.0, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "nested-group",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 1180, "value": 1.0},
+            {"frame": 1210, "value": 0.2, "easing": "ease-out"},
+            {"frame": 1240, "value": 1.0, "easing": "ease-in"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "text-anchors",
+      "animations": [
+        {
+          "target": "anchors-section",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 1320, "value": 0},
+            {"frame": 1340, "value": 1, "easing": "ease-out"},
+            {"frame": 1540, "value": 1},
+            {"frame": 1560, "value": 0, "easing": "ease-in"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "opacity-fades",
+      "animations": [
+        {
+          "target": "opacity-section",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 1600, "value": 0},
+            {"frame": 1620, "value": 1, "easing": "ease-out"},
+            {"frame": 1900, "value": 1},
+            {"frame": 1920, "value": 0, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "fade-rect-1",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 1650, "value": 1},
+            {"frame": 1690, "value": 0, "easing": "ease-out"},
+            {"frame": 1730, "value": 0},
+            {"frame": 1770, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "fade-rect-2",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 1680, "value": 1},
+            {"frame": 1720, "value": 0, "easing": "ease-out"},
+            {"frame": 1760, "value": 0},
+            {"frame": 1800, "value": 1, "easing": "ease-in"}
+          ]
+        },
+        {
+          "target": "fade-rect-3",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 1710, "value": 1},
+            {"frame": 1750, "value": 0, "easing": "ease-out"},
+            {"frame": 1790, "value": 0},
+            {"frame": 1830, "value": 1, "easing": "ease-in"}
+          ]
+        }
+      ]
+    }
+  ]
+}
