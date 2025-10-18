@@ -1,5 +1,5 @@
 import { createCanvas, Canvas, CanvasRenderingContext2D } from 'canvas';
-import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject, CircleObject, EllipseObject } from './types.js';
+import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject, CircleObject, EllipseObject, PathObject, PathCommand } from './types.js';
 
 export class Renderer {
   private canvas: Canvas;
@@ -167,6 +167,9 @@ export class Renderer {
         break;
       case 'ellipse':
         this.renderEllipse(obj, props);
+        break;
+      case 'path':
+        this.renderPath(obj, props);
         break;
       case 'group':
         this.renderGroup(obj, frameNumber);
@@ -336,6 +339,61 @@ export class Renderer {
       this.ctx.strokeStyle = obj.stroke;
       this.ctx.lineWidth = obj.strokeWidth ?? 1;
       this.ctx.stroke();
+    }
+  }
+
+  /**
+   * Render a path (custom shape using canvas path commands)
+   */
+  private renderPath(obj: PathObject, props: any): void {
+    // Begin the path
+    this.ctx.beginPath();
+
+    // Execute each path command
+    for (const command of obj.commands) {
+      this.executePathCommand(command);
+    }
+
+    // Fill
+    if (obj.fill) {
+      this.ctx.fillStyle = obj.fill;
+      this.ctx.fill();
+    }
+
+    // Stroke
+    if (obj.stroke) {
+      this.ctx.strokeStyle = obj.stroke;
+      this.ctx.lineWidth = obj.strokeWidth ?? 1;
+      this.ctx.stroke();
+    }
+  }
+
+  /**
+   * Execute a single path command
+   */
+  private executePathCommand(command: PathCommand): void {
+    switch (command.type) {
+      case 'moveTo':
+        this.ctx.moveTo(command.x, command.y);
+        break;
+      case 'lineTo':
+        this.ctx.lineTo(command.x, command.y);
+        break;
+      case 'closePath':
+        this.ctx.closePath();
+        break;
+      case 'quadraticCurveTo':
+        this.ctx.quadraticCurveTo(command.cpx, command.cpy, command.x, command.y);
+        break;
+      case 'bezierCurveTo':
+        this.ctx.bezierCurveTo(command.cp1x, command.cp1y, command.cp2x, command.cp2y, command.x, command.y);
+        break;
+      case 'arc':
+        this.ctx.arc(command.x, command.y, command.radius, command.startAngle, command.endAngle, command.counterclockwise);
+        break;
+      case 'arcTo':
+        this.ctx.arcTo(command.x1, command.y1, command.x2, command.y2, command.radius);
+        break;
     }
   }
 

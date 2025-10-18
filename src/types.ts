@@ -155,6 +155,79 @@ export interface EllipseObject extends BaseObject {
   strokeWidth?: number;
 }
 
+// Path command types
+export interface MoveToCommand {
+  type: 'moveTo';
+  x: number;
+  y: number;
+}
+
+export interface LineToCommand {
+  type: 'lineTo';
+  x: number;
+  y: number;
+}
+
+export interface ClosePathCommand {
+  type: 'closePath';
+}
+
+export interface QuadraticCurveToCommand {
+  type: 'quadraticCurveTo';
+  cpx: number;
+  cpy: number;
+  x: number;
+  y: number;
+}
+
+export interface BezierCurveToCommand {
+  type: 'bezierCurveTo';
+  cp1x: number;
+  cp1y: number;
+  cp2x: number;
+  cp2y: number;
+  x: number;
+  y: number;
+}
+
+export interface ArcCommand {
+  type: 'arc';
+  x: number;
+  y: number;
+  radius: number;
+  startAngle: number;
+  endAngle: number;
+  counterclockwise?: boolean;
+}
+
+export interface ArcToCommand {
+  type: 'arcTo';
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  radius: number;
+}
+
+// Union type of all path commands
+export type PathCommand =
+  | MoveToCommand
+  | LineToCommand
+  | ClosePathCommand
+  | QuadraticCurveToCommand
+  | BezierCurveToCommand
+  | ArcCommand
+  | ArcToCommand;
+
+// Path object (custom shapes using canvas path commands)
+export interface PathObject extends BaseObject {
+  type: 'path';
+  commands: PathCommand[];
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+}
+
 // Group object (container for other objects)
 export interface GroupObject extends BaseObject {
   type: 'group';
@@ -177,6 +250,7 @@ export type AnimationObject =
   | PointObject
   | CircleObject
   | EllipseObject
+  | PathObject
   | GroupObject
   | ComponentObject;
 
