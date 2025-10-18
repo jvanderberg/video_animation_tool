@@ -142,6 +142,144 @@ Common properties across all object types:
 
 **Note on scaling:** When both `scale` and `scaleX`/`scaleY` are specified, they multiply together. For example, `scale: 0.5` and `scaleX: 2.0` results in a final X-scale of 1.0. This allows combining uniform scaling with directional squash & stretch effects.
 
+### Effects Library
+
+Pre-composed animations stored in `effects/library.json` that can be referenced by name. Effects use time-based definitions (0.0 to 1.0 normalized) which are converted to frames at load time based on the project's fps. This allows effects to work consistently across different frame rates.
+
+#### Using Effects
+
+Effects are applied through sequences using the `effect` property:
+
+```json
+{
+  "objects": [
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Hello World",
+      "x": 960,
+      "y": 540,
+      "scale": 0,
+      "opacity": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "main",
+      "animations": [
+        {
+          "target": "title",
+          "effect": "pop",
+          "startTime": 0.5
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Key points:**
+- `target` - ID of the object to animate
+- `effect` - Name of effect from library
+- `startTime` - When to start the effect (in seconds)
+- Effects are expanded to property animations during preprocessing
+- Time values are converted to frames based on project fps
+
+#### Built-in Effects
+
+**pop** (0.33s)
+- Scale from 0 to 1 with bounce overshoot
+- Fade from 0 to 1
+- Great for titles appearing
+
+**fadeIn** (0.5s)
+- Simple opacity 0 to 1 transition
+- Ease-out easing
+
+**fadeOut** (0.5s)
+- Simple opacity 1 to 0 transition
+- Ease-in easing
+
+**slideInLeft** (0.5s)
+- Slide from off-screen left to center
+- Fade in simultaneously
+- Positions are centered at x: 960 for 1920px width
+
+**slideOutRight** (0.5s)
+- Slide from center to off-screen right
+- Fade out simultaneously
+
+**bounce** (0.6s)
+- Vertical squash and stretch animation
+- ScaleY oscillates: 1.0 → 0.8 → 1.1 → 1.0
+- Creates landing or jumping effect
+
+**spin** (1.0s)
+- Full 360° rotation
+- Linear easing for constant speed
+
+**dropIn** (0.6s)
+- Scale from 10.0 (fills screen) to 1.0
+- Bounce overshoot on landing
+- Quick fade in during first 20%
+
+#### Creating Custom Effects
+
+Effects are defined in `effects/library.json`:
+
+```json
+{
+  "myEffect": {
+    "description": "Custom effect description",
+    "duration": 0.5,
+    "properties": {
+      "scale": [
+        {"time": 0.0, "value": 0},
+        {"time": 1.0, "value": 1, "easing": "ease-out"}
+      ],
+      "rotation": [
+        {"time": 0.0, "value": 0},
+        {"time": 1.0, "value": 90}
+      ]
+    }
+  }
+}
+```
+
+**Structure:**
+- `duration` - Effect duration in seconds
+- `properties` - Map of property names to time-based keyframes
+- Each keyframe has:
+  - `time` - Normalized time from 0.0 to 1.0
+  - `value` - Property value at that time
+  - `easing` - Optional easing function
+
+#### Mixing Effects and Property Animations
+
+You can combine effects with traditional property animations in the same sequence:
+
+```json
+{
+  "sequences": [{
+    "animations": [
+      {
+        "target": "title",
+        "effect": "pop",
+        "startTime": 0.0
+      },
+      {
+        "target": "title",
+        "property": "rotation",
+        "keyframes": [
+          {"frame": 30, "value": 0},
+          {"frame": 90, "value": 360}
+        ]
+      }
+    ]
+  }]
+}
+```
+
 #### Easing Functions
 
 **Presets:**

@@ -5,6 +5,7 @@ A declarative animation tool for creating video content, designed to be both han
 ## Features
 
 - **Declarative JSON format** - Easy for both humans and LLMs to read and write
+- **Effects library** - Pre-composed animations with time-based definitions (pop, fadeIn, slideIn, etc.)
 - **Component system** - Reusable animation components with parameters
 - **Full animation support** - Keyframe-based animations with easing functions
 - **Multiple object types** - Text, images, rectangles, lines, points, and groups
@@ -58,24 +59,55 @@ animation_tool/
   "objects": [
     {
       "type": "text",
+      "id": "title",
       "content": "Hello World",
       "x": 960,
       "y": 540,
       "size": 72,
       "color": "#FFFFFF",
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "main",
       "animations": [
         {
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 0, "value": 0},
-            {"frame": 30, "value": 1, "easing": "ease-in"}
-          ]
+          "target": "title",
+          "effect": "pop",
+          "startTime": 0.5
         }
       ]
     }
   ]
 }
 ```
+
+### Using Effects
+
+The tool includes a library of pre-composed effects that work at any frame rate:
+
+```json
+{
+  "sequences": [{
+    "animations": [
+      {"target": "title", "effect": "pop", "startTime": 0.0},
+      {"target": "subtitle", "effect": "fadeIn", "startTime": 1.0},
+      {"target": "logo", "effect": "slideInLeft", "startTime": 2.0}
+    ]
+  }]
+}
+```
+
+**Built-in effects:**
+- `pop` - Scale and fade in with bounce
+- `fadeIn` / `fadeOut` - Simple opacity transitions
+- `slideInLeft` / `slideOutRight` - Slide with fade
+- `bounce` - Bounce in place
+- `spin` - 360° rotation
+- `dropIn` - Drop from huge scale with bounce
 
 See [DESIGN.md](./DESIGN.md) for complete documentation.
 
