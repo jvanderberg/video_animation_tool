@@ -34,15 +34,23 @@ export interface Keyframe {
   easing?: EasingType;
 }
 
-// Animation definition
-export interface Animation {
+// Animation targeting a specific object (used in sequences)
+export interface SequenceAnimation {
+  target: string;  // Object ID
   property: string;
   keyframes: Keyframe[];
 }
 
+// Animation sequence - runs in order, animations within run in parallel
+export interface Sequence {
+  name?: string;
+  duration?: number;  // For pause sequences (no animations)
+  animations?: SequenceAnimation[];
+}
+
 // Base object properties shared by all object types
 export interface BaseObject {
-  id?: string;
+  id?: string;  // Now required for animation targeting
   type: string;
   x?: number;
   y?: number;
@@ -50,7 +58,6 @@ export interface BaseObject {
   opacity?: number;
   z?: number;
   anchor?: AnchorType;
-  animations?: Animation[];
 }
 
 // Text object
@@ -135,4 +142,5 @@ export interface ComponentDefinition {
 export interface AnimationFile {
   project: ProjectConfig;
   objects: AnimationObject[];
+  sequences?: Sequence[];  // Optional for backward compatibility
 }

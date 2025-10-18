@@ -266,14 +266,21 @@ describe('Text Rendering', () => {
         },
         objects: [
           {
+            id: 'test-text',
             type: 'text',
             content: 'Moving',
             x: 0,
             y: 100,
             size: 48,
             color: '#FFFFFF',
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'test-text',
                 property: 'x',
                 keyframes: [
                   { frame: 0, value: 50 },
@@ -312,14 +319,21 @@ describe('Text Rendering', () => {
         },
         objects: [
           {
+            id: 'test-text',
             type: 'text',
             content: 'Fading',
             x: 100,
             y: 75,
             size: 48,
             color: '#FFFFFF',
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'test-text',
                 property: 'opacity',
                 keyframes: [
                   { frame: 0, value: 0 },

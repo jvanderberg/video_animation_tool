@@ -25,9 +25,15 @@
       "height": 100,
       "fill": "#FF6B35",
       "anchor": "center",
-      "z": 10,
+      "z": 10
+    }
+  ],
+  "sequences": [
+    {
+      "name": "box-animation",
       "animations": [
         {
+          "target": "animated-box",
           "property": "x",
           "keyframes": [
             {"frame": 0, "value": 100},
@@ -35,6 +41,7 @@
           ]
         },
         {
+          "target": "animated-box",
           "property": "rotation",
           "keyframes": [
             {"frame": 0, "value": 0},

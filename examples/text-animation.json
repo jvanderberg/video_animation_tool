@@ -21,14 +21,44 @@
       "id": "title",
       "content": "Animation Tool",
       "x": 960,
-      "y": 400,
+      "y": 450,
+      "opacity": 0,
       "size": 96,
       "font": "sans-serif",
       "color": "#FFFFFF",
       "anchor": "center",
-      "z": 10,
+      "z": 10
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "content": "Declarative Video Creation",
+      "x": 960,
+      "y": 540,
+      "opacity": 0,
+      "size": 48,
+      "font": "sans-serif",
+      "color": "#888888",
+      "anchor": "center",
+      "z": 10
+    },
+    {
+      "type": "rect",
+      "id": "accent-box",
+      "x": 860,
+      "y": 600,
+      "width": 0,
+      "height": 8,
+      "fill": "#FF6B35",
+      "z": 5
+    }
+  ],
+  "sequences": [
+    {
+      "name": "title-intro",
       "animations": [
         {
+          "target": "title",
           "property": "opacity",
           "keyframes": [
             {"frame": 0, "value": 0},
@@ -36,6 +66,7 @@
           ]
         },
         {
+          "target": "title",
           "property": "y",
           "keyframes": [
             {"frame": 0, "value": 450},
@@ -45,18 +76,10 @@
       ]
     },
     {
-      "type": "text",
-      "id": "subtitle",
-      "content": "Declarative Video Creation",
-      "x": 960,
-      "y": 540,
-      "size": 48,
-      "font": "sans-serif",
-      "color": "#888888",
-      "anchor": "center",
-      "z": 10,
+      "name": "subtitle-intro",
       "animations": [
         {
+          "target": "subtitle",
           "property": "opacity",
           "keyframes": [
             {"frame": 30, "value": 0},
@@ -66,16 +89,10 @@
       ]
     },
     {
-      "type": "rect",
-      "id": "accent-box",
-      "x": 860,
-      "y": 600,
-      "width": 200,
-      "height": 8,
-      "fill": "#FF6B35",
-      "z": 5,
+      "name": "accent-grow",
       "animations": [
         {
+          "target": "accent-box",
           "property": "width",
           "keyframes": [
             {"frame": 60, "value": 0},

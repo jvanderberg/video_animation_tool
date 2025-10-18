@@ -411,8 +411,14 @@ describe('Group Rendering', () => {
                 fill: '#FF0000',
               },
             ],
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'moving-group',
                 property: 'x',
                 keyframes: [
                   { frame: 0, value: 50 },
@@ -466,8 +472,14 @@ describe('Group Rendering', () => {
                 anchor: 'center',
               },
             ],
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'rotating-group',
                 property: 'rotation',
                 keyframes: [
                   { frame: 0, value: 0 },
@@ -516,8 +528,14 @@ describe('Group Rendering', () => {
                 fill: '#FFFFFF',
               },
             ],
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'fading-group',
                 property: 'opacity',
                 keyframes: [
                   { frame: 0, value: 0 },

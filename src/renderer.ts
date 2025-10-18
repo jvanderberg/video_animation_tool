@@ -5,11 +5,52 @@ export class Renderer {
   private canvas: Canvas;
   private ctx: CanvasRenderingContext2D;
   private animation: AnimationFile;
+  private animationMap: Map<string, Map<string, any[]>>;  // objectId -> property -> keyframes
 
   constructor(animation: AnimationFile) {
     this.animation = animation;
     this.canvas = createCanvas(animation.project.width, animation.project.height);
     this.ctx = this.canvas.getContext('2d');
+    this.animationMap = this.buildAnimationMap();
+  }
+
+  /**
+   * Build animation map from sequences
+   * Returns: objectId -> property -> keyframes
+   */
+  private buildAnimationMap(): Map<string, Map<string, any[]>> {
+    const map = new Map<string, Map<string, any[]>>();
+
+    if (!this.animation.sequences) {
+      return map;
+    }
+
+    // Process sequences in order
+    for (const sequence of this.animation.sequences) {
+      if (!sequence.animations) {
+        continue;  // Skip pause sequences
+      }
+
+      // Process each animation in the sequence
+      for (const anim of sequence.animations) {
+        // Get or create object's property map
+        if (!map.has(anim.target)) {
+          map.set(anim.target, new Map());
+        }
+        const objectMap = map.get(anim.target)!;
+
+        // Store keyframes for this property
+        // If property already has keyframes, merge them
+        if (objectMap.has(anim.property)) {
+          const existing = objectMap.get(anim.property)!;
+          objectMap.set(anim.property, [...existing, ...anim.keyframes]);
+        } else {
+          objectMap.set(anim.property, [...anim.keyframes]);
+        }
+      }
+    }
+
+    return map;
   }
 
   /**
@@ -251,12 +292,13 @@ export class Renderer {
       props.height = obj.height;
     }
 
-    // Apply animations
-    if (obj.animations) {
-      for (const anim of obj.animations) {
-        const value = this.getAnimatedValue(anim.keyframes, frameNumber);
+    // Apply animations from sequence map
+    if (obj.id && this.animationMap.has(obj.id)) {
+      const objectAnimations = this.animationMap.get(obj.id)!;
+      for (const [property, keyframes] of objectAnimations.entries()) {
+        const value = this.getAnimatedValue(keyframes, frameNumber);
         if (value !== null) {
-          props[anim.property] = value;
+          props[property] = value;
         }
       }
     }

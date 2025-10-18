@@ -183,14 +183,21 @@ describe('Renderer - Pixel Validation', () => {
         },
         objects: [
           {
+            id: 'test-rect',
             type: 'rect',
             x: 0,
             y: 40,
             width: 20,
             height: 20,
             fill: '#FF0000',
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'test-rect',
                 property: 'x',
                 keyframes: [
                   { frame: 0, value: 0 },
@@ -234,14 +241,21 @@ describe('Renderer - Pixel Validation', () => {
         },
         objects: [
           {
+            id: 'test-rect',
             type: 'rect',
             x: 40,
             y: 0,
             width: 20,
             height: 20,
             fill: '#00FF00',
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'test-rect',
                 property: 'y',
                 keyframes: [
                   { frame: 0, value: 0 },
@@ -283,14 +297,21 @@ describe('Renderer - Pixel Validation', () => {
         },
         objects: [
           {
+            id: 'test-rect',
             type: 'rect',
             x: 0,
             y: 0,
             width: 100,
             height: 100,
             fill: '#FF0000',
+          },
+        ],
+        sequences: [
+          {
+            name: 'test',
             animations: [
               {
+                target: 'test-rect',
                 property: 'opacity',
                 keyframes: [
                   { frame: 0, value: 0 },

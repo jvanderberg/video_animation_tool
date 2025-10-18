@@ -10,14 +10,21 @@ describe('Cubic Bezier Easing', () => {
       project: { width: 200, height: 100, fps: 30, frames: 60 },
       objects: [
         {
+          id: 'test-rect',
           type: 'rect',
           x: 0,
           y: 0,
           width: 10,
           height: 10,
           fill: '#FF0000',
+        }
+      ],
+      sequences: [
+        {
+          name: 'test',
           animations: [
             {
+              target: 'test-rect',
               property: 'x',
               keyframes: [
                 { frame: 0, value: 0 },
@@ -56,14 +63,21 @@ describe('Cubic Bezier Easing', () => {
       project: { width: 100, height: 100, fps: 30, frames: 60 },
       objects: [
         {
+          id: 'test-rect',
           type: 'rect',
           x: 0,
           y: 0,
           width: 10,
           height: 10,
           fill: '#00FF00',
+        }
+      ],
+      sequences: [
+        {
+          name: 'test',
           animations: [
             {
+              target: 'test-rect',
               property: 'x',
               keyframes: [
                 { frame: 0, value: 0 },
@@ -95,14 +109,21 @@ describe('Cubic Bezier Easing', () => {
       project: { width: 200, height: 100, fps: 30, frames: 60 },
       objects: [
         {
+          id: 'test-rect',
           type: 'rect',
           x: 0,
           y: 0,
           width: 10,
           height: 10,
           fill: '#0000FF',
+        }
+      ],
+      sequences: [
+        {
+          name: 'test',
           animations: [
             {
+              target: 'test-rect',
               property: 'x',
               keyframes: [
                 { frame: 0, value: 0 },
@@ -139,14 +160,21 @@ describe('Cubic Bezier Easing', () => {
       project: { width: 100, height: 100, fps: 30, frames: 60 },
       objects: [
         {
+          id: 'test-rect',
           type: 'rect',
           x: 0,
           y: 0,
           width: 5,
           height: 5,
           fill: '#FF0000',
+        }
+      ],
+      sequences: [
+        {
+          name: 'test',
           animations: [
             {
+              target: 'test-rect',
               property: 'x',
               keyframes: [
                 { frame: 0, value: 0 },
@@ -162,14 +190,21 @@ describe('Cubic Bezier Easing', () => {
       project: { width: 100, height: 100, fps: 30, frames: 60 },
       objects: [
         {
+          id: 'test-rect',
           type: 'rect',
           x: 0,
           y: 0,
           width: 5,
           height: 5,
           fill: '#FF0000',
+        }
+      ],
+      sequences: [
+        {
+          name: 'test',
           animations: [
             {
+              target: 'test-rect',
               property: 'x',
               keyframes: [
                 { frame: 0, value: 0 },
@@ -204,6 +239,7 @@ describe('Cubic Bezier Easing', () => {
       project: { width: 100, height: 100, fps: 30, frames: 60 },
       objects: [
         {
+          id: 'test-rect',
           type: 'rect',
           x: 0,
           y: 0,
@@ -211,8 +247,14 @@ describe('Cubic Bezier Easing', () => {
           height: 100,
           fill: '#FFFFFF',
           opacity: 0,
+        }
+      ],
+      sequences: [
+        {
+          name: 'test',
           animations: [
             {
+              target: 'test-rect',
               property: 'opacity',
               keyframes: [
                 { frame: 0, value: 0 },
@@ -247,14 +289,21 @@ describe('Cubic Bezier Easing', () => {
       project: { width: 300, height: 100, fps: 30, frames: 120 },
       objects: [
         {
+          id: 'test-rect',
           type: 'rect',
           x: 0,
           y: 0,
           width: 10,
           height: 10,
           fill: '#FF00FF',
+        }
+      ],
+      sequences: [
+        {
+          name: 'test',
           animations: [
             {
+              target: 'test-rect',
               property: 'x',
               keyframes: [
                 { frame: 0, value: 0 },

@@ -44,20 +44,12 @@
         },
         {
           "type": "rect",
+          "id": "linear-box",
           "x": 200,
           "y": 50,
           "width": 60,
           "height": 60,
-          "fill": "#4ECDC4",
-          "animations": [
-            {
-              "property": "x",
-              "keyframes": [
-                {"frame": 20, "value": 200},
-                {"frame": 140, "value": 1660, "easing": "linear"}
-              ]
-            }
-          ]
+          "fill": "#4ECDC4"
         }
       ]
     },
@@ -78,20 +70,12 @@
         },
         {
           "type": "rect",
+          "id": "ease-out-box",
           "x": 200,
           "y": 50,
           "width": 60,
           "height": 60,
-          "fill": "#FF6B6B",
-          "animations": [
-            {
-              "property": "x",
-              "keyframes": [
-                {"frame": 20, "value": 200},
-                {"frame": 140, "value": 1660, "easing": "ease-out"}
-              ]
-            }
-          ]
+          "fill": "#FF6B6B"
         }
       ]
     },
@@ -112,20 +96,12 @@
         },
         {
           "type": "rect",
+          "id": "overshoot-box",
           "x": 200,
           "y": 50,
           "width": 60,
           "height": 60,
-          "fill": "#FFD93D",
-          "animations": [
-            {
-              "property": "x",
-              "keyframes": [
-                {"frame": 20, "value": 200},
-                {"frame": 140, "value": 1660, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-              ]
-            }
-          ]
+          "fill": "#FFD93D"
         }
       ]
     },
@@ -146,20 +122,12 @@
         },
         {
           "type": "rect",
+          "id": "elastic-box",
           "x": 200,
           "y": 50,
           "width": 60,
           "height": 60,
-          "fill": "#A8E6CF",
-          "animations": [
-            {
-              "property": "x",
-              "keyframes": [
-                {"frame": 20, "value": 200},
-                {"frame": 140, "value": 1660, "easing": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"}
-              ]
-            }
-          ]
+          "fill": "#A8E6CF"
         }
       ]
     },
@@ -180,22 +148,61 @@
         },
         {
           "type": "rect",
+          "id": "anticipation-box",
           "x": 200,
           "y": 50,
           "width": 60,
           "height": 60,
-          "fill": "#B4A7D6",
-          "animations": [
-            {
-              "property": "x",
-              "keyframes": [
-                {"frame": 20, "value": 200},
-                {"frame": 140, "value": 1660, "easing": {
-                  "type": "cubic-bezier",
-                  "points": [0.6, -0.28, 0.735, 0.045]
-                }}
-              ]
-            }
+          "fill": "#B4A7D6"
+        }
+      ]
+    }
+  ],
+  "sequences": [
+    {
+      "name": "main",
+      "animations": [
+        {
+          "target": "linear-box",
+          "property": "x",
+          "keyframes": [
+            {"frame": 20, "value": 200},
+            {"frame": 140, "value": 1660, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "ease-out-box",
+          "property": "x",
+          "keyframes": [
+            {"frame": 20, "value": 200},
+            {"frame": 140, "value": 1660, "easing": "ease-out"}
+          ]
+        },
+        {
+          "target": "overshoot-box",
+          "property": "x",
+          "keyframes": [
+            {"frame": 20, "value": 200},
+            {"frame": 140, "value": 1660, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
+          ]
+        },
+        {
+          "target": "elastic-box",
+          "property": "x",
+          "keyframes": [
+            {"frame": 20, "value": 200},
+            {"frame": 140, "value": 1660, "easing": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"}
+          ]
+        },
+        {
+          "target": "anticipation-box",
+          "property": "x",
+          "keyframes": [
+            {"frame": 20, "value": 200},
+            {"frame": 140, "value": 1660, "easing": {
+              "type": "cubic-bezier",
+              "points": [0.6, -0.28, 0.735, 0.045]
+            }}
           ]
         }
       ]
