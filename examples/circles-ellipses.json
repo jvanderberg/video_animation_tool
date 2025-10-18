@@ -1,0 +1,194 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 180
+  },
+  "objects": [
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Circles & Ellipses",
+      "x": 960,
+      "y": 80,
+      "size": 56,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "top-center",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "circle",
+      "id": "circle-1",
+      "x": 300,
+      "y": 350,
+      "radius": 0,
+      "fill": "#FF6B6B",
+      "opacity": 0
+    },
+    {
+      "type": "circle",
+      "id": "circle-2",
+      "x": 600,
+      "y": 350,
+      "radius": 80,
+      "stroke": "#4ECDC4",
+      "strokeWidth": 4,
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "ellipse-1",
+      "x": 900,
+      "y": 350,
+      "radiusX": 0,
+      "radiusY": 0,
+      "fill": "#95E1D3",
+      "opacity": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "ellipse-2",
+      "x": 1200,
+      "y": 350,
+      "radiusX": 120,
+      "radiusY": 60,
+      "fill": "#F38181",
+      "stroke": "#AA96DA",
+      "strokeWidth": 3,
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "circle",
+      "id": "pulsing-circle",
+      "x": 960,
+      "y": 700,
+      "radius": 60,
+      "fill": "#FCBAD3",
+      "opacity": 0
+    },
+    {
+      "type": "ellipse",
+      "id": "morphing-ellipse",
+      "x": 1500,
+      "y": 350,
+      "radiusX": 80,
+      "radiusY": 40,
+      "fill": "#FFFFD2",
+      "opacity": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "showcase",
+      "animations": [
+        {
+          "target": "title",
+          "effect": "pop",
+          "startTime": 0.0
+        },
+        {
+          "target": "circle-1",
+          "property": "radius",
+          "keyframes": [
+            {"frame": 20, "value": 0},
+            {"frame": 40, "value": 80, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
+          ]
+        },
+        {
+          "target": "circle-1",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 20, "value": 0},
+            {"frame": 40, "value": 1}
+          ]
+        },
+        {
+          "target": "circle-2",
+          "effect": "pop",
+          "startTime": 1.0
+        },
+        {
+          "target": "ellipse-1",
+          "property": "radiusX",
+          "keyframes": [
+            {"frame": 50, "value": 0},
+            {"frame": 70, "value": 100, "easing": "ease-out"}
+          ]
+        },
+        {
+          "target": "ellipse-1",
+          "property": "radiusY",
+          "keyframes": [
+            {"frame": 50, "value": 0},
+            {"frame": 70, "value": 50, "easing": "ease-out"}
+          ]
+        },
+        {
+          "target": "ellipse-1",
+          "property": "opacity",
+          "keyframes": [
+            {"frame": 50, "value": 0},
+            {"frame": 70, "value": 1}
+          ]
+        },
+        {
+          "target": "ellipse-2",
+          "effect": "dropIn",
+          "startTime": 2.5
+        },
+        {
+          "target": "pulsing-circle",
+          "effect": "fadeIn",
+          "startTime": 3.5
+        },
+        {
+          "target": "pulsing-circle",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 115, "value": 1.0},
+            {"frame": 130, "value": 1.5, "easing": "ease-in-out"},
+            {"frame": 145, "value": 1.0, "easing": "ease-in-out"},
+            {"frame": 160, "value": 1.5, "easing": "ease-in-out"},
+            {"frame": 175, "value": 1.0, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "morphing-ellipse",
+          "effect": "fadeIn",
+          "startTime": 4.0
+        },
+        {
+          "target": "morphing-ellipse",
+          "property": "radiusX",
+          "keyframes": [
+            {"frame": 135, "value": 80},
+            {"frame": 150, "value": 40, "easing": "ease-in-out"},
+            {"frame": 165, "value": 80, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "morphing-ellipse",
+          "property": "radiusY",
+          "keyframes": [
+            {"frame": 135, "value": 40},
+            {"frame": 150, "value": 80, "easing": "ease-in-out"},
+            {"frame": 165, "value": 40, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "morphing-ellipse",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 135, "value": 0},
+            {"frame": 165, "value": 90, "easing": "ease-in-out"}
+          ]
+        }
+      ]
+    }
+  ]
+}

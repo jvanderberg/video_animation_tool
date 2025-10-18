@@ -136,6 +136,25 @@ export interface PointObject extends BaseObject {
   fill?: string;
 }
 
+// Circle object
+export interface CircleObject extends BaseObject {
+  type: 'circle';
+  radius: number;
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+}
+
+// Ellipse object
+export interface EllipseObject extends BaseObject {
+  type: 'ellipse';
+  radiusX: number;
+  radiusY: number;
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+}
+
 // Group object (container for other objects)
 export interface GroupObject extends BaseObject {
   type: 'group';
@@ -156,6 +175,8 @@ export type AnimationObject =
   | RectObject
   | LineObject
   | PointObject
+  | CircleObject
+  | EllipseObject
   | GroupObject
   | ComponentObject;
 

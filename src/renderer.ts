@@ -1,5 +1,5 @@
 import { createCanvas, Canvas, CanvasRenderingContext2D } from 'canvas';
-import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject } from './types.js';
+import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject, CircleObject, EllipseObject } from './types.js';
 
 export class Renderer {
   private canvas: Canvas;
@@ -162,6 +162,12 @@ export class Renderer {
       case 'line':
         this.renderLine(obj, props);
         break;
+      case 'circle':
+        this.renderCircle(obj, props);
+        break;
+      case 'ellipse':
+        this.renderEllipse(obj, props);
+        break;
       case 'group':
         this.renderGroup(obj, frameNumber);
         break;
@@ -283,6 +289,57 @@ export class Renderer {
   }
 
   /**
+   * Render a circle
+   */
+  private renderCircle(obj: CircleObject, props: any): void {
+    // Use animated radius if available
+    const radius = props.radius ?? obj.radius;
+
+    // Draw circle at (0, 0) since we've already translated to position
+    this.ctx.beginPath();
+    this.ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+
+    // Fill
+    if (obj.fill) {
+      this.ctx.fillStyle = obj.fill;
+      this.ctx.fill();
+    }
+
+    // Stroke
+    if (obj.stroke) {
+      this.ctx.strokeStyle = obj.stroke;
+      this.ctx.lineWidth = obj.strokeWidth ?? 1;
+      this.ctx.stroke();
+    }
+  }
+
+  /**
+   * Render an ellipse
+   */
+  private renderEllipse(obj: EllipseObject, props: any): void {
+    // Use animated radii if available
+    const radiusX = props.radiusX ?? obj.radiusX;
+    const radiusY = props.radiusY ?? obj.radiusY;
+
+    // Draw ellipse at (0, 0) since we've already translated to position
+    this.ctx.beginPath();
+    this.ctx.ellipse(0, 0, radiusX, radiusY, 0, 0, 2 * Math.PI);
+
+    // Fill
+    if (obj.fill) {
+      this.ctx.fillStyle = obj.fill;
+      this.ctx.fill();
+    }
+
+    // Stroke
+    if (obj.stroke) {
+      this.ctx.strokeStyle = obj.stroke;
+      this.ctx.lineWidth = obj.strokeWidth ?? 1;
+      this.ctx.stroke();
+    }
+  }
+
+  /**
    * Render a group (container for other objects)
    * Children inherit the group's transforms
    */
@@ -349,6 +406,15 @@ export class Renderer {
     }
     if ('y2' in obj) {
       props.y2 = obj.y2;
+    }
+    if ('radius' in obj) {
+      props.radius = obj.radius;
+    }
+    if ('radiusX' in obj) {
+      props.radiusX = obj.radiusX;
+    }
+    if ('radiusY' in obj) {
+      props.radiusY = obj.radiusY;
     }
 
     // Apply animations from sequence map
