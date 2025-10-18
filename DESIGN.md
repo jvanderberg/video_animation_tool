@@ -106,6 +106,9 @@ Common properties across all object types:
 - `x`, `y` - Position (top-left origin)
 - `rotation` - Degrees
 - `opacity` - 0.0 to 1.0
+- `scale` - Uniform scale factor (1.0 = 100%, default)
+- `scaleX` - X-axis scale factor (1.0 = 100%, default)
+- `scaleY` - Y-axis scale factor (1.0 = 100%, default)
 - `z` - Explicit layer order (optional, defaults to document order)
 - `anchor` - For positioning: `"top-left"`, `"center"`, etc.
 
@@ -131,9 +134,13 @@ Common properties across all object types:
 - `x`, `y` - Position
 - `rotation` - Rotation in degrees
 - `opacity` - Transparency (0-1)
-- `scale` - Scale factor (1.0 = 100%, default)
+- `scale` - Uniform scale factor (1.0 = 100%, default)
+- `scaleX` - X-axis scale factor (1.0 = 100%, default)
+- `scaleY` - Y-axis scale factor (1.0 = 100%, default)
 - `width`, `height` - Dimensions (for rectangles)
 - Any numeric property
+
+**Note on scaling:** When both `scale` and `scaleX`/`scaleY` are specified, they multiply together. For example, `scale: 0.5` and `scaleX: 2.0` results in a final X-scale of 1.0. This allows combining uniform scaling with directional squash & stretch effects.
 
 #### Easing Functions
 
