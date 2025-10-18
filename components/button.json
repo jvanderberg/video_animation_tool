@@ -1,0 +1,31 @@
+{
+  "parameters": {
+    "text": {"type": "string", "default": "Button"},
+    "color": {"type": "string", "default": "#4ECDC4"},
+    "textColor": {"type": "string", "default": "#FFFFFF"}
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "width": 80,
+      "height": 30,
+      "anchor": "center",
+      "fill": "{{color}}",
+      "stroke": "#FFFFFF",
+      "strokeWidth": 2
+    },
+    {
+      "type": "text",
+      "content": "{{text}}",
+      "x": 0,
+      "y": 0,
+      "size": 18,
+      "color": "{{textColor}}",
+      "anchor": "center"
+    }
+  ],
+  "width": 80,
+  "height": 30
+}

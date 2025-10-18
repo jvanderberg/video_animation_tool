@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 import { readFile, mkdir, writeFile } from 'fs/promises';
-import { join } from 'path';
+import { join, dirname } from 'path';
 import { spawn } from 'child_process';
 import { cpus } from 'os';
 import { Renderer } from './renderer.js';
 import { preprocessAnimation } from './preprocessor.js';
+import { expandComponents } from './components.js';
 import type { AnimationFile } from './types.js';
 
 function streamToFFmpeg(renderer: Renderer, animation: AnimationFile, outputPath: string): Promise<void> {
@@ -109,6 +110,10 @@ async function main() {
 
     // Preprocess: expand effects and convert time to frames
     animation = await preprocessAnimation(animation);
+
+    // Expand components: load external components and substitute parameters
+    const basePath = dirname(animationPath);
+    animation.objects = await expandComponents(animation.objects, basePath);
 
     console.log(`Project: ${animation.project.width}x${animation.project.height} @ ${animation.project.fps}fps`);
     console.log(`Frames: ${animation.project.frames}`);

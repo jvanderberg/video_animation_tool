@@ -263,6 +263,8 @@ export interface ComponentParameter {
 export interface ComponentDefinition {
   parameters?: Record<string, ComponentParameter>;
   objects: AnimationObject[];
+  width?: number;   // Optional bounding box width (for reference)
+  height?: number;  // Optional bounding box height (for reference)
 }
 
 // Main animation file structure

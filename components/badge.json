@@ -1,0 +1,28 @@
+{
+  "parameters": {
+    "label": {"type": "string", "default": "NEW"},
+    "bgColor": {"type": "string", "default": "#FF6B6B"},
+    "textColor": {"type": "string", "default": "#FFFFFF"}
+  },
+  "objects": [
+    {
+      "type": "circle",
+      "x": 0,
+      "y": 0,
+      "radius": 25,
+      "fill": "{{bgColor}}"
+    },
+    {
+      "type": "text",
+      "content": "{{label}}",
+      "x": 0,
+      "y": 0,
+      "size": 14,
+      "color": "{{textColor}}",
+      "font": "Arial",
+      "anchor": "center"
+    }
+  ],
+  "width": 50,
+  "height": 50
+}

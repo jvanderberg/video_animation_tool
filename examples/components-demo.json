@@ -1,0 +1,183 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 180
+  },
+  "objects": [
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Component System Demo",
+      "x": 960,
+      "y": 100,
+      "size": 56,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "top-center",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "component",
+      "id": "button1",
+      "source": "../components/button.json",
+      "x": 400,
+      "y": 400,
+      "scale": 2,
+      "opacity": 0,
+      "params": {
+        "text": "Submit",
+        "color": "#4ECDC4"
+      }
+    },
+    {
+      "type": "component",
+      "id": "button2",
+      "source": "../components/button.json",
+      "x": 800,
+      "y": 400,
+      "scale": 2,
+      "opacity": 0,
+      "params": {
+        "text": "Cancel",
+        "color": "#FF6B6B"
+      }
+    },
+    {
+      "type": "component",
+      "id": "button3",
+      "source": "../components/button.json",
+      "x": 1200,
+      "y": 400,
+      "scale": 2,
+      "opacity": 0,
+      "params": {
+        "text": "OK",
+        "color": "#95E1D3",
+        "textColor": "#000000"
+      }
+    },
+    {
+      "type": "component",
+      "id": "badge1",
+      "source": "../components/badge.json",
+      "x": 300,
+      "y": 700,
+      "scale": 2,
+      "opacity": 0,
+      "params": {
+        "label": "NEW",
+        "bgColor": "#FFD700"
+      }
+    },
+    {
+      "type": "component",
+      "id": "badge2",
+      "source": "../components/badge.json",
+      "x": 600,
+      "y": 700,
+      "scale": 2,
+      "opacity": 0,
+      "params": {
+        "label": "HOT",
+        "bgColor": "#FF1493",
+        "textColor": "#FFFFFF"
+      }
+    },
+    {
+      "type": "component",
+      "id": "badge3",
+      "source": "../components/badge.json",
+      "x": 900,
+      "y": 700,
+      "scale": 2,
+      "opacity": 0,
+      "params": {
+        "label": "99+",
+        "bgColor": "#FF4500",
+        "textColor": "#FFFFFF"
+      }
+    },
+    {
+      "type": "component",
+      "id": "rotating-badge",
+      "source": "../components/badge.json",
+      "x": 1400,
+      "y": 700,
+      "scale": 2,
+      "rotation": 0,
+      "opacity": 0,
+      "params": {
+        "label": "⭐",
+        "bgColor": "#9370DB",
+        "textColor": "#FFFFFF"
+      }
+    }
+  ],
+  "sequences": [
+    {
+      "name": "showcase",
+      "animations": [
+        {
+          "target": "title",
+          "effect": "pop",
+          "startTime": 0.0
+        },
+        {
+          "target": "button1",
+          "effect": "pop",
+          "startTime": 0.5
+        },
+        {
+          "target": "button2",
+          "effect": "pop",
+          "startTime": 0.8
+        },
+        {
+          "target": "button3",
+          "effect": "pop",
+          "startTime": 1.1
+        },
+        {
+          "target": "badge1",
+          "effect": "dropIn",
+          "startTime": 2.0
+        },
+        {
+          "target": "badge2",
+          "effect": "dropIn",
+          "startTime": 2.3
+        },
+        {
+          "target": "badge3",
+          "effect": "dropIn",
+          "startTime": 2.6
+        },
+        {
+          "target": "rotating-badge",
+          "effect": "dropIn",
+          "startTime": 2.9
+        },
+        {
+          "target": "rotating-badge",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 120, "value": 0},
+            {"frame": 180, "value": 360, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "button1",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 90, "value": 2.0},
+            {"frame": 105, "value": 2.3, "easing": "ease-in-out"},
+            {"frame": 120, "value": 2.0, "easing": "ease-in-out"}
+          ]
+        }
+      ]
+    }
+  ]
+}
