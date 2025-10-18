@@ -1,5 +1,5 @@
 import { createCanvas, Canvas, CanvasRenderingContext2D } from 'canvas';
-import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject } from './types.js';
+import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject } from './types.js';
 
 export class Renderer {
   private canvas: Canvas;
@@ -159,6 +159,9 @@ export class Renderer {
       case 'text':
         this.renderText(obj, props);
         break;
+      case 'line':
+        this.renderLine(obj, props);
+        break;
       case 'group':
         this.renderGroup(obj, frameNumber);
         break;
@@ -254,6 +257,32 @@ export class Renderer {
   }
 
   /**
+   * Render a line
+   */
+  private renderLine(obj: LineObject, props: any): void {
+    // Use animated coordinates if available
+    const x = props.x ?? obj.x ?? 0;
+    const y = props.y ?? obj.y ?? 0;
+    const x2 = props.x2 ?? obj.x2;
+    const y2 = props.y2 ?? obj.y2;
+
+    // Calculate relative end point
+    // Since transforms already moved us to (x, y), we draw to (x2-x, y2-y)
+    const dx = x2 - x;
+    const dy = y2 - y;
+
+    // Set line style
+    this.ctx.strokeStyle = obj.stroke ?? '#000000';
+    this.ctx.lineWidth = obj.strokeWidth ?? 1;
+
+    // Draw line from (0, 0) to (dx, dy)
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, 0);
+    this.ctx.lineTo(dx, dy);
+    this.ctx.stroke();
+  }
+
+  /**
    * Render a group (container for other objects)
    * Children inherit the group's transforms
    */
@@ -314,6 +343,12 @@ export class Renderer {
     }
     if ('height' in obj) {
       props.height = obj.height;
+    }
+    if ('x2' in obj) {
+      props.x2 = obj.x2;
+    }
+    if ('y2' in obj) {
+      props.y2 = obj.y2;
     }
 
     // Apply animations from sequence map
