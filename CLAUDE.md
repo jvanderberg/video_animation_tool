@@ -1,0 +1,1 @@
+- I'd like you to use red/green test methodology in this, before making a feature make a test that fails and then code that feature, always validate that all tests passs

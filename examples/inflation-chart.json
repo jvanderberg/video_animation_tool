@@ -1,0 +1,619 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "frames": 300
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1a1a2e",
+      "z": 0
+    },
+    {
+      "type": "group",
+      "id": "chart-content",
+      "x": 0,
+      "y": 0,
+      "z": 10,
+      "animations": [
+        {
+          "property": "y",
+          "keyframes": [
+            {"frame": 0, "value": 1200},
+            {"frame": 35, "value": -40, "easing": "ease-out"},
+            {"frame": 50, "value": 15, "easing": "ease-in-out"},
+            {"frame": 60, "value": 0, "easing": "ease-out"}
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "title",
+          "content": "U.S. Inflation Rate (2015-2024)",
+          "x": 960,
+          "y": 100,
+          "size": 72,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center",
+          "animations": [
+            {
+              "property": "opacity",
+              "keyframes": [
+                {"frame": 20, "value": 0},
+                {"frame": 40, "value": 1, "easing": "ease-in"}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "content": "Annual Percentage Change",
+          "x": 960,
+          "y": 180,
+          "size": 36,
+          "font": "sans-serif",
+          "color": "#AAAAAA",
+          "anchor": "center",
+          "animations": [
+            {
+              "property": "opacity",
+              "keyframes": [
+                {"frame": 25, "value": 0},
+                {"frame": 45, "value": 1, "easing": "ease-in"}
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2015",
+          "x": 310,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 6,
+              "anchor": "bottom-left",
+              "fill": "#4ECDC4",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 50, "value": 0},
+                    {"frame": 80, "value": 6, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2015",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "0.1%",
+              "x": 50,
+              "y": -20,
+              "size": 20,
+              "color": "#4ECDC4",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 80, "value": 0},
+                    {"frame": 95, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2016",
+          "x": 470,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 78,
+              "anchor": "bottom-left",
+              "fill": "#4ECDC4",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 60, "value": 0},
+                    {"frame": 90, "value": 78, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2016",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "1.3%",
+              "x": 50,
+              "y": -92,
+              "size": 20,
+              "color": "#4ECDC4",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 90, "value": 0},
+                    {"frame": 105, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2017",
+          "x": 630,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 126,
+              "anchor": "bottom-left",
+              "fill": "#4ECDC4",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 70, "value": 0},
+                    {"frame": 100, "value": 126, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2017",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "2.1%",
+              "x": 50,
+              "y": -140,
+              "size": 20,
+              "color": "#4ECDC4",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 100, "value": 0},
+                    {"frame": 115, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2018",
+          "x": 790,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 144,
+              "anchor": "bottom-left",
+              "fill": "#4ECDC4",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 80, "value": 0},
+                    {"frame": 110, "value": 144, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2018",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "2.4%",
+              "x": 50,
+              "y": -158,
+              "size": 20,
+              "color": "#4ECDC4",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 110, "value": 0},
+                    {"frame": 125, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2019",
+          "x": 950,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 108,
+              "anchor": "bottom-left",
+              "fill": "#4ECDC4",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 90, "value": 0},
+                    {"frame": 120, "value": 108, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2019",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "1.8%",
+              "x": 50,
+              "y": -122,
+              "size": 20,
+              "color": "#4ECDC4",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 120, "value": 0},
+                    {"frame": 135, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2020",
+          "x": 1110,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 72,
+              "anchor": "bottom-left",
+              "fill": "#4ECDC4",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 100, "value": 0},
+                    {"frame": 130, "value": 72, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2020",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "1.2%",
+              "x": 50,
+              "y": -86,
+              "size": 20,
+              "color": "#4ECDC4",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 130, "value": 0},
+                    {"frame": 145, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2021",
+          "x": 1270,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 282,
+              "anchor": "bottom-left",
+              "fill": "#FF6B6B",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 110, "value": 0},
+                    {"frame": 140, "value": 282, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2021",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "4.7%",
+              "x": 50,
+              "y": -296,
+              "size": 20,
+              "color": "#FF6B6B",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 140, "value": 0},
+                    {"frame": 155, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2022",
+          "x": 1430,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 480,
+              "anchor": "bottom-left",
+              "fill": "#FF4757",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 120, "value": 0},
+                    {"frame": 150, "value": 480, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2022",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "8.0%",
+              "x": 50,
+              "y": -494,
+              "size": 20,
+              "color": "#FF4757",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 150, "value": 0},
+                    {"frame": 165, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2023",
+          "x": 1590,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 246,
+              "anchor": "bottom-left",
+              "fill": "#FF6B6B",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 130, "value": 0},
+                    {"frame": 160, "value": 246, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2023",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "4.1%",
+              "x": 50,
+              "y": -260,
+              "size": 20,
+              "color": "#FF6B6B",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 160, "value": 0},
+                    {"frame": 175, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "id": "bar-2024",
+          "x": 1750,
+          "y": 850,
+          "children": [
+            {
+              "type": "rect",
+              "x": 0,
+              "y": 0,
+              "width": 100,
+              "height": 174,
+              "anchor": "bottom-left",
+              "fill": "#4ECDC4",
+              "animations": [
+                {
+                  "property": "height",
+                  "keyframes": [
+                    {"frame": 140, "value": 0},
+                    {"frame": 170, "value": 174, "easing": "ease-out"}
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "2024",
+              "x": 50,
+              "y": 30,
+              "size": 24,
+              "color": "#FFFFFF",
+              "anchor": "center"
+            },
+            {
+              "type": "text",
+              "content": "2.9%",
+              "x": 50,
+              "y": -188,
+              "size": 20,
+              "color": "#4ECDC4",
+              "anchor": "center",
+              "animations": [
+                {
+                  "property": "opacity",
+                  "keyframes": [
+                    {"frame": 170, "value": 0},
+                    {"frame": 185, "value": 1, "easing": "ease-in"}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "rect",
+          "id": "baseline",
+          "x": 260,
+          "y": 850,
+          "width": 1600,
+          "height": 2,
+          "fill": "#555555"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "project": {
+    "width": 800,
+    "height": 600,
+    "fps": 60,
+    "frames": 120
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 800,
+      "height": 600,
+      "fill": "#1a1a1a",
+      "z": 0
+    },
+    {
+      "type": "rect",
+      "id": "animated-box",
+      "x": 100,
+      "y": 250,
+      "width": 100,
+      "height": 100,
+      "fill": "#FF6B35",
+      "anchor": "center",
+      "z": 10,
+      "animations": [
+        {
+          "property": "x",
+          "keyframes": [
+            {"frame": 0, "value": 100},
+            {"frame": 60, "value": 700, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 0, "value": 0},
+            {"frame": 60, "value": 360, "easing": "linear"}
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "animation_tool",
+  "version": "1.0.0",
+  "description": "Declarative animation tool for video creation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:once": "vitest run",
+    "dev": "tsx src/cli.ts"
+  },
+  "keywords": ["animation", "video", "canvas", "declarative"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.8.1",
+    "@vitest/ui": "^3.2.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "canvas": "^3.2.0"
+  }
+}
