@@ -1,30 +1,32 @@
 #!/usr/bin/env node
 
-import { readFile, mkdir, writeFile, rm } from 'fs/promises';
-import { join, dirname } from 'path';
+import { readFile, mkdir, writeFile } from 'fs/promises';
+import { join } from 'path';
 import { spawn } from 'child_process';
+import { cpus } from 'os';
 import { Renderer } from './renderer.js';
 import type { AnimationFile } from './types.js';
 
-function encodeVideo(framesDir: string, outputPath: string, fps: number): Promise<void> {
+function streamToFFmpeg(renderer: Renderer, animation: AnimationFile, outputPath: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    // FFmpeg command to encode PNG sequence to video
-    // -framerate: input frame rate
-    // -i: input pattern
-    // -c:v libx264: H.264 codec
-    // -pix_fmt yuv420p: pixel format for compatibility
-    // -preset fast: encoding speed vs compression
-    // -crf 18: quality (lower is better, 18 is visually lossless)
+    // Spawn FFmpeg with stdin pipe
+    // -f image2pipe: read images from pipe
+    // -vcodec mjpeg: JPEG codec for input
+    // -framerate: output frame rate
     const ffmpeg = spawn('ffmpeg', [
       '-y', // overwrite output file
-      '-framerate', fps.toString(),
-      '-i', join(framesDir, 'frame_%04d.png'),
+      '-f', 'image2pipe',
+      '-vcodec', 'mjpeg',
+      '-framerate', animation.project.fps.toString(),
+      '-i', 'pipe:0',
       '-c:v', 'libx264',
       '-pix_fmt', 'yuv420p',
       '-preset', 'fast',
       '-crf', '18',
       outputPath
-    ]);
+    ], {
+      stdio: ['pipe', 'inherit', 'pipe']
+    });
 
     ffmpeg.stderr.on('data', (data) => {
       // FFmpeg outputs to stderr, only show errors
@@ -45,6 +47,35 @@ function encodeVideo(framesDir: string, outputPath: string, fps: number): Promis
     ffmpeg.on('error', (err) => {
       reject(new Error(`Failed to start FFmpeg: ${err.message}. Make sure FFmpeg is installed.`));
     });
+
+    // Render and stream frames
+    (async () => {
+      try {
+        for (let frame = 0; frame < animation.project.frames; frame++) {
+          // Render frame as JPEG (much faster than PNG)
+          const canvas = renderer.renderFrame(frame);
+          const buffer = canvas.toBuffer('image/jpeg', { quality: 0.95 });
+
+          // Write to FFmpeg stdin
+          if (!ffmpeg.stdin.write(buffer)) {
+            // Wait for drain if buffer is full
+            await new Promise(resolve => ffmpeg.stdin.once('drain', resolve));
+          }
+
+          // Progress indicator
+          if ((frame + 1) % 10 === 0 || frame === animation.project.frames - 1) {
+            const progress = ((frame + 1) / animation.project.frames * 100).toFixed(1);
+            process.stdout.write(`\rProgress: ${progress}% (${frame + 1}/${animation.project.frames} frames)`);
+          }
+        }
+
+        // Close stdin to signal end of input
+        ffmpeg.stdin.end();
+      } catch (error) {
+        ffmpeg.kill();
+        reject(error);
+      }
+    })();
   });
 }
 
@@ -79,47 +110,61 @@ async function main() {
     console.log(`Frames: ${animation.project.frames}`);
     console.log(`Objects: ${animation.objects.length}`);
 
-    // Determine output directory (temp if video mode)
-    const outputDir = videoMode ? './.temp-frames' : outputPath;
-    await mkdir(outputDir, { recursive: true });
-
     // Create renderer
     const renderer = new Renderer(animation);
 
-    // Render all frames
-    console.log(`\nRendering frames...`);
-    const startTime = Date.now();
-
-    for (let frame = 0; frame < animation.project.frames; frame++) {
-      const buffer = await renderer.exportFrame(frame);
-      const filename = `frame_${frame.toString().padStart(4, '0')}.png`;
-      const filepath = join(outputDir, filename);
-      await writeFile(filepath, buffer);
-
-      // Progress indicator
-      if ((frame + 1) % 10 === 0 || frame === animation.project.frames - 1) {
-        const progress = ((frame + 1) / animation.project.frames * 100).toFixed(1);
-        process.stdout.write(`\rProgress: ${progress}% (${frame + 1}/${animation.project.frames} frames)`);
-      }
-    }
-
-    const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(`\n\nRendered ${animation.project.frames} frames in ${elapsed}s`);
-
     if (videoMode) {
-      // Encode video with FFmpeg
-      console.log(`\nEncoding video to ${outputPath}...`);
-      await encodeVideo(outputDir, outputPath, animation.project.fps);
+      // Stream directly to FFmpeg (no temp files)
+      console.log(`\nRendering and encoding video...`);
+      const startTime = Date.now();
 
-      // Clean up temp frames
-      console.log('Cleaning up temporary frames...');
-      await rm(outputDir, { recursive: true, force: true });
+      await streamToFFmpeg(renderer, animation, outputPath);
 
+      const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+      console.log(`\n\nRendered and encoded ${animation.project.frames} frames in ${elapsed}s`);
       console.log(`\nDone! Video saved to ${outputPath}`);
     } else {
+      // Render PNG sequence with parallel processing
+      await mkdir(outputPath, { recursive: true });
+
+      console.log(`\nRendering frames in parallel...`);
+      const startTime = Date.now();
+
+      // Render in batches to avoid overwhelming memory
+      const batchSize = cpus().length * 4; // 4x CPU cores for maximum throughput
+      let completed = 0;
+
+      for (let batchStart = 0; batchStart < animation.project.frames; batchStart += batchSize) {
+        const batchEnd = Math.min(batchStart + batchSize, animation.project.frames);
+        const batch = [];
+
+        // Create batch of rendering promises
+        for (let frame = batchStart; frame < batchEnd; frame++) {
+          const promise = (async () => {
+            const buffer = await renderer.exportFrame(frame);
+            const filename = `frame_${frame.toString().padStart(4, '0')}.png`;
+            const filepath = join(outputPath, filename);
+            await writeFile(filepath, buffer);
+            return frame;
+          })();
+          batch.push(promise);
+        }
+
+        // Wait for batch to complete
+        await Promise.all(batch);
+        completed += batch.length;
+
+        // Progress indicator
+        const progress = (completed / animation.project.frames * 100).toFixed(1);
+        process.stdout.write(`\rProgress: ${progress}% (${completed}/${animation.project.frames} frames)`);
+      }
+
+      const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+      console.log(`\n\nRendered ${animation.project.frames} frames in ${elapsed}s`);
+
       console.log(`\nTo import into DaVinci Resolve:`);
       console.log(`1. File > Import > Image Sequence`);
-      console.log(`2. Select first frame: ${outputDir}/frame_0000.png`);
+      console.log(`2. Select first frame: ${outputPath}/frame_0000.png`);
       console.log(`3. Set frame rate to ${animation.project.fps} fps`);
     }
 
