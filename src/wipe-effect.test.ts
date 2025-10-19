@@ -32,8 +32,8 @@ describe('Wipe Effect', () => {
         animations: [{
           target: 'box',
           effect: 'wipe',
-          startTime: 0,
-          duration: 1.0  // 1 second = 30 frames at 30fps
+          start: 0,
+          duration: '1s'  // 1 second = 30 frames at 30fps
         }]
       }]
     };
@@ -90,8 +90,8 @@ describe('Wipe Effect', () => {
         animations: [{
           target: 'title',
           effect: 'wipe',
-          startTime: 0,
-          duration: 1.0  // 1 second = 30 frames at 30fps
+          start: 0,
+          duration: '1s'  // 1 second = 30 frames at 30fps
         }]
       }]
     };

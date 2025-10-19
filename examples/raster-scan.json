@@ -368,7 +368,7 @@
         {
           "target": "title",
           "effect": "pop",
-          "startTime": 0.0
+          "start": "0.0s"
         },
         {
           "target": "scanning-beam",

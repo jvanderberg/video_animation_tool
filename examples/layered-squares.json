@@ -78,7 +78,7 @@
         {
           "target": "square-red",
           "effect": "pop",
-          "startTime": 0.5
+          "start": "0.5s"
         },
         {
           "target": "square-red",
@@ -100,7 +100,7 @@
         {
           "target": "square-blue",
           "effect": "pop",
-          "startTime": 1.0
+          "start": "1.0s"
         },
         {
           "target": "square-blue",
@@ -122,7 +122,7 @@
         {
           "target": "square-green",
           "effect": "pop",
-          "startTime": 1.5
+          "start": "1.5s"
         },
         {
           "target": "square-green",
@@ -144,7 +144,7 @@
         {
           "target": "square-yellow",
           "effect": "pop",
-          "startTime": 2.0
+          "start": "2.0s"
         },
         {
           "target": "square-yellow",
@@ -166,7 +166,7 @@
         {
           "target": "square-purple",
           "effect": "pop",
-          "startTime": 2.5
+          "start": "2.5s"
         },
         {
           "target": "square-purple",

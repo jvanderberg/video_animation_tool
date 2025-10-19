@@ -51,7 +51,7 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'title',
           effect: 'pop',
-          startTime: 0.0
+          start: 0.0
         }]
       }]
     };
@@ -96,7 +96,7 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'title',
           effect: 'pop',
-          startTime: 1.0  // 1 second at 60fps = frame 60
+          start: '1s'  // 1 second at 60fps = frame 60
         }]
       }]
     };
@@ -124,7 +124,7 @@ describe('Preprocessor', () => {
           {
             target: 'title',
             effect: 'pop',
-            startTime: 0.0
+            start: 0.0
           },
           {
             target: 'title',
@@ -162,7 +162,7 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'title',
           effect: 'unknownEffect',
-          startTime: 0.0
+          start: 0.0
         }]
       }]
     };
@@ -182,7 +182,7 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'box',
           effect: 'fadeOut',
-          startTime: 1.0
+          start: 1.0
         }]
       }]
     };
@@ -208,7 +208,7 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'title',
           effect: 'pop',
-          startTime: 0.0
+          start: 0.0
         }]
       }]
     };
@@ -232,7 +232,7 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'title',
           effect: 'pop',
-          startTime: 0.0
+          start: 0.0
         }]
       }]
     };
@@ -257,8 +257,8 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'title',
           effect: 'pop',
-          startTime: 0.0,
-          duration: 0.6  // Override default 0.33s with 0.6s
+          start: 0,
+          duration: '0.6s'  // Override default 0.33s with 0.6s
         }]
       }]
     };
@@ -282,7 +282,7 @@ describe('Preprocessor', () => {
         animations: [{
           target: 'title',
           effect: 'fadeIn',
-          startTime: 0.0
+          start: 0.0
         }]
       }]
     };

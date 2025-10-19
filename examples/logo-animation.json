@@ -45,7 +45,7 @@
         {
           "target": "logo",
           "effect": "pop",
-          "startTime": 0.5
+          "start": "0.5s"
         },
         {
           "target": "logo",
@@ -58,7 +58,7 @@
         {
           "target": "title",
           "effect": "fadeIn",
-          "startTime": 1.5
+          "start": "1.5s"
         },
         {
           "target": "logo",

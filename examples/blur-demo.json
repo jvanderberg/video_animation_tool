@@ -57,20 +57,20 @@
         {
           "target": "title1",
           "effect": "blur-in",
-          "startTime": 0.5,
-          "duration": 1.0
+          "start": "0.5s",
+          "duration": "1.0s"
         },
         {
           "target": "title2",
           "effect": "blur-out",
-          "startTime": 2.0,
-          "duration": 1.0
+          "start": "2.0s",
+          "duration": "1.0s"
         },
         {
           "target": "title3",
           "effect": "fade-blur",
-          "startTime": 3.5,
-          "duration": 1.2
+          "start": "3.5s",
+          "duration": "1.2s"
         }
       ]
     }

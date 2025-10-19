@@ -2,6 +2,8 @@
  * Core type definitions for the animation tool
  */
 
+import type { TimeValue } from './time-utils.js';
+
 // Easing function types
 export type EasingPreset = 'linear' | 'ease-in' | 'ease-out' | 'ease-in-out' | 'bounce' | 'elastic';
 
@@ -62,8 +64,8 @@ export interface EffectDefinition {
 export interface EffectAnimation {
   target: string;  // Object ID
   effect: string;  // Name of effect in library
-  startTime: number;  // seconds (gets converted to startFrame)
-  duration?: number;  // Optional duration override in seconds (uses effect default if not specified)
+  start: TimeValue;  // Frame number or time string (e.g., "1.5s", "500ms", 30)
+  duration?: TimeValue;  // Optional duration override (uses effect default if not specified)
 }
 
 // Traditional property animation

@@ -89,7 +89,7 @@
         {
           "target": "title",
           "effect": "pop",
-          "startTime": 0.0
+          "start": "0.0s"
         },
         {
           "target": "circle-1",
@@ -110,7 +110,7 @@
         {
           "target": "circle-2",
           "effect": "pop",
-          "startTime": 1.0
+          "start": "1.0s"
         },
         {
           "target": "ellipse-1",
@@ -139,12 +139,12 @@
         {
           "target": "ellipse-2",
           "effect": "dropIn",
-          "startTime": 2.5
+          "start": "2.5s"
         },
         {
           "target": "pulsing-circle",
           "effect": "fadeIn",
-          "startTime": 3.5
+          "start": "3.5s"
         },
         {
           "target": "pulsing-circle",
@@ -160,7 +160,7 @@
         {
           "target": "morphing-ellipse",
           "effect": "fadeIn",
-          "startTime": 4.0
+          "start": "4.0s"
         },
         {
           "target": "morphing-ellipse",

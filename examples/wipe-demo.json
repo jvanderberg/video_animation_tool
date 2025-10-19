@@ -55,13 +55,13 @@
         {
           "target": "title1",
           "effect": "wipe",
-          "startTime": 0.5
+          "start": "0.5s"
         },
         {
           "target": "subtitle",
           "effect": "wipe",
-          "startTime": 1.2,
-          "duration": 0.8
+          "start": "1.2s",
+          "duration": "0.8s"
         }
       ]
     }

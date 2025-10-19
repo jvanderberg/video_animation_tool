@@ -111,63 +111,63 @@
         {
           "target": "title",
           "effect": "fadeIn",
-          "startTime": 0.2
+          "start": "0.2s"
         },
         {
           "target": "subtitle",
           "effect": "fadeIn",
-          "startTime": 0.5
+          "start": "0.5s"
         },
         {
           "target": "fast-text",
           "effect": "pop",
-          "startTime": 1.5,
-          "duration": 0.2
+          "start": "1.5s",
+          "duration": "0.2s"
         },
         {
           "target": "default-text",
           "effect": "pop",
-          "startTime": 1.5
+          "start": "1.5s"
         },
         {
           "target": "slow-text",
           "effect": "pop",
-          "startTime": 1.5,
-          "duration": 0.8
+          "start": "1.5s",
+          "duration": "0.8s"
         },
         {
           "target": "fast-text",
           "effect": "pop",
-          "startTime": 3.0,
-          "duration": 0.2
+          "start": "3.0s",
+          "duration": "0.2s"
         },
         {
           "target": "default-text",
           "effect": "pop",
-          "startTime": 3.0
+          "start": "3.0s"
         },
         {
           "target": "slow-text",
           "effect": "pop",
-          "startTime": 3.0,
-          "duration": 0.8
+          "start": "3.0s",
+          "duration": "0.8s"
         },
         {
           "target": "fast-text",
           "effect": "pop",
-          "startTime": 4.5,
-          "duration": 0.2
+          "start": "4.5s",
+          "duration": "0.2s"
         },
         {
           "target": "default-text",
           "effect": "pop",
-          "startTime": 4.5
+          "start": "4.5s"
         },
         {
           "target": "slow-text",
           "effect": "pop",
-          "startTime": 4.5,
-          "duration": 0.8
+          "start": "4.5s",
+          "duration": "0.8s"
         }
       ]
     }

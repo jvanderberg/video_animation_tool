@@ -2,6 +2,7 @@ import { readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createCanvas } from 'canvas';
+import { parseTime } from './time-utils.js';
 import type {
   AnimationFile,
   AnimationObject,
@@ -164,10 +165,18 @@ async function expandEffectAnimation(
 ): Promise<PropertyAnimation[]> {
   const effect = await loadEffect(effectAnim.effect);
 
-  const startFrame = Math.round(effectAnim.startTime * fps);
+  const startFrame = parseTime(effectAnim.start, fps);
+
   // Use custom duration if provided, otherwise use effect's default duration
-  const duration = effectAnim.duration ?? effect.duration;
-  const durationFrames = Math.round(duration * fps);
+  // Effect definitions store duration in seconds (legacy format)
+  // User overrides can use TimeValue format
+  let durationFrames: number;
+  if (effectAnim.duration !== undefined) {
+    durationFrames = parseTime(effectAnim.duration, fps);
+  } else {
+    // Effect's default duration is always in seconds
+    durationFrames = Math.round(effect.duration * fps);
+  }
 
   const propertyAnimations: PropertyAnimation[] = [];
 

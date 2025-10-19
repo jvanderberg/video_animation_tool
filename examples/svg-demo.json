@@ -56,7 +56,7 @@
         {
           "target": "star-left",
           "effect": "pop",
-          "startTime": 0.5
+          "start": "0.5s"
         },
         {
           "target": "star-left",
@@ -78,7 +78,7 @@
         {
           "target": "star-center",
           "effect": "dropIn",
-          "startTime": 1.0
+          "start": "1.0s"
         },
         {
           "target": "star-center",
@@ -94,7 +94,7 @@
         {
           "target": "star-right",
           "effect": "pop",
-          "startTime": 1.5
+          "start": "1.5s"
         },
         {
           "target": "star-right",

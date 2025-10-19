@@ -125,47 +125,47 @@
         {
           "target": "title",
           "effect": "pop",
-          "startTime": 0.0
+          "start": "0.0s"
         },
         {
           "target": "pop-text",
           "effect": "pop",
-          "startTime": 1.0
+          "start": "1.0s"
         },
         {
           "target": "fadeIn-text",
           "effect": "fadeIn",
-          "startTime": 2.0
+          "start": "2.0s"
         },
         {
           "target": "fadeOut-text",
           "effect": "fadeOut",
-          "startTime": 3.0
+          "start": "3.0s"
         },
         {
           "target": "slideInLeft-text",
           "effect": "slideInLeft",
-          "startTime": 4.0
+          "start": "4.0s"
         },
         {
           "target": "slideOutRight-text",
           "effect": "slideOutRight",
-          "startTime": 5.0
+          "start": "5.0s"
         },
         {
           "target": "bounce-text",
           "effect": "bounce",
-          "startTime": 6.0
+          "start": "6.0s"
         },
         {
           "target": "spin-text",
           "effect": "spin",
-          "startTime": 7.0
+          "start": "7.0s"
         },
         {
           "target": "dropIn-text",
           "effect": "dropIn",
-          "startTime": 8.0
+          "start": "8.0s"
         }
       ]
     }

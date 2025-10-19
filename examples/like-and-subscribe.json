@@ -113,22 +113,22 @@
         {
           "target": "intro-text",
           "effect": "fadeIn",
-          "startTime": 0.0
+          "start": "0.0s"
         },
         {
           "target": "intro-text",
           "effect": "fadeOut",
-          "startTime": 2.0
+          "start": "2.0s"
         },
         {
           "target": "like-text",
           "effect": "pop",
-          "startTime": 2.5
+          "start": "2.5s"
         },
         {
           "target": "thumbs-up-icon",
           "effect": "dropIn",
-          "startTime": 3.0
+          "start": "3.0s"
         },
         {
           "target": "thumbs-up-icon",
@@ -142,17 +142,17 @@
         {
           "target": "subscribe-text",
           "effect": "fadeIn",
-          "startTime": 4.5
+          "start": "4.5s"
         },
         {
           "target": "subscribe-btn",
           "effect": "slideInLeft",
-          "startTime": 5.0
+          "start": "5.0s"
         },
         {
           "target": "bell-icon-component",
           "effect": "pop",
-          "startTime": 5.5
+          "start": "5.5s"
         },
         {
           "target": "bell-icon-component",
@@ -168,7 +168,7 @@
         {
           "target": "arrow-pointing",
           "effect": "dropIn",
-          "startTime": 6.0
+          "start": "6.0s"
         },
         {
           "target": "arrow-pointing",
@@ -184,7 +184,7 @@
         {
           "target": "outro-text",
           "effect": "fadeIn",
-          "startTime": 8.0
+          "start": "8.0s"
         }
       ]
     }

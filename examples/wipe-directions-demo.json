@@ -103,32 +103,32 @@
         {
           "target": "wipe-left",
           "effect": "wipe",
-          "startTime": 0.5,
-          "duration": 1.0
+          "start": "0.5s",
+          "duration": "1.0s"
         },
         {
           "target": "wipe-right",
           "effect": "wipe-right",
-          "startTime": 0.5,
-          "duration": 1.0
+          "start": "0.5s",
+          "duration": "1.0s"
         },
         {
           "target": "wipe-up",
           "effect": "wipe-up",
-          "startTime": 2.0,
-          "duration": 1.0
+          "start": "2.0s",
+          "duration": "1.0s"
         },
         {
           "target": "wipe-down",
           "effect": "wipe-down",
-          "startTime": 2.0,
-          "duration": 1.0
+          "start": "2.0s",
+          "duration": "1.0s"
         },
         {
           "target": "wipe-diagonal",
           "effect": "wipe-right-up",
-          "startTime": 3.5,
-          "duration": 1.5
+          "start": "3.5s",
+          "duration": "1.5s"
         }
       ]
     }

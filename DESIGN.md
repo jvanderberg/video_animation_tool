@@ -268,7 +268,7 @@ Effects are applied through sequences using the `effect` property:
         {
           "target": "title",
           "effect": "pop",
-          "startTime": 0.5
+          "start": "0.5s"
         }
       ]
     }
@@ -279,10 +279,31 @@ Effects are applied through sequences using the `effect` property:
 **Key points:**
 - `target` - ID of the object to animate
 - `effect` - Name of effect from library
-- `startTime` - When to start the effect (in seconds)
-- `duration` - Optional duration override in seconds (uses effect default if not specified)
+- `start` - When to start the effect (supports multiple formats, see below)
+- `duration` - Optional duration override (supports multiple formats, uses effect default if not specified)
 - Effects are expanded to property animations during preprocessing
 - Time values are converted to frames based on project fps
+
+**Time Value Formats:**
+
+The `start` and `duration` parameters support flexible time formats:
+
+```json
+{
+  "start": 30           // Frame number (30 frames)
+  "start": "1s"         // Seconds (1 second)
+  "start": "500ms"      // Milliseconds (500ms = 0.5 seconds)
+  "start": "0.5m"       // Minutes (0.5 minutes = 30 seconds)
+
+  "duration": 60        // Frame number (60 frames)
+  "duration": "2s"      // Seconds (2 seconds)
+  "duration": "1.5s"    // Fractional seconds (1.5 seconds)
+}
+```
+
+**Which format to use:**
+- **Time strings ("1s", "500ms")** - Recommended for most cases. Intuitive and works across different frame rates.
+- **Frame numbers** - Use when you need precise frame-level control or when timing relates to other frame-based animations.
 
 #### Custom Effect Duration
 
@@ -294,8 +315,8 @@ You can override the default duration of any effect by specifying a `duration` p
     {
       "target": "title",
       "effect": "pop",
-      "startTime": 0.5,
-      "duration": 0.8  // Override default 0.33s with 0.8s
+      "start": "0.5s",
+      "duration": "0.8s"  // Override default 0.33s with 0.8s
     }
   ]
 }
@@ -411,7 +432,7 @@ To use your custom effect, reference it by its filename (without the `.json` ext
 {
   "target": "title",
   "effect": "myEffect",
-  "startTime": 1.0
+  "start": "1s"
 }
 ```
 
@@ -453,7 +474,7 @@ You can combine effects with traditional property animations in the same sequenc
       {
         "target": "title",
         "effect": "pop",
-        "startTime": 0.0
+        "start": 0
       },
       {
         "target": "title",
