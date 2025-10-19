@@ -3,6 +3,9 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createCanvas } from 'canvas';
 import { parseTime } from './time-utils.js';
+import { validateEasing, validateEffectValue } from './validation/effects.js';
+import { validateObject, validateObjects } from './validation/objects.js';
+import { validateAnimationProperty } from './validation/animations.js';
 import type {
   AnimationFile,
   AnimationObject,
@@ -159,11 +162,19 @@ function resolvePercentagesInAnimation(
  * @param effectAnim - Effect animation to expand
  * @param fps - Project frame rate
  */
-async function expandEffectAnimation(
+export async function expandEffectAnimation(
   effectAnim: EffectAnimation,
   fps: number
 ): Promise<PropertyAnimation[]> {
   const effect = await loadEffect(effectAnim.effect);
+
+  // Validate effect property values and easing
+  for (const [property, timeKeyframes] of Object.entries(effect.properties)) {
+    for (let i = 0; i < timeKeyframes.length; i++) {
+      validateEffectValue(timeKeyframes[i].value, effectAnim.effect, property, i);
+      validateEasing(timeKeyframes[i].easing, effectAnim.effect, property, i);
+    }
+  }
 
   const startFrame = parseTime(effectAnim.start, fps);
 
@@ -233,7 +244,10 @@ function resolveClipPercentages(objects: AnimationObject[]): void {
 }
 
 export async function preprocessAnimation(animation: AnimationFile): Promise<AnimationFile> {
-  // Resolve percentages in object clip properties first
+  // Validate objects first
+  validateObjects(animation.objects);
+
+  // Resolve percentages in object clip properties
   resolveClipPercentages(animation.objects);
 
   // If no sequences, nothing more to preprocess
@@ -262,6 +276,11 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
         // Already a property animation, keep as-is
         expandedAnimations.push(anim as PropertyAnimation);
       }
+    }
+
+    // Validate all animations
+    for (const anim of expandedAnimations) {
+      validateAnimationProperty(anim, animation.objects);
     }
 
     // Resolve percentage values in all animations

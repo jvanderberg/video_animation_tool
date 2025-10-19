@@ -5,9 +5,9 @@ import { join, dirname } from 'path';
 import { spawn } from 'child_process';
 import { cpus } from 'os';
 import { Renderer } from './renderer.js';
-import { preprocessAnimation } from './preprocessor.js';
-import { expandComponents } from './components.js';
-import type { AnimationFile } from './types.js';
+import { preprocessAnimation, expandEffectAnimation } from './preprocessor.js';
+import { expandComponents, extractAnimationsFromGroups } from './components.js';
+import type { AnimationFile, EffectAnimation, PropertyAnimation, SequenceAnimation } from './types.js';
 
 function streamToFFmpeg(renderer: Renderer, animation: AnimationFile, outputPath: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -113,7 +113,34 @@ async function main() {
 
     // Expand components: load external components and substitute parameters
     const basePath = dirname(animationPath);
-    animation.objects = await expandComponents(animation.objects, basePath);
+    animation.objects = await expandComponents(animation.objects, basePath, animation.project.fps);
+
+    // Extract animations from component groups and add to sequences
+    const componentAnimations = extractAnimationsFromGroups(animation.objects);
+    if (componentAnimations.length > 0) {
+      // Expand effect animations into property animations
+      const expandedAnimations: SequenceAnimation[] = [];
+      for (const anim of componentAnimations) {
+        if ('effect' in anim && typeof anim.effect === 'string') {
+          // Expand effect animation
+          const propAnims = await expandEffectAnimation(anim as EffectAnimation, animation.project.fps);
+          expandedAnimations.push(...propAnims);
+        } else {
+          // Already a property animation
+          expandedAnimations.push(anim);
+        }
+      }
+
+      // Ensure sequences array exists
+      if (!animation.sequences) {
+        animation.sequences = [];
+      }
+      // Add a sequence for component animations
+      animation.sequences.push({
+        name: 'component-animations',
+        animations: expandedAnimations
+      });
+    }
 
     // Resolve image paths relative to animation file
     const resolveImagePaths = (objects: any[], base: string) => {

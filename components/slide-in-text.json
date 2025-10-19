@@ -1,0 +1,35 @@
+{
+  "parameters": {
+    "text": {
+      "type": "string",
+      "default": "Hello"
+    },
+    "color": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "size": {
+      "type": "number",
+      "default": 48
+    }
+  },
+  "objects": [
+    {
+      "type": "text",
+      "id": "label",
+      "content": "{{text}}",
+      "color": "{{color}}",
+      "size": "{{size}}",
+      "x": 0,
+      "y": 0,
+      "anchor": "center"
+    }
+  ],
+  "animations": [
+    {
+      "target": "label",
+      "effect": "slideInRight",
+      "start": 0
+    }
+  ]
+}

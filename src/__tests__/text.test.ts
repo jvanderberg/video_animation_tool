@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { Renderer } from './renderer.js';
-import { getPixelFromPNG, hexToRgb, colorMatches } from './test-helpers.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import { getPixelFromPNG, hexToRgb, colorMatches } from '../test-helpers.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Text Rendering', () => {
   describe('Basic Text', () => {

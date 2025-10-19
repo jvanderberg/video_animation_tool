@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { Renderer } from './renderer.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import type { AnimationFile } from '../types.js';
 import { createCanvas } from 'canvas';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';

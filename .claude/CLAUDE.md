@@ -104,6 +104,123 @@ npm run build         # TypeScript compilation
 - Build succeeds without errors
 - New features have comprehensive test coverage
 
+## Verification Checklist (CRITICAL)
+
+**After ANY code changes, you MUST run BOTH commands:**
+
+```bash
+npm test              # Tests runtime behavior
+npm run build         # Tests TypeScript compilation
+```
+
+**NEVER skip `npm run build`** - it catches different errors than tests:
+- Tests use esbuild/transformers (more lenient)
+- Build uses `tsc` (strict type checking)
+- Tests can pass while build fails
+
+**Common mistake:**
+```
+✅ Run npm test → all pass
+❌ Declare victory without running npm run build
+💥 Build fails with type errors
+```
+
+**Correct approach:**
+```
+✅ Run npm test → all pass
+✅ Run npm run build → build succeeds
+✅ Now you're done
+```
+
+## Debugging Discipline
+
+### TDD When Debugging (Critical)
+
+**When you discover a bug, ALWAYS follow this process:**
+
+1. **STOP** - Don't immediately try to fix it
+2. **WRITE TEST** - Create a failing test that reproduces the bug
+3. **VERIFY** - Confirm the test fails for the right reason
+4. **FIX** - Now implement the fix
+5. **VERIFY** - Confirm the test passes
+
+**Why this matters:**
+- Forces you to understand the root cause before coding
+- Test serves as regression protection forever
+- Often reveals the real problem (symptom vs cause)
+- Prevents going down wrong debugging paths
+
+**Example from component animations bug:**
+- ❌ **Wrong**: "Animations don't work" → immediately code a fix
+- ✅ **Right**: Write test for component effect expansion → discover quoted numbers in effect file → add validation with tests → then fix
+
+### Validate Early and Often
+
+**Add validation at load/preprocessing time, not runtime:**
+
+```typescript
+// ✅ GOOD - Validate when loading effect
+function validateEffectValue(value: any, effectName: string, property: string) {
+  if (typeof value === 'string' && /^-?\d+(\.\d+)?$/.test(value)) {
+    throw new Error(
+      `Effect '${effectName}' has quoted number "${value}" in ${property}. ` +
+      `Use number without quotes.`
+    );
+  }
+}
+
+// ❌ BAD - Silent failure at render time
+// Value just doesn't animate, user has no idea why
+```
+
+**Benefits:**
+- Clear error messages at load time
+- Fails fast before rendering
+- Prevents entire classes of errors
+- Better developer experience
+
+### Testing Strategy for Complex Systems
+
+**Prefer real files over complex mocks:**
+
+```typescript
+// ✅ GOOD - Simple, reliable, tests real behavior
+beforeEach(async () => {
+  tempDir = join(tmpdir(), `test-${Date.now()}`);
+  await mkdir(tempDir, { recursive: true });
+});
+
+afterEach(async () => {
+  await rm(tempDir, { recursive: true, force: true });
+});
+
+// ❌ BAD - Complex, brittle, doesn't test real behavior
+vi.mock('fs/promises', () => ({
+  readFile: vi.fn().mockImplementation(/* complex mock logic */),
+  // Fighting with mock implementation details...
+}));
+```
+
+**When to use each:**
+- **Real files**: File I/O, integration tests, anything touching filesystem
+- **Mocks**: External APIs, time-dependent code, expensive operations
+
+### Root Cause Analysis
+
+**Always distinguish between symptoms and causes:**
+
+**Example - Component animations not working:**
+- ❌ **Symptom**: "Animations don't work"
+- ❌ **Surface cause**: "Component animations aren't being extracted"
+- ✅ **Root cause**: "Effect file has quoted numbers instead of numbers"
+
+**Process:**
+1. Observe the symptom
+2. Write test to reproduce it
+3. Test often reveals the real problem
+4. Fix the root cause, not the symptom
+5. Add validation to prevent similar issues
+
 ## Implementation Patterns
 
 ### Renderer Extension
@@ -236,6 +353,55 @@ ctx.globalAlpha *= props.opacity;
 - Each blurred object creates a temporary canvas
 - Blur is relatively expensive (pixel operation)
 - Consider this when animating blur on many objects
+
+## File Size Guidelines
+
+**Target file sizes:**
+- **Ideal: 200-400 lines** - Sweet spot for maintainability
+- **Acceptable: 400-600 lines** - Starting to get large, consider splitting
+- **Too large: 600+ lines** - Should be split into multiple files
+
+**Why file size matters:**
+- **For AI assistants**: Smaller, well-named files are easier to locate and work with
+  - Finding "validation logic" in `src/validation/objects.ts` is instant
+  - Searching through 600+ lines requires more context and tokens
+- **For developers**: Easier to navigate, understand scope, and maintain
+- **For reviews**: Smaller files = smaller, focused PRs
+
+**When to split a file:**
+- File exceeds 600 lines
+- File has multiple distinct concerns (validation + preprocessing + formatting)
+- You find yourself scrolling frequently to find related code
+- File name doesn't clearly describe what's inside anymore
+
+**How to split:**
+- Group by feature/domain: `validation/`, `rendering/`, `preprocessing/`
+- Use descriptive names: `object-validation.ts`, `shape-renderer.ts`
+- Keep related code together: don't split just to hit a line count
+- Maintain clear module boundaries with well-defined exports
+
+**Example split:**
+```
+❌ Before:
+src/preprocessor.ts (631 lines)
+  - Object validation
+  - Effect validation
+  - Animation validation
+  - Preprocessing logic
+  - Percentage resolution
+
+✅ After:
+src/validation/
+  - objects.ts (150 lines)
+  - effects.ts (120 lines)
+  - animations.ts (100 lines)
+src/preprocessor.ts (250 lines)
+  - Core preprocessing
+  - Percentage resolution
+```
+
+**Proactive suggestions:**
+When you notice a file approaching 500 lines during development, suggest splitting it before implementing new features. This prevents the "boiling frog" problem where files gradually become unmaintainable.
 
 ## Code Style
 

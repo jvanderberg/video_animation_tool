@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { Renderer } from './renderer.js';
-import { preprocessAnimation, clearEffectsCache } from './preprocessor.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import { preprocessAnimation, clearEffectsCache } from '../preprocessor.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Wipe Effect', () => {
   beforeEach(() => {

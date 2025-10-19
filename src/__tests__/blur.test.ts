@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { Renderer } from './renderer.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Blur Effect', () => {
   it('should apply blur filter to an object', () => {

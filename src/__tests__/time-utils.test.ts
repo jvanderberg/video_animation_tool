@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseTime } from './time-utils.js';
+import { parseTime } from '../time-utils.js';
 
 describe('Time Parsing Utilities', () => {
   const fps = 30;
@@ -45,5 +45,39 @@ describe('Time Parsing Utilities', () => {
     expect(parseTime(0, fps)).toBe(0);
     expect(parseTime('0s', fps)).toBe(0);
     expect(parseTime('0ms', fps)).toBe(0);
+  });
+
+  describe('Validation', () => {
+    it('should reject negative frame numbers', () => {
+      expect(() => parseTime(-10, fps)).toThrow(/negative/i);
+      expect(() => parseTime(-1, fps)).toThrow(/negative/i);
+    });
+
+    it('should reject negative time values', () => {
+      expect(() => parseTime('-1s', fps)).toThrow(/negative/i);
+      expect(() => parseTime('-500ms', fps)).toThrow(/negative/i);
+      expect(() => parseTime('-0.5m', fps)).toThrow(/negative/i);
+    });
+
+    it('should reject invalid time formats', () => {
+      expect(() => parseTime('abc', fps)).toThrow(/invalid.*format/i);
+      expect(() => parseTime('5x', fps)).toThrow(/invalid.*format/i);
+      expect(() => parseTime('hello', fps)).toThrow(/invalid.*format/i);
+    });
+
+    it('should reject empty strings', () => {
+      expect(() => parseTime('', fps)).toThrow(/invalid.*format/i);
+    });
+
+    it('should reject strings with only units', () => {
+      expect(() => parseTime('s', fps)).toThrow(/invalid.*format/i);
+      expect(() => parseTime('ms', fps)).toThrow(/invalid.*format/i);
+      expect(() => parseTime('m', fps)).toThrow(/invalid.*format/i);
+    });
+
+    it('should reject invalid numeric strings', () => {
+      expect(() => parseTime('5.3.2s', fps)).toThrow(/invalid.*format/i);
+      expect(() => parseTime('1.2.3', fps)).toThrow(/invalid.*format/i);
+    });
   });
 });

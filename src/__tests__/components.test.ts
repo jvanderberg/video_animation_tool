@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { expandComponent, expandComponents } from './components.js';
-import type { ComponentObject, AnimationObject, GroupObject } from './types.js';
+import { expandComponent, expandComponents } from '../components.js';
+import type { ComponentObject, AnimationObject, GroupObject } from '../types.js';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { tmpdir } from 'os';
@@ -33,6 +33,7 @@ describe('Component System', () => {
     // Create a component object
     const component: ComponentObject = {
       type: 'component',
+      id: 'test-comp',
       source: './test.json',
       x: 100,
       y: 200,
@@ -80,6 +81,7 @@ describe('Component System', () => {
 
     const component: ComponentObject = {
       type: 'component',
+      id: 'test-comp',
       source: './test.json',
       x: 0,
       y: 0
@@ -118,6 +120,7 @@ describe('Component System', () => {
 
     const component: ComponentObject = {
       type: 'component',
+      id: 'test-comp',
       source: './test.json',
       x: 0,
       y: 0,
@@ -151,6 +154,7 @@ describe('Component System', () => {
 
     const component: ComponentObject = {
       type: 'component',
+      id: 'test-comp',
       source: './test.json',
       x: 100,
       y: 200,
@@ -185,6 +189,7 @@ describe('Component System', () => {
       { type: 'rect', x: 0, y: 0, width: 100, height: 100 },
       {
         type: 'component',
+        id: 'test-comp',
         source: './box.json',
         x: 50,
         y: 50
@@ -222,6 +227,7 @@ describe('Component System', () => {
           { type: 'rect', x: 0, y: 0, width: 50, height: 50 },
           {
             type: 'component',
+            id: 'test-comp',
             source: './dot.json',
             x: 25,
             y: 25
@@ -259,6 +265,7 @@ describe('Component System', () => {
 
     const component: ComponentObject = {
       type: 'component',
+      id: 'test-comp',
       source: './button.json',
       x: 200,
       y: 300,

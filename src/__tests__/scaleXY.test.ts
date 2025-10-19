@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { Renderer } from './renderer.js';
-import { getPixelFromPNG } from './test-helpers.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import { getPixelFromPNG } from '../test-helpers.js';
+import type { AnimationFile } from '../types.js';
 
 describe('ScaleX/ScaleY Transform', () => {
   it('should apply scaleX to stretch horizontally', async () => {

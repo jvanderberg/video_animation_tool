@@ -247,12 +247,14 @@ export interface PathObject extends BaseObject {
 export interface GroupObject extends BaseObject {
   type: 'group';
   children: AnimationObject[];
+  animations?: SequenceAnimation[];  // Optional animations bundled with group
 }
 
 // Component object (reference to external component)
 export interface ComponentObject extends BaseObject {
   type: 'component';
   source: string;
+  start?: TimeValue;  // Start time for internal animations (defaults to 0)
   params?: Record<string, any>;
 }
 
@@ -278,6 +280,7 @@ export interface ComponentParameter {
 export interface ComponentDefinition {
   parameters?: Record<string, ComponentParameter>;
   objects: AnimationObject[];
+  animations?: SequenceAnimation[];  // Animations (property or effect) for objects in this component
   width?: number;   // Optional bounding box width (for reference)
   height?: number;  // Optional bounding box height (for reference)
 }

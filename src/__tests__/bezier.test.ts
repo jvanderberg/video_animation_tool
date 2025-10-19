@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { Renderer } from './renderer.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Cubic Bezier Easing', () => {
   it('should support cubic-bezier string format', async () => {

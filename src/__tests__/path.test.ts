@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { Renderer } from './renderer.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Path Rendering', () => {
   it('should render a triangle using lineTo commands', () => {

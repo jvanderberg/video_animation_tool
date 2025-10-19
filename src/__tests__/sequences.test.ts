@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { Renderer } from './renderer.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Animation Sequences', () => {
   it('should animate object using sequence targeting', async () => {

@@ -1,0 +1,109 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 180
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1a1a2e"
+    },
+    {
+      "type": "component",
+      "id": "title",
+      "source": "../components/slide-in-text.json",
+      "x": 960,
+      "y": 200,
+      "start": "0.5s",
+      "params": {
+        "text": "Animated Components",
+        "color": "#4ECDC4",
+        "size": 72
+      }
+    },
+    {
+      "type": "component",
+      "id": "subtitle1",
+      "source": "../components/slide-in-text.json",
+      "x": 960,
+      "y": 350,
+      "start": "1.5s",
+      "params": {
+        "text": "Slide In From Right",
+        "color": "#FFE66D",
+        "size": 48
+      }
+    },
+    {
+      "type": "component",
+      "id": "subtitle2",
+      "source": "../components/slide-in-text.json",
+      "x": 960,
+      "y": 480,
+      "start": "2s",
+      "params": {
+        "text": "With Smooth Fade",
+        "color": "#FF6B6B",
+        "size": 42
+      }
+    },
+    {
+      "type": "component",
+      "id": "text1",
+      "source": "../components/slide-in-text.json",
+      "x": 960,
+      "y": 620,
+      "start": "2.5s",
+      "params": {
+        "text": "Different Colors",
+        "color": "#95E1D3",
+        "size": 36
+      }
+    },
+    {
+      "type": "component",
+      "id": "text2",
+      "source": "../components/slide-in-text.json",
+      "x": 960,
+      "y": 720,
+      "start": "3s",
+      "params": {
+        "text": "Different Sizes",
+        "color": "#F38181",
+        "size": 32
+      }
+    },
+    {
+      "type": "component",
+      "id": "text3",
+      "source": "../components/slide-in-text.json",
+      "x": 960,
+      "y": 820,
+      "start": "3.5s",
+      "params": {
+        "text": "Different Timings",
+        "color": "#AA96DA",
+        "size": 38
+      }
+    },
+    {
+      "type": "component",
+      "id": "footer",
+      "source": "../components/slide-in-text.json",
+      "x": 960,
+      "y": 950,
+      "start": "4.5s",
+      "params": {
+        "text": "Reusable & Parameterized",
+        "color": "#FCBAD3",
+        "size": 28
+      }
+    }
+  ]
+}

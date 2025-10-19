@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { Renderer } from './renderer.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Circle and Ellipse Rendering', () => {
   it('should render a circle with fill', () => {

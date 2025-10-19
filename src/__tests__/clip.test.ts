@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { createCanvas } from 'canvas';
-import { Renderer } from './renderer.js';
-import type { AnimationFile } from './types.js';
+import { Renderer } from '../renderer.js';
+import type { AnimationFile } from '../types.js';
 
 describe('Clipping', () => {
   it('should clip a rectangle to a smaller region', () => {

@@ -1,6 +1,9 @@
-import { createCanvas, Canvas, CanvasRenderingContext2D, Image, loadImage } from 'canvas';
+import { createCanvas, Canvas, CanvasRenderingContext2D, Image } from 'canvas';
 import { canvasRGBA } from 'stackblur-canvas';
-import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject, CircleObject, EllipseObject, PathObject, PathCommand, ImageObject } from './types.js';
+import type { AnimationFile, AnimationObject, GroupObject, PropertyAnimation } from './types.js';
+import { getAnchorOffset, renderRect, renderLine, renderCircle, renderEllipse, renderPath } from './renderer/shapes.js';
+import { renderText } from './renderer/text.js';
+import { loadImageIfNeeded, renderImage } from './renderer/image.js';
 
 export class Renderer {
   private canvas: Canvas;
@@ -36,19 +39,26 @@ export class Renderer {
 
       // Process each animation in the sequence
       for (const anim of sequence.animations) {
-        // Get or create object's property map
-        if (!map.has(anim.target)) {
-          map.set(anim.target, new Map());
+        // Type guard: renderer only handles property animations (effects should be expanded)
+        if (!('property' in anim) || !('keyframes' in anim)) {
+          continue;
         }
-        const objectMap = map.get(anim.target)!;
+
+        const propAnim = anim as PropertyAnimation;
+
+        // Get or create object's property map
+        if (!map.has(propAnim.target)) {
+          map.set(propAnim.target, new Map());
+        }
+        const objectMap = map.get(propAnim.target)!;
 
         // Store keyframes for this property
         // If property already has keyframes, merge them
-        if (objectMap.has(anim.property)) {
-          const existing = objectMap.get(anim.property)!;
-          objectMap.set(anim.property, [...existing, ...anim.keyframes]);
+        if (objectMap.has(propAnim.property)) {
+          const existing = objectMap.get(propAnim.property)!;
+          objectMap.set(propAnim.property, [...existing, ...propAnim.keyframes]);
         } else {
-          objectMap.set(anim.property, [...anim.keyframes]);
+          objectMap.set(propAnim.property, [...propAnim.keyframes]);
         }
       }
     }
@@ -65,7 +75,7 @@ export class Renderer {
     const processObjects = (objects: AnimationObject[]) => {
       for (const obj of objects) {
         if (obj.type === 'image') {
-          loadPromises.push(this.loadImageIfNeeded(obj.source).then(() => {}));
+          loadPromises.push(loadImageIfNeeded(obj.source, this.imageCache).then(() => {}));
         } else if (obj.type === 'group') {
           processObjects(obj.children);
         }
@@ -203,7 +213,7 @@ export class Renderer {
       }
 
       // Get anchor offset
-      const { offsetX, offsetY } = this.getAnchorOffset(obj.anchor, width, height);
+      const { offsetX, offsetY } = getAnchorOffset(obj.anchor, width, height);
 
       // Apply clip adjusted for anchor
       this.ctx.beginPath();
@@ -219,25 +229,25 @@ export class Renderer {
     // Render based on type
     switch (obj.type) {
       case 'rect':
-        this.renderRect(obj, props);
+        renderRect(this.ctx, obj, props);
         break;
       case 'text':
-        this.renderText(obj, props);
+        renderText(this.ctx, obj, props);
         break;
       case 'image':
-        this.renderImage(obj, props);
+        renderImage(this.ctx, obj, props, this.imageCache, getAnchorOffset);
         break;
       case 'line':
-        this.renderLine(obj, props);
+        renderLine(this.ctx, obj, props);
         break;
       case 'circle':
-        this.renderCircle(obj, props);
+        renderCircle(this.ctx, obj, props);
         break;
       case 'ellipse':
-        this.renderEllipse(obj, props);
+        renderEllipse(this.ctx, obj, props);
         break;
       case 'path':
-        this.renderPath(obj, props);
+        renderPath(this.ctx, obj, props);
         break;
       case 'group':
         this.renderGroup(obj, frameNumber);
@@ -291,7 +301,7 @@ export class Renderer {
     this.ctx.translate(padding, padding);
 
     // Apply anchor offset
-    const { offsetX, offsetY } = this.getAnchorOffset(obj.anchor, width, height);
+    const { offsetX, offsetY } = getAnchorOffset(obj.anchor, width, height);
     this.ctx.translate(-offsetX, -offsetY);
 
     // Apply opacity
@@ -312,25 +322,25 @@ export class Renderer {
     // Render the object
     switch (obj.type) {
       case 'rect':
-        this.renderRect(obj, props);
+        renderRect(this.ctx, obj, props);
         break;
       case 'text':
-        this.renderText(obj, props);
+        renderText(this.ctx, obj, props);
         break;
       case 'image':
-        this.renderImage(obj, props);
+        renderImage(this.ctx, obj, props, this.imageCache, getAnchorOffset);
         break;
       case 'line':
-        this.renderLine(obj, props);
+        renderLine(this.ctx, obj, props);
         break;
       case 'circle':
-        this.renderCircle(obj, props);
+        renderCircle(this.ctx, obj, props);
         break;
       case 'ellipse':
-        this.renderEllipse(obj, props);
+        renderEllipse(this.ctx, obj, props);
         break;
       case 'path':
-        this.renderPath(obj, props);
+        renderPath(this.ctx, obj, props);
         break;
     }
 
@@ -349,254 +359,11 @@ export class Renderer {
     savedCtx.restore();
   }
 
-  /**
-   * Render a rectangle
-   */
-  private renderRect(obj: RectObject, props: any): void {
-    // Use animated width/height if available, otherwise use object properties
-    const width = props.width ?? obj.width;
-    const height = props.height ?? obj.height;
 
-    // Apply anchor offset
-    const { offsetX, offsetY } = this.getAnchorOffset(obj.anchor, width, height);
 
-    // Fill
-    if (obj.fill) {
-      this.ctx.fillStyle = obj.fill;
-      this.ctx.fillRect(offsetX, offsetY, width, height);
-    }
 
-    // Stroke
-    if (obj.stroke) {
-      this.ctx.strokeStyle = obj.stroke;
-      this.ctx.lineWidth = obj.strokeWidth ?? 1;
-      this.ctx.strokeRect(offsetX, offsetY, width, height);
-    }
-  }
 
-  /**
-   * Render text
-   */
-  private renderText(obj: TextObject, props: any): void {
-    const size = obj.size ?? 16;
-    const font = obj.font ?? 'sans-serif';
-    const color = obj.color ?? '#000000';
-    const align = obj.align ?? 'left';
 
-    // Set font properties
-    this.ctx.font = `${size}px ${font}`;
-    this.ctx.fillStyle = color;
-
-    // Handle anchor point
-    // For text, we need to measure it to calculate anchor offsets
-    const metrics = this.ctx.measureText(obj.content);
-    const textWidth = metrics.width;
-
-    // Approximate text height based on font size
-    const textHeight = size;
-
-    // Calculate anchor offsets
-    let offsetX = 0;
-    let offsetY = 0;
-
-    const anchor = obj.anchor ?? 'top-left';
-
-    // Horizontal alignment based on anchor
-    if (anchor.includes('left')) {
-      this.ctx.textAlign = 'left';
-      offsetX = 0;
-    } else if (anchor.includes('center') || anchor === 'center') {
-      this.ctx.textAlign = 'center';
-      offsetX = 0;
-    } else if (anchor.includes('right')) {
-      this.ctx.textAlign = 'right';
-      offsetX = 0;
-    }
-
-    // Vertical alignment based on anchor
-    if (anchor.startsWith('top')) {
-      this.ctx.textBaseline = 'top';
-      offsetY = 0;
-    } else if (anchor.includes('center') || anchor === 'center') {
-      this.ctx.textBaseline = 'middle';
-      offsetY = 0;
-    } else if (anchor.startsWith('bottom')) {
-      this.ctx.textBaseline = 'bottom';
-      offsetY = 0;
-    } else {
-      // default to top
-      this.ctx.textBaseline = 'top';
-      offsetY = 0;
-    }
-
-    // Render the text
-    this.ctx.fillText(obj.content, offsetX, offsetY);
-  }
-
-  /**
-   * Render a line
-   */
-  private renderLine(obj: LineObject, props: any): void {
-    // Use animated coordinates if available
-    const x = props.x ?? obj.x ?? 0;
-    const y = props.y ?? obj.y ?? 0;
-    const x2 = props.x2 ?? obj.x2;
-    const y2 = props.y2 ?? obj.y2;
-
-    // Calculate relative end point
-    // Since transforms already moved us to (x, y), we draw to (x2-x, y2-y)
-    const dx = x2 - x;
-    const dy = y2 - y;
-
-    // Set line style
-    this.ctx.strokeStyle = obj.stroke ?? '#000000';
-    this.ctx.lineWidth = obj.strokeWidth ?? 1;
-
-    // Draw line from (0, 0) to (dx, dy)
-    this.ctx.beginPath();
-    this.ctx.moveTo(0, 0);
-    this.ctx.lineTo(dx, dy);
-    this.ctx.stroke();
-  }
-
-  /**
-   * Render a circle
-   */
-  private renderCircle(obj: CircleObject, props: any): void {
-    // Use animated radius if available
-    const radius = props.radius ?? obj.radius;
-
-    // Draw circle at (0, 0) since we've already translated to position
-    this.ctx.beginPath();
-    this.ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-
-    // Fill
-    if (obj.fill) {
-      this.ctx.fillStyle = obj.fill;
-      this.ctx.fill();
-    }
-
-    // Stroke
-    if (obj.stroke) {
-      this.ctx.strokeStyle = obj.stroke;
-      this.ctx.lineWidth = obj.strokeWidth ?? 1;
-      this.ctx.stroke();
-    }
-  }
-
-  /**
-   * Render an ellipse
-   */
-  private renderEllipse(obj: EllipseObject, props: any): void {
-    // Use animated radii if available
-    const radiusX = props.radiusX ?? obj.radiusX;
-    const radiusY = props.radiusY ?? obj.radiusY;
-
-    // Draw ellipse at (0, 0) since we've already translated to position
-    this.ctx.beginPath();
-    this.ctx.ellipse(0, 0, radiusX, radiusY, 0, 0, 2 * Math.PI);
-
-    // Fill
-    if (obj.fill) {
-      this.ctx.fillStyle = obj.fill;
-      this.ctx.fill();
-    }
-
-    // Stroke
-    if (obj.stroke) {
-      this.ctx.strokeStyle = obj.stroke;
-      this.ctx.lineWidth = obj.strokeWidth ?? 1;
-      this.ctx.stroke();
-    }
-  }
-
-  /**
-   * Render a path (custom shape using canvas path commands)
-   */
-  private renderPath(obj: PathObject, props: any): void {
-    // Begin the path
-    this.ctx.beginPath();
-
-    // Execute each path command
-    for (const command of obj.commands) {
-      this.executePathCommand(command);
-    }
-
-    // Fill
-    if (obj.fill) {
-      this.ctx.fillStyle = obj.fill;
-      this.ctx.fill();
-    }
-
-    // Stroke
-    if (obj.stroke) {
-      this.ctx.strokeStyle = obj.stroke;
-      this.ctx.lineWidth = obj.strokeWidth ?? 1;
-      this.ctx.stroke();
-    }
-  }
-
-  /**
-   * Execute a single path command
-   */
-  private executePathCommand(command: PathCommand): void {
-    switch (command.type) {
-      case 'moveTo':
-        this.ctx.moveTo(command.x, command.y);
-        break;
-      case 'lineTo':
-        this.ctx.lineTo(command.x, command.y);
-        break;
-      case 'closePath':
-        this.ctx.closePath();
-        break;
-      case 'quadraticCurveTo':
-        this.ctx.quadraticCurveTo(command.cpx, command.cpy, command.x, command.y);
-        break;
-      case 'bezierCurveTo':
-        this.ctx.bezierCurveTo(command.cp1x, command.cp1y, command.cp2x, command.cp2y, command.x, command.y);
-        break;
-      case 'arc':
-        this.ctx.arc(command.x, command.y, command.radius, command.startAngle, command.endAngle, command.counterclockwise);
-        break;
-      case 'arcTo':
-        this.ctx.arcTo(command.x1, command.y1, command.x2, command.y2, command.radius);
-        break;
-    }
-  }
-
-  /**
-   * Load and cache an image
-   */
-  private async loadImageIfNeeded(source: string): Promise<Image> {
-    if (!this.imageCache.has(source)) {
-      const image = await loadImage(source);
-      this.imageCache.set(source, image);
-    }
-    return this.imageCache.get(source)!;
-  }
-
-  /**
-   * Render an image
-   */
-  private renderImage(obj: ImageObject, props: any): void {
-    // Images must be preloaded synchronously before rendering
-    const image = this.imageCache.get(obj.source);
-    if (!image) {
-      console.warn(`Image not loaded: ${obj.source}`);
-      return;
-    }
-
-    // Use animated width/height if available, otherwise use object properties or image dimensions
-    const width = props.width ?? obj.width ?? image.width;
-    const height = props.height ?? obj.height ?? image.height;
-
-    // Apply anchor offset
-    const { offsetX, offsetY } = this.getAnchorOffset(obj.anchor, width, height);
-
-    // Draw image
-    this.ctx.drawImage(image, offsetX, offsetY, width, height);
-  }
 
   /**
    * Render a group (container for other objects)
@@ -611,33 +378,6 @@ export class Renderer {
     }
   }
 
-  /**
-   * Get anchor offset for positioning
-   */
-  private getAnchorOffset(anchor: string = 'top-left', width: number, height: number): { offsetX: number; offsetY: number } {
-    switch (anchor) {
-      case 'top-left':
-        return { offsetX: 0, offsetY: 0 };
-      case 'top-center':
-        return { offsetX: -width / 2, offsetY: 0 };
-      case 'top-right':
-        return { offsetX: -width, offsetY: 0 };
-      case 'center-left':
-        return { offsetX: 0, offsetY: -height / 2 };
-      case 'center':
-        return { offsetX: -width / 2, offsetY: -height / 2 };
-      case 'center-right':
-        return { offsetX: -width, offsetY: -height / 2 };
-      case 'bottom-left':
-        return { offsetX: 0, offsetY: -height };
-      case 'bottom-center':
-        return { offsetX: -width / 2, offsetY: -height };
-      case 'bottom-right':
-        return { offsetX: -width, offsetY: -height };
-      default:
-        return { offsetX: 0, offsetY: 0 };
-    }
-  }
 
   /**
    * Get property values at a specific frame, including animations

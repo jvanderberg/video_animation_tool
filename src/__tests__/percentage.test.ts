@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { preprocessAnimation, clearEffectsCache } from './preprocessor.js';
-import type { AnimationFile, PropertyAnimation } from './types.js';
+import { preprocessAnimation, clearEffectsCache } from '../preprocessor.js';
+import type { AnimationFile, PropertyAnimation } from '../types.js';
 
 describe('Percentage Values', () => {
   beforeEach(() => {

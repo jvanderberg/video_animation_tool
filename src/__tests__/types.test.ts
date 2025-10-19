@@ -9,7 +9,7 @@ import type {
   ComponentObject,
   Keyframe,
   Animation,
-} from './types.js';
+} from '../types.js';
 
 describe('Type Definitions', () => {
   describe('AnimationFile', () => {
