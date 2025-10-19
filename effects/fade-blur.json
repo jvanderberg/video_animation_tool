@@ -1,0 +1,14 @@
+{
+  "description": "Fade in with blur (from blurry+transparent to sharp+opaque)",
+  "duration": 0.8,
+  "properties": {
+    "opacity": [
+      {"time": 0.0, "value": 0},
+      {"time": 1.0, "value": 1, "easing": "ease-out"}
+    ],
+    "blur": [
+      {"time": 0.0, "value": 15},
+      {"time": 1.0, "value": 0, "easing": "ease-out"}
+    ]
+  }
+}

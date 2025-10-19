@@ -1,0 +1,10 @@
+{
+  "description": "Blur out from sharp to blurry",
+  "duration": 0.5,
+  "properties": {
+    "blur": [
+      {"time": 0.0, "value": 0},
+      {"time": 1.0, "value": 20, "easing": "ease-in"}
+    ]
+  }
+}

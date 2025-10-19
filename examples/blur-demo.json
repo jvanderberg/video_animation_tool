@@ -1,0 +1,78 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 180
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#0f0f23"
+    },
+    {
+      "type": "text",
+      "id": "title1",
+      "content": "BLUR IN",
+      "x": 480,
+      "y": 300,
+      "anchor": "center",
+      "size": 80,
+      "color": "#3498db",
+      "blur": 20
+    },
+    {
+      "type": "text",
+      "id": "title2",
+      "content": "BLUR OUT",
+      "x": 1440,
+      "y": 300,
+      "anchor": "center",
+      "size": 80,
+      "color": "#e74c3c",
+      "blur": 0
+    },
+    {
+      "type": "text",
+      "id": "title3",
+      "content": "FADE + BLUR",
+      "x": 960,
+      "y": 700,
+      "anchor": "center",
+      "size": 96,
+      "color": "#f39c12",
+      "opacity": 0,
+      "blur": 15
+    }
+  ],
+  "sequences": [
+    {
+      "name": "blur-effects",
+      "animations": [
+        {
+          "target": "title1",
+          "effect": "blur-in",
+          "startTime": 0.5,
+          "duration": 1.0
+        },
+        {
+          "target": "title2",
+          "effect": "blur-out",
+          "startTime": 2.0,
+          "duration": 1.0
+        },
+        {
+          "target": "title3",
+          "effect": "fade-blur",
+          "startTime": 3.5,
+          "duration": 1.2
+        }
+      ]
+    }
+  ]
+}

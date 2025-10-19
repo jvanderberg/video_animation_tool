@@ -19,6 +19,15 @@ export type AnchorType = 'top-left' | 'top-center' | 'top-right' |
                          'center-left' | 'center' | 'center-right' |
                          'bottom-left' | 'bottom-center' | 'bottom-right';
 
+// Clipping region (in local object space)
+// Values can be numbers (pixels) or strings (percentages like "50%" or "-50%")
+export interface ClipRegion {
+  x: number | string;
+  y: number | string;
+  width: number | string;
+  height: number | string;
+}
+
 // Project configuration
 export interface ProjectConfig {
   width: number;
@@ -28,16 +37,17 @@ export interface ProjectConfig {
 }
 
 // Keyframe for animation (frame-based)
+// Value can be a number (pixels) or string (percentage like "50%")
 export interface Keyframe {
   frame: number;
-  value: number;
+  value: number | string;
   easing?: EasingType;
 }
 
 // Time-based keyframe (gets converted to frame-based during preprocessing)
 export interface TimeKeyframe {
   time: number;  // 0.0 to 1.0 (normalized to effect duration)
-  value: number;
+  value: number | string;  // Number (pixels) or string (percentage like "50%")
   easing?: EasingType;
 }
 
@@ -91,6 +101,8 @@ export interface BaseObject {
   scaleY?: number;  // Y-axis scale factor (1.0 = 100%)
   z?: number;
   anchor?: AnchorType;
+  clip?: ClipRegion;  // Optional clipping region in local space
+  blur?: number;  // Blur radius in pixels
 }
 
 // Text object

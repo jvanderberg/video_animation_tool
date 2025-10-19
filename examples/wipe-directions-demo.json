@@ -1,0 +1,136 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 240
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1a1a2e"
+    },
+    {
+      "type": "text",
+      "id": "wipe-left",
+      "content": "WIPE LEFT",
+      "x": 480,
+      "y": 270,
+      "anchor": "center",
+      "size": 48,
+      "color": "#e74c3c",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": "100%"
+      }
+    },
+    {
+      "type": "text",
+      "id": "wipe-right",
+      "content": "WIPE RIGHT",
+      "x": 1440,
+      "y": 270,
+      "anchor": "center",
+      "size": 48,
+      "color": "#3498db",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": "100%"
+      }
+    },
+    {
+      "type": "text",
+      "id": "wipe-up",
+      "content": "WIPE UP",
+      "x": 480,
+      "y": 540,
+      "anchor": "center",
+      "size": 48,
+      "color": "#2ecc71",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": "100%",
+        "height": 0
+      }
+    },
+    {
+      "type": "text",
+      "id": "wipe-down",
+      "content": "WIPE DOWN",
+      "x": 1440,
+      "y": 540,
+      "anchor": "center",
+      "size": 48,
+      "color": "#f39c12",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": "100%",
+        "height": 0
+      }
+    },
+    {
+      "type": "text",
+      "id": "wipe-diagonal",
+      "content": "WIPE DIAGONAL",
+      "x": 960,
+      "y": 810,
+      "anchor": "center",
+      "size": 60,
+      "color": "#9b59b6",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    }
+  ],
+  "sequences": [
+    {
+      "name": "wipes",
+      "animations": [
+        {
+          "target": "wipe-left",
+          "effect": "wipe",
+          "startTime": 0.5,
+          "duration": 1.0
+        },
+        {
+          "target": "wipe-right",
+          "effect": "wipe-right",
+          "startTime": 0.5,
+          "duration": 1.0
+        },
+        {
+          "target": "wipe-up",
+          "effect": "wipe-up",
+          "startTime": 2.0,
+          "duration": 1.0
+        },
+        {
+          "target": "wipe-down",
+          "effect": "wipe-down",
+          "startTime": 2.0,
+          "duration": 1.0
+        },
+        {
+          "target": "wipe-diagonal",
+          "effect": "wipe-right-up",
+          "startTime": 3.5,
+          "duration": 1.5
+        }
+      ]
+    }
+  ]
+}

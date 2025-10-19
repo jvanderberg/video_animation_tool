@@ -1,4 +1,5 @@
 import { createCanvas, Canvas, CanvasRenderingContext2D, Image, loadImage } from 'canvas';
+import { canvasRGBA } from 'stackblur-canvas';
 import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject, CircleObject, EllipseObject, PathObject, PathCommand, ImageObject } from './types.js';
 
 export class Renderer {
@@ -147,6 +148,12 @@ export class Renderer {
       return;
     }
 
+    // If blur is needed, render to temp canvas
+    if (props.blur !== undefined && props.blur > 0) {
+      this.renderObjectWithBlur(obj, frameNumber, props);
+      return;
+    }
+
     // Save context state
     this.ctx.save();
 
@@ -171,6 +178,42 @@ export class Renderer {
     if (props.opacity !== undefined && props.opacity !== 1) {
       // Multiply by current globalAlpha to combine with parent opacity
       this.ctx.globalAlpha *= props.opacity;
+    }
+
+    // Apply clipping if present (in object's natural bounding box space)
+    // Clip coordinates are relative to object's top-left (0,0), so we need to adjust for anchor
+    if (props.clip) {
+      // Get object dimensions to calculate anchor offset
+      let width = 100, height = 100;
+      if (obj.type === 'rect' || obj.type === 'image') {
+        width = props.width ?? (obj as any).width ?? width;
+        height = props.height ?? (obj as any).height ?? height;
+      } else if (obj.type === 'text') {
+        const size = (obj as any).size ?? 16;
+        const font = (obj as any).font ?? 'sans-serif';
+        this.ctx.font = `${size}px ${font}`;
+        const metrics = this.ctx.measureText((obj as any).content);
+        width = metrics.width;
+        height = size * 1.2;
+      } else if (obj.type === 'circle' && 'radius' in obj) {
+        width = height = ((obj as any).radius ?? 50) * 2;
+      } else if (obj.type === 'ellipse') {
+        width = ((obj as any).radiusX ?? 50) * 2;
+        height = ((obj as any).radiusY ?? 50) * 2;
+      }
+
+      // Get anchor offset
+      const { offsetX, offsetY } = this.getAnchorOffset(obj.anchor, width, height);
+
+      // Apply clip adjusted for anchor
+      this.ctx.beginPath();
+      this.ctx.rect(
+        props.clip.x + offsetX,
+        props.clip.y + offsetY,
+        props.clip.width,
+        props.clip.height
+      );
+      this.ctx.clip();
     }
 
     // Render based on type
@@ -204,6 +247,106 @@ export class Renderer {
 
     // Restore context state
     this.ctx.restore();
+  }
+
+  /**
+   * Render an object with blur effect using temp canvas
+   */
+  private renderObjectWithBlur(obj: AnimationObject, frameNumber: number, props: any): void {
+    // Calculate object bounds
+    let width = 100, height = 100;
+    if (obj.type === 'rect' || obj.type === 'image') {
+      width = props.width ?? (obj as any).width ?? width;
+      height = props.height ?? (obj as any).height ?? height;
+    } else if (obj.type === 'text') {
+      const size = (obj as any).size ?? 16;
+      const font = (obj as any).font ?? 'sans-serif';
+      this.ctx.font = `${size}px ${font}`;
+      const metrics = this.ctx.measureText((obj as any).content);
+      width = metrics.width;
+      height = size * 1.2;
+    } else if (obj.type === 'circle' && 'radius' in obj) {
+      width = height = ((obj as any).radius ?? 50) * 2;
+    } else if (obj.type === 'ellipse') {
+      width = ((obj as any).radiusX ?? 50) * 2;
+      height = ((obj as any).radiusY ?? 50) * 2;
+    }
+
+    // Add padding for blur
+    const blurRadius = props.blur;
+    const padding = Math.ceil(blurRadius * 2);
+    const tempWidth = Math.ceil(width + padding * 2);
+    const tempHeight = Math.ceil(height + padding * 2);
+
+    // Create temp canvas
+    const tempCanvas = createCanvas(tempWidth, tempHeight);
+    const tempCtx = tempCanvas.getContext('2d');
+
+    // Save main context and swap
+    const savedCtx = this.ctx;
+    this.ctx = tempCtx as any;
+
+    // Apply transforms (centered in temp canvas with padding)
+    this.ctx.save();
+    this.ctx.translate(padding, padding);
+
+    // Apply anchor offset
+    const { offsetX, offsetY } = this.getAnchorOffset(obj.anchor, width, height);
+    this.ctx.translate(-offsetX, -offsetY);
+
+    // Apply opacity
+    if (props.opacity !== undefined && props.opacity !== 1) {
+      this.ctx.globalAlpha = props.opacity;
+    }
+
+    // Apply scale and rotation (without position, since we handled that above)
+    const finalScaleX = (props.scale ?? 1) * (props.scaleX ?? 1);
+    const finalScaleY = (props.scale ?? 1) * (props.scaleY ?? 1);
+    if (finalScaleX !== 1 || finalScaleY !== 1) {
+      this.ctx.scale(finalScaleX, finalScaleY);
+    }
+    if (props.rotation !== undefined && props.rotation !== 0) {
+      this.ctx.rotate((props.rotation * Math.PI) / 180);
+    }
+
+    // Render the object
+    switch (obj.type) {
+      case 'rect':
+        this.renderRect(obj, props);
+        break;
+      case 'text':
+        this.renderText(obj, props);
+        break;
+      case 'image':
+        this.renderImage(obj, props);
+        break;
+      case 'line':
+        this.renderLine(obj, props);
+        break;
+      case 'circle':
+        this.renderCircle(obj, props);
+        break;
+      case 'ellipse':
+        this.renderEllipse(obj, props);
+        break;
+      case 'path':
+        this.renderPath(obj, props);
+        break;
+    }
+
+    this.ctx.restore();
+
+    // Apply blur to temp canvas
+    canvasRGBA(tempCanvas as any, 0, 0, tempWidth, tempHeight, blurRadius);
+
+    // Restore main context
+    this.ctx = savedCtx;
+
+    // Draw blurred result to main canvas at correct position
+    savedCtx.save();
+    savedCtx.translate(props.x ?? 0, props.y ?? 0);
+    savedCtx.drawImage(tempCanvas as any, -padding + offsetX, -padding + offsetY);
+    savedCtx.restore();
   }
 
   /**
@@ -508,7 +651,13 @@ export class Renderer {
       scale: obj.scale ?? 1,
       scaleX: obj.scaleX ?? 1,
       scaleY: obj.scaleY ?? 1,
+      blur: obj.blur ?? 0,
     };
+
+    // Add clip if present
+    if (obj.clip) {
+      props.clip = { ...obj.clip };
+    }
 
     // Add type-specific properties that might be animated
     if ('width' in obj) {
@@ -539,7 +688,19 @@ export class Renderer {
       for (const [property, keyframes] of objectAnimations.entries()) {
         const value = this.getAnimatedValue(keyframes, frameNumber);
         if (value !== null) {
-          props[property] = value;
+          // Handle nested properties like "clip.width"
+          if (property.includes('.')) {
+            const parts = property.split('.');
+            if (parts.length === 2) {
+              const [parent, child] = parts;
+              if (!props[parent]) {
+                props[parent] = {};
+              }
+              props[parent][child] = value;
+            }
+          } else {
+            props[property] = value;
+          }
         }
       }
     }

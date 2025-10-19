@@ -12,7 +12,12 @@
     "test:once": "vitest run",
     "dev": "tsx src/cli.ts"
   },
-  "keywords": ["animation", "video", "canvas", "declarative"],
+  "keywords": [
+    "animation",
+    "video",
+    "canvas",
+    "declarative"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -23,6 +28,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
-    "canvas": "^3.2.0"
+    "canvas": "^3.2.0",
+    "stackblur-canvas": "^2.7.0"
   }
 }

@@ -123,9 +123,13 @@ When adding new object types:
 - `x`, `y` - Position
 - `rotation` - Rotation in degrees
 - `opacity` - Transparency (0-1)
+- `scale`, `scaleX`, `scaleY` - Scaling factors
+- `blur` - Blur radius in pixels
+- `clip.x`, `clip.y`, `clip.width`, `clip.height` - Clipping region (nested properties)
 
 **Object-specific animatable properties:**
 - `width`, `height` - Dimensions (rectangles, images, etc.)
+- `radius`, `radiusX`, `radiusY` - Circle/ellipse dimensions
 - Any numeric property can be made animatable
 
 **Design principle: Make all numeric properties animatable when possible**
@@ -171,6 +175,67 @@ ctx.globalAlpha *= props.opacity;
 - Rotation: Rotates around current origin (group's position)
 - Opacity: Multiplies (group 0.5 * child 0.5 = 0.25 final)
 - Nested groups: All transforms compose correctly
+
+### Clipping Implementation
+
+**Coordinate system is critical:**
+- Clip coordinates use object's **natural bounding box space**
+- (0, 0) = top-left corner of object bounds
+- **Not** relative to transformed position or anchor point
+- This makes clips intuitive: `{x: 0, y: 0, width: "100%", height: "100%"}` always means "full object"
+
+**Implementation approach:**
+1. Calculate object dimensions (width, height)
+2. Get anchor offset for the object
+3. Apply clip rectangle with anchor adjustment:
+   ```typescript
+   ctx.rect(
+     clip.x + offsetX,  // Adjust for anchor
+     clip.y + offsetY,
+     clip.width,
+     clip.height
+   );
+   ctx.clip();
+   ```
+
+**Why this matters:**
+- User shouldn't need to know if text is center-anchored or top-left anchored
+- Clip always starts at (0, 0) regardless of anchor
+- Avoids negative coordinates in clip definitions
+
+**Percentage resolution:**
+- Resolve percentages at preprocessing time, not render time
+- Use object dimensions (measure text with canvas.measureText())
+- `clip.width: "100%"` → resolved to pixel width before rendering
+- Supports both clip properties and animation keyframe values
+
+### Blur Implementation
+
+**node-canvas limitation:**
+- node-canvas doesn't support CSS `filter` property
+- Must use external library: `stackblur-canvas`
+
+**Implementation approach:**
+1. Detect blur in renderObject (check `props.blur > 0`)
+2. Create temporary canvas with padding for blur spread
+3. Render object to temp canvas (without blur applied)
+4. Apply stackblur: `canvasRGBA(tempCanvas, 0, 0, w, h, radius)`
+5. Composite blurred result back to main canvas
+
+**Padding calculation:**
+- Blur spreads beyond object bounds
+- Padding = `Math.ceil(blurRadius * 2)`
+- Temp canvas size = object size + padding on all sides
+
+**Transform handling:**
+- Apply position transform on main canvas (when compositing back)
+- Apply scale/rotation/opacity on temp canvas (before blur)
+- Keep transforms separate to avoid blurring artifacts
+
+**Performance note:**
+- Each blurred object creates a temporary canvas
+- Blur is relatively expensive (pixel operation)
+- Consider this when animating blur on many objects
 
 ## Code Style
 

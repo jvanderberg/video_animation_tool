@@ -118,6 +118,8 @@ Common properties across all object types:
 - `scaleY` - Y-axis scale factor (1.0 = 100%, default)
 - `z` - Explicit layer order (optional, defaults to document order)
 - `anchor` - For positioning: `"top-left"`, `"center"`, etc.
+- `clip` - Optional clipping region (see Clipping section below)
+- `blur` - Blur radius in pixels (uses stackblur algorithm)
 
 ### Animation System
 
@@ -144,10 +146,97 @@ Common properties across all object types:
 - `scale` - Uniform scale factor (1.0 = 100%, default)
 - `scaleX` - X-axis scale factor (1.0 = 100%, default)
 - `scaleY` - Y-axis scale factor (1.0 = 100%, default)
+- `blur` - Blur radius in pixels
 - `width`, `height` - Dimensions (for rectangles)
 - Any numeric property
 
 **Note on scaling:** When both `scale` and `scaleX`/`scaleY` are specified, they multiply together. For example, `scale: 0.5` and `scaleX: 2.0` results in a final X-scale of 1.0. This allows combining uniform scaling with directional squash & stretch effects.
+
+### Clipping
+
+Clipping allows you to reveal only a portion of an object, creating effects like wipes and reveals. The clip region is defined in the object's natural bounding box coordinate space, where (0, 0) is the top-left corner of the object's bounds, regardless of anchor positioning or transforms.
+
+#### Basic Clipping
+
+```json
+{
+  "type": "text",
+  "content": "Hello World",
+  "x": 960,
+  "y": 540,
+  "clip": {
+    "x": 0,
+    "y": 0,
+    "width": 100,
+    "height": 50
+  }
+}
+```
+
+#### Animated Clipping
+
+Clip properties can be animated using nested property paths:
+
+```json
+{
+  "objects": [
+    {
+      "type": "text",
+      "id": "title",
+      "content": "REVEAL",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "clip": {
+        "x": -480,
+        "y": -100,
+        "width": 0,
+        "height": 200
+      }
+    }
+  ],
+  "sequences": [{
+    "animations": [{
+      "target": "title",
+      "property": "clip.width",
+      "keyframes": [
+        {"frame": 0, "value": 0},
+        {"frame": 30, "value": 960}
+      ]
+    }]
+  }]
+}
+```
+
+**Animatable clip properties:**
+- `clip.x` - X position of clip region
+- `clip.y` - Y position of clip region
+- `clip.width` - Width of clip region
+- `clip.height` - Height of clip region
+
+**Percentage values:**
+Clip dimensions can use percentages (resolved at preprocessing time):
+- `"100%"` in `clip.width` → object's width
+- `"50%"` in `clip.height` → 50% of object's height
+- Supports both pixels (numbers) and percentages (strings)
+- For text objects, width is measured automatically
+
+Example:
+```json
+{
+  "property": "clip.width",
+  "keyframes": [
+    {"frame": 0, "value": 0},
+    {"frame": 30, "value": "100%"}  // Resolves to object's width
+  ]
+}
+```
+
+**Notes:**
+- Clipping is applied in object's natural bounding box space (0,0 = top-left, regardless of anchor)
+- Works on all object types including groups (clips all children)
+- Useful for wipe reveals, iris effects, and progressive disclosure
+- Combine with transforms for creative reveal animations
 
 ### Effects Library
 
@@ -257,6 +346,44 @@ This allows you to stretch or compress effects to match your desired timing whil
 - Bounce overshoot on landing
 - Quick fade in during first 20%
 
+**wipe** (0.5s)
+- Reveal from left to right using clipping
+- Animates clip.width from 0 to 100% (object width)
+- Ease-out for smooth reveal
+- Works on any object size automatically
+- Great for title reveals and transitions
+
+**wipe-right** (0.5s)
+- Reveal from right to left
+- Animates clip.x and clip.width together
+
+**wipe-up** (0.5s)
+- Reveal from top to bottom
+- Animates clip.height from 0 to 100%
+
+**wipe-down** (0.5s)
+- Reveal from bottom to top
+- Animates clip.y and clip.height together
+
+**wipe-right-up** (0.5s)
+- Diagonal reveal from bottom-right to top-left
+- Combines horizontal and vertical wipe motion
+
+**blur-in** (0.5s)
+- Reveal from blurry to sharp
+- Animates blur from 20px to 0
+- Ease-out for smooth focus
+
+**blur-out** (0.5s)
+- Transition from sharp to blurry
+- Animates blur from 0 to 20px
+- Ease-in for smooth defocus
+
+**fade-blur** (0.8s)
+- Combined fade in + blur in effect
+- Animates both opacity (0→1) and blur (15px→0)
+- Creates dreamy, soft entrance
+
 #### Creating Custom Effects
 
 Each effect is defined in its own JSON file in the `effects/` directory. For example, `effects/myEffect.json`:
@@ -306,6 +433,14 @@ To use your custom effect, reference it by its filename (without the `.json` ext
 - `effects/bounce.json`
 - `effects/spin.json`
 - `effects/dropIn.json`
+- `effects/wipe.json`
+- `effects/wipe-right.json`
+- `effects/wipe-up.json`
+- `effects/wipe-down.json`
+- `effects/wipe-right-up.json`
+- `effects/blur-in.json`
+- `effects/blur-out.json`
+- `effects/fade-blur.json`
 
 #### Mixing Effects and Property Animations
 

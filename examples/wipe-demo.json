@@ -1,0 +1,69 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 120
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#2c3e50"
+    },
+    {
+      "type": "text",
+      "id": "title1",
+      "content": "WIPE EFFECT",
+      "x": 960,
+      "y": 400,
+      "anchor": "center",
+      "size": 120,
+      "color": "#e74c3c",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": "100%"
+      }
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "content": "Revealing content from left to right",
+      "x": 960,
+      "y": 650,
+      "anchor": "center",
+      "size": 48,
+      "color": "#ecf0f1",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": "100%"
+      }
+    }
+  ],
+  "sequences": [
+    {
+      "name": "main",
+      "animations": [
+        {
+          "target": "title1",
+          "effect": "wipe",
+          "startTime": 0.5
+        },
+        {
+          "target": "subtitle",
+          "effect": "wipe",
+          "startTime": 1.2,
+          "duration": 0.8
+        }
+      ]
+    }
+  ]
+}
