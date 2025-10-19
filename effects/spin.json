@@ -1,0 +1,10 @@
+{
+  "description": "360 degree rotation",
+  "duration": 1.0,
+  "properties": {
+    "rotation": [
+      {"time": 0.0, "value": 0},
+      {"time": 1.0, "value": 360, "easing": "linear"}
+    ]
+  }
+}

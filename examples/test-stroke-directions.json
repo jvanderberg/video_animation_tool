@@ -1,0 +1,75 @@
+{
+  "project": {
+    "width": 1200,
+    "height": 400,
+    "fps": 30,
+    "frames": 1
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 400,
+      "fill": "#000000"
+    },
+    {
+      "type": "text",
+      "content": "No scale",
+      "x": 200,
+      "y": 50,
+      "size": 20,
+      "color": "#FFFFFF",
+      "anchor": "center"
+    },
+    {
+      "type": "circle",
+      "x": 200,
+      "y": 200,
+      "radius": 80,
+      "fill": "#FFFFFF",
+      "stroke": "#FF0000",
+      "strokeWidth": 10
+    },
+    {
+      "type": "text",
+      "content": "Scale 2",
+      "x": 600,
+      "y": 50,
+      "size": 20,
+      "color": "#FFFFFF",
+      "anchor": "center"
+    },
+    {
+      "type": "circle",
+      "x": 600,
+      "y": 200,
+      "radius": 40,
+      "scale": 2,
+      "fill": "#FFFFFF",
+      "stroke": "#FF0000",
+      "strokeWidth": 10
+    },
+    {
+      "type": "text",
+      "content": "Scale 3",
+      "x": 1000,
+      "y": 50,
+      "size": 20,
+      "color": "#FFFFFF",
+      "anchor": "center"
+    },
+    {
+      "type": "circle",
+      "x": 1000,
+      "y": 200,
+      "radius": 28,
+      "scale": 3,
+      "fill": "#FFFFFF",
+      "stroke": "#FF0000",
+      "strokeWidth": 10
+    }
+  ]
+}

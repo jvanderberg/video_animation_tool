@@ -1,0 +1,30 @@
+{
+  "parameters": {
+    "text": {"type": "string", "default": "SUBSCRIBE"},
+    "bgColor": {"type": "string", "default": "#FF0000"},
+    "textColor": {"type": "string", "default": "#FFFFFF"}
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "width": 120,
+      "height": 40,
+      "anchor": "center",
+      "fill": "{{bgColor}}"
+    },
+    {
+      "type": "text",
+      "content": "{{text}}",
+      "x": 0,
+      "y": 0,
+      "size": 16,
+      "color": "{{textColor}}",
+      "font": "Arial",
+      "anchor": "center"
+    }
+  ],
+  "width": 120,
+  "height": 40
+}

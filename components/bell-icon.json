@@ -1,0 +1,27 @@
+{
+  "parameters": {
+    "color": {"type": "string", "default": "#FFFFFF"}
+  },
+  "objects": [
+    {
+      "type": "circle",
+      "x": 0,
+      "y": 0,
+      "radius": 28,
+      "fill": "{{color}}",
+      "stroke": "#FF0000",
+      "strokeWidth": 4
+    },
+    {
+      "type": "text",
+      "content": "🔔",
+      "x": 0,
+      "y": 0,
+      "size": 38,
+      "color": "#FF0000",
+      "anchor": "center"
+    }
+  ],
+  "width": 60,
+  "height": 60
+}

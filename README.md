@@ -1,6 +1,6 @@
 # Animation Tool
 
-A declarative animation tool for creating video content, designed to be both hand-editable and LLM-generatable. Outputs PNG image sequences for import into DaVinci Resolve.
+A declarative animation tool for creating video content, designed to be both hand-editable and LLM-generatable. Outputs PNG image sequences or MP4 video files.
 
 ## Features
 
@@ -8,8 +8,8 @@ A declarative animation tool for creating video content, designed to be both han
 - **Effects library** - Pre-composed animations with time-based definitions (pop, fadeIn, slideIn, etc.)
 - **Component system** - Reusable animation components with parameters
 - **Full animation support** - Keyframe-based animations with easing functions
-- **Multiple object types** - Text, images, rectangles, lines, points, and groups
-- **PNG sequence output** - Direct import into DaVinci Resolve
+- **Multiple object types** - Text, images, rectangles, lines, circles, ellipses, paths, points, and groups
+- **Flexible output** - PNG sequences for DaVinci Resolve or direct MP4 video encoding
 
 ## Installation
 
@@ -18,6 +18,21 @@ npm install
 ```
 
 ## Usage
+
+### Rendering Animations
+
+```bash
+# Render to PNG image sequence (for DaVinci Resolve)
+npm run dev examples/simple-box.json ./output-frames
+
+# Render directly to MP4 video
+npm run dev examples/simple-box.json output.mp4 --video
+
+# Or use .mp4 extension (--video flag auto-detected)
+npm run dev examples/simple-box.json output.mp4
+```
+
+### Development
 
 ```bash
 # Build the project

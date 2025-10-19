@@ -1,0 +1,10 @@
+{
+  "description": "Simple fade in",
+  "duration": 0.5,
+  "properties": {
+    "opacity": [
+      {"time": 0.0, "value": 0},
+      {"time": 1.0, "value": 1, "easing": "ease-out"}
+    ]
+  }
+}

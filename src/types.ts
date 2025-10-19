@@ -53,6 +53,7 @@ export interface EffectAnimation {
   target: string;  // Object ID
   effect: string;  // Name of effect in library
   startTime: number;  // seconds (gets converted to startFrame)
+  duration?: number;  // Optional duration override in seconds (uses effect default if not specified)
 }
 
 // Traditional property animation

@@ -1,0 +1,16 @@
+{
+  "description": "Drop in from huge scale with smooth bounce landing",
+  "duration": 0.6,
+  "properties": {
+    "scale": [
+      {"time": 0.0, "value": 10.0},
+      {"time": 0.5, "value": 0.92, "easing": "ease-in"},
+      {"time": 0.75, "value": 1.08, "easing": "ease-out"},
+      {"time": 1.0, "value": 1.0, "easing": "ease-in-out"}
+    ],
+    "opacity": [
+      {"time": 0.0, "value": 0},
+      {"time": 0.2, "value": 1}
+    ]
+  }
+}

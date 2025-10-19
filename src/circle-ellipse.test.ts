@@ -354,4 +354,5 @@ describe('Circle and Ellipse Rendering', () => {
     const edgePixel = renderer.getPixel(150, 100);
     expect(edgePixel[2]).toBeGreaterThan(200); // Blue
   });
+
 });

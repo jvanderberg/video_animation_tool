@@ -1,0 +1,14 @@
+{
+  "description": "Slide out to right with fade (ends off-screen right)",
+  "duration": 0.5,
+  "properties": {
+    "x": [
+      {"time": 0.0, "value": 960},
+      {"time": 1.0, "value": 2880, "easing": "ease-in"}
+    ],
+    "opacity": [
+      {"time": 0.0, "value": 1},
+      {"time": 1.0, "value": 0}
+    ]
+  }
+}

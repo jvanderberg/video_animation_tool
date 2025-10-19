@@ -1,0 +1,119 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 180
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1a1a2e"
+    },
+    {
+      "type": "image",
+      "id": "star-left",
+      "source": "../assets/star.svg",
+      "x": 480,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    },
+    {
+      "type": "image",
+      "id": "star-center",
+      "source": "../assets/star.svg",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    },
+    {
+      "type": "image",
+      "id": "star-right",
+      "source": "../assets/star.svg",
+      "x": 1440,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "star-show",
+      "animations": [
+        {
+          "target": "star-left",
+          "effect": "pop",
+          "startTime": 0.5
+        },
+        {
+          "target": "star-left",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 30, "value": 0},
+            {"frame": 180, "value": 720, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "star-left",
+          "property": "scaleX",
+          "keyframes": [
+            {"frame": 30, "value": 1.0},
+            {"frame": 90, "value": 1.5, "easing": "ease-in-out"},
+            {"frame": 150, "value": 1.0, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "star-center",
+          "effect": "dropIn",
+          "startTime": 1.0
+        },
+        {
+          "target": "star-center",
+          "property": "scaleY",
+          "keyframes": [
+            {"frame": 45, "value": 1.0},
+            {"frame": 75, "value": 0.8, "easing": "ease-in-out"},
+            {"frame": 105, "value": 1.2, "easing": "ease-in-out"},
+            {"frame": 135, "value": 0.9, "easing": "ease-in-out"},
+            {"frame": 165, "value": 1.0, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "star-right",
+          "effect": "pop",
+          "startTime": 1.5
+        },
+        {
+          "target": "star-right",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 60, "value": 0},
+            {"frame": 180, "value": -360, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "star-right",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 60, "value": 1.0},
+            {"frame": 120, "value": 2.0, "easing": "ease-in-out"},
+            {"frame": 180, "value": 1.0, "easing": "ease-in-out"}
+          ]
+        }
+      ]
+    }
+  ]
+}

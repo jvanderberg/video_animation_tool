@@ -3,7 +3,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import type {
   AnimationFile,
-  EffectsLibrary,
+  EffectDefinition,
   EffectAnimation,
   PropertyAnimation,
   SequenceAnimation,
@@ -15,20 +15,26 @@ import type {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-let cachedLibrary: EffectsLibrary | null = null;
+// Cache for individual effect definitions
+const effectCache = new Map<string, EffectDefinition>();
 
 /**
- * Load effects library from disk (with caching)
+ * Load a single effect from its file (with caching)
  */
-async function loadEffectsLibrary(): Promise<EffectsLibrary> {
-  if (cachedLibrary) {
-    return cachedLibrary;
+async function loadEffect(effectName: string): Promise<EffectDefinition> {
+  if (effectCache.has(effectName)) {
+    return effectCache.get(effectName)!;
   }
 
-  const libraryPath = join(__dirname, '../effects/library.json');
-  const data = await readFile(libraryPath, 'utf-8');
-  cachedLibrary = JSON.parse(data);
-  return cachedLibrary;
+  const effectPath = join(__dirname, `../effects/${effectName}.json`);
+  try {
+    const data = await readFile(effectPath, 'utf-8');
+    const effect = JSON.parse(data);
+    effectCache.set(effectName, effect);
+    return effect;
+  } catch (error) {
+    throw new Error(`Effect '${effectName}' not found in effects library`);
+  }
 }
 
 /**
@@ -59,21 +65,18 @@ function timeKeyframesToFrameKeyframes(
 /**
  * Expand an effect animation into property animations
  * @param effectAnim - Effect animation to expand
- * @param library - Effects library
  * @param fps - Project frame rate
  */
-function expandEffectAnimation(
+async function expandEffectAnimation(
   effectAnim: EffectAnimation,
-  library: EffectsLibrary,
   fps: number
-): PropertyAnimation[] {
-  const effect = library[effectAnim.effect];
-  if (!effect) {
-    throw new Error(`Effect '${effectAnim.effect}' not found in effects library`);
-  }
+): Promise<PropertyAnimation[]> {
+  const effect = await loadEffect(effectAnim.effect);
 
   const startFrame = Math.round(effectAnim.startTime * fps);
-  const durationFrames = Math.round(effect.duration * fps);
+  // Use custom duration if provided, otherwise use effect's default duration
+  const duration = effectAnim.duration ?? effect.duration;
+  const durationFrames = Math.round(duration * fps);
 
   const propertyAnimations: PropertyAnimation[] = [];
 
@@ -90,7 +93,7 @@ function expandEffectAnimation(
 
 /**
  * Preprocess animation file
- * - Load effects library
+ * - Load individual effects as needed
  * - Expand effect animations into property animations
  * - Convert all timing to frame-based
  *
@@ -102,9 +105,6 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
   if (!animation.sequences || animation.sequences.length === 0) {
     return animation;
   }
-
-  // Load effects library
-  const library = await loadEffectsLibrary();
 
   // Process each sequence
   const processedSequences: Sequence[] = [];
@@ -120,8 +120,8 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
 
     for (const anim of sequence.animations) {
       if (isEffectAnimation(anim)) {
-        // Expand effect into property animations
-        const propertyAnims = expandEffectAnimation(anim, library, animation.project.fps);
+        // Expand effect into property animations (async - loads effect file)
+        const propertyAnims = await expandEffectAnimation(anim, animation.project.fps);
         expandedAnimations.push(...propertyAnims);
       } else {
         // Already a property animation, keep as-is
@@ -142,8 +142,8 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
 }
 
 /**
- * Clear the cached effects library (useful for testing)
+ * Clear the cached effects (useful for testing)
  */
 export function clearEffectsCache(): void {
-  cachedLibrary = null;
+  effectCache.clear();
 }

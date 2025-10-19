@@ -246,4 +246,53 @@ describe('Preprocessor', () => {
     expect(duration60).toBeGreaterThanOrEqual(19);
     expect(duration60).toBeLessThanOrEqual(20);
   });
+
+  it('should allow custom duration to override effect default duration', async () => {
+    const animation: AnimationFile = {
+      project: { width: 100, height: 100, fps: 60, frames: 120 },
+      objects: [
+        { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
+      ],
+      sequences: [{
+        animations: [{
+          target: 'title',
+          effect: 'pop',
+          startTime: 0.0,
+          duration: 0.6  // Override default 0.33s with 0.6s
+        }]
+      }]
+    };
+
+    const result = await preprocessAnimation(animation);
+    const animations = result.sequences![0].animations as PropertyAnimation[];
+    const scaleAnim = animations.find(a => a.property === 'scale')!;
+
+    // Pop with custom duration 0.6s at 60fps = 36 frames
+    const duration = scaleAnim.keyframes[scaleAnim.keyframes.length - 1].frame - scaleAnim.keyframes[0].frame;
+    expect(duration).toBe(36);
+  });
+
+  it('should load effects from individual files', async () => {
+    const animation: AnimationFile = {
+      project: { width: 100, height: 100, fps: 60, frames: 120 },
+      objects: [
+        { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
+      ],
+      sequences: [{
+        animations: [{
+          target: 'title',
+          effect: 'fadeIn',
+          startTime: 0.0
+        }]
+      }]
+    };
+
+    const result = await preprocessAnimation(animation);
+    const animations = result.sequences![0].animations as PropertyAnimation[];
+
+    // FadeIn effect should load from effects/fadeIn.json
+    expect(animations.length).toBe(1);
+    expect(animations[0].property).toBe('opacity');
+  });
 });
+

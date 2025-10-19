@@ -1,17 +1,19 @@
-import { createCanvas, Canvas, CanvasRenderingContext2D } from 'canvas';
-import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject, CircleObject, EllipseObject, PathObject, PathCommand } from './types.js';
+import { createCanvas, Canvas, CanvasRenderingContext2D, Image, loadImage } from 'canvas';
+import type { AnimationFile, AnimationObject, RectObject, TextObject, GroupObject, LineObject, CircleObject, EllipseObject, PathObject, PathCommand, ImageObject } from './types.js';
 
 export class Renderer {
   private canvas: Canvas;
   private ctx: CanvasRenderingContext2D;
   private animation: AnimationFile;
   private animationMap: Map<string, Map<string, any[]>>;  // objectId -> property -> keyframes
+  private imageCache: Map<string, Image>;  // source path -> loaded Image
 
   constructor(animation: AnimationFile) {
     this.animation = animation;
     this.canvas = createCanvas(animation.project.width, animation.project.height);
     this.ctx = this.canvas.getContext('2d');
     this.animationMap = this.buildAnimationMap();
+    this.imageCache = new Map();
   }
 
   /**
@@ -51,6 +53,26 @@ export class Renderer {
     }
 
     return map;
+  }
+
+  /**
+   * Preload all images from the animation
+   */
+  async preloadImages(): Promise<void> {
+    const loadPromises: Promise<void>[] = [];
+
+    const processObjects = (objects: AnimationObject[]) => {
+      for (const obj of objects) {
+        if (obj.type === 'image') {
+          loadPromises.push(this.loadImageIfNeeded(obj.source).then(() => {}));
+        } else if (obj.type === 'group') {
+          processObjects(obj.children);
+        }
+      }
+    };
+
+    processObjects(this.animation.objects);
+    await Promise.all(loadPromises);
   }
 
   /**
@@ -158,6 +180,9 @@ export class Renderer {
         break;
       case 'text':
         this.renderText(obj, props);
+        break;
+      case 'image':
+        this.renderImage(obj, props);
         break;
       case 'line':
         this.renderLine(obj, props);
@@ -395,6 +420,39 @@ export class Renderer {
         this.ctx.arcTo(command.x1, command.y1, command.x2, command.y2, command.radius);
         break;
     }
+  }
+
+  /**
+   * Load and cache an image
+   */
+  private async loadImageIfNeeded(source: string): Promise<Image> {
+    if (!this.imageCache.has(source)) {
+      const image = await loadImage(source);
+      this.imageCache.set(source, image);
+    }
+    return this.imageCache.get(source)!;
+  }
+
+  /**
+   * Render an image
+   */
+  private renderImage(obj: ImageObject, props: any): void {
+    // Images must be preloaded synchronously before rendering
+    const image = this.imageCache.get(obj.source);
+    if (!image) {
+      console.warn(`Image not loaded: ${obj.source}`);
+      return;
+    }
+
+    // Use animated width/height if available, otherwise use object properties or image dimensions
+    const width = props.width ?? obj.width ?? image.width;
+    const height = props.height ?? obj.height ?? image.height;
+
+    // Apply anchor offset
+    const { offsetX, offsetY } = this.getAnchorOffset(obj.anchor, width, height);
+
+    // Draw image
+    this.ctx.drawImage(image, offsetX, offsetY, width, height);
   }
 
   /**

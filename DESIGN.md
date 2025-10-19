@@ -1,7 +1,7 @@
 # Animation Tool Design Document
 
 ## Overview
-A declarative animation tool for creating video content, designed to be both hand-editable and LLM-generatable. Outputs PNG image sequences for import into DaVinci Resolve.
+A declarative animation tool for creating video content, designed to be both hand-editable and LLM-generatable. Outputs PNG image sequences or MP4 video files.
 
 ## Core Decisions
 
@@ -19,9 +19,13 @@ A declarative animation tool for creating video content, designed to be both han
 
 ### Output Format
 - **PNG image sequence** - e.g., `frame_0001.png`, `frame_0002.png`
-- Alpha channel support for transparency
-- Import directly into DaVinci Resolve as image sequence
-- Frame-perfect, no compression artifacts
+  - Alpha channel support for transparency
+  - Import directly into DaVinci Resolve as image sequence
+  - Frame-perfect, no compression artifacts
+- **MP4 video** - Direct video encoding via FFmpeg
+  - H.264 codec with yuv420p pixel format
+  - Configurable quality (CRF 18, fast preset)
+  - Streams frames directly to FFmpeg (no temp files)
 
 ### Rendering Engine
 - HTML5 Canvas in Node.js (using `canvas` package)
@@ -96,6 +100,9 @@ Components are JSON files with parameters and object definitions:
 - **image** - PNG (with alpha), JPG
 - **rect** - Rectangles/boxes
 - **line** - Lines
+- **circle** - Circles with radius, fill, and stroke
+- **ellipse** - Ellipses with radiusX/radiusY, fill, and stroke
+- **path** - Custom shapes using canvas path commands (moveTo, lineTo, bezierCurveTo, etc.)
 - **point** - Points/dots
 - **group** - Container for multiple objects (transforms apply to children)
 - **component** - Reference to external component file
@@ -144,7 +151,9 @@ Common properties across all object types:
 
 ### Effects Library
 
-Pre-composed animations stored in `effects/library.json` that can be referenced by name. Effects use time-based definitions (0.0 to 1.0 normalized) which are converted to frames at load time based on the project's fps. This allows effects to work consistently across different frame rates.
+Pre-composed animations stored as individual JSON files in the `effects/` directory. Each effect can be referenced by name (its filename without `.json` extension). Effects use time-based definitions (0.0 to 1.0 normalized) which are converted to frames at load time based on the project's fps. This allows effects to work consistently across different frame rates.
+
+Effects are loaded on-demand and cached for performance.
 
 #### Using Effects
 
@@ -182,8 +191,33 @@ Effects are applied through sequences using the `effect` property:
 - `target` - ID of the object to animate
 - `effect` - Name of effect from library
 - `startTime` - When to start the effect (in seconds)
+- `duration` - Optional duration override in seconds (uses effect default if not specified)
 - Effects are expanded to property animations during preprocessing
 - Time values are converted to frames based on project fps
+
+#### Custom Effect Duration
+
+You can override the default duration of any effect by specifying a `duration` property:
+
+```json
+{
+  "animations": [
+    {
+      "target": "title",
+      "effect": "pop",
+      "startTime": 0.5,
+      "duration": 0.8  // Override default 0.33s with 0.8s
+    }
+  ]
+}
+```
+
+This allows you to stretch or compress effects to match your desired timing while still benefiting from the pre-composed animation curves. The effect's keyframes are scaled proportionally to the new duration.
+
+**Example use cases:**
+- Speed up effects for fast-paced content: `"duration": 0.2`
+- Slow down effects for dramatic emphasis: `"duration": 1.0`
+- Synchronize effect timing with audio or other animations
 
 #### Built-in Effects
 
@@ -225,34 +259,53 @@ Effects are applied through sequences using the `effect` property:
 
 #### Creating Custom Effects
 
-Effects are defined in `effects/library.json`:
+Each effect is defined in its own JSON file in the `effects/` directory. For example, `effects/myEffect.json`:
 
 ```json
 {
-  "myEffect": {
-    "description": "Custom effect description",
-    "duration": 0.5,
-    "properties": {
-      "scale": [
-        {"time": 0.0, "value": 0},
-        {"time": 1.0, "value": 1, "easing": "ease-out"}
-      ],
-      "rotation": [
-        {"time": 0.0, "value": 0},
-        {"time": 1.0, "value": 90}
-      ]
-    }
+  "description": "Custom effect description",
+  "duration": 0.5,
+  "properties": {
+    "scale": [
+      {"time": 0.0, "value": 0},
+      {"time": 1.0, "value": 1, "easing": "ease-out"}
+    ],
+    "rotation": [
+      {"time": 0.0, "value": 0},
+      {"time": 1.0, "value": 90}
+    ]
   }
 }
 ```
 
-**Structure:**
-- `duration` - Effect duration in seconds
+To use your custom effect, reference it by its filename (without the `.json` extension):
+
+```json
+{
+  "target": "title",
+  "effect": "myEffect",
+  "startTime": 1.0
+}
+```
+
+**Effect Structure:**
+- `description` - Optional description of the effect
+- `duration` - Effect duration in seconds (can be overridden when used)
 - `properties` - Map of property names to time-based keyframes
 - Each keyframe has:
   - `time` - Normalized time from 0.0 to 1.0
   - `value` - Property value at that time
   - `easing` - Optional easing function
+
+**Built-in effects:**
+- `effects/pop.json`
+- `effects/fadeIn.json`
+- `effects/fadeOut.json`
+- `effects/slideInLeft.json`
+- `effects/slideOutRight.json`
+- `effects/bounce.json`
+- `effects/spin.json`
+- `effects/dropIn.json`
 
 #### Mixing Effects and Property Animations
 
@@ -317,6 +370,115 @@ Control points are `[x1, y1, x2, y2]` where:
 - `x1`, `x2` should be in range 0-1
 - `y1`, `y2` can be outside 0-1 to create overshoot/undershoot effects
 - The curve always starts at (0, 0) and ends at (1, 1)
+
+### Image Objects
+
+Images support PNG, JPEG, and other formats supported by the `canvas` library:
+
+```json
+{
+  "type": "image",
+  "source": "../assets/logo.png",
+  "x": 960,
+  "y": 540,
+  "width": 200,
+  "height": 200,
+  "anchor": "center",
+  "opacity": 1.0
+}
+```
+
+**Properties:**
+- `source` - Path to image file (relative to animation file)
+- `width` - Display width in pixels (optional, defaults to image's natural width)
+- `height` - Display height in pixels (optional, defaults to image's natural height)
+- `x`, `y` - Position
+- `anchor` - Anchor point for positioning (default: `"top-left"`)
+- All standard transform properties: `scale`, `scaleX`, `scaleY`, `rotation`, `opacity`
+
+**Supported formats:**
+- PNG (with alpha channel transparency)
+- JPEG
+- GIF
+- BMP
+- SVG (via canvas library)
+
+**Notes:**
+- Images are preloaded before rendering begins
+- Images are cached to avoid redundant loading
+- Paths are resolved relative to the animation file location
+- Width and height can be animated via keyframes
+
+### Shape Objects
+
+#### Circle
+```json
+{
+  "type": "circle",
+  "x": 960,
+  "y": 540,
+  "radius": 50,
+  "fill": "#FF0000",
+  "stroke": "#FFFFFF",
+  "strokeWidth": 2
+}
+```
+
+**Properties:**
+- `radius` - Circle radius in pixels
+- `fill` - Fill color (optional)
+- `stroke` - Stroke color (optional)
+- `strokeWidth` - Stroke width in pixels (default: 1)
+
+#### Ellipse
+```json
+{
+  "type": "ellipse",
+  "x": 960,
+  "y": 540,
+  "radiusX": 80,
+  "radiusY": 40,
+  "fill": "#00FF00",
+  "stroke": "#000000",
+  "strokeWidth": 3
+}
+```
+
+**Properties:**
+- `radiusX` - Horizontal radius in pixels
+- `radiusY` - Vertical radius in pixels
+- `fill` - Fill color (optional)
+- `stroke` - Stroke color (optional)
+- `strokeWidth` - Stroke width in pixels (default: 1)
+
+#### Path
+Custom shapes using canvas path commands:
+
+```json
+{
+  "type": "path",
+  "x": 100,
+  "y": 100,
+  "commands": [
+    {"type": "moveTo", "x": 0, "y": 0},
+    {"type": "lineTo", "x": 100, "y": 0},
+    {"type": "lineTo", "x": 50, "y": 86.6},
+    {"type": "closePath"}
+  ],
+  "fill": "#0000FF",
+  "stroke": "#FFFFFF",
+  "strokeWidth": 2
+}
+```
+
+**Supported commands:**
+- `moveTo` - Move to point: `{type: "moveTo", x, y}`
+- `lineTo` - Line to point: `{type: "lineTo", x, y}`
+- `bezierCurveTo` - Cubic Bézier curve: `{type: "bezierCurveTo", cp1x, cp1y, cp2x, cp2y, x, y}`
+- `quadraticCurveTo` - Quadratic Bézier curve: `{type: "quadraticCurveTo", cpx, cpy, x, y}`
+- `arc` - Arc: `{type: "arc", x, y, radius, startAngle, endAngle, counterclockwise?}`
+- `arcTo` - Arc to point: `{type: "arcTo", x1, y1, x2, y2, radius}`
+- `closePath` - Close path: `{type: "closePath"}`
 
 ### Groups
 Groups allow animating multiple objects together:
@@ -398,29 +560,48 @@ Groups allow animating multiple objects together:
 }
 ```
 
-## CLI Usage (Planned)
+## CLI Usage
 
 ```bash
 # Render animation to PNG sequence
-animate render animation.json --output ./frames/
+npm run dev examples/animation.json ./output-frames
 
-# Validate animation file
-animate validate animation.json
+# Render directly to MP4 video
+npm run dev examples/animation.json output.mp4 --video
 
-# Preview in browser
-animate preview animation.json
+# Or use .mp4 extension (--video flag is auto-detected)
+npm run dev examples/animation.json output.mp4
 ```
 
-## Implementation Plan
+**Output modes:**
+- PNG sequence: Specify a directory path (e.g., `./frames`)
+- MP4 video: Use `.mp4` extension or add `--video` flag
+- MOV video: Use `.mov` extension
 
-1. Define JSON schema
-2. Build core renderer (Canvas + PNG export)
-3. Implement basic primitives (rect, text, image, line, point)
-4. Add animation system with keyframes and easing
-5. Implement groups with transform inheritance
-6. Add component system with parameters
-7. CLI tool for rendering
-8. Validation and error handling
+**Requirements:**
+- FFmpeg must be installed for video output
+- PNG sequence mode works without external dependencies
+
+## Implementation Status
+
+✅ **Completed:**
+1. JSON schema and type definitions
+2. Core renderer (Canvas + PNG export)
+3. Basic primitives (rect, text, image, line, point, circle, ellipse, path)
+4. Animation system with keyframes and easing (including cubic-bezier)
+5. Groups with transform inheritance
+6. Component system with parameter substitution
+7. CLI tool for rendering (PNG sequences and MP4 video)
+8. Effects library with time-based definitions
+9. Preprocessor for expanding effects and converting time to frames
+10. Comprehensive test suite
+
+**Future Enhancements:**
+- JSON Schema validation
+- Additional easing functions (elastic, bounce improvements)
+- Browser-based preview mode
+- Animation curve editor
+- More complex path operations
 
 ## Design Goals
 - **LLM-friendly**: Easy for AI to generate and modify

@@ -1,0 +1,42 @@
+{
+  "project": {
+    "width": 400,
+    "height": 400,
+    "fps": 30,
+    "frames": 1
+  },
+  "objects": [
+    {
+      "type": "group",
+      "x": 100,
+      "y": 100,
+      "scale": 1,
+      "children": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 50,
+          "height": 50,
+          "fill": "#FF0000"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "x": 250,
+      "y": 100,
+      "scale": 2,
+      "children": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 50,
+          "height": 50,
+          "fill": "#00FF00"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 180
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#EEEEEE"
+    },
+    {
+      "type": "text",
+      "id": "fast-label",
+      "content": "Fast (0.2s)",
+      "x": 480,
+      "y": 350,
+      "anchor": "center",
+      "size": 24,
+      "fill": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "fast-text",
+      "content": "POP!",
+      "x": 480,
+      "y": 440,
+      "anchor": "center",
+      "size": 72,
+      "fill": "#00d9ff",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "default-label",
+      "content": "Default (0.33s)",
+      "x": 960,
+      "y": 350,
+      "anchor": "center",
+      "size": 24,
+      "fill": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "default-text",
+      "content": "POP!",
+      "x": 960,
+      "y": 440,
+      "anchor": "center",
+      "size": 72,
+      "fill": "#ffb800",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "slow-label",
+      "content": "Slow (0.8s)",
+      "x": 1440,
+      "y": 350,
+      "anchor": "center",
+      "size": 24,
+      "fill": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "slow-text",
+      "content": "POP!",
+      "x": 1440,
+      "y": 440,
+      "anchor": "center",
+      "size": 72,
+      "fill": "#ff6b6b",
+      "scale": 0,
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Custom Effect Duration Demo",
+      "x": 960,
+      "y": 180,
+      "anchor": "center",
+      "size": 48,
+      "fill": "#ffffff",
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "content": "Same 'pop' effect with different duration overrides",
+      "x": 960,
+      "y": 650,
+      "anchor": "center",
+      "size": 32,
+      "fill": "#aaaaaa",
+      "opacity": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "main",
+      "animations": [
+        {
+          "target": "title",
+          "effect": "fadeIn",
+          "startTime": 0.2
+        },
+        {
+          "target": "subtitle",
+          "effect": "fadeIn",
+          "startTime": 0.5
+        },
+        {
+          "target": "fast-text",
+          "effect": "pop",
+          "startTime": 1.5,
+          "duration": 0.2
+        },
+        {
+          "target": "default-text",
+          "effect": "pop",
+          "startTime": 1.5
+        },
+        {
+          "target": "slow-text",
+          "effect": "pop",
+          "startTime": 1.5,
+          "duration": 0.8
+        },
+        {
+          "target": "fast-text",
+          "effect": "pop",
+          "startTime": 3.0,
+          "duration": 0.2
+        },
+        {
+          "target": "default-text",
+          "effect": "pop",
+          "startTime": 3.0
+        },
+        {
+          "target": "slow-text",
+          "effect": "pop",
+          "startTime": 3.0,
+          "duration": 0.8
+        },
+        {
+          "target": "fast-text",
+          "effect": "pop",
+          "startTime": 4.5,
+          "duration": 0.2
+        },
+        {
+          "target": "default-text",
+          "effect": "pop",
+          "startTime": 4.5
+        },
+        {
+          "target": "slow-text",
+          "effect": "pop",
+          "startTime": 4.5,
+          "duration": 0.8
+        }
+      ]
+    }
+  ]
+}

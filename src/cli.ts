@@ -115,12 +115,27 @@ async function main() {
     const basePath = dirname(animationPath);
     animation.objects = await expandComponents(animation.objects, basePath);
 
+    // Resolve image paths relative to animation file
+    const resolveImagePaths = (objects: any[], base: string) => {
+      for (const obj of objects) {
+        if (obj.type === 'image') {
+          obj.source = join(base, obj.source);
+        } else if (obj.type === 'group' && obj.children) {
+          resolveImagePaths(obj.children, base);
+        }
+      }
+    };
+    resolveImagePaths(animation.objects, basePath);
+
     console.log(`Project: ${animation.project.width}x${animation.project.height} @ ${animation.project.fps}fps`);
     console.log(`Frames: ${animation.project.frames}`);
     console.log(`Objects: ${animation.objects.length}`);
 
     // Create renderer
     const renderer = new Renderer(animation);
+
+    // Preload all images
+    await renderer.preloadImages();
 
     if (videoMode) {
       // Stream directly to FFmpeg (no temp files)

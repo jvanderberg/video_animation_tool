@@ -1,0 +1,62 @@
+{
+  "project": {
+    "width": 400,
+    "height": 400,
+    "fps": 30,
+    "frames": 1
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 400,
+      "height": 400,
+      "fill": "#CCCCCC"
+    },
+    {
+      "type": "circle",
+      "id": "circle-no-scale",
+      "x": 100,
+      "y": 100,
+      "radius": 50,
+      "fill": "#FFFFFF",
+      "stroke": "#FF0000",
+      "strokeWidth": 4
+    },
+    {
+      "type": "circle",
+      "id": "circle-scale-2",
+      "x": 300,
+      "y": 100,
+      "radius": 50,
+      "scale": 2,
+      "fill": "#FFFFFF",
+      "stroke": "#FF0000",
+      "strokeWidth": 4
+    },
+    {
+      "type": "circle",
+      "id": "circle-scale-3",
+      "x": 100,
+      "y": 300,
+      "radius": 50,
+      "scale": 3,
+      "fill": "#FFFFFF",
+      "stroke": "#FF0000",
+      "strokeWidth": 4
+    },
+    {
+      "type": "circle",
+      "id": "circle-scale-10",
+      "x": 300,
+      "y": 300,
+      "radius": 28,
+      "scale": 3,
+      "fill": "#FFFFFF",
+      "stroke": "#FF0000",
+      "strokeWidth": 4
+    }
+  ]
+}

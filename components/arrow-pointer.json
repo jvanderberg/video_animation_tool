@@ -1,0 +1,27 @@
+{
+  "parameters": {
+    "color": {"type": "string", "default": "#FFFF00"}
+  },
+  "objects": [
+    {
+      "type": "path",
+      "x": 0,
+      "y": 0,
+      "commands": [
+        {"type": "moveTo", "x": 0, "y": -30},
+        {"type": "lineTo", "x": 15, "y": -10},
+        {"type": "lineTo", "x": 5, "y": -10},
+        {"type": "lineTo", "x": 5, "y": 30},
+        {"type": "lineTo", "x": -5, "y": 30},
+        {"type": "lineTo", "x": -5, "y": -10},
+        {"type": "lineTo", "x": -15, "y": -10},
+        {"type": "closePath"}
+      ],
+      "fill": "{{color}}",
+      "stroke": "#000000",
+      "strokeWidth": 2
+    }
+  ],
+  "width": 30,
+  "height": 60
+}

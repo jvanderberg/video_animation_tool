@@ -1,0 +1,191 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 240
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#000000"
+    },
+    {
+      "type": "image",
+      "id": "square-red",
+      "source": "../assets/square-red.png",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    },
+    {
+      "type": "image",
+      "id": "square-blue",
+      "source": "../assets/square-blue.png",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    },
+    {
+      "type": "image",
+      "id": "square-green",
+      "source": "../assets/square-green.png",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    },
+    {
+      "type": "image",
+      "id": "square-yellow",
+      "source": "../assets/square-yellow.png",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    },
+    {
+      "type": "image",
+      "id": "square-purple",
+      "source": "../assets/square-purple.png",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "scale": 0,
+      "opacity": 0,
+      "rotation": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "layered-dance",
+      "animations": [
+        {
+          "target": "square-red",
+          "effect": "pop",
+          "startTime": 0.5
+        },
+        {
+          "target": "square-red",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 30, "value": 0},
+            {"frame": 240, "value": 360, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "square-red",
+          "property": "x",
+          "keyframes": [
+            {"frame": 30, "value": 960},
+            {"frame": 120, "value": 700, "easing": "ease-in-out"},
+            {"frame": 210, "value": 960, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "square-blue",
+          "effect": "pop",
+          "startTime": 1.0
+        },
+        {
+          "target": "square-blue",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 50, "value": 0},
+            {"frame": 240, "value": -360, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "square-blue",
+          "property": "x",
+          "keyframes": [
+            {"frame": 50, "value": 960},
+            {"frame": 120, "value": 1220, "easing": "ease-in-out"},
+            {"frame": 210, "value": 960, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "square-green",
+          "effect": "pop",
+          "startTime": 1.5
+        },
+        {
+          "target": "square-green",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 70, "value": 45},
+            {"frame": 240, "value": 405, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "square-green",
+          "property": "y",
+          "keyframes": [
+            {"frame": 70, "value": 540},
+            {"frame": 120, "value": 340, "easing": "ease-in-out"},
+            {"frame": 210, "value": 540, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "square-yellow",
+          "effect": "pop",
+          "startTime": 2.0
+        },
+        {
+          "target": "square-yellow",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 90, "value": 90},
+            {"frame": 240, "value": -270, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "square-yellow",
+          "property": "y",
+          "keyframes": [
+            {"frame": 90, "value": 540},
+            {"frame": 120, "value": 740, "easing": "ease-in-out"},
+            {"frame": 210, "value": 540, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "square-purple",
+          "effect": "pop",
+          "startTime": 2.5
+        },
+        {
+          "target": "square-purple",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 105, "value": 180},
+            {"frame": 240, "value": 540, "easing": "linear"}
+          ]
+        },
+        {
+          "target": "square-purple",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 105, "value": 1.0},
+            {"frame": 160, "value": 1.5, "easing": "ease-in-out"},
+            {"frame": 210, "value": 1.0, "easing": "ease-in-out"}
+          ]
+        }
+      ]
+    }
+  ]
+}

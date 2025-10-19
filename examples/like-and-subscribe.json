@@ -1,0 +1,192 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 300
+  },
+  "objects": [
+    {
+      "type": "text",
+      "id": "intro-text",
+      "content": "If you enjoyed this video...",
+      "x": 960,
+      "y": 300,
+      "size": 48,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "like-text",
+      "content": "SMASH that LIKE button!",
+      "x": 480,
+      "y": 540,
+      "size": 36,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "component",
+      "id": "thumbs-up-icon",
+      "source": "../components/thumbs-up.json",
+      "x": 480,
+      "y": 650,
+      "scale": 3,
+      "opacity": 0,
+      "params": {
+        "color": "#FF0000"
+      }
+    },
+    {
+      "type": "text",
+      "id": "subscribe-text",
+      "content": "And don't forget to",
+      "x": 1440,
+      "y": 440,
+      "size": 32,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "component",
+      "id": "subscribe-btn",
+      "source": "../components/subscribe-button.json",
+      "x": 1440,
+      "y": 560,
+      "scale": 2.5,
+      "opacity": 0,
+      "params": {
+        "text": "SUBSCRIBE",
+        "bgColor": "#FF0000",
+        "textColor": "#FFFFFF"
+      }
+    },
+    {
+      "type": "component",
+      "id": "bell-icon-component",
+      "source": "../components/bell-icon.json",
+      "x": 1620,
+      "y": 560,
+      "scale": 3,
+      "opacity": 0,
+      "params": {
+        "color": "#FFFFFF"
+      }
+    },
+    {
+      "type": "component",
+      "id": "arrow-pointing",
+      "source": "../components/arrow-pointer.json",
+      "x": 1440,
+      "y": 420,
+      "scale": 1.8,
+      "rotation": 180,
+      "opacity": 0,
+      "params": {
+        "color": "#FFFF00"
+      }
+    },
+    {
+      "type": "text",
+      "id": "outro-text",
+      "content": "Thanks for watching!",
+      "x": 960,
+      "y": 800,
+      "size": 42,
+      "color": "#FFFFFF",
+      "font": "Arial",
+      "anchor": "center",
+      "opacity": 0
+    }
+  ],
+  "sequences": [
+    {
+      "name": "like-and-subscribe",
+      "animations": [
+        {
+          "target": "intro-text",
+          "effect": "fadeIn",
+          "startTime": 0.0
+        },
+        {
+          "target": "intro-text",
+          "effect": "fadeOut",
+          "startTime": 2.0
+        },
+        {
+          "target": "like-text",
+          "effect": "pop",
+          "startTime": 2.5
+        },
+        {
+          "target": "thumbs-up-icon",
+          "effect": "dropIn",
+          "startTime": 3.0
+        },
+        {
+          "target": "thumbs-up-icon",
+          "property": "scale",
+          "keyframes": [
+            {"frame": 120, "value": 3.0},
+            {"frame": 135, "value": 4.0, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"},
+            {"frame": 150, "value": 3.0, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "subscribe-text",
+          "effect": "fadeIn",
+          "startTime": 4.5
+        },
+        {
+          "target": "subscribe-btn",
+          "effect": "slideInLeft",
+          "startTime": 5.0
+        },
+        {
+          "target": "bell-icon-component",
+          "effect": "pop",
+          "startTime": 5.5
+        },
+        {
+          "target": "bell-icon-component",
+          "property": "rotation",
+          "keyframes": [
+            {"frame": 180, "value": 0},
+            {"frame": 195, "value": -20, "easing": "ease-in-out"},
+            {"frame": 210, "value": 20, "easing": "ease-in-out"},
+            {"frame": 225, "value": -15, "easing": "ease-in-out"},
+            {"frame": 240, "value": 0, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "arrow-pointing",
+          "effect": "dropIn",
+          "startTime": 6.0
+        },
+        {
+          "target": "arrow-pointing",
+          "property": "y",
+          "keyframes": [
+            {"frame": 195, "value": 350},
+            {"frame": 210, "value": 370, "easing": "ease-in-out"},
+            {"frame": 225, "value": 350, "easing": "ease-in-out"},
+            {"frame": 240, "value": 370, "easing": "ease-in-out"},
+            {"frame": 255, "value": 350, "easing": "ease-in-out"}
+          ]
+        },
+        {
+          "target": "outro-text",
+          "effect": "fadeIn",
+          "startTime": 8.0
+        }
+      ]
+    }
+  ]
+}
