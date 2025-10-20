@@ -262,6 +262,85 @@ const image: ImageObject = {
 3. Update the CODE to match types.ts (not the other way around)
 4. Only change types.ts if you're intentionally changing the API
 
+### Transformation Pipeline Pattern: Expand Early, Process Uniformly
+
+**Principle: Transform/expand complex types early in the pipeline, then process uniformly.**
+
+When building multi-step preprocessing pipelines, always expand or transform complex/variant types into a simpler, uniform representation BEFORE applying sequential transformations.
+
+**Why this matters:**
+- Simpler functions (each does one thing)
+- No branching on type during processing
+- Easier to test and debug
+- Clearer separation of concerns
+
+**Example: Group effect timing fix**
+
+❌ **Bad approach - Mixed concerns:**
+```typescript
+async function processAnimations(animations) {
+  for (const anim of animations) {
+    if (isGroupAnimation(anim)) {
+      if (anim.effect) {
+        // Expand effect HERE while also processing offsets
+        const expanded = await expandEffect(anim.effect, ...);
+        // Apply offsets
+        // Namespace results
+      } else if (anim.property) {
+        // Process property animation
+        // Apply offsets
+      }
+    } else {
+      // Handle absolute timing
+    }
+  }
+}
+```
+
+✅ **Good approach - Expand first, then process:**
+```typescript
+// STEP 1: Expand effects to property animations FIRST
+async function extractGroupAnimations(group) {
+  const expandedAnimations = [];
+  for (const anim of group.animations) {
+    if (anim.effect) {
+      // Expand effect to relative property animations
+      const expanded = await expandEffectToRelativeAnimations(anim, group.children);
+      expandedAnimations.push(...expanded);
+    } else {
+      expandedAnimations.push(anim);
+    }
+  }
+
+  // STEP 2: Now process uniformly (all are property animations)
+  const processed = await processAnimations(expandedAnimations, ...);
+}
+
+// This function now only handles property animations - much simpler!
+async function processAnimations(animations) {
+  for (const anim of animations) {
+    // No branching on effect vs property
+    // Just apply offsets/timing to property animations
+  }
+}
+```
+
+**When to use this pattern:**
+- Preprocessing pipelines (effects → property animations → resolved percentages → validated)
+- Multi-format input (TimeValue → frames, percentages → pixels)
+- Variant type handling (EffectAnimation | PropertyAnimation → PropertyAnimation)
+
+**Benefits demonstrated:**
+- `processAnimations()` became simpler after removing effect detection
+- `expandEffectToRelativeAnimations()` is focused and testable
+- Easier to add new effect types (just expand them earlier)
+- Clear progression: effects → relative animations → absolute animations → validated
+
+**Related patterns:**
+- Validate early (fail fast at load time)
+- Resolve percentages at preprocessing (not render time)
+- Convert all timing to frames before rendering
+
 ### Renderer Extension
 
 When adding new object types:
