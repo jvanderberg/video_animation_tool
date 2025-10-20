@@ -3,7 +3,7 @@
   "duration": 0.5,
   "properties": {
     "x": [
-      {"time": 0.0, "value": 960},
+      {"time": 0.0, "value": "{x}"},
       {"time": 1.0, "value": 2880, "easing": "ease-in"}
     ],
     "opacity": [

@@ -136,7 +136,7 @@ describe('Component System', () => {
     const textObj = expanded.children[0] as any;
     expect(textObj.content).toBe('My Label');
     expect(textObj.color).toBe('#FF00FF');
-    expect(textObj.size).toBe('24'); // Note: converted to string by substitution
+    expect(textObj.size).toBe(24); // Type preserved when entire value is a template variable
   });
 
   it('should preserve component transforms', async () => {

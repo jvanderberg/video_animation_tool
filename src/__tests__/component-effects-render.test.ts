@@ -5,7 +5,7 @@ import { expandComponents, extractAnimationsFromGroups } from '../components.js'
 import { writeFile, mkdir, rm } from 'fs/promises';
 import { join } from 'path';
 import { tmpdir } from 'os';
-import type { AnimationFile, SequenceAnimation, EffectAnimation } from '../types.js';
+import type { AnimationFile, Animation, EffectAnimation } from '../types.js';
 
 describe('Component Effects Rendering', () => {
   let tempDir: string;
@@ -82,7 +82,7 @@ describe('Component Effects Rendering', () => {
     // Extract and expand effect animations from components
     const componentAnimations = extractAnimationsFromGroups(animation.objects);
     if (componentAnimations.length > 0) {
-      const expandedAnimations: SequenceAnimation[] = [];
+      const expandedAnimations: Animation[] = [];
       for (const anim of componentAnimations) {
         if ('effect' in anim && typeof anim.effect === 'string') {
           const propAnims = await expandEffectAnimation(anim as EffectAnimation, animation.project.fps);
@@ -92,13 +92,10 @@ describe('Component Effects Rendering', () => {
         }
       }
 
-      if (!animation.sequences) {
-        animation.sequences = [];
+      if (!animation.animations) {
+        animation.animations = [];
       }
-      animation.sequences.push({
-        name: 'component-animations',
-        animations: expandedAnimations
-      });
+      animation.animations.push(...expandedAnimations);
     }
 
     // Create renderer
@@ -188,7 +185,7 @@ describe('Component Effects Rendering', () => {
 
     const componentAnimations = extractAnimationsFromGroups(animation.objects);
     if (componentAnimations.length > 0) {
-      const expandedAnimations: SequenceAnimation[] = [];
+      const expandedAnimations: Animation[] = [];
       for (const anim of componentAnimations) {
         if ('effect' in anim && typeof anim.effect === 'string') {
           const propAnims = await expandEffectAnimation(anim as EffectAnimation, animation.project.fps);
@@ -198,13 +195,10 @@ describe('Component Effects Rendering', () => {
         }
       }
 
-      if (!animation.sequences) {
-        animation.sequences = [];
+      if (!animation.animations) {
+        animation.animations = [];
       }
-      animation.sequences.push({
-        name: 'component-animations',
-        animations: expandedAnimations
-      });
+      animation.animations.push(...expandedAnimations);
     }
 
     const renderer = new Renderer(animation);

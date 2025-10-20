@@ -21,7 +21,7 @@
     },
     {
       "type": "text",
-      "id": "pop-text",
+      "id": "demo1",
       "content": "Pop Effect",
       "x": 960,
       "y": 200,
@@ -34,7 +34,7 @@
     },
     {
       "type": "text",
-      "id": "fadeIn-text",
+      "id": "demo2",
       "content": "Fade In Effect",
       "x": 960,
       "y": 300,
@@ -46,7 +46,7 @@
     },
     {
       "type": "text",
-      "id": "fadeOut-text",
+      "id": "demo3",
       "content": "Fade Out Effect",
       "x": 960,
       "y": 400,
@@ -58,7 +58,7 @@
     },
     {
       "type": "text",
-      "id": "slideInLeft-text",
+      "id": "demo4",
       "content": "Slide In Left Effect",
       "x": 960,
       "y": 500,
@@ -70,7 +70,7 @@
     },
     {
       "type": "text",
-      "id": "slideOutRight-text",
+      "id": "demo5",
       "content": "Slide Out Right Effect",
       "x": 960,
       "y": 600,
@@ -82,7 +82,7 @@
     },
     {
       "type": "text",
-      "id": "bounce-text",
+      "id": "demo6",
       "content": "Bounce Effect",
       "x": 960,
       "y": 700,
@@ -94,7 +94,7 @@
     },
     {
       "type": "text",
-      "id": "spin-text",
+      "id": "demo7",
       "content": "Spin Effect",
       "x": 960,
       "y": 800,
@@ -106,7 +106,7 @@
     },
     {
       "type": "text",
-      "id": "dropIn-text",
+      "id": "demo8",
       "content": "Drop In Effect",
       "x": 960,
       "y": 900,
@@ -118,56 +118,51 @@
       "opacity": 0
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "showcase",
-      "animations": [
-        {
-          "target": "title",
-          "effect": "pop",
-          "start": "0.0s"
-        },
-        {
-          "target": "pop-text",
-          "effect": "pop",
-          "start": "1.0s"
-        },
-        {
-          "target": "fadeIn-text",
-          "effect": "fadeIn",
-          "start": "2.0s"
-        },
-        {
-          "target": "fadeOut-text",
-          "effect": "fadeOut",
-          "start": "3.0s"
-        },
-        {
-          "target": "slideInLeft-text",
-          "effect": "slideInLeft",
-          "start": "4.0s"
-        },
-        {
-          "target": "slideOutRight-text",
-          "effect": "slideOutRight",
-          "start": "5.0s"
-        },
-        {
-          "target": "bounce-text",
-          "effect": "bounce",
-          "start": "6.0s"
-        },
-        {
-          "target": "spin-text",
-          "effect": "spin",
-          "start": "7.0s"
-        },
-        {
-          "target": "dropIn-text",
-          "effect": "dropIn",
-          "start": "8.0s"
-        }
-      ]
+      "target": "title",
+      "effect": "pop",
+      "start": "0.0s"
+    },
+    {
+      "target": "demo1",
+      "effect": "pop",
+      "start": "1.0s"
+    },
+    {
+      "target": "demo2",
+      "effect": "fadeIn",
+      "start": "2.0s"
+    },
+    {
+      "target": "demo3",
+      "effect": "fadeOut",
+      "start": "3.0s"
+    },
+    {
+      "target": "demo4",
+      "effect": "slideInLeft",
+      "start": "4.0s"
+    },
+    {
+      "target": "demo5",
+      "effect": "slideOutRight",
+      "start": "5.0s"
+    },
+    {
+      "target": "demo6",
+      "effect": "bounce",
+      "start": "6.0s"
+    },
+    {
+      "target": "demo7",
+      "effect": "spin",
+      "start": "7.0s"
+    },
+    {
+      "target": "demo8",
+      "effect": "dropIn",
+      "start": "8.0s"
     }
   ]
 }

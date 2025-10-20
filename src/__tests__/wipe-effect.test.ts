@@ -28,14 +28,12 @@ describe('Wipe Effect', () => {
           }
         }
       ],
-      sequences: [{
-        animations: [{
+      animations: [{
           target: 'box',
           effect: 'wipe',
           start: 0,
           duration: '1s'  // 1 second = 30 frames at 30fps
         }]
-      }]
     };
 
     const processed = await preprocessAnimation(animation);
@@ -86,14 +84,12 @@ describe('Wipe Effect', () => {
           }
         }
       ],
-      sequences: [{
-        animations: [{
+      animations: [{
           target: 'title',
           effect: 'wipe',
           start: 0,
           duration: '1s'  // 1 second = 30 frames at 30fps
         }]
-      }]
     };
 
     const processed = await preprocessAnimation(animation);

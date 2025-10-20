@@ -192,10 +192,7 @@ describe('Renderer - Pixel Validation', () => {
             fill: '#FF0000',
           },
         ],
-        sequences: [
-          {
-            name: 'test',
-            animations: [
+        animations: [
               {
                 target: 'test-rect',
                 property: 'x',
@@ -204,8 +201,6 @@ describe('Renderer - Pixel Validation', () => {
                   { frame: 60, value: 180 },
                 ],
               },
-            ],
-          },
         ],
       };
 
@@ -250,10 +245,7 @@ describe('Renderer - Pixel Validation', () => {
             fill: '#00FF00',
           },
         ],
-        sequences: [
-          {
-            name: 'test',
-            animations: [
+        animations: [
               {
                 target: 'test-rect',
                 property: 'y',
@@ -262,8 +254,6 @@ describe('Renderer - Pixel Validation', () => {
                   { frame: 40, value: 160 },
                 ],
               },
-            ],
-          },
         ],
       };
 
@@ -306,10 +296,7 @@ describe('Renderer - Pixel Validation', () => {
             fill: '#FF0000',
           },
         ],
-        sequences: [
-          {
-            name: 'test',
-            animations: [
+        animations: [
               {
                 target: 'test-rect',
                 property: 'opacity',
@@ -318,8 +305,6 @@ describe('Renderer - Pixel Validation', () => {
                   { frame: 30, value: 1 },
                 ],
               },
-            ],
-          },
         ],
       };
 

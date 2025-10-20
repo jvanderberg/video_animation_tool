@@ -275,10 +275,7 @@ describe('Text Rendering', () => {
             color: '#FFFFFF',
           },
         ],
-        sequences: [
-          {
-            name: 'test',
-            animations: [
+        animations: [
               {
                 target: 'test-text',
                 property: 'x',
@@ -287,8 +284,6 @@ describe('Text Rendering', () => {
                   { frame: 60, value: 300 },
                 ],
               },
-            ],
-          },
         ],
       };
 
@@ -328,10 +323,7 @@ describe('Text Rendering', () => {
             color: '#FFFFFF',
           },
         ],
-        sequences: [
-          {
-            name: 'test',
-            animations: [
+        animations: [
               {
                 target: 'test-text',
                 property: 'opacity',
@@ -340,8 +332,6 @@ describe('Text Rendering', () => {
                   { frame: 30, value: 1 },
                 ],
               },
-            ],
-          },
         ],
       };
 

@@ -9,18 +9,13 @@ describe('Animation Property Validation', () => {
       objects: [
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'test',
-          animations: [
-            {
-              target: 'box',
-              property: 'radius', // rect doesn't have radius
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 30, value: 50 }
-              ]
-            }
+          target: 'box',
+          property: 'radius', // rect doesn't have radius
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 30, value: 50 }
           ]
         }
       ]
@@ -37,18 +32,13 @@ describe('Animation Property Validation', () => {
       objects: [
         { type: 'circle', id: 'circle', radius: 50, fill: '#FF0000' }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'test',
-          animations: [
-            {
-              target: 'circle',
-              property: 'width', // circle doesn't have width
-              keyframes: [
-                { frame: 0, value: 50 },
-                { frame: 30, value: 100 }
-              ]
-            }
+          target: 'circle',
+          property: 'width', // circle doesn't have width
+          keyframes: [
+            { frame: 0, value: 50 },
+            { frame: 30, value: 100 }
           ]
         }
       ]
@@ -65,18 +55,13 @@ describe('Animation Property Validation', () => {
       objects: [
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'test',
-          animations: [
-            {
-              target: 'nonexistent',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 30, value: 100 }
-              ]
-            }
+          target: 'nonexistent',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 30, value: 100 }
           ]
         }
       ]
@@ -94,31 +79,26 @@ describe('Animation Property Validation', () => {
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' },
         { type: 'circle', id: 'circle', radius: 50, fill: '#00FF00' }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'test',
-          animations: [
-            {
-              target: 'box',
-              property: 'x',
-              keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 100 }]
-            },
-            {
-              target: 'box',
-              property: 'opacity',
-              keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 1 }]
-            },
-            {
-              target: 'circle',
-              property: 'rotation',
-              keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 360 }]
-            },
-            {
-              target: 'circle',
-              property: 'scale',
-              keyframes: [{ frame: 0, value: 1 }, { frame: 30, value: 2 }]
-            }
-          ]
+          target: 'box',
+          property: 'x',
+          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 100 }]
+        },
+        {
+          target: 'box',
+          property: 'opacity',
+          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 1 }]
+        },
+        {
+          target: 'circle',
+          property: 'rotation',
+          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 360 }]
+        },
+        {
+          target: 'circle',
+          property: 'scale',
+          keyframes: [{ frame: 0, value: 1 }, { frame: 30, value: 2 }]
         }
       ]
     };
@@ -134,26 +114,21 @@ describe('Animation Property Validation', () => {
         { type: 'circle', id: 'circle', radius: 50, fill: '#00FF00' },
         { type: 'ellipse', id: 'ellipse', radiusX: 50, radiusY: 30, fill: '#0000FF' }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'test',
-          animations: [
-            {
-              target: 'box',
-              property: 'width',
-              keyframes: [{ frame: 0, value: 100 }, { frame: 30, value: 200 }]
-            },
-            {
-              target: 'circle',
-              property: 'radius',
-              keyframes: [{ frame: 0, value: 50 }, { frame: 30, value: 100 }]
-            },
-            {
-              target: 'ellipse',
-              property: 'radiusX',
-              keyframes: [{ frame: 0, value: 50 }, { frame: 30, value: 100 }]
-            }
-          ]
+          target: 'box',
+          property: 'width',
+          keyframes: [{ frame: 0, value: 100 }, { frame: 30, value: 200 }]
+        },
+        {
+          target: 'circle',
+          property: 'radius',
+          keyframes: [{ frame: 0, value: 50 }, { frame: 30, value: 100 }]
+        },
+        {
+          target: 'ellipse',
+          property: 'radiusX',
+          keyframes: [{ frame: 0, value: 50 }, { frame: 30, value: 100 }]
         }
       ]
     };
@@ -167,16 +142,11 @@ describe('Animation Property Validation', () => {
       objects: [
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'test',
-          animations: [
-            {
-              target: 'box',
-              property: 'clip.width',
-              keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 100 }]
-            }
-          ]
+          target: 'box',
+          property: 'clip.width',
+          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 100 }]
         }
       ]
     };
@@ -195,16 +165,11 @@ describe('Animation Property Validation', () => {
           ]
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'test',
-          animations: [
-            {
-              target: 'box',
-              property: 'radius', // invalid for rect
-              keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 50 }]
-            }
-          ]
+          target: 'box',
+          property: 'radius', // invalid for rect
+          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 50 }]
         }
       ]
     };

@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import type { ComponentDefinition, ComponentObject, AnimationObject, GroupObject, SequenceAnimation, PropertyAnimation, EffectAnimation, Keyframe } from './types.js';
+import type { ComponentDefinition, ComponentObject, AnimationObject, GroupObject, Animation, PropertyAnimation, EffectAnimation, Keyframe } from './types.js';
 import { parseTime, type TimeValue } from './time-utils.js';
 
 /**
@@ -29,6 +29,16 @@ function substituteTemplates(str: string, params: Record<string, any>): string {
  */
 function substituteInObject(obj: any, params: Record<string, any>): any {
   if (typeof obj === 'string') {
+    // Check if the entire string is a single template variable
+    const singleVarMatch = obj.match(/^\{\{(\w+)\}\}$/);
+    if (singleVarMatch) {
+      const varName = singleVarMatch[1];
+      if (varName in params) {
+        // Return the actual value (preserving type)
+        return params[varName];
+      }
+    }
+    // Otherwise do string substitution
     return substituteTemplates(obj, params);
   }
 
@@ -73,11 +83,11 @@ function prefixObjectIds(objects: AnimationObject[], prefix: string): AnimationO
  * Offset animation times and namespace targets
  */
 function processAnimations(
-  animations: SequenceAnimation[],
+  animations: Animation[],
   startOffset: number,
   namespace: string,
   fps: number
-): SequenceAnimation[] {
+): Animation[] {
   return animations.map(anim => {
     // Namespace the target
     const namespacedTarget = `${namespace}.${anim.target}`;
@@ -181,7 +191,7 @@ export async function expandComponent(
   );
 
   // Process animations if they exist
-  let processedAnimations: SequenceAnimation[] | undefined;
+  let processedAnimations: Animation[] | undefined;
   if (definition.animations && definition.animations.length > 0) {
     processedAnimations = processAnimations(
       definition.animations,
@@ -246,19 +256,31 @@ export async function expandComponents(
 }
 
 /**
+ * Check if animation is an Animation (has absolute timing)
+ */
+function isAnimation(anim: any): anim is Animation {
+  // Animation has either 'effect' property OR keyframes with 'frame' property
+  if ('effect' in anim) return true;
+  if ('keyframes' in anim && anim.keyframes?.[0]?.frame !== undefined) return true;
+  return false;
+}
+
+/**
  * Extract all animations from groups (including nested groups)
  * Returns a flat array of all animations found
+ * Only extracts Animations (absolute timing), skips GroupAnimations (relative timing)
  */
-export function extractAnimationsFromGroups(objects: AnimationObject[]): SequenceAnimation[] {
-  const animations: SequenceAnimation[] = [];
+export function extractAnimationsFromGroups(objects: AnimationObject[]): Animation[] {
+  const animations: Animation[] = [];
 
   for (const obj of objects) {
     if (obj.type === 'group') {
       const group = obj as GroupObject;
 
-      // Collect animations from this group
+      // Collect animations from this group (only Animations)
       if (group.animations) {
-        animations.push(...group.animations);
+        const sequenceAnims = group.animations.filter(isAnimation);
+        animations.push(...sequenceAnims);
       }
 
       // Recursively collect from children

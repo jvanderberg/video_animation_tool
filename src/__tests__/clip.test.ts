@@ -65,17 +65,13 @@ describe('Clipping', () => {
           }
         }
       ],
-      sequences: [
+      animations: [
         {
-          animations: [
-            {
-              target: 'box',
-              property: 'clip.width',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 100 }
-              ]
-            }
+          target: 'box',
+          property: 'clip.width',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 100 }
           ]
         }
       ]

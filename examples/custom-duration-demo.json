@@ -104,72 +104,67 @@
       "opacity": 0
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "main",
-      "animations": [
-        {
-          "target": "title",
-          "effect": "fadeIn",
-          "start": "0.2s"
-        },
-        {
-          "target": "subtitle",
-          "effect": "fadeIn",
-          "start": "0.5s"
-        },
-        {
-          "target": "fast-text",
-          "effect": "pop",
-          "start": "1.5s",
-          "duration": "0.2s"
-        },
-        {
-          "target": "default-text",
-          "effect": "pop",
-          "start": "1.5s"
-        },
-        {
-          "target": "slow-text",
-          "effect": "pop",
-          "start": "1.5s",
-          "duration": "0.8s"
-        },
-        {
-          "target": "fast-text",
-          "effect": "pop",
-          "start": "3.0s",
-          "duration": "0.2s"
-        },
-        {
-          "target": "default-text",
-          "effect": "pop",
-          "start": "3.0s"
-        },
-        {
-          "target": "slow-text",
-          "effect": "pop",
-          "start": "3.0s",
-          "duration": "0.8s"
-        },
-        {
-          "target": "fast-text",
-          "effect": "pop",
-          "start": "4.5s",
-          "duration": "0.2s"
-        },
-        {
-          "target": "default-text",
-          "effect": "pop",
-          "start": "4.5s"
-        },
-        {
-          "target": "slow-text",
-          "effect": "pop",
-          "start": "4.5s",
-          "duration": "0.8s"
-        }
-      ]
+      "target": "title",
+      "effect": "fadeIn",
+      "start": "0.2s"
+    },
+    {
+      "target": "subtitle",
+      "effect": "fadeIn",
+      "start": "0.5s"
+    },
+    {
+      "target": "fast-text",
+      "effect": "pop",
+      "start": "1.5s",
+      "duration": "0.2s"
+    },
+    {
+      "target": "default-text",
+      "effect": "pop",
+      "start": "1.5s"
+    },
+    {
+      "target": "slow-text",
+      "effect": "pop",
+      "start": "1.5s",
+      "duration": "0.8s"
+    },
+    {
+      "target": "fast-text",
+      "effect": "pop",
+      "start": "3.0s",
+      "duration": "0.2s"
+    },
+    {
+      "target": "default-text",
+      "effect": "pop",
+      "start": "3.0s"
+    },
+    {
+      "target": "slow-text",
+      "effect": "pop",
+      "start": "3.0s",
+      "duration": "0.8s"
+    },
+    {
+      "target": "fast-text",
+      "effect": "pop",
+      "start": "4.5s",
+      "duration": "0.2s"
+    },
+    {
+      "target": "default-text",
+      "effect": "pop",
+      "start": "4.5s"
+    },
+    {
+      "target": "slow-text",
+      "effect": "pop",
+      "start": "4.5s",
+      "duration": "0.8s"
     }
   ]
 }

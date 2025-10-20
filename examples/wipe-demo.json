@@ -48,22 +48,17 @@
       }
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "main",
-      "animations": [
-        {
-          "target": "title1",
-          "effect": "wipe",
-          "start": "0.5s"
-        },
-        {
-          "target": "subtitle",
-          "effect": "wipe",
-          "start": "1.2s",
-          "duration": "0.8s"
-        }
-      ]
+      "target": "title1",
+      "effect": "wipe",
+      "start": "0.5s"
+    },
+    {
+      "target": "subtitle",
+      "effect": "wipe",
+      "start": "1.2s",
+      "duration": "0.8s"
     }
   ]
 }

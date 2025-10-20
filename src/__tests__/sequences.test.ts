@@ -17,18 +17,13 @@ describe('Animation Sequences', () => {
           fill: '#FF0000'
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'move-right',
-          animations: [
-            {
-              target: 'box',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 50 }
-              ]
-            }
+          target: 'box',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 50 }
           ]
         }
       ]
@@ -64,31 +59,21 @@ describe('Animation Sequences', () => {
           fill: '#00FF00'
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'first-move',
-          animations: [
-            {
-              target: 'box',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 30, value: 50 }
-              ]
-            }
+          target: 'box',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 30, value: 50 }
           ]
         },
         {
-          name: 'second-move',
-          animations: [
-            {
-              target: 'box',
-              property: 'x',
-              keyframes: [
-                { frame: 30, value: 50 },
-                { frame: 60, value: 100 }
-              ]
-            }
+          target: 'box',
+          property: 'x',
+          keyframes: [
+            { frame: 30, value: 50 },
+            { frame: 60, value: 100 }
           ]
         }
       ]
@@ -123,35 +108,21 @@ describe('Animation Sequences', () => {
           fill: '#0000FF'
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'move',
-          animations: [
-            {
-              target: 'box',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 30, value: 50 }
-              ]
-            }
+          target: 'box',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 30, value: 50 }
           ]
         },
         {
-          name: 'pause',
-          duration: 30  // Hold for 30 frames
-        },
-        {
-          name: 'continue',
-          animations: [
-            {
-              target: 'box',
-              property: 'x',
-              keyframes: [
-                { frame: 60, value: 50 },
-                { frame: 90, value: 100 }
-              ]
-            }
+          target: 'box',
+          property: 'x',
+          keyframes: [
+            { frame: 60, value: 50 },
+            { frame: 90, value: 100 }
           ]
         }
       ]
@@ -191,26 +162,21 @@ describe('Animation Sequences', () => {
           opacity: 0
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'intro',
-          animations: [
-            {
-              target: 'box',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 50 }
-              ]
-            },
-            {
-              target: 'box',
-              property: 'opacity',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 1 }
-              ]
-            }
+          target: 'box',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 50 }
+          ]
+        },
+        {
+          target: 'box',
+          property: 'opacity',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 1 }
           ]
         }
       ]
@@ -261,26 +227,21 @@ describe('Animation Sequences', () => {
           fill: '#0000FF'
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'move-both',
-          animations: [
-            {
-              target: 'red-box',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 50 }
-              ]
-            },
-            {
-              target: 'blue-box',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 80 }
-              ]
-            }
+          target: 'red-box',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 50 }
+          ]
+        },
+        {
+          target: 'blue-box',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 80 }
           ]
         }
       ]
@@ -319,18 +280,13 @@ describe('Animation Sequences', () => {
           ]
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'move-group',
-          animations: [
-            {
-              target: 'my-group',
-              property: 'x',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 50 }
-              ]
-            }
+          target: 'my-group',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 50 }
           ]
         }
       ]

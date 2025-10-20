@@ -81,7 +81,7 @@ describe('Required Property Validation', () => {
     );
   });
 
-  it('should reject image without src', async () => {
+  it('should reject image without source', async () => {
     const animation: AnimationFile = {
       project: { width: 800, height: 600, fps: 30 },
       objects: [
@@ -90,7 +90,7 @@ describe('Required Property Validation', () => {
     };
 
     await expect(preprocessAnimation(animation)).rejects.toThrow(
-      /image.*must have.*src/i
+      /image.*must have.*source/i
     );
   });
 

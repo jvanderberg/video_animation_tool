@@ -85,16 +85,11 @@ animation_tool/
       "opacity": 0
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "main",
-      "animations": [
-        {
-          "target": "title",
-          "effect": "pop",
-          "startTime": 0.5
-        }
-      ]
+      "target": "title",
+      "effect": "pop",
+      "startTime": 0.5
     }
   ]
 }
@@ -106,13 +101,11 @@ The tool includes a library of pre-composed effects that work at any frame rate:
 
 ```json
 {
-  "sequences": [{
-    "animations": [
-      {"target": "title", "effect": "pop", "startTime": 0.0},
-      {"target": "subtitle", "effect": "fadeIn", "startTime": 1.0},
-      {"target": "logo", "effect": "slideInLeft", "startTime": 2.0}
-    ]
-  }]
+  "animations": [
+    {"target": "title", "effect": "pop", "startTime": 0.0},
+    {"target": "subtitle", "effect": "fadeIn", "startTime": 1.0},
+    {"target": "logo", "effect": "slideInLeft", "startTime": 2.0}
+  ]
 }
 ```
 

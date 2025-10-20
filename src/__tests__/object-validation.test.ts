@@ -13,11 +13,11 @@ describe('Object Property Validation', () => {
       };
 
       await expect(preprocessAnimation(animation)).rejects.toThrow(
-        /width.*must be positive/i
+        /width.*cannot be negative/i
       );
     });
 
-    it('should reject zero width on rect', async () => {
+    it('should accept zero width on rect', async () => {
       const animation: AnimationFile = {
         project: { width: 800, height: 600, fps: 30 },
         objects: [
@@ -25,9 +25,7 @@ describe('Object Property Validation', () => {
         ]
       };
 
-      await expect(preprocessAnimation(animation)).rejects.toThrow(
-        /width.*must be positive/i
-      );
+      await expect(preprocessAnimation(animation)).resolves.toBeDefined();
     });
 
     it('should reject negative height on rect', async () => {
@@ -39,7 +37,7 @@ describe('Object Property Validation', () => {
       };
 
       await expect(preprocessAnimation(animation)).rejects.toThrow(
-        /height.*must be positive/i
+        /height.*cannot be negative/i
       );
     });
 
@@ -52,11 +50,11 @@ describe('Object Property Validation', () => {
       };
 
       await expect(preprocessAnimation(animation)).rejects.toThrow(
-        /radius.*must be positive/i
+        /radius.*cannot be negative/i
       );
     });
 
-    it('should reject zero radius on circle', async () => {
+    it('should accept zero radius on circle', async () => {
       const animation: AnimationFile = {
         project: { width: 800, height: 600, fps: 30 },
         objects: [
@@ -64,9 +62,7 @@ describe('Object Property Validation', () => {
         ]
       };
 
-      await expect(preprocessAnimation(animation)).rejects.toThrow(
-        /radius.*must be positive/i
-      );
+      await expect(preprocessAnimation(animation)).resolves.toBeDefined();
     });
 
     it('should reject negative radiusX on ellipse', async () => {
@@ -78,7 +74,7 @@ describe('Object Property Validation', () => {
       };
 
       await expect(preprocessAnimation(animation)).rejects.toThrow(
-        /radiusX.*must be positive/i
+        /radiusX.*cannot be negative/i
       );
     });
 
@@ -91,7 +87,7 @@ describe('Object Property Validation', () => {
       };
 
       await expect(preprocessAnimation(animation)).rejects.toThrow(
-        /radiusY.*must be positive/i
+        /radiusY.*cannot be negative/i
       );
     });
 

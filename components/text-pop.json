@@ -1,0 +1,77 @@
+{
+  "parameters": {
+    "text": {
+      "type": "string",
+      "default": "Pop!"
+    },
+    "x": {
+      "type": "number",
+      "default": 0
+    },
+    "y": {
+      "type": "number",
+      "default": 0
+    },
+    "size": {
+      "type": "number",
+      "default": 48
+    },
+    "color": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "font": {
+      "type": "string",
+      "default": "sans-serif"
+    },
+    "bold": {
+      "type": "boolean",
+      "default": false
+    },
+    "italic": {
+      "type": "boolean",
+      "default": false
+    },
+    "underline": {
+      "type": "boolean",
+      "default": false
+    },
+    "stroke": {
+      "type": "string",
+      "default": ""
+    },
+    "strokeWidth": {
+      "type": "number",
+      "default": 1
+    },
+    "anchor": {
+      "type": "string",
+      "default": "center"
+    }
+  },
+  "objects": [
+    {
+      "type": "text",
+      "id": "popText",
+      "content": "{{text}}",
+      "x": "{{x}}",
+      "y": "{{y}}",
+      "size": "{{size}}",
+      "color": "{{color}}",
+      "font": "{{font}}",
+      "bold": "{{bold}}",
+      "italic": "{{italic}}",
+      "underline": "{{underline}}",
+      "stroke": "{{stroke}}",
+      "strokeWidth": "{{strokeWidth}}",
+      "anchor": "{{anchor}}"
+    }
+  ],
+  "animations": [
+    {
+      "target": "popText",
+      "effect": "pop",
+      "start": 0
+    }
+  ]
+}

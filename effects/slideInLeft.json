@@ -4,7 +4,7 @@
   "properties": {
     "x": [
       {"time": 0.0, "value": -960},
-      {"time": 1.0, "value": 960, "easing": "ease-out"}
+      {"time": 1.0, "value": "{x}", "easing": "ease-out"}
     ],
     "opacity": [
       {"time": 0.0, "value": 0},

@@ -137,10 +137,7 @@ describe('Circle and Ellipse Rendering', () => {
           fill: '#FF0000',
         },
       ],
-      sequences: [
-        {
-          name: 'grow',
-          animations: [
+      animations: [
             {
               target: 'growing-circle',
               property: 'radius',
@@ -149,8 +146,6 @@ describe('Circle and Ellipse Rendering', () => {
                 { frame: 30, value: 50 },
               ],
             },
-          ],
-        },
       ],
     };
 
@@ -187,10 +182,7 @@ describe('Circle and Ellipse Rendering', () => {
           fill: '#0000FF',
         },
       ],
-      sequences: [
-        {
-          name: 'morph',
-          animations: [
+      animations: [
             {
               target: 'changing-ellipse',
               property: 'radiusX',
@@ -207,8 +199,6 @@ describe('Circle and Ellipse Rendering', () => {
                 { frame: 30, value: 30 },
               ],
             },
-          ],
-        },
       ],
     };
 

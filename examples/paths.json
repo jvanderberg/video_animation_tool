@@ -25,10 +25,24 @@
       "x": 200,
       "y": 300,
       "commands": [
-        {"type": "moveTo", "x": 0, "y": -80},
-        {"type": "lineTo", "x": 70, "y": 80},
-        {"type": "lineTo", "x": -70, "y": 80},
-        {"type": "closePath"}
+        {
+          "type": "moveTo",
+          "x": 0,
+          "y": -80
+        },
+        {
+          "type": "lineTo",
+          "x": 70,
+          "y": 80
+        },
+        {
+          "type": "lineTo",
+          "x": -70,
+          "y": 80
+        },
+        {
+          "type": "closePath"
+        }
       ],
       "fill": "#FF6B6B",
       "stroke": "#FFFFFF",
@@ -42,17 +56,59 @@
       "x": 480,
       "y": 300,
       "commands": [
-        {"type": "moveTo", "x": 0, "y": -60},
-        {"type": "lineTo", "x": 18, "y": -18},
-        {"type": "lineTo", "x": 60, "y": -12},
-        {"type": "lineTo", "x": 24, "y": 18},
-        {"type": "lineTo", "x": 36, "y": 60},
-        {"type": "lineTo", "x": 0, "y": 30},
-        {"type": "lineTo", "x": -36, "y": 60},
-        {"type": "lineTo", "x": -24, "y": 18},
-        {"type": "lineTo", "x": -60, "y": -12},
-        {"type": "lineTo", "x": -18, "y": -18},
-        {"type": "closePath"}
+        {
+          "type": "moveTo",
+          "x": 0,
+          "y": -60
+        },
+        {
+          "type": "lineTo",
+          "x": 18,
+          "y": -18
+        },
+        {
+          "type": "lineTo",
+          "x": 60,
+          "y": -12
+        },
+        {
+          "type": "lineTo",
+          "x": 24,
+          "y": 18
+        },
+        {
+          "type": "lineTo",
+          "x": 36,
+          "y": 60
+        },
+        {
+          "type": "lineTo",
+          "x": 0,
+          "y": 30
+        },
+        {
+          "type": "lineTo",
+          "x": -36,
+          "y": 60
+        },
+        {
+          "type": "lineTo",
+          "x": -24,
+          "y": 18
+        },
+        {
+          "type": "lineTo",
+          "x": -60,
+          "y": -12
+        },
+        {
+          "type": "lineTo",
+          "x": -18,
+          "y": -18
+        },
+        {
+          "type": "closePath"
+        }
       ],
       "fill": "#FFD700",
       "stroke": "#FFA500",
@@ -66,12 +122,50 @@
       "x": 760,
       "y": 320,
       "commands": [
-        {"type": "moveTo", "x": 0, "y": 20},
-        {"type": "bezierCurveTo", "cp1x": 0, "cp1y": -10, "cp2x": -30, "cp2y": -30, "x": -30, "y": -60},
-        {"type": "bezierCurveTo", "cp1x": -30, "cp1y": -90, "cp2x": 0, "cp2y": -80, "x": 0, "y": -50},
-        {"type": "bezierCurveTo", "cp1x": 0, "cp1y": -80, "cp2x": 30, "cp2y": -90, "x": 30, "y": -60},
-        {"type": "bezierCurveTo", "cp1x": 30, "cp1y": -30, "cp2x": 0, "cp2y": -10, "x": 0, "y": 20},
-        {"type": "closePath"}
+        {
+          "type": "moveTo",
+          "x": 0,
+          "y": 20
+        },
+        {
+          "type": "bezierCurveTo",
+          "cp1x": 0,
+          "cp1y": -10,
+          "cp2x": -30,
+          "cp2y": -30,
+          "x": -30,
+          "y": -60
+        },
+        {
+          "type": "bezierCurveTo",
+          "cp1x": -30,
+          "cp1y": -90,
+          "cp2x": 0,
+          "cp2y": -80,
+          "x": 0,
+          "y": -50
+        },
+        {
+          "type": "bezierCurveTo",
+          "cp1x": 0,
+          "cp1y": -80,
+          "cp2x": 30,
+          "cp2y": -90,
+          "x": 30,
+          "y": -60
+        },
+        {
+          "type": "bezierCurveTo",
+          "cp1x": 30,
+          "cp1y": -30,
+          "cp2x": 0,
+          "cp2y": -10,
+          "x": 0,
+          "y": 20
+        },
+        {
+          "type": "closePath"
+        }
       ],
       "fill": "#FF1493",
       "scale": 0,
@@ -83,11 +177,39 @@
       "x": 100,
       "y": 600,
       "commands": [
-        {"type": "moveTo", "x": 0, "y": 0},
-        {"type": "quadraticCurveTo", "cpx": 50, "cpy": -60, "x": 100, "y": 0},
-        {"type": "quadraticCurveTo", "cpx": 150, "cpy": 60, "x": 200, "y": 0},
-        {"type": "quadraticCurveTo", "cpx": 250, "cpy": -60, "x": 300, "y": 0},
-        {"type": "quadraticCurveTo", "cpx": 350, "cpy": 60, "x": 400, "y": 0}
+        {
+          "type": "moveTo",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "type": "quadraticCurveTo",
+          "cpx": 50,
+          "cpy": -60,
+          "x": 100,
+          "y": 0
+        },
+        {
+          "type": "quadraticCurveTo",
+          "cpx": 150,
+          "cpy": 60,
+          "x": 200,
+          "y": 0
+        },
+        {
+          "type": "quadraticCurveTo",
+          "cpx": 250,
+          "cpy": -60,
+          "x": 300,
+          "y": 0
+        },
+        {
+          "type": "quadraticCurveTo",
+          "cpx": 350,
+          "cpy": 60,
+          "x": 400,
+          "y": 0
+        }
       ],
       "stroke": "#4ECDC4",
       "strokeWidth": 4,
@@ -99,13 +221,39 @@
       "x": 1040,
       "y": 300,
       "commands": [
-        {"type": "moveTo", "x": 60, "y": 0},
-        {"type": "lineTo", "x": 30, "y": 52},
-        {"type": "lineTo", "x": -30, "y": 52},
-        {"type": "lineTo", "x": -60, "y": 0},
-        {"type": "lineTo", "x": -30, "y": -52},
-        {"type": "lineTo", "x": 30, "y": -52},
-        {"type": "closePath"}
+        {
+          "type": "moveTo",
+          "x": 60,
+          "y": 0
+        },
+        {
+          "type": "lineTo",
+          "x": 30,
+          "y": 52
+        },
+        {
+          "type": "lineTo",
+          "x": -30,
+          "y": 52
+        },
+        {
+          "type": "lineTo",
+          "x": -60,
+          "y": 0
+        },
+        {
+          "type": "lineTo",
+          "x": -30,
+          "y": -52
+        },
+        {
+          "type": "lineTo",
+          "x": 30,
+          "y": -52
+        },
+        {
+          "type": "closePath"
+        }
       ],
       "fill": "#95E1D3",
       "stroke": "#4ECDC4",
@@ -119,16 +267,68 @@
       "x": 1320,
       "y": 300,
       "commands": [
-        {"type": "moveTo", "x": 20, "y": -60},
-        {"type": "lineTo", "x": 60, "y": -60},
-        {"type": "arcTo", "x1": 80, "y1": -60, "x2": 80, "y2": -40, "radius": 20},
-        {"type": "lineTo", "x": 80, "y": 40},
-        {"type": "arcTo", "x1": 80, "y1": 60, "x2": 60, "y2": 60, "radius": 20},
-        {"type": "lineTo", "x": -60, "y": 60},
-        {"type": "arcTo", "x1": -80, "y1": 60, "x2": -80, "y2": 40, "radius": 20},
-        {"type": "lineTo", "x": -80, "y": -40},
-        {"type": "arcTo", "x1": -80, "y1": -60, "x2": -60, "y2": -60, "radius": 20},
-        {"type": "lineTo", "x": 20, "y": -60}
+        {
+          "type": "moveTo",
+          "x": 20,
+          "y": -60
+        },
+        {
+          "type": "lineTo",
+          "x": 60,
+          "y": -60
+        },
+        {
+          "type": "arcTo",
+          "x1": 80,
+          "y1": -60,
+          "x2": 80,
+          "y2": -40,
+          "radius": 20
+        },
+        {
+          "type": "lineTo",
+          "x": 80,
+          "y": 40
+        },
+        {
+          "type": "arcTo",
+          "x1": 80,
+          "y1": 60,
+          "x2": 60,
+          "y2": 60,
+          "radius": 20
+        },
+        {
+          "type": "lineTo",
+          "x": -60,
+          "y": 60
+        },
+        {
+          "type": "arcTo",
+          "x1": -80,
+          "y1": 60,
+          "x2": -80,
+          "y2": 40,
+          "radius": 20
+        },
+        {
+          "type": "lineTo",
+          "x": -80,
+          "y": -40
+        },
+        {
+          "type": "arcTo",
+          "x1": -80,
+          "y1": -60,
+          "x2": -60,
+          "y2": -60,
+          "radius": 20
+        },
+        {
+          "type": "lineTo",
+          "x": 20,
+          "y": -60
+        }
       ],
       "fill": "#F38181",
       "stroke": "#AA96DA",
@@ -142,11 +342,32 @@
       "x": 1600,
       "y": 300,
       "commands": [
-        {"type": "moveTo", "x": 0, "y": 0},
-        {"type": "lineTo", "x": 50, "y": -20},
-        {"type": "arc", "x": 0, "y": 0, "radius": 60, "startAngle": -0.3, "endAngle": 6.58},
-        {"type": "lineTo", "x": 50, "y": 20},
-        {"type": "closePath"}
+        {
+          "type": "moveTo",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "type": "lineTo",
+          "x": 50,
+          "y": -20
+        },
+        {
+          "type": "arc",
+          "x": 0,
+          "y": 0,
+          "radius": 60,
+          "startAngle": -0.3,
+          "endAngle": 6.58
+        },
+        {
+          "type": "lineTo",
+          "x": 50,
+          "y": 20
+        },
+        {
+          "type": "closePath"
+        }
       ],
       "fill": "#FFFF00",
       "stroke": "#FFA500",
@@ -160,92 +381,142 @@
       "x": 600,
       "y": 700,
       "commands": [
-        {"type": "moveTo", "x": 0, "y": -20},
-        {"type": "lineTo", "x": 80, "y": -20},
-        {"type": "lineTo", "x": 80, "y": -40},
-        {"type": "lineTo", "x": 120, "y": 0},
-        {"type": "lineTo", "x": 80, "y": 40},
-        {"type": "lineTo", "x": 80, "y": 20},
-        {"type": "lineTo", "x": 0, "y": 20},
-        {"type": "closePath"}
+        {
+          "type": "moveTo",
+          "x": 0,
+          "y": -20
+        },
+        {
+          "type": "lineTo",
+          "x": 80,
+          "y": -20
+        },
+        {
+          "type": "lineTo",
+          "x": 80,
+          "y": -40
+        },
+        {
+          "type": "lineTo",
+          "x": 120,
+          "y": 0
+        },
+        {
+          "type": "lineTo",
+          "x": 80,
+          "y": 40
+        },
+        {
+          "type": "lineTo",
+          "x": 80,
+          "y": 20
+        },
+        {
+          "type": "lineTo",
+          "x": 0,
+          "y": 20
+        },
+        {
+          "type": "closePath"
+        }
       ],
       "fill": "#AA96DA",
       "opacity": 0
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "showcase",
-      "animations": [
+      "target": "title",
+      "effect": "pop",
+      "start": "0.0s"
+    },
+    {
+      "target": "triangle",
+      "effect": "pop",
+      "start": "0.5s"
+    },
+    {
+      "target": "star",
+      "effect": "pop",
+      "start": "1.0s"
+    },
+    {
+      "target": "heart",
+      "effect": "dropIn",
+      "start": "1.5s"
+    },
+    {
+      "target": "wave",
+      "effect": "fadeIn",
+      "start": "2.0s"
+    },
+    {
+      "target": "hexagon",
+      "effect": "pop",
+      "start": "2.5s"
+    },
+    {
+      "target": "rounded-rect",
+      "effect": "pop",
+      "start": "3.0s"
+    },
+    {
+      "target": "pac-man",
+      "effect": "slideInLeft",
+      "start": "3.5s"
+    },
+    {
+      "target": "arrow",
+      "effect": "fadeIn",
+      "start": "4.0s"
+    },
+    {
+      "target": "arrow",
+      "property": "x",
+      "keyframes": [
         {
-          "target": "title",
-          "effect": "pop",
-          "start": "0.0s"
+          "frame": 120,
+          "value": 600
         },
         {
-          "target": "triangle",
-          "effect": "pop",
-          "start": "0.5s"
+          "frame": 180,
+          "value": 1200,
+          "easing": "ease-in-out"
+        }
+      ]
+    },
+    {
+      "target": "star",
+      "property": "rotation",
+      "keyframes": [
+        {
+          "frame": 150,
+          "value": 0
         },
         {
-          "target": "star",
-          "effect": "pop",
-          "start": "1.0s"
+          "frame": 210,
+          "value": 360,
+          "easing": "linear"
+        }
+      ]
+    },
+    {
+      "target": "heart",
+      "property": "scale",
+      "keyframes": [
+        {
+          "frame": 165,
+          "value": 1.0
         },
         {
-          "target": "heart",
-          "effect": "dropIn",
-          "start": "1.5s"
+          "frame": 180,
+          "value": 1.3,
+          "easing": "ease-in-out"
         },
         {
-          "target": "wave",
-          "effect": "fadeIn",
-          "start": "2.0s"
-        },
-        {
-          "target": "hexagon",
-          "effect": "pop",
-          "start": "2.5s"
-        },
-        {
-          "target": "rounded-rect",
-          "effect": "pop",
-          "start": "3.0s"
-        },
-        {
-          "target": "pac-man",
-          "effect": "slideInLeft",
-          "start": "3.5s"
-        },
-        {
-          "target": "arrow",
-          "effect": "fadeIn",
-          "start": "4.0s"
-        },
-        {
-          "target": "arrow",
-          "property": "x",
-          "keyframes": [
-            {"frame": 120, "value": 600},
-            {"frame": 180, "value": 1200, "easing": "ease-in-out"}
-          ]
-        },
-        {
-          "target": "star",
-          "property": "rotation",
-          "keyframes": [
-            {"frame": 150, "value": 0},
-            {"frame": 210, "value": 360, "easing": "linear"}
-          ]
-        },
-        {
-          "target": "heart",
-          "property": "scale",
-          "keyframes": [
-            {"frame": 165, "value": 1.0},
-            {"frame": 180, "value": 1.3, "easing": "ease-in-out"},
-            {"frame": 195, "value": 1.0, "easing": "ease-in-out"}
-          ]
+          "frame": 195,
+          "value": 1.0,
+          "easing": "ease-in-out"
         }
       ]
     }

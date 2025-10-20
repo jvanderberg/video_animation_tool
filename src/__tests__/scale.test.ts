@@ -124,18 +124,13 @@ describe('Scale Transform', () => {
           fill: '#FFFF00'
         }
       ],
-      sequences: [
+      animations: [
         {
-          name: 'grow',
-          animations: [
-            {
-              target: 'box',
-              property: 'scale',
-              keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 2.0 }
-              ]
-            }
+          target: 'box',
+          property: 'scale',
+          keyframes: [
+            { frame: 0, value: 0 },
+            { frame: 60, value: 2.0 }
           ]
         }
       ]

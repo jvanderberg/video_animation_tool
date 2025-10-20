@@ -50,29 +50,24 @@
       "blur": 15
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "blur-effects",
-      "animations": [
-        {
-          "target": "title1",
-          "effect": "blur-in",
-          "start": "0.5s",
-          "duration": "1.0s"
-        },
-        {
-          "target": "title2",
-          "effect": "blur-out",
-          "start": "2.0s",
-          "duration": "1.0s"
-        },
-        {
-          "target": "title3",
-          "effect": "fade-blur",
-          "start": "3.5s",
-          "duration": "1.2s"
-        }
-      ]
+      "target": "title1",
+      "effect": "blur-in",
+      "start": "0.5s",
+      "duration": "1.0s"
+    },
+    {
+      "target": "title2",
+      "effect": "blur-out",
+      "start": "2.0s",
+      "duration": "1.0s"
+    },
+    {
+      "target": "title3",
+      "effect": "fade-blur",
+      "start": "3.5s",
+      "duration": "1.2s"
     }
   ]
 }

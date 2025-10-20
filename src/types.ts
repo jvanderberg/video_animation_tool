@@ -76,18 +76,11 @@ export interface PropertyAnimation {
 }
 
 // Union type for all animation types
-export type SequenceAnimation = PropertyAnimation | EffectAnimation;
+export type Animation = PropertyAnimation | EffectAnimation;
 
 // Effects library structure
 export interface EffectsLibrary {
   [effectName: string]: EffectDefinition;
-}
-
-// Animation sequence - runs in order, animations within run in parallel
-export interface Sequence {
-  name?: string;
-  duration?: number;  // For pause sequences (no animations)
-  animations?: SequenceAnimation[];
 }
 
 // Base object properties shared by all object types
@@ -115,6 +108,11 @@ export interface TextObject extends BaseObject {
   size?: number;
   color?: string;
   align?: 'left' | 'center' | 'right';
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  stroke?: string;
+  strokeWidth?: number;
 }
 
 // Image object
@@ -243,11 +241,38 @@ export interface PathObject extends BaseObject {
   strokeWidth?: number;
 }
 
-// Group object (container for other objects)
+// Group transition specification
+export interface GroupTransition {
+  effect: string;  // Effect name like "fadeIn", "slideInFromRight"
+  duration?: TimeValue;  // Override effect duration
+}
+
+// Group animation (animations with timing relative to group start)
+export interface GroupAnimation {
+  target: string;  // Child ID (can use dot notation for nested groups)
+  property?: string;  // For property animations
+  keyframes?: Array<{
+    start: TimeValue;  // Relative to group start
+    value: number | string;
+    easing?: EasingType;
+  }>;
+  effect?: string;  // For effect animations
+  start?: TimeValue;  // For effect animations (relative to group start)
+  duration?: TimeValue;
+}
+
+// Group object (container for other objects with self-contained animations)
 export interface GroupObject extends BaseObject {
   type: 'group';
+  start?: TimeValue;  // When the group becomes active (defaults to 0)
+  duration?: TimeValue;  // How long the group is visible
+  animationSpeed?: number;  // Speed multiplier for internal animations (2.0 = 2x faster, 0.5 = half speed). Does not affect transitions.
   children: AnimationObject[];
-  animations?: SequenceAnimation[];  // Optional animations bundled with group
+  animations?: GroupAnimation[] | Animation[];  // Can be relative (GroupAnimation) or absolute (Animation) timing
+  transition?: {
+    in?: GroupTransition;
+    out?: GroupTransition;
+  };
 }
 
 // Component object (reference to external component)
@@ -280,7 +305,7 @@ export interface ComponentParameter {
 export interface ComponentDefinition {
   parameters?: Record<string, ComponentParameter>;
   objects: AnimationObject[];
-  animations?: SequenceAnimation[];  // Animations (property or effect) for objects in this component
+  animations?: Animation[];  // Animations (property or effect) for objects in this component
   width?: number;   // Optional bounding box width (for reference)
   height?: number;  // Optional bounding box height (for reference)
 }
@@ -288,6 +313,7 @@ export interface ComponentDefinition {
 // Main animation file structure
 export interface AnimationFile {
   project: ProjectConfig;
+  animationSpeed?: number;  // Speed multiplier for all animations (2.0 = 2x faster, 0.5 = half speed). Does not affect group transitions.
   objects: AnimationObject[];
-  sequences?: Sequence[];  // Optional for backward compatibility
+  animations?: (GroupAnimation | Animation)[];  // Animations for root-level objects
 }

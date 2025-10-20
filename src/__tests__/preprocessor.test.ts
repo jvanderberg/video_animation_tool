@@ -25,20 +25,18 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'rect', id: 'box', width: 50, height: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'box',
-          property: 'x',
-          keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 100 }
-          ]
-        }]
+      animations: [{
+        target: 'box',
+        property: 'x',
+        keyframes: [
+          { frame: 0, value: 0 },
+          { frame: 60, value: 100 }
+        ]
       }]
     };
 
     const result = await preprocessAnimation(animation);
-    expect(result.sequences).toEqual(animation.sequences);
+    expect(result.animations).toEqual(animation.animations);
   });
 
   it('should expand effect animation into property animations', async () => {
@@ -47,21 +45,18 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'title',
-          effect: 'pop',
-          start: 0.0
-        }]
+      animations: [{
+        target: 'title',
+        effect: 'pop',
+        start: 0.0
       }]
     };
 
     const result = await preprocessAnimation(animation);
 
-    expect(result.sequences).toBeDefined();
-    expect(result.sequences![0].animations).toBeDefined();
+    expect(result.animations).toBeDefined();
 
-    const animations = result.sequences![0].animations as PropertyAnimation[];
+    const animations = result.animations as PropertyAnimation[];
 
     // Pop effect should expand into scale and opacity animations
     expect(animations.length).toBe(2);
@@ -92,17 +87,15 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'title',
-          effect: 'pop',
-          start: '1s'  // 1 second at 60fps = frame 60
-        }]
+      animations: [{
+        target: 'title',
+        effect: 'pop',
+        start: '1s'  // 1 second at 60fps = frame 60
       }]
     };
 
     const result = await preprocessAnimation(animation);
-    const animations = result.sequences![0].animations as PropertyAnimation[];
+    const animations = result.animations as PropertyAnimation[];
 
     const scaleAnim = animations.find(a => a.property === 'scale');
 
@@ -119,27 +112,25 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [
-          {
-            target: 'title',
-            effect: 'pop',
-            start: 0.0
-          },
-          {
-            target: 'title',
-            property: 'x',
-            keyframes: [
-              { frame: 0, value: 50 },
-              { frame: 60, value: 150 }
-            ]
-          }
-        ]
-      }]
+      animations: [
+        {
+          target: 'title',
+          effect: 'pop',
+          start: 0.0
+        },
+        {
+          target: 'title',
+          property: 'x',
+          keyframes: [
+            { frame: 0, value: 50 },
+            { frame: 60, value: 150 }
+          ]
+        }
+      ]
     };
 
     const result = await preprocessAnimation(animation);
-    const animations = result.sequences![0].animations as PropertyAnimation[];
+    const animations = result.animations as PropertyAnimation[];
 
     // Should have 3 animations: scale, opacity (from pop), and x (original)
     expect(animations.length).toBe(3);
@@ -158,12 +149,10 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'title',
-          effect: 'unknownEffect',
-          start: 0.0
-        }]
+      animations: [{
+        target: 'title',
+        effect: 'unknownEffect',
+        start: 0.0
       }]
     };
 
@@ -178,17 +167,15 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'rect', id: 'box', width: 50, height: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'box',
-          effect: 'fadeOut',
-          start: 1.0
-        }]
+      animations: [{
+        target: 'box',
+        effect: 'fadeOut',
+        start: 1.0
       }]
     };
 
     const result = await preprocessAnimation(animation);
-    const animations = result.sequences![0].animations as PropertyAnimation[];
+    const animations = result.animations as PropertyAnimation[];
 
     expect(animations.length).toBe(1);
 
@@ -204,17 +191,15 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'title',
-          effect: 'pop',
-          start: 0.0
-        }]
+      animations: [{
+        target: 'title',
+        effect: 'pop',
+        start: 0.0
       }]
     };
 
     const result30 = await preprocessAnimation(animation30fps);
-    const animations30 = result30.sequences![0].animations as PropertyAnimation[];
+    const animations30 = result30.animations as PropertyAnimation[];
     const scale30 = animations30.find(a => a.property === 'scale')!;
 
     // Pop duration is 0.33 seconds
@@ -228,17 +213,15 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'title',
-          effect: 'pop',
-          start: 0.0
-        }]
+      animations: [{
+        target: 'title',
+        effect: 'pop',
+        start: 0.0
       }]
     };
 
     const result60 = await preprocessAnimation(animation60fps);
-    const animations60 = result60.sequences![0].animations as PropertyAnimation[];
+    const animations60 = result60.animations as PropertyAnimation[];
     const scale60 = animations60.find(a => a.property === 'scale')!;
 
     // At 60fps: 0.33 * 60 = ~20 frames
@@ -253,18 +236,16 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'title',
-          effect: 'pop',
-          start: 0,
-          duration: '0.6s'  // Override default 0.33s with 0.6s
-        }]
+      animations: [{
+        target: 'title',
+        effect: 'pop',
+        start: 0,
+        duration: '0.6s'  // Override default 0.33s with 0.6s
       }]
     };
 
     const result = await preprocessAnimation(animation);
-    const animations = result.sequences![0].animations as PropertyAnimation[];
+    const animations = result.animations as PropertyAnimation[];
     const scaleAnim = animations.find(a => a.property === 'scale')!;
 
     // Pop with custom duration 0.6s at 60fps = 36 frames
@@ -278,17 +259,15 @@ describe('Preprocessor', () => {
       objects: [
         { type: 'text', id: 'title', content: 'Test', x: 50, y: 50 }
       ],
-      sequences: [{
-        animations: [{
-          target: 'title',
-          effect: 'fadeIn',
-          start: 0.0
-        }]
+      animations: [{
+        target: 'title',
+        effect: 'fadeIn',
+        start: 0.0
       }]
     };
 
     const result = await preprocessAnimation(animation);
-    const animations = result.sequences![0].animations as PropertyAnimation[];
+    const animations = result.animations as PropertyAnimation[];
 
     // FadeIn effect should load from effects/fadeIn.json
     expect(animations.length).toBe(1);

@@ -1,4 +1,72 @@
 import { createCanvas, loadImage } from 'canvas';
+import { readFile } from 'fs/promises';
+import { preprocessAnimation } from './preprocessor.js';
+import type { AnimationFile, PropertyAnimation } from './types.js';
+
+// Memoization cache for preprocessed animations
+const preprocessCache = new Map<string, AnimationFile>();
+
+/**
+ * Load and preprocess an animation file with memoization
+ * Useful for debugging and testing - loads once, reuses result
+ */
+export async function loadAndPreprocess(filePath: string): Promise<AnimationFile> {
+  if (preprocessCache.has(filePath)) {
+    return preprocessCache.get(filePath)!;
+  }
+
+  const content = await readFile(filePath, 'utf-8');
+  const animation = JSON.parse(content);
+  const processed = await preprocessAnimation(animation);
+
+  preprocessCache.set(filePath, processed);
+  return processed;
+}
+
+/**
+ * Clear the preprocessing cache (useful between test runs)
+ */
+export function clearPreprocessCache(): void {
+  preprocessCache.clear();
+}
+
+/**
+ * Find animations targeting a specific object ID
+ */
+export function findAnimationsForTarget(
+  processed: AnimationFile,
+  targetId: string
+): PropertyAnimation[] {
+  if (!processed.animations) return [];
+
+  return processed.animations.filter((a): a is PropertyAnimation =>
+    'property' in a && 'keyframes' in a && a.target === targetId
+  );
+}
+
+/**
+ * Find animations by property name (e.g., all 'x' animations)
+ */
+export function findAnimationsByProperty(
+  processed: AnimationFile,
+  property: string
+): PropertyAnimation[] {
+  if (!processed.animations) return [];
+
+  return processed.animations.filter((a): a is PropertyAnimation =>
+    'property' in a && 'keyframes' in a && a.property === property
+  );
+}
+
+/**
+ * Find object by ID (handles namespaced IDs like "group.child")
+ */
+export function findObjectById(
+  processed: AnimationFile,
+  id: string
+): any | undefined {
+  return processed.objects.find(obj => obj.id === id);
+}
 
 /**
  * Read pixel color from a PNG buffer at specific coordinates

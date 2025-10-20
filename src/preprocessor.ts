@@ -3,6 +3,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createCanvas } from 'canvas';
 import { parseTime } from './time-utils.js';
+import type { TimeValue } from './time-utils.js';
 import { validateEasing, validateEffectValue } from './validation/effects.js';
 import { validateObject, validateObjects } from './validation/objects.js';
 import { validateAnimationProperty } from './validation/animations.js';
@@ -12,10 +13,12 @@ import type {
   EffectDefinition,
   EffectAnimation,
   PropertyAnimation,
-  SequenceAnimation,
-  Sequence,
+  Animation,
   Keyframe,
-  TimeKeyframe
+  TimeKeyframe,
+  GroupAnimation,
+  GroupObject,
+  GroupTransition
 } from './types.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -46,7 +49,7 @@ async function loadEffect(effectName: string): Promise<EffectDefinition> {
 /**
  * Check if animation is an effect animation (has 'effect' property)
  */
-function isEffectAnimation(anim: SequenceAnimation): anim is EffectAnimation {
+function isEffectAnimation(anim: Animation): anim is EffectAnimation {
   return 'effect' in anim && typeof anim.effect === 'string';
 }
 
@@ -158,20 +161,93 @@ function resolvePercentagesInAnimation(
 }
 
 /**
+ * Find an object by ID in the objects array (recursively searches groups)
+ */
+function findObjectById(objects: AnimationObject[], id: string): AnimationObject | null {
+  for (const obj of objects) {
+    if (obj.id === id) {
+      return obj;
+    }
+    if (obj.type === 'group' && 'children' in obj) {
+      const found = findObjectById((obj as GroupObject).children, id);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+/**
+ * Get property value from object with defaults
+ */
+function getObjectPropertyValue(obj: any, propertyName: string): number {
+  // Check if property exists on object
+  if (propertyName in obj && obj[propertyName] !== undefined) {
+    return obj[propertyName];
+  }
+
+  // Return common defaults
+  switch (propertyName) {
+    case 'opacity':
+    case 'scale':
+    case 'scaleX':
+    case 'scaleY':
+      return 1;
+    case 'rotation':
+    case 'x':
+    case 'y':
+    case 'blur':
+      return 0;
+    default:
+      return 0;
+  }
+}
+
+/**
+ * Substitute property tokens like {x}, {opacity} in effect values
+ */
+function substitutePropertyTokens(
+  value: number | string,
+  targetObject: AnimationObject | null,
+  propertyName: string
+): number | string {
+  // Check if value is a substitution token like {x} or {opacity}
+  if (typeof value === 'string' && value.match(/^\{(\w+)\}$/)) {
+    const propName = value.slice(1, -1); // Remove { and }
+    if (!targetObject) {
+      // If no target object available, use default value
+      return propName === 'opacity' || propName === 'scale' || propName === 'scaleX' || propName === 'scaleY' ? 1 : 0;
+    }
+    return getObjectPropertyValue(targetObject, propName);
+  }
+
+  // Otherwise return as-is (preserve percentages, numbers, etc.)
+  return value;
+}
+
+/**
  * Expand an effect animation into property animations
  * @param effectAnim - Effect animation to expand
  * @param fps - Project frame rate
+ * @param objects - All objects in the animation (to look up target for property substitution)
  */
 export async function expandEffectAnimation(
   effectAnim: EffectAnimation,
-  fps: number
+  fps: number,
+  objects: AnimationObject[] = []
 ): Promise<PropertyAnimation[]> {
   const effect = await loadEffect(effectAnim.effect);
+
+  // Find target object for property substitution (if objects provided)
+  const targetObject = objects.length > 0 ? findObjectById(objects, effectAnim.target) : null;
 
   // Validate effect property values and easing
   for (const [property, timeKeyframes] of Object.entries(effect.properties)) {
     for (let i = 0; i < timeKeyframes.length; i++) {
-      validateEffectValue(timeKeyframes[i].value, effectAnim.effect, property, i);
+      // Skip validation for substitution tokens
+      const value = timeKeyframes[i].value;
+      if (typeof value !== 'string' || !value.match(/^\{(\w+)\}$/)) {
+        validateEffectValue(value, effectAnim.effect, property, i);
+      }
       validateEasing(timeKeyframes[i].easing, effectAnim.effect, property, i);
     }
   }
@@ -192,14 +268,67 @@ export async function expandEffectAnimation(
   const propertyAnimations: PropertyAnimation[] = [];
 
   for (const [property, timeKeyframes] of Object.entries(effect.properties)) {
+    // Substitute property tokens in keyframe values
+    const substitutedKeyframes: TimeKeyframe[] = timeKeyframes.map(kf => ({
+      ...kf,
+      value: substitutePropertyTokens(kf.value, targetObject, property)
+    }));
+
     propertyAnimations.push({
       target: effectAnim.target,
       property,
-      keyframes: timeKeyframesToFrameKeyframes(timeKeyframes, startFrame, durationFrames)
+      keyframes: timeKeyframesToFrameKeyframes(substitutedKeyframes, startFrame, durationFrames)
     });
   }
 
   return propertyAnimations;
+}
+
+/**
+ * Expand effect animation to relative property animations (for groups)
+ * Returns property animations with relative timing (start/duration format)
+ */
+async function expandEffectToRelativeAnimations(
+  effectAnim: GroupAnimation,
+  fps: number,
+  objects: AnimationObject[]
+): Promise<GroupAnimation[]> {
+  const effect = await loadEffect(effectAnim.effect!);
+
+  // Find target object for property substitution
+  const targetObject = findObjectById(objects, effectAnim.target);
+
+  // Use custom duration if provided, otherwise use effect's default duration
+  const durationSeconds = effectAnim.duration !== undefined
+    ? (typeof effectAnim.duration === 'number' ? effectAnim.duration / fps : parseFloat(effectAnim.duration as string))
+    : effect.duration;
+
+  const relativeAnimations: GroupAnimation[] = [];
+
+  for (const [property, timeKeyframes] of Object.entries(effect.properties)) {
+    // Convert effect's time-based keyframes (0.0 to 1.0) to actual time values
+    // and substitute property tokens
+    const relativeKeyframes = timeKeyframes.map(kf => {
+      const relativeStart = effectAnim.start !== undefined
+        ? parseTime(effectAnim.start, fps)
+        : 0;
+      const timeOffset = kf.time * durationSeconds;
+
+      return {
+        start: `${(relativeStart / fps) + timeOffset}s` as TimeValue,
+        value: substitutePropertyTokens(kf.value, targetObject, property),
+        easing: kf.easing
+      };
+    });
+
+    relativeAnimations.push({
+      target: effectAnim.target,
+      property,
+      keyframes: relativeKeyframes
+    });
+  }
+
+  return relativeAnimations;
 }
 
 /**
@@ -243,6 +372,170 @@ function resolveClipPercentages(objects: AnimationObject[]): void {
   }
 }
 
+/**
+ * Check if animation is a GroupAnimation (has relative timing)
+ */
+function isGroupAnimation(anim: any): boolean {
+  // GroupAnimation keyframes have 'start' property (relative timing)
+  // PropertyAnimation keyframes have 'frame' property (absolute timing)
+  if ('keyframes' in anim) {
+    return anim.keyframes?.[0]?.start !== undefined && anim.keyframes?.[0]?.frame === undefined;
+  }
+  return false;
+}
+
+/**
+ * Process animations (GroupAnimation or Animation format) and convert to absolute timing
+ * This handles both root-level animations and nested group animations uniformly
+ */
+async function processAnimations(
+  animations: (GroupAnimation | Animation)[],
+  objects: AnimationObject[],
+  fps: number,
+  pathPrefix: string = '',
+  startFrameOffset: number = 0,
+  animationSpeed: number = 1.0
+): Promise<Animation[]> {
+  const processed: Animation[] = [];
+
+  for (const anim of animations) {
+    if (isGroupAnimation(anim)) {
+      // GroupAnimation with relative timing (effects already expanded)
+      const groupAnim = anim as GroupAnimation;
+      const fullTarget = pathPrefix ? `${pathPrefix}.${groupAnim.target}` : groupAnim.target;
+
+      if (groupAnim.property && groupAnim.keyframes) {
+        // Property animation - convert relative keyframes to absolute frames
+        // Apply animationSpeed to relative timing
+        const absoluteKeyframes: Keyframe[] = groupAnim.keyframes.map(kf => ({
+          frame: startFrameOffset + (parseTime(kf.start, fps) / animationSpeed),
+          value: kf.value,
+          easing: kf.easing
+        }));
+
+        processed.push({
+          target: fullTarget,
+          property: groupAnim.property,
+          keyframes: absoluteKeyframes
+        } as PropertyAnimation);
+      }
+    } else {
+      // Animation with absolute timing (effects already expanded)
+      // Apply animationSpeed to keyframes
+      const absAnim = anim as PropertyAnimation;
+      if ('keyframes' in absAnim && absAnim.keyframes) {
+        // Apply speed to absolute keyframes
+        const speedAdjustedKeyframes: Keyframe[] = absAnim.keyframes.map(kf => ({
+          frame: kf.frame / animationSpeed,
+          value: kf.value,
+          easing: kf.easing
+        }));
+
+        processed.push({
+          ...absAnim,
+          keyframes: speedAdjustedKeyframes
+        } as PropertyAnimation);
+      }
+    }
+  }
+
+  return processed;
+}
+
+/**
+ * Extract and process animations from nested groups
+ * Recursively processes groups and their children, converting relative timing to absolute
+ */
+async function extractGroupAnimations(
+  objects: AnimationObject[],
+  fps: number,
+  parentPath: string = '',
+  parentStartFrame: number = 0,
+  parentSpeed: number = 1.0
+): Promise<Animation[]> {
+  const extracted: Animation[] = [];
+
+  for (const obj of objects) {
+    if (obj.type === 'group') {
+      const group = obj as GroupObject;
+      const groupPath = parentPath ? `${parentPath}.${group.id}` : group.id || '';
+
+      // Calculate group's absolute start frame
+      const groupStartFrame = group.start !== undefined
+        ? parentStartFrame + parseTime(group.start, fps)
+        : parentStartFrame;
+
+      // Process group transitions
+      if (group.transition?.in) {
+        const trans = group.transition.in;
+        extracted.push({
+          target: groupPath,
+          effect: trans.effect,
+          start: groupStartFrame,
+          duration: trans.duration
+        } as EffectAnimation);
+      }
+
+      if (group.transition?.out && group.duration !== undefined) {
+        const trans = group.transition.out;
+        const groupDurationFrames = parseTime(group.duration, fps);
+        const transitionStartFrame = groupStartFrame + groupDurationFrames;
+
+        extracted.push({
+          target: groupPath,
+          effect: trans.effect,
+          start: transitionStartFrame,
+          duration: trans.duration
+        } as EffectAnimation);
+      }
+
+      // Process group animations using unified path
+      if (group.animations && group.animations.length > 0) {
+        // Expand effect animations to property animations FIRST
+        const expandedAnimations: (GroupAnimation | Animation)[] = [];
+        for (const anim of group.animations) {
+          if ('effect' in anim && anim.effect) {
+            // Expand effect to property animations with relative timing
+            const expanded = await expandEffectToRelativeAnimations(anim as GroupAnimation, fps, group.children);
+            expandedAnimations.push(...expanded);
+          } else {
+            // Already a property animation
+            expandedAnimations.push(anim);
+          }
+        }
+
+        // Now process property animations with offsets
+        const groupSpeed = (group.animationSpeed || 1.0) * parentSpeed;
+        const processedAnims = await processAnimations(
+          expandedAnimations,
+          group.children,
+          fps,
+          groupPath,
+          groupStartFrame,
+          groupSpeed
+        );
+        extracted.push(...processedAnims);
+
+        // Clear animations after extraction to avoid type conflicts
+        group.animations = undefined;
+      }
+
+      // Recursively process nested groups with combined speed
+      const combinedSpeed = (group.animationSpeed || 1.0) * parentSpeed;
+      const childAnimations = await extractGroupAnimations(
+        group.children,
+        fps,
+        groupPath,
+        groupStartFrame,
+        combinedSpeed
+      );
+      extracted.push(...childAnimations);
+    }
+  }
+
+  return extracted;
+}
+
 export async function preprocessAnimation(animation: AnimationFile): Promise<AnimationFile> {
   // Validate objects first
   validateObjects(animation.objects);
@@ -250,53 +543,81 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
   // Resolve percentages in object clip properties
   resolveClipPercentages(animation.objects);
 
-  // If no sequences, nothing more to preprocess
-  if (!animation.sequences || animation.sequences.length === 0) {
-    return animation;
-  }
+  // Collect all animations from:
+  // 1. Root-level animations array
+  // 2. Nested group animations
 
-  // Process each sequence
-  const processedSequences: Sequence[] = [];
+  const allAnimations: Animation[] = [];
 
-  for (const sequence of animation.sequences) {
-    if (!sequence.animations) {
-      // Pause sequence, keep as-is
-      processedSequences.push(sequence);
-      continue;
-    }
-
-    const expandedAnimations: PropertyAnimation[] = [];
-
-    for (const anim of sequence.animations) {
-      if (isEffectAnimation(anim)) {
-        // Expand effect into property animations (async - loads effect file)
-        const propertyAnims = await expandEffectAnimation(anim, animation.project.fps);
-        expandedAnimations.push(...propertyAnims);
+  // Process root-level animations (treat as group with start=0)
+  if (animation.animations && animation.animations.length > 0) {
+    // Expand effect animations to property animations FIRST
+    const expandedRootAnimations: (GroupAnimation | Animation)[] = [];
+    for (const anim of animation.animations) {
+      // Check if this is an EffectAnimation
+      if ('effect' in anim && 'start' in anim && !('keyframes' in anim)) {
+        // EffectAnimation - expand to property animations
+        const expanded = await expandEffectAnimation(anim as EffectAnimation, animation.project.fps, animation.objects);
+        expandedRootAnimations.push(...expanded);
       } else {
-        // Already a property animation, keep as-is
-        expandedAnimations.push(anim as PropertyAnimation);
+        // Already a property animation
+        expandedRootAnimations.push(anim);
       }
     }
 
-    // Validate all animations
-    for (const anim of expandedAnimations) {
-      validateAnimationProperty(anim, animation.objects);
-    }
-
-    // Resolve percentage values in all animations
-    const resolvedAnimations = expandedAnimations.map(anim =>
-      resolvePercentagesInAnimation(anim, animation.objects)
+    const rootSpeed = animation.animationSpeed || 1.0;
+    const rootAnimations = await processAnimations(
+      expandedRootAnimations,
+      animation.objects,
+      animation.project.fps,
+      '',  // No path prefix for root
+      0,   // Start at frame 0
+      rootSpeed  // Apply root animation speed
     );
-
-    processedSequences.push({
-      ...sequence,
-      animations: resolvedAnimations
-    });
+    allAnimations.push(...rootAnimations);
   }
 
+  // Extract animations from nested groups (pass root speed for multiplicative combination)
+  const rootSpeed = animation.animationSpeed || 1.0;
+  const groupAnimations = await extractGroupAnimations(
+    animation.objects,
+    animation.project.fps,
+    '',  // No parent path
+    0,   // No parent start offset
+    rootSpeed  // Pass root speed to groups
+  );
+  allAnimations.push(...groupAnimations);
+
+  // If no animations at all, nothing more to preprocess
+  if (allAnimations.length === 0) {
+    return animation;
+  }
+
+  // Expand any remaining effect animations (e.g., group transitions)
+  const expandedAnimations: PropertyAnimation[] = [];
+  for (const anim of allAnimations) {
+    if (isEffectAnimation(anim)) {
+      const propertyAnims = await expandEffectAnimation(anim as EffectAnimation, animation.project.fps, animation.objects);
+      expandedAnimations.push(...propertyAnims);
+    } else {
+      expandedAnimations.push(anim as PropertyAnimation);
+    }
+  }
+
+  // Validate all animations
+  for (const anim of expandedAnimations) {
+    validateAnimationProperty(anim, animation.objects);
+  }
+
+  // Resolve percentage values in all animations
+  const resolvedAnimations = expandedAnimations.map(anim =>
+    resolvePercentagesInAnimation(anim, animation.objects)
+  );
+
+  // Return with processed animations
   return {
     ...animation,
-    sequences: processedSequences
+    animations: resolvedAnimations
   };
 }
 

@@ -96,41 +96,36 @@
       }
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "wipes",
-      "animations": [
-        {
-          "target": "wipe-left",
-          "effect": "wipe",
-          "start": "0.5s",
-          "duration": "1.0s"
-        },
-        {
-          "target": "wipe-right",
-          "effect": "wipe-right",
-          "start": "0.5s",
-          "duration": "1.0s"
-        },
-        {
-          "target": "wipe-up",
-          "effect": "wipe-up",
-          "start": "2.0s",
-          "duration": "1.0s"
-        },
-        {
-          "target": "wipe-down",
-          "effect": "wipe-down",
-          "start": "2.0s",
-          "duration": "1.0s"
-        },
-        {
-          "target": "wipe-diagonal",
-          "effect": "wipe-right-up",
-          "start": "3.5s",
-          "duration": "1.5s"
-        }
-      ]
+      "target": "wipe-left",
+      "effect": "wipe",
+      "start": "0.5s",
+      "duration": "1.0s"
+    },
+    {
+      "target": "wipe-right",
+      "effect": "wipe-right",
+      "start": "0.5s",
+      "duration": "1.0s"
+    },
+    {
+      "target": "wipe-up",
+      "effect": "wipe-up",
+      "start": "2.0s",
+      "duration": "1.0s"
+    },
+    {
+      "target": "wipe-down",
+      "effect": "wipe-down",
+      "start": "2.0s",
+      "duration": "1.0s"
+    },
+    {
+      "target": "wipe-diagonal",
+      "effect": "wipe-right-up",
+      "start": "3.5s",
+      "duration": "1.5s"
     }
   ]
 }

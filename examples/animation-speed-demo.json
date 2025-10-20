@@ -1,0 +1,217 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "frames": 300
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#0a0e27",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Animation Speed Demo",
+      "x": 960,
+      "y": 100,
+      "size": 64,
+      "color": "#FFFFFF",
+      "bold": true,
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "group",
+      "id": "normal-speed",
+      "x": 300,
+      "y": 300,
+      "start": 60,
+      "children": [
+        {
+          "type": "text",
+          "id": "label",
+          "content": "Normal Speed (1.0x)",
+          "x": 0,
+          "y": -30,
+          "size": 24,
+          "color": "#4a90e2",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "box",
+          "x": 0,
+          "y": 0,
+          "width": 100,
+          "height": 100,
+          "fill": "#4a90e2",
+          "anchor": "center",
+          "opacity": 0
+        }
+      ],
+      "animations": [
+        {
+          "target": "box",
+          "property": "opacity",
+          "keyframes": [
+            {"start": "0s", "value": 0},
+            {"start": "1s", "value": 1}
+          ]
+        },
+        {
+          "target": "box",
+          "property": "y",
+          "keyframes": [
+            {"start": "1s", "value": 0},
+            {"start": "3s", "value": 200, "easing": "easeInOutCubic"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "id": "fast-speed",
+      "x": 960,
+      "y": 300,
+      "start": 60,
+      "animationSpeed": 2.0,
+      "children": [
+        {
+          "type": "text",
+          "id": "label",
+          "content": "2x Faster",
+          "x": 0,
+          "y": -30,
+          "size": 24,
+          "color": "#e74c3c",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "box",
+          "x": 0,
+          "y": 0,
+          "width": 100,
+          "height": 100,
+          "fill": "#e74c3c",
+          "anchor": "center",
+          "opacity": 0
+        }
+      ],
+      "animations": [
+        {
+          "target": "box",
+          "property": "opacity",
+          "keyframes": [
+            {"start": "0s", "value": 0},
+            {"start": "1s", "value": 1}
+          ]
+        },
+        {
+          "target": "box",
+          "property": "y",
+          "keyframes": [
+            {"start": "1s", "value": 0},
+            {"start": "3s", "value": 200, "easing": "easeInOutCubic"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "id": "slow-speed",
+      "x": 1620,
+      "y": 300,
+      "start": 60,
+      "animationSpeed": 0.5,
+      "children": [
+        {
+          "type": "text",
+          "id": "label",
+          "content": "0.5x Slower",
+          "x": 0,
+          "y": -30,
+          "size": 24,
+          "color": "#2ecc71",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "box",
+          "x": 0,
+          "y": 0,
+          "width": 100,
+          "height": 100,
+          "fill": "#2ecc71",
+          "anchor": "center",
+          "opacity": 0
+        }
+      ],
+      "animations": [
+        {
+          "target": "box",
+          "property": "opacity",
+          "keyframes": [
+            {"start": "0s", "value": 0},
+            {"start": "1s", "value": 1}
+          ]
+        },
+        {
+          "target": "box",
+          "property": "y",
+          "keyframes": [
+            {"start": "1s", "value": 0},
+            {"start": "3s", "value": 200, "easing": "easeInOutCubic"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "content": "All three groups have identical animations (1s fade + 2s drop)",
+      "x": 960,
+      "y": 900,
+      "size": 28,
+      "color": "#888888",
+      "italic": true,
+      "anchor": "center",
+      "opacity": 0
+    },
+    {
+      "type": "text",
+      "id": "note2",
+      "content": "animationSpeed changes how fast they play, but not when they start!",
+      "x": 960,
+      "y": 950,
+      "size": 28,
+      "color": "#888888",
+      "italic": true,
+      "anchor": "center",
+      "opacity": 0
+    }
+  ],
+  "animations": [
+    {
+      "target": "title",
+      "effect": "pop",
+      "start": 0
+    },
+    {
+      "target": "note",
+      "effect": "fadeIn",
+      "start": "4s"
+    },
+    {
+      "target": "note2",
+      "effect": "fadeIn",
+      "start": "4.5s"
+    }
+  ]
+}

@@ -46,15 +46,13 @@ describe('Blur Effect', () => {
           blur: 0
         }
       ],
-      sequences: [{
-        animations: [{
-          target: 'box',
-          property: 'blur',
-          keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: 10 }
-          ]
-        }]
+      animations: [{
+        target: 'box',
+        property: 'blur',
+        keyframes: [
+          { frame: 0, value: 0 },
+          { frame: 30, value: 10 }
+        ]
       }]
     };
 

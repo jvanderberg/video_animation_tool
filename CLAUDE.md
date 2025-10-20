@@ -1,4 +1,8 @@
 - I'd like you to use red/green test methodology in this, before making a feature make a test that fails and then code that feature, always validate that all tests pass
+- Maintain a `TODO.md` file in the project root with:
+  - Current task being worked on (with context about progress)
+  - Prospective tasks for future work
+  - This ensures continuity if sessions crash or restart
 
 ---
 
@@ -18,8 +22,8 @@ Transforms are applied in this specific order:
 
 ## Animation Architecture
 
-**Sequence-based** (not inline animations):
-- Animations stored separately in `sequences` array
+**Declarative animations** (not inline):
+- Animations stored separately in `animations` array
 - Each animation targets an object by `id` and `property` name
 - Keyframes: `{frame: number, value: number, easing?: string}`
 - Objects must have an `id` to be animated
@@ -29,12 +33,10 @@ Transforms are applied in this specific order:
 ```json
 {
   "objects": [{"id": "box", "type": "rect", ...}],
-  "sequences": [{
-    "animations": [{
-      "target": "box",
-      "property": "x",
-      "keyframes": [{"frame": 0, "value": 0}, {"frame": 60, "value": 100}]
-    }]
+  "animations": [{
+    "target": "box",
+    "property": "x",
+    "keyframes": [{"frame": 0, "value": 0}, {"frame": 60, "value": 100}]
   }]
 }
 ```
@@ -46,12 +48,10 @@ Pre-composed effects stored in `effects/library.json`. Use time-based references
 **Using effects:**
 ```json
 {
-  "sequences": [{
-    "animations": [{
-      "target": "title",
-      "effect": "pop",
-      "startTime": 0.0  // seconds - converts to frames based on fps
-    }]
+  "animations": [{
+    "target": "title",
+    "effect": "pop",
+    "startTime": 0.0  // seconds - converts to frames based on fps
   }]
 }
 ```

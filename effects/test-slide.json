@@ -1,5 +1,5 @@
 {
-  "description": "Test effect: slides x from 0 to 100",
+  "description": "Test slide effect",
   "duration": 1.0,
   "properties": {
     "x": [

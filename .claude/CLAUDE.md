@@ -223,6 +223,45 @@ vi.mock('fs/promises', () => ({
 
 ## Implementation Patterns
 
+### types.ts is GOD - Thou Shalt Not Hallucinate Property Names
+
+**CRITICAL: `src/types.ts` is the single source of truth for all object properties.**
+
+When working with objects, ALWAYS:
+1. **Check types.ts FIRST** before assuming property names
+2. **Never guess or hallucinate** property names (e.g., guessing `src` when it's actually `source`)
+3. **Trust the TypeScript definitions** - if TypeScript says it's wrong, it's wrong
+
+**Common mistakes to avoid:**
+- ❌ Seeing an error about `src` and assuming the property should be `src`
+- ❌ Using HTML conventions (`src`) when types.ts says `source`
+- ❌ Changing types.ts to match your guess instead of checking what's already there
+
+**Correct approach:**
+```typescript
+// ✅ STEP 1: Check types.ts for the interface
+export interface ImageObject extends BaseObject {
+  type: 'image';
+  source: string;  // <-- Source of truth
+  width?: number;
+  height?: number;
+}
+
+// ✅ STEP 2: Use the exact property name from types.ts
+const image: ImageObject = {
+  type: 'image',
+  source: './path/to/image.png',  // Not 'src'!
+  x: 100,
+  y: 100
+};
+```
+
+**When you see a validation error:**
+1. Read the error message
+2. Check types.ts for the correct property name
+3. Update the CODE to match types.ts (not the other way around)
+4. Only change types.ts if you're intentionally changing the API
+
 ### Renderer Extension
 
 When adding new object types:

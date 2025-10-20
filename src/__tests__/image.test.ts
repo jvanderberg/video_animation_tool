@@ -109,26 +109,21 @@ describe('Image Rendering', () => {
           height: 50,
         },
       ],
-      sequences: [
+      animations: [
         {
-          name: 'grow',
-          animations: [
-            {
-              target: 'growing-image',
-              property: 'width',
-              keyframes: [
-                { frame: 0, value: 50 },
-                { frame: 30, value: 100 },
-              ],
-            },
-            {
-              target: 'growing-image',
-              property: 'height',
-              keyframes: [
-                { frame: 0, value: 50 },
-                { frame: 30, value: 100 },
-              ],
-            },
+          target: 'growing-image',
+          property: 'width',
+          keyframes: [
+            { frame: 0, value: 50 },
+            { frame: 30, value: 100 },
+          ],
+        },
+        {
+          target: 'growing-image',
+          property: 'height',
+          keyframes: [
+            { frame: 0, value: 50 },
+            { frame: 30, value: 100 },
           ],
         },
       ],

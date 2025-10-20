@@ -43,18 +43,13 @@ describe('Easing Validation', () => {
       objects: [
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'box',
               effect: 'invalid-easing',
               start: 0
             }
           ]
-        }
-      ]
     };
 
     await expect(preprocessAnimation(animation)).rejects.toThrow(
@@ -86,16 +81,11 @@ describe('Easing Validation', () => {
         objects: [
           { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
         ],
-        sequences: [
+        animations: [
           {
-            name: 'test',
-            animations: [
-              {
-                target: 'box',
-                effect: `test-${easing}`,
-                start: 0
-              }
-            ]
+            target: 'box',
+            effect: `test-${easing}`,
+            start: 0
           }
         ]
       };
@@ -125,18 +115,13 @@ describe('Easing Validation', () => {
       objects: [
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
         ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'box',
               effect: 'invalid-cubic',
               start: 0
             }
           ]
-        }
-      ]
     };
 
     await expect(preprocessAnimation(animation)).rejects.toThrow(
@@ -165,18 +150,13 @@ describe('Easing Validation', () => {
       objects: [
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'box',
               effect: 'valid-cubic',
               start: 0
             }
           ]
-        }
-      ]
     };
 
     await expect(preprocessAnimation(animation)).resolves.toBeDefined();
@@ -203,18 +183,13 @@ describe('Easing Validation', () => {
       objects: [
         { type: 'rect', id: 'box', width: 100, height: 100, fill: '#FF0000' }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'box',
               effect: 'overshoot-cubic',
               start: 0
             }
           ]
-        }
-      ]
     };
 
     await expect(preprocessAnimation(animation)).resolves.toBeDefined();

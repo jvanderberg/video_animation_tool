@@ -177,10 +177,7 @@ describe('ScaleX/ScaleY Transform', () => {
           fill: '#FFFF00'
         }
       ],
-      sequences: [
-        {
-          name: 'stretch',
-          animations: [
+      animations: [
             {
               target: 'box',
               property: 'scaleX',
@@ -189,8 +186,6 @@ describe('ScaleX/ScaleY Transform', () => {
                 { frame: 60, value: 2.0 }
               ]
             }
-          ]
-        }
       ]
     };
 
@@ -228,10 +223,7 @@ describe('ScaleX/ScaleY Transform', () => {
           fill: '#00FFFF'
         }
       ],
-      sequences: [
-        {
-          name: 'stretch',
-          animations: [
+      animations: [
             {
               target: 'box',
               property: 'scaleY',
@@ -240,8 +232,6 @@ describe('ScaleX/ScaleY Transform', () => {
                 { frame: 60, value: 2.0 }
               ]
             }
-          ]
-        }
       ]
     };
 

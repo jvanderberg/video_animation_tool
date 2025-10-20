@@ -418,307 +418,67 @@
       ]
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "main-intro",
-      "animations": [
+      "target": "main-title",
+      "property": "opacity",
+      "keyframes": [
         {
-          "target": "main-title",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 0, "value": 0},
-            {"frame": 30, "value": 1, "easing": "ease-out"},
-            {"frame": 100, "value": 1},
-            {"frame": 130, "value": 0, "easing": "ease-in"}
-          ]
+          "frame": 0,
+          "value": 0
         },
         {
-          "target": "main-title",
-          "property": "scale",
-          "keyframes": [
-            {"frame": 0, "value": 0},
-            {"frame": 30, "value": 1, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 30,
+          "value": 1,
+          "easing": "ease-out"
         },
         {
-          "target": "main-subtitle",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 15, "value": 0},
-            {"frame": 45, "value": 1, "easing": "ease-out"},
-            {"frame": 100, "value": 1},
-            {"frame": 130, "value": 0, "easing": "ease-in"}
-          ]
+          "frame": 100,
+          "value": 1
+        },
+        {
+          "frame": 130,
+          "value": 0,
+          "easing": "ease-in"
         }
       ]
     },
     {
-      "name": "easing-section",
-      "animations": [
+      "target": "main-title",
+      "property": "scale",
+      "keyframes": [
         {
-          "target": "easing-section",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 150, "value": 0},
-            {"frame": 170, "value": 1, "easing": "ease-out"},
-            {"frame": 410, "value": 1},
-            {"frame": 430, "value": 0, "easing": "ease-in"}
-          ]
+          "frame": 0,
+          "value": 0
         },
         {
-          "target": "ease-linear",
-          "property": "x",
-          "keyframes": [
-            {"frame": 180, "value": 200},
-            {"frame": 240, "value": 1660, "easing": "linear"},
-            {"frame": 300, "value": 200, "easing": "linear"}
-          ]
-        },
-        {
-          "target": "ease-in",
-          "property": "x",
-          "keyframes": [
-            {"frame": 190, "value": 200},
-            {"frame": 250, "value": 1660, "easing": "ease-in"},
-            {"frame": 310, "value": 200, "easing": "ease-in"}
-          ]
-        },
-        {
-          "target": "ease-out",
-          "property": "x",
-          "keyframes": [
-            {"frame": 200, "value": 200},
-            {"frame": 260, "value": 1660, "easing": "ease-out"},
-            {"frame": 320, "value": 200, "easing": "ease-out"}
-          ]
-        },
-        {
-          "target": "ease-in-out",
-          "property": "x",
-          "keyframes": [
-            {"frame": 210, "value": 200},
-            {"frame": 270, "value": 1660, "easing": "ease-in-out"},
-            {"frame": 330, "value": 200, "easing": "ease-in-out"}
-          ]
-        },
-        {
-          "target": "ease-bounce",
-          "property": "x",
-          "keyframes": [
-            {"frame": 220, "value": 200},
-            {"frame": 280, "value": 1660, "easing": "bounce"},
-            {"frame": 340, "value": 200, "easing": "bounce"}
-          ]
-        },
-        {
-          "target": "ease-elastic",
-          "property": "x",
-          "keyframes": [
-            {"frame": 230, "value": 200},
-            {"frame": 290, "value": 1660, "easing": "elastic"},
-            {"frame": 350, "value": 200, "easing": "elastic"}
-          ]
+          "frame": 30,
+          "value": 1,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
         }
       ]
     },
     {
-      "name": "squash-stretch",
-      "animations": [
+      "target": "main-subtitle",
+      "property": "opacity",
+      "keyframes": [
         {
-          "target": "squash-section",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 470, "value": 0},
-            {"frame": 490, "value": 1, "easing": "ease-out"},
-            {"frame": 710, "value": 1},
-            {"frame": 730, "value": 0, "easing": "ease-in"}
-          ]
+          "frame": 15,
+          "value": 0
         },
         {
-          "target": "ball",
-          "property": "y",
-          "keyframes": [
-            {"frame": 500, "value": 400},
-            {"frame": 540, "value": 710, "easing": "ease-in"},
-            {"frame": 580, "value": 550, "easing": "ease-out"},
-            {"frame": 610, "value": 710, "easing": "ease-in"},
-            {"frame": 635, "value": 630, "easing": "ease-out"},
-            {"frame": 655, "value": 710, "easing": "ease-in"},
-            {"frame": 670, "value": 680, "easing": "ease-out"},
-            {"frame": 682, "value": 710, "easing": "ease-in"}
-          ]
+          "frame": 45,
+          "value": 1,
+          "easing": "ease-out"
         },
         {
-          "target": "ball",
-          "property": "scaleX",
-          "keyframes": [
-            {"frame": 500, "value": 1.0},
-            {"frame": 537, "value": 1.0},
-            {"frame": 540, "value": 1.4},
-            {"frame": 545, "value": 1.0},
-            {"frame": 577, "value": 1.0},
-            {"frame": 580, "value": 1.2},
-            {"frame": 585, "value": 1.0},
-            {"frame": 607, "value": 1.0},
-            {"frame": 610, "value": 1.3},
-            {"frame": 615, "value": 1.0},
-            {"frame": 632, "value": 1.0},
-            {"frame": 635, "value": 1.2},
-            {"frame": 640, "value": 1.0},
-            {"frame": 652, "value": 1.0},
-            {"frame": 655, "value": 1.15},
-            {"frame": 660, "value": 1.0}
-          ]
+          "frame": 100,
+          "value": 1
         },
         {
-          "target": "ball",
-          "property": "scaleY",
-          "keyframes": [
-            {"frame": 500, "value": 1.0},
-            {"frame": 537, "value": 1.0},
-            {"frame": 540, "value": 0.6},
-            {"frame": 545, "value": 1.0},
-            {"frame": 577, "value": 1.0},
-            {"frame": 580, "value": 0.8},
-            {"frame": 585, "value": 1.0},
-            {"frame": 607, "value": 1.0},
-            {"frame": 610, "value": 0.7},
-            {"frame": 615, "value": 1.0},
-            {"frame": 632, "value": 1.0},
-            {"frame": 635, "value": 0.8},
-            {"frame": 640, "value": 1.0},
-            {"frame": 652, "value": 1.0},
-            {"frame": 655, "value": 0.85},
-            {"frame": 660, "value": 1.0}
-          ]
-        }
-      ]
-    },
-    {
-      "name": "rotation-scale",
-      "animations": [
-        {
-          "target": "rotation-section",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 770, "value": 0},
-            {"frame": 790, "value": 1, "easing": "ease-out"},
-            {"frame": 1010, "value": 1},
-            {"frame": 1030, "value": 0, "easing": "ease-in"}
-          ]
-        },
-        {
-          "target": "spinning-group",
-          "property": "rotation",
-          "keyframes": [
-            {"frame": 800, "value": 0},
-            {"frame": 900, "value": 360, "easing": "linear"},
-            {"frame": 1000, "value": 720, "easing": "linear"}
-          ]
-        },
-        {
-          "target": "spinning-group",
-          "property": "scale",
-          "keyframes": [
-            {"frame": 800, "value": 1.0},
-            {"frame": 850, "value": 1.8, "easing": "ease-in-out"},
-            {"frame": 900, "value": 1.0, "easing": "ease-in-out"},
-            {"frame": 950, "value": 0.5, "easing": "ease-in-out"},
-            {"frame": 1000, "value": 1.0, "easing": "ease-in-out"}
-          ]
-        }
-      ]
-    },
-    {
-      "name": "group-transforms",
-      "animations": [
-        {
-          "target": "groups-section",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 1070, "value": 0},
-            {"frame": 1090, "value": 1, "easing": "ease-out"},
-            {"frame": 1260, "value": 1},
-            {"frame": 1280, "value": 0, "easing": "ease-in"}
-          ]
-        },
-        {
-          "target": "nested-group",
-          "property": "scale",
-          "keyframes": [
-            {"frame": 1100, "value": 1.0},
-            {"frame": 1140, "value": 2.0, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"},
-            {"frame": 1180, "value": 1.0, "easing": "ease-in-out"}
-          ]
-        },
-        {
-          "target": "nested-group",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 1180, "value": 1.0},
-            {"frame": 1210, "value": 0.2, "easing": "ease-out"},
-            {"frame": 1240, "value": 1.0, "easing": "ease-in"}
-          ]
-        }
-      ]
-    },
-    {
-      "name": "text-anchors",
-      "animations": [
-        {
-          "target": "anchors-section",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 1320, "value": 0},
-            {"frame": 1340, "value": 1, "easing": "ease-out"},
-            {"frame": 1540, "value": 1},
-            {"frame": 1560, "value": 0, "easing": "ease-in"}
-          ]
-        }
-      ]
-    },
-    {
-      "name": "opacity-fades",
-      "animations": [
-        {
-          "target": "opacity-section",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 1600, "value": 0},
-            {"frame": 1620, "value": 1, "easing": "ease-out"},
-            {"frame": 1900, "value": 1},
-            {"frame": 1920, "value": 0, "easing": "ease-in"}
-          ]
-        },
-        {
-          "target": "fade-rect-1",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 1650, "value": 1},
-            {"frame": 1690, "value": 0, "easing": "ease-out"},
-            {"frame": 1730, "value": 0},
-            {"frame": 1770, "value": 1, "easing": "ease-in"}
-          ]
-        },
-        {
-          "target": "fade-rect-2",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 1680, "value": 1},
-            {"frame": 1720, "value": 0, "easing": "ease-out"},
-            {"frame": 1760, "value": 0},
-            {"frame": 1800, "value": 1, "easing": "ease-in"}
-          ]
-        },
-        {
-          "target": "fade-rect-3",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 1710, "value": 1},
-            {"frame": 1750, "value": 0, "easing": "ease-out"},
-            {"frame": 1790, "value": 0},
-            {"frame": 1830, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 130,
+          "value": 0,
+          "easing": "ease-in"
         }
       ]
     }

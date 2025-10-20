@@ -28,26 +28,21 @@
       "z": 10
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "box-animation",
-      "animations": [
-        {
-          "target": "animated-box",
-          "property": "x",
-          "keyframes": [
-            {"frame": 0, "value": 100},
-            {"frame": 60, "value": 700, "easing": "ease-in-out"}
-          ]
-        },
-        {
-          "target": "animated-box",
-          "property": "rotation",
-          "keyframes": [
-            {"frame": 0, "value": 0},
-            {"frame": 60, "value": 360, "easing": "linear"}
-          ]
-        }
+      "target": "animated-box",
+      "property": "x",
+      "keyframes": [
+        {"frame": 0, "value": 100},
+        {"frame": 60, "value": 700, "easing": "ease-in-out"}
+      ]
+    },
+    {
+      "target": "animated-box",
+      "property": "rotation",
+      "keyframes": [
+        {"frame": 0, "value": 0},
+        {"frame": 60, "value": 360, "easing": "linear"}
       ]
     }
   ]

@@ -7,7 +7,7 @@ import { cpus } from 'os';
 import { Renderer } from './renderer.js';
 import { preprocessAnimation, expandEffectAnimation } from './preprocessor.js';
 import { expandComponents, extractAnimationsFromGroups } from './components.js';
-import type { AnimationFile, EffectAnimation, PropertyAnimation, SequenceAnimation } from './types.js';
+import type { AnimationFile, EffectAnimation, PropertyAnimation, Animation } from './types.js';
 
 function streamToFFmpeg(renderer: Renderer, animation: AnimationFile, outputPath: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -115,11 +115,11 @@ async function main() {
     const basePath = dirname(animationPath);
     animation.objects = await expandComponents(animation.objects, basePath, animation.project.fps);
 
-    // Extract animations from component groups and add to sequences
+    // Extract animations from component groups and add to animations
     const componentAnimations = extractAnimationsFromGroups(animation.objects);
     if (componentAnimations.length > 0) {
       // Expand effect animations into property animations
-      const expandedAnimations: SequenceAnimation[] = [];
+      const expandedAnimations: Animation[] = [];
       for (const anim of componentAnimations) {
         if ('effect' in anim && typeof anim.effect === 'string') {
           // Expand effect animation
@@ -131,15 +131,12 @@ async function main() {
         }
       }
 
-      // Ensure sequences array exists
-      if (!animation.sequences) {
-        animation.sequences = [];
+      // Ensure animations array exists
+      if (!animation.animations) {
+        animation.animations = [];
       }
-      // Add a sequence for component animations
-      animation.sequences.push({
-        name: 'component-animations',
-        animations: expandedAnimations
-      });
+      // Add component animations
+      animation.animations.push(...expandedAnimations);
     }
 
     // Resolve image paths relative to animation file

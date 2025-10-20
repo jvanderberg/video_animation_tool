@@ -3,8 +3,8 @@
   "duration": 1.0,
   "properties": {
     "x": [
-      {"time": 0.0, "value": 200},
-      {"time": 1.0, "value": 0, "easing": "ease-out"}
+      {"time": 0.0, "value": 2880},
+      {"time": 1.0, "value": "{x}", "easing": "ease-out"}
     ],
     "opacity": [
       {"time": 0.0, "value": 0},

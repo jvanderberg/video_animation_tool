@@ -39,8 +39,8 @@ export function validateObject(obj: AnimationObject): void {
       }
       break;
     case 'image':
-      if (!('src' in obj)) {
-        throw new Error(`Object '${objId}' of type 'image' must have a 'src' property.`);
+      if (!('source' in obj)) {
+        throw new Error(`Object '${objId}' of type 'image' must have a 'source' property.`);
       }
       break;
     case 'line':
@@ -53,39 +53,39 @@ export function validateObject(obj: AnimationObject): void {
       break;
   }
 
-  // Validate dimensions
+  // Validate dimensions (allow 0 for animation purposes, just not negative)
   if ('width' in obj) {
     const width = obj.width as number;
-    if (typeof width === 'number' && width <= 0) {
-      throw new Error(`Object '${objId}' has invalid width: ${width}. Width must be positive.`);
+    if (typeof width === 'number' && width < 0) {
+      throw new Error(`Object '${objId}' has invalid width: ${width}. Width cannot be negative.`);
     }
   }
 
   if ('height' in obj) {
     const height = obj.height as number;
-    if (typeof height === 'number' && height <= 0) {
-      throw new Error(`Object '${objId}' has invalid height: ${height}. Height must be positive.`);
+    if (typeof height === 'number' && height < 0) {
+      throw new Error(`Object '${objId}' has invalid height: ${height}. Height cannot be negative.`);
     }
   }
 
   if ('radius' in obj) {
     const radius = obj.radius as number;
-    if (typeof radius === 'number' && radius <= 0) {
-      throw new Error(`Object '${objId}' has invalid radius: ${radius}. Radius must be positive.`);
+    if (typeof radius === 'number' && radius < 0) {
+      throw new Error(`Object '${objId}' has invalid radius: ${radius}. Radius cannot be negative.`);
     }
   }
 
   if ('radiusX' in obj) {
     const radiusX = obj.radiusX as number;
-    if (typeof radiusX === 'number' && radiusX <= 0) {
-      throw new Error(`Object '${objId}' has invalid radiusX: ${radiusX}. RadiusX must be positive.`);
+    if (typeof radiusX === 'number' && radiusX < 0) {
+      throw new Error(`Object '${objId}' has invalid radiusX: ${radiusX}. RadiusX cannot be negative.`);
     }
   }
 
   if ('radiusY' in obj) {
     const radiusY = obj.radiusY as number;
-    if (typeof radiusY === 'number' && radiusY <= 0) {
-      throw new Error(`Object '${objId}' has invalid radiusY: ${radiusY}. RadiusY must be positive.`);
+    if (typeof radiusY === 'number' && radiusY < 0) {
+      throw new Error(`Object '${objId}' has invalid radiusY: ${radiusY}. RadiusY cannot be negative.`);
     }
   }
 

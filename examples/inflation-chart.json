@@ -441,291 +441,539 @@
       ]
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "main",
-      "animations": [
+      "target": "chart-content",
+      "property": "y",
+      "keyframes": [
         {
-          "target": "chart-content",
-          "property": "y",
-          "keyframes": [
-            {"frame": 0, "value": 1200},
-            {"frame": 35, "value": -40, "easing": "ease-out"},
-            {"frame": 50, "value": 15, "easing": "ease-in-out"},
-            {"frame": 60, "value": 0, "easing": "ease-out"}
-          ]
+          "frame": 0,
+          "value": 1200
         },
         {
-          "target": "title",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 40, "value": 0},
-            {"frame": 60, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 35,
+          "value": -40,
+          "easing": "ease-out"
         },
         {
-          "target": "subtitle",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 40, "value": 0},
-            {"frame": 60, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 50,
+          "value": 15,
+          "easing": "ease-in-out"
         },
         {
-          "target": "title",
-          "property": "scale",
-          "keyframes": [
-            {"frame": 40, "value": 0},
-            {"frame": 60, "value": 1, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 60,
+          "value": 0,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "title",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 40,
+          "value": 0
         },
         {
-          "target": "subtitle",
-          "property": "scale",
-          "keyframes": [
-            {"frame": 40, "value": 0},
-            {"frame": 60, "value": 1, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 60,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "subtitle",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 40,
+          "value": 0
         },
         {
-          "target": "bar-2015",
-          "property": "x",
-          "keyframes": [
-            {"frame": 60, "value": -200},
-            {"frame": 75, "value": 310, "easing": "ease-out"}
-          ]
+          "frame": 60,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "title",
+      "property": "scale",
+      "keyframes": [
+        {
+          "frame": 40,
+          "value": 0
         },
         {
-          "target": "bar-2015-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 75, "value": 0},
-            {"frame": 90, "value": 6, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 60,
+          "value": 1,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "subtitle",
+      "property": "scale",
+      "keyframes": [
+        {
+          "frame": 40,
+          "value": 0
         },
         {
-          "target": "bar-2015-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 90, "value": 0},
-            {"frame": 100, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 60,
+          "value": 1,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2015",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 60,
+          "value": -200
         },
         {
-          "target": "bar-2016",
-          "property": "x",
-          "keyframes": [
-            {"frame": 64, "value": -200},
-            {"frame": 79, "value": 470, "easing": "ease-out"}
-          ]
+          "frame": 75,
+          "value": 310,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2015-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 75,
+          "value": 0
         },
         {
-          "target": "bar-2016-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 79, "value": 0},
-            {"frame": 94, "value": 78, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 90,
+          "value": 6,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2015-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 90,
+          "value": 0
         },
         {
-          "target": "bar-2016-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 94, "value": 0},
-            {"frame": 104, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 100,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2016",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 64,
+          "value": -200
         },
         {
-          "target": "bar-2017",
-          "property": "x",
-          "keyframes": [
-            {"frame": 68, "value": -200},
-            {"frame": 83, "value": 630, "easing": "ease-out"}
-          ]
+          "frame": 79,
+          "value": 470,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2016-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 79,
+          "value": 0
         },
         {
-          "target": "bar-2017-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 83, "value": 0},
-            {"frame": 98, "value": 126, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 94,
+          "value": 78,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2016-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 94,
+          "value": 0
         },
         {
-          "target": "bar-2017-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 98, "value": 0},
-            {"frame": 108, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 104,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2017",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 68,
+          "value": -200
         },
         {
-          "target": "bar-2018",
-          "property": "x",
-          "keyframes": [
-            {"frame": 72, "value": -200},
-            {"frame": 87, "value": 790, "easing": "ease-out"}
-          ]
+          "frame": 83,
+          "value": 630,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2017-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 83,
+          "value": 0
         },
         {
-          "target": "bar-2018-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 87, "value": 0},
-            {"frame": 102, "value": 144, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 98,
+          "value": 126,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2017-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 98,
+          "value": 0
         },
         {
-          "target": "bar-2018-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 102, "value": 0},
-            {"frame": 112, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 108,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2018",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 72,
+          "value": -200
         },
         {
-          "target": "bar-2019",
-          "property": "x",
-          "keyframes": [
-            {"frame": 76, "value": -200},
-            {"frame": 91, "value": 950, "easing": "ease-out"}
-          ]
+          "frame": 87,
+          "value": 790,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2018-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 87,
+          "value": 0
         },
         {
-          "target": "bar-2019-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 91, "value": 0},
-            {"frame": 106, "value": 108, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 102,
+          "value": 144,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2018-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 102,
+          "value": 0
         },
         {
-          "target": "bar-2019-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 106, "value": 0},
-            {"frame": 116, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 112,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2019",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 76,
+          "value": -200
         },
         {
-          "target": "bar-2020",
-          "property": "x",
-          "keyframes": [
-            {"frame": 80, "value": -200},
-            {"frame": 95, "value": 1110, "easing": "ease-out"}
-          ]
+          "frame": 91,
+          "value": 950,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2019-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 91,
+          "value": 0
         },
         {
-          "target": "bar-2020-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 95, "value": 0},
-            {"frame": 110, "value": 72, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 106,
+          "value": 108,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2019-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 106,
+          "value": 0
         },
         {
-          "target": "bar-2020-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 110, "value": 0},
-            {"frame": 120, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 116,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2020",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 80,
+          "value": -200
         },
         {
-          "target": "bar-2021",
-          "property": "x",
-          "keyframes": [
-            {"frame": 84, "value": -200},
-            {"frame": 99, "value": 1270, "easing": "ease-out"}
-          ]
+          "frame": 95,
+          "value": 1110,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2020-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 95,
+          "value": 0
         },
         {
-          "target": "bar-2021-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 99, "value": 0},
-            {"frame": 114, "value": 282, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 110,
+          "value": 72,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2020-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 110,
+          "value": 0
         },
         {
-          "target": "bar-2021-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 114, "value": 0},
-            {"frame": 124, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 120,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2021",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 84,
+          "value": -200
         },
         {
-          "target": "bar-2022",
-          "property": "x",
-          "keyframes": [
-            {"frame": 88, "value": -200},
-            {"frame": 103, "value": 1430, "easing": "ease-out"}
-          ]
+          "frame": 99,
+          "value": 1270,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2021-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 99,
+          "value": 0
         },
         {
-          "target": "bar-2022-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 103, "value": 0},
-            {"frame": 118, "value": 480, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 114,
+          "value": 282,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2021-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 114,
+          "value": 0
         },
         {
-          "target": "bar-2022-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 118, "value": 0},
-            {"frame": 128, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 124,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2022",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 88,
+          "value": -200
         },
         {
-          "target": "bar-2023",
-          "property": "x",
-          "keyframes": [
-            {"frame": 92, "value": -200},
-            {"frame": 107, "value": 1590, "easing": "ease-out"}
-          ]
+          "frame": 103,
+          "value": 1430,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2022-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 103,
+          "value": 0
         },
         {
-          "target": "bar-2023-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 107, "value": 0},
-            {"frame": 122, "value": 246, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 118,
+          "value": 480,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2022-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 118,
+          "value": 0
         },
         {
-          "target": "bar-2023-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 122, "value": 0},
-            {"frame": 132, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 128,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2023",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 92,
+          "value": -200
         },
         {
-          "target": "bar-2024",
-          "property": "x",
-          "keyframes": [
-            {"frame": 96, "value": -200},
-            {"frame": 111, "value": 1750, "easing": "ease-out"}
-          ]
+          "frame": 107,
+          "value": 1590,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2023-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 107,
+          "value": 0
         },
         {
-          "target": "bar-2024-rect",
-          "property": "height",
-          "keyframes": [
-            {"frame": 111, "value": 0},
-            {"frame": 126, "value": 174, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
-          ]
+          "frame": 122,
+          "value": 246,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2023-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 122,
+          "value": 0
         },
         {
-          "target": "bar-2024-label",
-          "property": "opacity",
-          "keyframes": [
-            {"frame": 126, "value": 0},
-            {"frame": 136, "value": 1, "easing": "ease-in"}
-          ]
+          "frame": 132,
+          "value": 1,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "bar-2024",
+      "property": "x",
+      "keyframes": [
+        {
+          "frame": 96,
+          "value": -200
+        },
+        {
+          "frame": 111,
+          "value": 1750,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "bar-2024-rect",
+      "property": "height",
+      "keyframes": [
+        {
+          "frame": 111,
+          "value": 0
+        },
+        {
+          "frame": 126,
+          "value": 174,
+          "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+        }
+      ]
+    },
+    {
+      "target": "bar-2024-label",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 126,
+          "value": 0
+        },
+        {
+          "frame": 136,
+          "value": 1,
+          "easing": "ease-in"
         }
       ]
     }

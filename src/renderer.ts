@@ -21,45 +21,38 @@ export class Renderer {
   }
 
   /**
-   * Build animation map from sequences
+   * Build animation map from animations
    * Returns: objectId -> property -> keyframes
    */
   private buildAnimationMap(): Map<string, Map<string, any[]>> {
     const map = new Map<string, Map<string, any[]>>();
 
-    if (!this.animation.sequences) {
+    if (!this.animation.animations) {
       return map;
     }
 
-    // Process sequences in order
-    for (const sequence of this.animation.sequences) {
-      if (!sequence.animations) {
-        continue;  // Skip pause sequences
+    // Process each animation
+    for (const anim of this.animation.animations) {
+      // Type guard: renderer only handles property animations (effects should be expanded)
+      if (!('property' in anim) || !('keyframes' in anim)) {
+        continue;
       }
 
-      // Process each animation in the sequence
-      for (const anim of sequence.animations) {
-        // Type guard: renderer only handles property animations (effects should be expanded)
-        if (!('property' in anim) || !('keyframes' in anim)) {
-          continue;
-        }
+      const propAnim = anim as PropertyAnimation;
 
-        const propAnim = anim as PropertyAnimation;
+      // Get or create object's property map
+      if (!map.has(propAnim.target)) {
+        map.set(propAnim.target, new Map());
+      }
+      const objectMap = map.get(propAnim.target)!;
 
-        // Get or create object's property map
-        if (!map.has(propAnim.target)) {
-          map.set(propAnim.target, new Map());
-        }
-        const objectMap = map.get(propAnim.target)!;
-
-        // Store keyframes for this property
-        // If property already has keyframes, merge them
-        if (objectMap.has(propAnim.property)) {
-          const existing = objectMap.get(propAnim.property)!;
-          objectMap.set(propAnim.property, [...existing, ...propAnim.keyframes]);
-        } else {
-          objectMap.set(propAnim.property, [...propAnim.keyframes]);
-        }
+      // Store keyframes for this property
+      // If property already has keyframes, merge them
+      if (objectMap.has(propAnim.property)) {
+        const existing = objectMap.get(propAnim.property)!;
+        objectMap.set(propAnim.property, [...existing, ...propAnim.keyframes]);
+      } else {
+        objectMap.set(propAnim.property, [...propAnim.keyframes]);
       }
     }
 
@@ -142,9 +135,9 @@ export class Renderer {
   /**
    * Render a single object
    */
-  private renderObject(obj: AnimationObject, frameNumber: number): void {
+  private renderObject(obj: AnimationObject, frameNumber: number, parentPath?: string): void {
     // Get animated properties for this frame
-    const props = this.getPropertiesAtFrame(obj, frameNumber);
+    const props = this.getPropertiesAtFrame(obj, frameNumber, parentPath);
 
     // Skip rendering if any scale is 0 or negative (invisible)
     // This also avoids canvas issues with degenerate transformation matrices
@@ -160,7 +153,7 @@ export class Renderer {
 
     // If blur is needed, render to temp canvas
     if (props.blur !== undefined && props.blur > 0) {
-      this.renderObjectWithBlur(obj, frameNumber, props);
+      this.renderObjectWithBlur(obj, frameNumber, props, parentPath);
       return;
     }
 
@@ -250,7 +243,7 @@ export class Renderer {
         renderPath(this.ctx, obj, props);
         break;
       case 'group':
-        this.renderGroup(obj, frameNumber);
+        this.renderGroup(obj, frameNumber, parentPath);
         break;
       // Other types will be added later
     }
@@ -262,7 +255,7 @@ export class Renderer {
   /**
    * Render an object with blur effect using temp canvas
    */
-  private renderObjectWithBlur(obj: AnimationObject, frameNumber: number, props: any): void {
+  private renderObjectWithBlur(obj: AnimationObject, frameNumber: number, props: any, parentPath?: string): void {
     // Calculate object bounds
     let width = 100, height = 100;
     if (obj.type === 'rect' || obj.type === 'image') {
@@ -369,12 +362,16 @@ export class Renderer {
    * Render a group (container for other objects)
    * Children inherit the group's transforms
    */
-  private renderGroup(obj: GroupObject, frameNumber: number): void {
+  private renderGroup(obj: GroupObject, frameNumber: number, parentPath?: string): void {
     // Render each child object
     // The group's transforms have already been applied to the context
     // by renderObject(), so children will automatically inherit them
+
+    // Build path for children - combine parentPath with group's ID
+    const groupPath = parentPath ? `${parentPath}.${obj.id}` : obj.id;
+
     for (const child of obj.children) {
-      this.renderObject(child, frameNumber);
+      this.renderObject(child, frameNumber, groupPath);
     }
   }
 
@@ -382,7 +379,7 @@ export class Renderer {
   /**
    * Get property values at a specific frame, including animations
    */
-  private getPropertiesAtFrame(obj: AnimationObject, frameNumber: number): any {
+  private getPropertiesAtFrame(obj: AnimationObject, frameNumber: number, parentPath?: string): any {
     const props: any = {
       x: obj.x ?? 0,
       y: obj.y ?? 0,
@@ -423,23 +420,31 @@ export class Renderer {
     }
 
     // Apply animations from sequence map
-    if (obj.id && this.animationMap.has(obj.id)) {
-      const objectAnimations = this.animationMap.get(obj.id)!;
-      for (const [property, keyframes] of objectAnimations.entries()) {
-        const value = this.getAnimatedValue(keyframes, frameNumber);
-        if (value !== null) {
-          // Handle nested properties like "clip.width"
-          if (property.includes('.')) {
-            const parts = property.split('.');
-            if (parts.length === 2) {
-              const [parent, child] = parts;
-              if (!props[parent]) {
-                props[parent] = {};
+    // Build full path including parent context
+    if (obj.id) {
+      const fullPath = parentPath ? `${parentPath}.${obj.id}` : obj.id;
+
+      // Try both the full path (for dot notation) and the simple id (for backward compatibility)
+      for (const lookupKey of [fullPath, obj.id]) {
+        if (this.animationMap.has(lookupKey)) {
+          const objectAnimations = this.animationMap.get(lookupKey)!;
+          for (const [property, keyframes] of objectAnimations.entries()) {
+            const value = this.getAnimatedValue(keyframes, frameNumber);
+            if (value !== null) {
+              // Handle nested properties like "clip.width"
+              if (property.includes('.')) {
+                const parts = property.split('.');
+                if (parts.length === 2) {
+                  const [parent, child] = parts;
+                  if (!props[parent]) {
+                    props[parent] = {};
+                  }
+                  props[parent][child] = value;
+                }
+              } else {
+                props[property] = value;
               }
-              props[parent][child] = value;
             }
-          } else {
-            props[property] = value;
           }
         }
       }

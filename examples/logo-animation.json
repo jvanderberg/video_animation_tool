@@ -38,43 +38,59 @@
       "opacity": 0
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "intro",
-      "animations": [
+      "target": "logo",
+      "effect": "pop",
+      "start": "0.5s"
+    },
+    {
+      "target": "logo",
+      "property": "rotation",
+      "keyframes": [
         {
-          "target": "logo",
-          "effect": "pop",
-          "start": "0.5s"
+          "frame": 45,
+          "value": 0
         },
         {
-          "target": "logo",
-          "property": "rotation",
-          "keyframes": [
-            {"frame": 45, "value": 0},
-            {"frame": 105, "value": 360, "easing": "ease-in-out"}
-          ]
+          "frame": 105,
+          "value": 360,
+          "easing": "ease-in-out"
+        }
+      ]
+    },
+    {
+      "target": "title",
+      "effect": "fadeIn",
+      "start": "1.5s"
+    },
+    {
+      "target": "logo",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 105,
+          "value": 540
         },
         {
-          "target": "title",
-          "effect": "fadeIn",
-          "start": "1.5s"
+          "frame": 135,
+          "value": 440,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "title",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 105,
+          "value": 720
         },
         {
-          "target": "logo",
-          "property": "y",
-          "keyframes": [
-            {"frame": 105, "value": 540},
-            {"frame": 135, "value": 440, "easing": "ease-out"}
-          ]
-        },
-        {
-          "target": "title",
-          "property": "y",
-          "keyframes": [
-            {"frame": 105, "value": 720},
-            {"frame": 135, "value": 620, "easing": "ease-out"}
-          ]
+          "frame": 135,
+          "value": 620,
+          "easing": "ease-out"
         }
       ]
     }

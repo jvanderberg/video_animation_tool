@@ -1,0 +1,193 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 60,
+    "frames": 300
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1a1a2e",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Text Styles Demo",
+      "x": 960,
+      "y": 100,
+      "size": 72,
+      "color": "#FFFFFF",
+      "bold": true,
+      "anchor": "center"
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "regular",
+      "params": {
+        "text": "Regular Text",
+        "x": 300,
+        "y": 250,
+        "size": 48,
+        "color": "#00D9FF",
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "bold",
+      "params": {
+        "text": "Bold Text",
+        "x": 300,
+        "y": 350,
+        "size": 48,
+        "color": "#FF6B6B",
+        "bold": true,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "italic",
+      "params": {
+        "text": "Italic Text",
+        "x": 300,
+        "y": 450,
+        "size": 48,
+        "color": "#4ECDC4",
+        "italic": true,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "bold-italic",
+      "params": {
+        "text": "Bold Italic Text",
+        "x": 300,
+        "y": 550,
+        "size": 48,
+        "color": "#FFE66D",
+        "bold": true,
+        "italic": true,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "underline",
+      "params": {
+        "text": "Underlined Text",
+        "x": 300,
+        "y": 650,
+        "size": 48,
+        "color": "#A8DADC",
+        "underline": true,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "stroke-thin",
+      "params": {
+        "text": "Thin Stroke",
+        "x": 1200,
+        "y": 250,
+        "size": 48,
+        "color": "#FFFFFF",
+        "stroke": "#FF00FF",
+        "strokeWidth": 2,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "stroke-thick",
+      "params": {
+        "text": "Thick Stroke",
+        "x": 1200,
+        "y": 350,
+        "size": 48,
+        "color": "#FFFFFF",
+        "stroke": "#00FF00",
+        "strokeWidth": 5,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "stroke-bold",
+      "params": {
+        "text": "Bold + Stroke",
+        "x": 1200,
+        "y": 450,
+        "size": 48,
+        "color": "#FFD700",
+        "bold": true,
+        "stroke": "#FF0000",
+        "strokeWidth": 3,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "all-combined",
+      "params": {
+        "text": "Bold Italic Underline + Stroke",
+        "x": 1200,
+        "y": 550,
+        "size": 42,
+        "color": "#00FFFF",
+        "bold": true,
+        "italic": true,
+        "underline": true,
+        "stroke": "#FF00FF",
+        "strokeWidth": 3,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "no-fill",
+      "params": {
+        "text": "Stroke Only (no fill)",
+        "x": 1200,
+        "y": 650,
+        "size": 48,
+        "color": "#1a1a2e",
+        "stroke": "#FFFFFF",
+        "strokeWidth": 2,
+        "anchor": "center"
+      }
+    },
+    {
+      "type": "component",
+      "source": "../components/text-pop.json",
+      "id": "footer",
+      "params": {
+        "text": "All text properties in action!",
+        "x": 960,
+        "y": 900,
+        "size": 36,
+        "color": "#888888",
+        "italic": true,
+        "anchor": "center"
+      }
+    }
+  ],
+  "animations": []
+}

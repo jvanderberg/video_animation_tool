@@ -19,10 +19,7 @@ describe('Cubic Bezier Easing', () => {
           fill: '#FF0000',
         }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'test-rect',
               property: 'x',
@@ -31,8 +28,6 @@ describe('Cubic Bezier Easing', () => {
                 { frame: 60, value: 100, easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)' }
               ]
             }
-          ]
-        }
       ]
     };
 
@@ -72,10 +67,7 @@ describe('Cubic Bezier Easing', () => {
           fill: '#00FF00',
         }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'test-rect',
               property: 'x',
@@ -91,8 +83,6 @@ describe('Cubic Bezier Easing', () => {
                 }
               ]
             }
-          ]
-        }
       ]
     };
 
@@ -118,10 +108,7 @@ describe('Cubic Bezier Easing', () => {
           fill: '#0000FF',
         }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'test-rect',
               property: 'x',
@@ -131,8 +118,6 @@ describe('Cubic Bezier Easing', () => {
                 { frame: 60, value: 100, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }
               ]
             }
-          ]
-        }
       ]
     };
 
@@ -169,10 +154,7 @@ describe('Cubic Bezier Easing', () => {
           fill: '#FF0000',
         }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'test-rect',
               property: 'x',
@@ -181,8 +163,6 @@ describe('Cubic Bezier Easing', () => {
                 { frame: 60, value: 90, easing: 'ease-in-out' }
               ]
             }
-          ]
-        }
       ]
     };
 
@@ -199,10 +179,7 @@ describe('Cubic Bezier Easing', () => {
           fill: '#FF0000',
         }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'test-rect',
               property: 'x',
@@ -211,8 +188,6 @@ describe('Cubic Bezier Easing', () => {
                 { frame: 60, value: 90, easing: 'cubic-bezier(0.42, 0, 0.58, 1)' }
               ]
             }
-          ]
-        }
       ]
     };
 
@@ -249,10 +224,7 @@ describe('Cubic Bezier Easing', () => {
           opacity: 0,
         }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'test-rect',
               property: 'opacity',
@@ -261,8 +233,6 @@ describe('Cubic Bezier Easing', () => {
                 { frame: 60, value: 1, easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)' }
               ]
             }
-          ]
-        }
       ]
     };
 
@@ -298,10 +268,7 @@ describe('Cubic Bezier Easing', () => {
           fill: '#FF00FF',
         }
       ],
-      sequences: [
-        {
-          name: 'test',
-          animations: [
+      animations: [
             {
               target: 'test-rect',
               property: 'x',
@@ -312,8 +279,6 @@ describe('Cubic Bezier Easing', () => {
                 { frame: 120, value: 250, easing: 'cubic-bezier(0, 0, 0.58, 1)' }
               ]
             }
-          ]
-        }
       ]
     };
 
