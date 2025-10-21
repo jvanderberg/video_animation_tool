@@ -1,0 +1,301 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "frames": 360
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#000000",
+      "opacity": 0,
+      "z": 0
+    },
+    {
+      "type": "group",
+      "id": "content",
+      "x": 0,
+      "y": 0,
+      "z": 10,
+      "children": [
+        {
+          "type": "text",
+          "id": "title",
+          "content": "Constant Resistance Load",
+          "x": 960,
+          "y": 150,
+          "size": 80,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center",
+          "clip": {
+            "x": 0,
+            "y": 0,
+            "width": "100%",
+            "height": 0
+          }
+        },
+        {
+          "type": "text",
+          "id": "line1",
+          "content": "V = I × R",
+          "x": 960,
+          "y": 300,
+          "size": 72,
+          "font": "sans-serif",
+          "color": "#FFFFFF",
+          "anchor": "center",
+          "clip": {
+            "x": 0,
+            "y": 0,
+            "width": "100%",
+            "height": 0
+          }
+        },
+        {
+          "type": "text",
+          "id": "line2",
+          "content": "→ R = V / I",
+          "x": 960,
+          "y": 420,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#AAAAFF",
+          "anchor": "center",
+          "clip": {
+            "x": 0,
+            "y": 0,
+            "width": "100%",
+            "height": 0
+          }
+        },
+        {
+          "type": "text",
+          "id": "line3",
+          "content": "Constant R means keeping V / I constant.",
+          "x": 960,
+          "y": 550,
+          "size": 48,
+          "font": "sans-serif",
+          "color": "#FFFF88",
+          "anchor": "center",
+          "clip": {
+            "x": 0,
+            "y": 0,
+            "width": "100%",
+            "height": 0
+          }
+        },
+        {
+          "type": "text",
+          "id": "line4",
+          "content": "Supply Adjusts Voltage → current constant",
+          "x": 960,
+          "y": 680,
+          "size": 48,
+          "font": "sans-serif",
+          "color": "#88FFAA",
+          "anchor": "center",
+          "clip": {
+            "x": 0,
+            "y": 0,
+            "width": "100%",
+            "height": 0
+          }
+        },
+        {
+          "type": "text",
+          "id": "line5",
+          "content": "Load adjusts current → V/I constant.",
+          "x": 960,
+          "y": 810,
+          "size": 48,
+          "font": "sans-serif",
+          "color": "#88FFAA",
+          "anchor": "center",
+          "clip": {
+            "x": 0,
+            "y": 0,
+            "width": "100%",
+            "height": 0
+          }
+        },
+        {
+          "type": "text",
+          "id": "line6",
+          "content": "No conflict!",
+          "x": 960,
+          "y": 950,
+          "size": 64,
+          "font": "sans-serif",
+          "color": "#FF88FF",
+          "anchor": "center",
+          "clip": {
+            "x": 0,
+            "y": 0,
+            "width": "100%",
+            "height": 0
+          }
+        }
+      ]
+    }
+  ],
+  "animations": [
+    {
+      "target": "background",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "start": "0.0s",
+          "value": 0
+        },
+        {
+          "start": "0.5s",
+          "value": 0.75,
+          "easing": "ease-in"
+        }
+      ]
+    },
+    {
+      "target": "background",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "start": "14.5s",
+          "value": 0.75
+        },
+        {
+          "start": "15.0s",
+          "value": 0,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "content",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "start": "14.5s",
+          "value": 1
+        },
+        {
+          "start": "15.0s",
+          "value": 0,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "title",
+      "property": "clip.height",
+      "keyframes": [
+        {
+          "start": "0.5s",
+          "value": 0
+        },
+        {
+          "start": "1.0s",
+          "value": 100,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "line1",
+      "property": "clip.height",
+      "keyframes": [
+        {
+          "start": "2.0s",
+          "value": 0
+        },
+        {
+          "start": "2.5s",
+          "value": 100,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "line2",
+      "property": "clip.height",
+      "keyframes": [
+        {
+          "start": "4.0s",
+          "value": 0
+        },
+        {
+          "start": "4.5s",
+          "value": 100,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "line3",
+      "property": "clip.height",
+      "keyframes": [
+        {
+          "start": "6.0s",
+          "value": 0
+        },
+        {
+          "start": "6.5s",
+          "value": 100,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "line4",
+      "property": "clip.height",
+      "keyframes": [
+        {
+          "start": "8.0s",
+          "value": 0
+        },
+        {
+          "start": "8.5s",
+          "value": 100,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "line5",
+      "property": "clip.height",
+      "keyframes": [
+        {
+          "start": "10.0s",
+          "value": 0
+        },
+        {
+          "start": "10.5s",
+          "value": 100,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "line6",
+      "property": "clip.height",
+      "keyframes": [
+        {
+          "start": "12.0s",
+          "value": 0
+        },
+        {
+          "start": "12.5s",
+          "value": 100,
+          "easing": "ease-out"
+        }
+      ]
+    }
+  ]
+}

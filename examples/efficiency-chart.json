@@ -1,0 +1,791 @@
+{
+    "project": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 24,
+        "frames": 300
+    },
+    "objects": [
+
+        {
+            "type": "rect",
+            "id": "background",
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 1080,
+            "fill": "#000000",
+            "opacity": 0,
+            "z": 0
+        },
+        {
+            "type": "group",
+            "id": "chart-content",
+            "x": 0,
+            "y": 1200,
+            "z": 10,
+            "animationSpeed": 0.5,
+            "animations": [
+                {
+                    "target": "title",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "0.16666666666666666s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.0s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "subtitle",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "0.6666666666666666s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.0s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "title",
+                    "property": "scale",
+                    "keyframes": [
+                        {
+                            "start": "0.16666666666666666s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.0s",
+                            "value": 1,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "subtitle",
+                    "property": "scale",
+                    "keyframes": [
+                        {
+                            "start": "0.6666666666666666s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.0s",
+                            "value": 1,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-15v",
+                    "property": "x",
+                    "keyframes": [
+                        {
+                            "start": "1.0s",
+                            "value": -200
+                        },
+                        {
+                            "start": "1.25s",
+                            "value": 310,
+                            "easing": "ease-out"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-15v-rect",
+                    "property": "height",
+                    "keyframes": [
+                        {
+                            "start": "1.25s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.5s",
+                            "value": 515,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-15v-label",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "1.5s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.6666666666666667s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-20v",
+                    "property": "x",
+                    "keyframes": [
+                        {
+                            "start": "1.0666666666666667s",
+                            "value": -200
+                        },
+                        {
+                            "start": "1.3166666666666667s",
+                            "value": 510,
+                            "easing": "ease-out"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-20v-rect",
+                    "property": "height",
+                    "keyframes": [
+                        {
+                            "start": "1.3166666666666667s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.5666666666666667s",
+                            "value": 550,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-20v-label",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "1.5666666666666667s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.7333333333333334s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-25v",
+                    "property": "x",
+                    "keyframes": [
+                        {
+                            "start": "1.1333333333333333s",
+                            "value": -200
+                        },
+                        {
+                            "start": "1.3833333333333333s",
+                            "value": 710,
+                            "easing": "ease-out"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-25v-rect",
+                    "property": "height",
+                    "keyframes": [
+                        {
+                            "start": "1.3833333333333333s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.6333333333333333s",
+                            "value": 566,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-25v-label",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "1.6333333333333333s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.8s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-30v",
+                    "property": "x",
+                    "keyframes": [
+                        {
+                            "start": "1.2s",
+                            "value": -200
+                        },
+                        {
+                            "start": "1.45s",
+                            "value": 910,
+                            "easing": "ease-out"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-30v-rect",
+                    "property": "height",
+                    "keyframes": [
+                        {
+                            "start": "1.45s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.7s",
+                            "value": 575,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-30v-label",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "1.7s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.8666666666666667s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-35v",
+                    "property": "x",
+                    "keyframes": [
+                        {
+                            "start": "1.2666666666666666s",
+                            "value": -200
+                        },
+                        {
+                            "start": "1.5166666666666666s",
+                            "value": 1110,
+                            "easing": "ease-out"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-35v-rect",
+                    "property": "height",
+                    "keyframes": [
+                        {
+                            "start": "1.5166666666666666s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.7666666666666666s",
+                            "value": 584,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-35v-label",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "1.7666666666666666s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.9333333333333333s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-40v",
+                    "property": "x",
+                    "keyframes": [
+                        {
+                            "start": "1.3333333333333333s",
+                            "value": -200
+                        },
+                        {
+                            "start": "1.5833333333333333s",
+                            "value": 1310,
+                            "easing": "ease-out"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-40v-rect",
+                    "property": "height",
+                    "keyframes": [
+                        {
+                            "start": "1.5833333333333333s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.8333333333333333s",
+                            "value": 588,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-40v-label",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "1.8333333333333333s",
+                            "value": 0
+                        },
+                        {
+                            "start": "2.0s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-45v",
+                    "property": "x",
+                    "keyframes": [
+                        {
+                            "start": "1.4s",
+                            "value": -200
+                        },
+                        {
+                            "start": "1.65s",
+                            "value": 1510,
+                            "easing": "ease-out"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-45v-rect",
+                    "property": "height",
+                    "keyframes": [
+                        {
+                            "start": "1.65s",
+                            "value": 0
+                        },
+                        {
+                            "start": "1.9s",
+                            "value": 593,
+                            "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
+                        }
+                    ]
+                },
+                {
+                    "target": "bar-45v-label",
+                    "property": "opacity",
+                    "keyframes": [
+                        {
+                            "start": "1.9s",
+                            "value": 0
+                        },
+                        {
+                            "start": "2.066666666666667s",
+                            "value": 1,
+                            "easing": "ease-in"
+                        }
+                    ]
+                }
+            ],
+            "children": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "content": "Efficiency @48V/100W output",
+                    "x": 960,
+                    "y": 85,
+                    "size": 72,
+                    "font": "sans-serif",
+                    "color": "#FFFFFF",
+                    "anchor": "center",
+                    "opacity": 0,
+                    "scale": 0
+                },
+                {
+                    "type": "text",
+                    "id": "subtitle",
+                    "content": "Efficiency vs Input Voltage",
+                    "x": 960,
+                    "y": 160,
+                    "size": 36,
+                    "font": "sans-serif",
+                    "color": "#AAAAAA",
+                    "anchor": "center",
+                    "opacity": 0,
+                    "scale": 0
+                },
+                {
+                    "type": "group",
+                    "id": "bar-15v",
+                    "x": -200,
+                    "y": 850,
+                    "children": [
+                        {
+                            "type": "rect",
+                            "id": "bar-15v-rect",
+                            "x": 0,
+                            "y": 0,
+                            "width": 100,
+                            "height": 0,
+                            "anchor": "bottom-left",
+                            "fill": "#FF9F43"
+                        },
+                        {
+                            "type": "text",
+                            "content": "15V",
+                            "x": 50,
+                            "y": 30,
+                            "size": 48,
+                            "color": "#FFFFFF",
+                            "anchor": "center"
+                        },
+                        {
+                            "type": "text",
+                            "id": "bar-15v-label",
+                            "content": "89.6%",
+                            "x": 50,
+                            "y": -555,
+                            "size": 40,
+                            "color": "#FF9F43",
+                            "anchor": "center",
+                            "opacity": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "id": "bar-20v",
+                    "x": -200,
+                    "y": 850,
+                    "children": [
+                        {
+                            "type": "rect",
+                            "id": "bar-20v-rect",
+                            "x": 0,
+                            "y": 0,
+                            "width": 100,
+                            "height": 0,
+                            "anchor": "bottom-left",
+                            "fill": "#FFC837"
+                        },
+                        {
+                            "type": "text",
+                            "content": "20V",
+                            "x": 50,
+                            "y": 30,
+                            "size": 48,
+                            "color": "#FFFFFF",
+                            "anchor": "center"
+                        },
+                        {
+                            "type": "text",
+                            "id": "bar-20v-label",
+                            "content": "92.3%",
+                            "x": 50,
+                            "y": -590,
+                            "size": 40,
+                            "color": "#FFC837",
+                            "anchor": "center",
+                            "opacity": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "id": "bar-25v",
+                    "x": -200,
+                    "y": 850,
+                    "children": [
+                        {
+                            "type": "rect",
+                            "id": "bar-25v-rect",
+                            "x": 0,
+                            "y": 0,
+                            "width": 100,
+                            "height": 0,
+                            "anchor": "bottom-left",
+                            "fill": "#C7EA46"
+                        },
+                        {
+                            "type": "text",
+                            "content": "25V",
+                            "x": 50,
+                            "y": 30,
+                            "size": 48,
+                            "color": "#FFFFFF",
+                            "anchor": "center"
+                        },
+                        {
+                            "type": "text",
+                            "id": "bar-25v-label",
+                            "content": "93.6%",
+                            "x": 50,
+                            "y": -606,
+                            "size": 40,
+                            "color": "#C7EA46",
+                            "anchor": "center",
+                            "opacity": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "id": "bar-30v",
+                    "x": -200,
+                    "y": 850,
+                    "children": [
+                        {
+                            "type": "rect",
+                            "id": "bar-30v-rect",
+                            "x": 0,
+                            "y": 0,
+                            "width": 100,
+                            "height": 0,
+                            "anchor": "bottom-left",
+                            "fill": "#7BED8F"
+                        },
+                        {
+                            "type": "text",
+                            "content": "30V",
+                            "x": 50,
+                            "y": 30,
+                            "size": 48,
+                            "color": "#FFFFFF",
+                            "anchor": "center"
+                        },
+                        {
+                            "type": "text",
+                            "id": "bar-30v-label",
+                            "content": "94.3%",
+                            "x": 50,
+                            "y": -615,
+                            "size": 40,
+                            "color": "#7BED8F",
+                            "anchor": "center",
+                            "opacity": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "id": "bar-35v",
+                    "x": -200,
+                    "y": 850,
+                    "children": [
+                        {
+                            "type": "rect",
+                            "id": "bar-35v-rect",
+                            "x": 0,
+                            "y": 0,
+                            "width": 100,
+                            "height": 0,
+                            "anchor": "bottom-left",
+                            "fill": "#5FD87F"
+                        },
+                        {
+                            "type": "text",
+                            "content": "35V",
+                            "x": 50,
+                            "y": 30,
+                            "size": 48,
+                            "color": "#FFFFFF",
+                            "anchor": "center"
+                        },
+                        {
+                            "type": "text",
+                            "id": "bar-35v-label",
+                            "content": "94.9%",
+                            "x": 50,
+                            "y": -624,
+                            "size": 40,
+                            "color": "#5FD87F",
+                            "anchor": "center",
+                            "opacity": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "id": "bar-40v",
+                    "x": -200,
+                    "y": 850,
+                    "children": [
+                        {
+                            "type": "rect",
+                            "id": "bar-40v-rect",
+                            "x": 0,
+                            "y": 0,
+                            "width": 100,
+                            "height": 0,
+                            "anchor": "bottom-left",
+                            "fill": "#32C766"
+                        },
+                        {
+                            "type": "text",
+                            "content": "40V",
+                            "x": 50,
+                            "y": 30,
+                            "size": 48,
+                            "color": "#FFFFFF",
+                            "anchor": "center"
+                        },
+                        {
+                            "type": "text",
+                            "id": "bar-40v-label",
+                            "content": "95.3%",
+                            "x": 50,
+                            "y": -628,
+                            "size": 40,
+                            "color": "#32C766",
+                            "anchor": "center",
+                            "opacity": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "id": "bar-45v",
+                    "x": -200,
+                    "y": 850,
+                    "children": [
+                        {
+                            "type": "rect",
+                            "id": "bar-45v-rect",
+                            "x": 0,
+                            "y": 0,
+                            "width": 100,
+                            "height": 0,
+                            "anchor": "bottom-left",
+                            "fill": "#0FB555"
+                        },
+                        {
+                            "type": "text",
+                            "content": "45V",
+                            "x": 50,
+                            "y": 30,
+                            "size": 48,
+                            "color": "#FFFFFF",
+                            "anchor": "center"
+                        },
+                        {
+                            "type": "text",
+                            "id": "bar-45v-label",
+                            "content": "95.6%",
+                            "x": 50,
+                            "y": -633,
+                            "size": 40,
+                            "color": "#0FB555",
+                            "anchor": "center",
+                            "opacity": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "50%",
+                    "x": 230,
+                    "y": 840,
+                    "size": 32,
+                    "color": "#AAAAAA",
+                    "anchor": "right"
+                },
+                {
+                    "type": "rect",
+                    "id": "baseline",
+                    "x": 260,
+                    "y": 850,
+                    "width": 1400,
+                    "height": 2,
+                    "fill": "#555555"
+                }
+            ]
+        }
+    ],
+    "animations": [
+        {
+            "target": "background",
+            "property": "opacity",
+            "keyframes": [
+                {
+                    "start": "0.0s",
+                    "value": 0
+                },
+                {
+                    "start": "0.5s",
+                    "value": 0.75,
+                    "easing": "ease-in"
+                }
+            ]
+        },
+        {
+            "target": "background",
+            "property": "opacity",
+            "keyframes": [
+                {
+                    "start": "10s",
+                    "value": 0.75
+                },
+                {
+                    "start": "10.5s",
+                    "value": 0,
+                    "easing": "ease-in"
+                }
+            ]
+        },
+        {
+            "target": "chart-content",
+            "property": "y",
+            "keyframes": [
+                {
+                    "start": "0.0s",
+                    "value": 1200
+                },
+                {
+                    "start": "0.5833333333333334s",
+                    "value": 60,
+                    "easing": "ease-out"
+                },
+                {
+                    "start": "0.8333333333333334s",
+                    "value": 115,
+                    "easing": "ease-in-out"
+                },
+                {
+                    "start": "1.0s",
+                    "value": 100,
+                    "easing": "ease-out"
+                }
+            ]
+        },
+        {
+            "target": "chart-content",
+            "property": "y",
+            "keyframes": [
+                {
+                    "start": "10s",
+                    "value": 100
+                },
+                {
+                    "start": "10.583333333333334s",
+                    "value": 1200,
+                    "easing": "ease-in"
+                }
+            ]
+        }
+    ]
+}

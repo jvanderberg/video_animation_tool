@@ -385,6 +385,30 @@ function isGroupAnimation(anim: any): boolean {
 }
 
 /**
+ * Find the full path to a target object within a tree of objects
+ */
+function findObjectPath(targetId: string, objects: AnimationObject[], currentPath: string = ''): string | null {
+  for (const obj of objects) {
+    const objPath = currentPath ? `${currentPath}.${obj.id}` : obj.id || '';
+
+    if (obj.id === targetId) {
+      return objPath;
+    }
+
+    // Search in children if this is a group
+    if (obj.type === 'group') {
+      const group = obj as GroupObject;
+      if (group.children) {
+        const found = findObjectPath(targetId, group.children, objPath);
+        if (found) return found;
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
  * Process animations (GroupAnimation or Animation format) and convert to absolute timing
  * This handles both root-level animations and nested group animations uniformly
  */
@@ -402,7 +426,14 @@ async function processAnimations(
     if (isGroupAnimation(anim)) {
       // GroupAnimation with relative timing (effects already expanded)
       const groupAnim = anim as GroupAnimation;
-      const fullTarget = pathPrefix ? `${pathPrefix}.${groupAnim.target}` : groupAnim.target;
+
+      // Find the full path to the target within the object tree
+      const targetPath = findObjectPath(groupAnim.target, objects);
+      if (!targetPath) {
+        throw new Error(`Animation target "${groupAnim.target}" not found in object tree`);
+      }
+
+      const fullTarget = pathPrefix ? `${pathPrefix}.${targetPath}` : targetPath;
 
       if (groupAnim.property && groupAnim.keyframes) {
         // Property animation - convert relative keyframes to absolute frames
@@ -424,6 +455,15 @@ async function processAnimations(
       // Apply animationSpeed to keyframes
       const absAnim = anim as PropertyAnimation;
       if ('keyframes' in absAnim && absAnim.keyframes) {
+        // Find the full path to the target within the object tree
+        const targetPath = findObjectPath(absAnim.target, objects);
+        if (!targetPath) {
+          throw new Error(`Animation target "${absAnim.target}" not found in object tree`);
+        }
+
+        // Add path prefix to target
+        const fullTarget = pathPrefix ? `${pathPrefix}.${targetPath}` : targetPath;
+
         // Apply speed to absolute keyframes
         const speedAdjustedKeyframes: Keyframe[] = absAnim.keyframes.map(kf => ({
           frame: kf.frame / animationSpeed,
@@ -433,6 +473,7 @@ async function processAnimations(
 
         processed.push({
           ...absAnim,
+          target: fullTarget,
           keyframes: speedAdjustedKeyframes
         } as PropertyAnimation);
       }

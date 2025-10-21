@@ -1,0 +1,64 @@
+{
+  "project": {
+    "width": 400,
+    "height": 400,
+    "fps": 60,
+    "frames": 200
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 400,
+      "height": 400,
+      "fill": "#1a1a2e"
+    },
+    {
+      "type": "group",
+      "id": "parent",
+      "x": 0,
+      "y": 0,
+      "animationSpeed": 0.5,
+      "animations": [
+        {
+          "target": "child-group",
+          "property": "x",
+          "keyframes": [
+            { "start": "1.0s", "value": 0 },
+            { "start": "2.0s", "value": 100 }
+          ]
+        },
+        {
+          "target": "box",
+          "property": "height",
+          "keyframes": [
+            { "start": "1.0s", "value": 0 },
+            { "start": "2.0s", "value": 50 }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "group",
+          "id": "child-group",
+          "x": 0,
+          "y": 100,
+          "children": [
+            {
+              "type": "rect",
+              "id": "box",
+              "x": 0,
+              "y": 0,
+              "width": 50,
+              "height": 0,
+              "anchor": "bottom-left",
+              "fill": "#FF0000"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
