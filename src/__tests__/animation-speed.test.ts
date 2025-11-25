@@ -47,8 +47,8 @@ describe('Animation Speed', () => {
 
       expect(boxAnim).toBeDefined();
       expect(boxAnim.keyframes).toHaveLength(2);
-      expect(boxAnim.keyframes[0].frame).toBe(0);
-      expect(boxAnim.keyframes[1].frame).toBe(60); // 1s at 60fps (was 2s, now 2s/2.0 = 1s)
+      expect(boxAnim.keyframes[0].start).toBe(0);
+      expect(boxAnim.keyframes[1].start).toBe(60); // 1s at 60fps (was 2s, now 2s/2.0 = 1s)
     });
 
     it('should slow down group animations by 0.5x', async () => {
@@ -94,8 +94,8 @@ describe('Animation Speed', () => {
 
       expect(boxAnim).toBeDefined();
       expect(boxAnim.keyframes).toHaveLength(2);
-      expect(boxAnim.keyframes[0].frame).toBe(0);
-      expect(boxAnim.keyframes[1].frame).toBe(120); // 2s at 60fps (was 1s, now 1s/0.5 = 2s)
+      expect(boxAnim.keyframes[0].start).toBe(0);
+      expect(boxAnim.keyframes[1].start).toBe(120); // 2s at 60fps (was 1s, now 1s/0.5 = 2s)
     });
 
     it('should not affect group transitions', async () => {
@@ -149,24 +149,24 @@ describe('Animation Speed', () => {
 
       // Find fadeIn animation (starts at 0)
       const fadeInAnim = opacityAnims.find(a =>
-        a.keyframes[0].frame === 0
+        a.keyframes[0].start === 0
       );
 
       // Find fadeOut animation (starts at 120 = 2s duration)
       const fadeOutAnim = opacityAnims.find(a =>
-        a.keyframes[0].frame === 120
+        a.keyframes[0].start === 120
       );
 
       // Transitions should not be affected by animationSpeed
       // fadeIn should be 0.5s = 30 frames at 60fps
       expect(fadeInAnim).toBeDefined();
-      expect(fadeInAnim!.keyframes[0].frame).toBe(0);
-      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].frame).toBe(30); // 0.5s
+      expect(fadeInAnim!.keyframes[0].start).toBe(0);
+      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].start).toBe(30); // 0.5s
 
       // fadeOut should also be 0.5s = 30 frames
       expect(fadeOutAnim).toBeDefined();
-      expect(fadeOutAnim!.keyframes[0].frame).toBe(120); // Start of fadeOut
-      expect(fadeOutAnim!.keyframes[fadeOutAnim!.keyframes.length - 1].frame).toBe(150); // 120 + 30
+      expect(fadeOutAnim!.keyframes[0].start).toBe(120); // Start of fadeOut
+      expect(fadeOutAnim!.keyframes[fadeOutAnim!.keyframes.length - 1].start).toBe(150); // 120 + 30
     });
   });
 
@@ -191,8 +191,8 @@ describe('Animation Speed', () => {
             target: 'box',
             property: 'x',
             keyframes: [
-              { frame: 0, value: 0 },
-              { frame: 120, value: 100 }  // Should become frame 60 (120 / 2.0)
+              { start: 0, value: 0 },
+              { start: 120, value: 100 }  // Should become frame 60 (120 / 2.0)
             ]
           }
         ]
@@ -205,8 +205,8 @@ describe('Animation Speed', () => {
 
       expect(boxAnim).toBeDefined();
       expect(boxAnim.keyframes).toHaveLength(2);
-      expect(boxAnim.keyframes[0].frame).toBe(0);
-      expect(boxAnim.keyframes[1].frame).toBe(60); // 120 / 2.0 = 60
+      expect(boxAnim.keyframes[0].start).toBe(0);
+      expect(boxAnim.keyframes[1].start).toBe(60); // 120 / 2.0 = 60
     });
 
     it('should not affect group transitions with root animationSpeed', async () => {
@@ -254,14 +254,14 @@ describe('Animation Speed', () => {
 
       // Find fadeIn animation (starts at 0)
       const fadeInAnim = opacityAnims.find(a =>
-        a.keyframes[0].frame === 0
+        a.keyframes[0].start === 0
       );
 
       // Transitions should not be affected by root animationSpeed
       // fadeIn should be 0.5s = 30 frames at 60fps (not affected by 2x speed)
       expect(fadeInAnim).toBeDefined();
-      expect(fadeInAnim!.keyframes[0].frame).toBe(0);
-      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].frame).toBe(30); // 0.5s
+      expect(fadeInAnim!.keyframes[0].start).toBe(0);
+      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].start).toBe(30); // 0.5s
     });
   });
 
@@ -310,8 +310,8 @@ describe('Animation Speed', () => {
 
       expect(boxAnim).toBeDefined();
       expect(boxAnim.keyframes).toHaveLength(2);
-      expect(boxAnim.keyframes[0].frame).toBe(0);
-      expect(boxAnim.keyframes[1].frame).toBe(60); // 4s / 2.0 / 2.0 = 1s = 60 frames
+      expect(boxAnim.keyframes[0].start).toBe(0);
+      expect(boxAnim.keyframes[1].start).toBe(60); // 4s / 2.0 / 2.0 = 1s = 60 frames
     });
   });
 });

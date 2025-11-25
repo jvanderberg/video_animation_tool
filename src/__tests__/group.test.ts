@@ -418,8 +418,8 @@ describe('Group Rendering', () => {
             target: 'moving-group',
             property: 'x',
             keyframes: [
-              { frame: 0, value: 50 },
-              { frame: 60, value: 300 },
+              { start: 0, value: 50 },
+              { start: 60, value: 300 },
             ],
           },
         ],
@@ -474,8 +474,8 @@ describe('Group Rendering', () => {
             target: 'rotating-group',
             property: 'rotation',
             keyframes: [
-              { frame: 0, value: 0 },
-              { frame: 60, value: 360 },
+              { start: 0, value: 0 },
+              { start: 60, value: 360 },
             ],
           },
         ],
@@ -525,8 +525,8 @@ describe('Group Rendering', () => {
             target: 'fading-group',
             property: 'opacity',
             keyframes: [
-              { frame: 0, value: 0 },
-              { frame: 30, value: 1 },
+              { start: 0, value: 0 },
+              { start: 30, value: 1 },
             ],
           },
         ],

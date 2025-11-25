@@ -52,11 +52,11 @@ describe('Group effect timing', () => {
     // Effect should start at group start time (5s = 300 frames)
     // NOT at frame 0
     if (xAnim && 'keyframes' in xAnim) {
-      expect(xAnim.keyframes[0].frame).toBe(300);
+      expect(xAnim.keyframes[0].start).toBe(300);
     }
 
     if (opacityAnim && 'keyframes' in opacityAnim) {
-      expect(opacityAnim.keyframes[0].frame).toBe(300);
+      expect(opacityAnim.keyframes[0].start).toBe(300);
     }
   });
 

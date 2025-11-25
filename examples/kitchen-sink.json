@@ -424,20 +424,20 @@
       "property": "opacity",
       "keyframes": [
         {
-          "frame": 0,
+          "start": 0,
           "value": 0
         },
         {
-          "frame": 30,
+          "start": 30,
           "value": 1,
           "easing": "ease-out"
         },
         {
-          "frame": 100,
+          "start": 100,
           "value": 1
         },
         {
-          "frame": 130,
+          "start": 130,
           "value": 0,
           "easing": "ease-in"
         }
@@ -448,11 +448,11 @@
       "property": "scale",
       "keyframes": [
         {
-          "frame": 0,
+          "start": 0,
           "value": 0
         },
         {
-          "frame": 30,
+          "start": 30,
           "value": 1,
           "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
         }
@@ -463,20 +463,20 @@
       "property": "opacity",
       "keyframes": [
         {
-          "frame": 15,
+          "start": 15,
           "value": 0
         },
         {
-          "frame": 45,
+          "start": 45,
           "value": 1,
           "easing": "ease-out"
         },
         {
-          "frame": 100,
+          "start": 100,
           "value": 1
         },
         {
-          "frame": 130,
+          "start": 130,
           "value": 0,
           "easing": "ease-in"
         }

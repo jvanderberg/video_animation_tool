@@ -129,8 +129,8 @@ describe('Scale Transform', () => {
           target: 'box',
           property: 'scale',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 2.0 }
+            { start: 0, value: 0 },
+            { start: 60, value: 2.0 }
           ]
         }
       ]

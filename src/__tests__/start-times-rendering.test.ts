@@ -170,8 +170,8 @@ describe('Start-based times in nested groups', () => {
       // With animationSpeed 0.5:
       // start "1.0s" = 60 frames, divided by 0.5 = 120 frames
       // start "2.0s" = 120 frames, divided by 0.5 = 240 frames
-      expect(childGroupXAnim.keyframes[0].frame).toBe(120);
-      expect(childGroupXAnim.keyframes[1].frame).toBe(240);
+      expect(childGroupXAnim.keyframes[0].start).toBe(120);
+      expect(childGroupXAnim.keyframes[1].start).toBe(240);
     }
   });
 });

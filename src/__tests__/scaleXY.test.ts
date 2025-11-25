@@ -182,8 +182,8 @@ describe('ScaleX/ScaleY Transform', () => {
               target: 'box',
               property: 'scaleX',
               keyframes: [
-                { frame: 0, value: 1 },
-                { frame: 60, value: 2.0 }
+                { start: 0, value: 1 },
+                { start: 60, value: 2.0 }
               ]
             }
       ]
@@ -228,8 +228,8 @@ describe('ScaleX/ScaleY Transform', () => {
               target: 'box',
               property: 'scaleY',
               keyframes: [
-                { frame: 0, value: 1 },
-                { frame: 60, value: 2.0 }
+                { start: 0, value: 1 },
+                { start: 60, value: 2.0 }
               ]
             }
       ]

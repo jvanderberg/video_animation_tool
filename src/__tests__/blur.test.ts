@@ -50,8 +50,8 @@ describe('Blur Effect', () => {
         target: 'box',
         property: 'blur',
         keyframes: [
-          { frame: 0, value: 0 },
-          { frame: 30, value: 10 }
+          { start: 0, value: 0 },
+          { start: 30, value: 10 }
         ]
       }]
     };

@@ -38,10 +38,12 @@ export interface ProjectConfig {
   frames: number;
 }
 
-// Keyframe for animation (frame-based)
-// Value can be a number (pixels) or string (percentage like "50%")
+// Keyframe for animation
+// - 'start' can be a number (frames) or time string ("1s", "500ms", "0.5m")
+// - After preprocessing, 'start' is always converted to a numeric frame
+// - Value can be a number (pixels) or string (percentage like "50%")
 export interface Keyframe {
-  frame: number;
+  start: TimeValue;
   value: number | string;
   easing?: EasingType;
 }

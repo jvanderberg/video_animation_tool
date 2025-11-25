@@ -161,17 +161,17 @@
       "target": "rotating-badge",
       "property": "rotation",
       "keyframes": [
-        {"frame": 120, "value": 0},
-        {"frame": 180, "value": 360, "easing": "linear"}
+        {"start": 120, "value": 0},
+        {"start": 180, "value": 360, "easing": "linear"}
       ]
     },
     {
       "target": "button1",
       "property": "scale",
       "keyframes": [
-        {"frame": 90, "value": 2.0},
-        {"frame": 105, "value": 2.3, "easing": "ease-in-out"},
-        {"frame": 120, "value": 2.0, "easing": "ease-in-out"}
+        {"start": 90, "value": 2.0},
+        {"start": 105, "value": 2.3, "easing": "ease-in-out"},
+        {"start": 120, "value": 2.0, "easing": "ease-in-out"}
       ]
     }
   ]

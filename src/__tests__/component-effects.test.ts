@@ -105,9 +105,9 @@ describe('Component Effects', () => {
     expect(xAnim.target).toBe('comp.box');
     expect(xAnim.property).toBe('x');
     expect(xAnim.keyframes.length).toBe(2);
-    expect(xAnim.keyframes[0].frame).toBe(0);
+    expect(xAnim.keyframes[0].start).toBe(0);
     expect(xAnim.keyframes[0].value).toBe(0);
-    expect(xAnim.keyframes[1].frame).toBe(30); // 1s at 30fps
+    expect(xAnim.keyframes[1].start).toBe(30); // 1s at 30fps
     expect(xAnim.keyframes[1].value).toBe(100);
   });
 

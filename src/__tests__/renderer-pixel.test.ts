@@ -197,8 +197,8 @@ describe('Renderer - Pixel Validation', () => {
                 target: 'test-rect',
                 property: 'x',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 60, value: 180 },
+                  { start: 0, value: 0 },
+                  { start: 60, value: 180 },
                 ],
               },
         ],
@@ -250,8 +250,8 @@ describe('Renderer - Pixel Validation', () => {
                 target: 'test-rect',
                 property: 'y',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 40, value: 160 },
+                  { start: 0, value: 0 },
+                  { start: 40, value: 160 },
                 ],
               },
         ],
@@ -301,8 +301,8 @@ describe('Renderer - Pixel Validation', () => {
                 target: 'test-rect',
                 property: 'opacity',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 30, value: 1 },
+                  { start: 0, value: 0 },
+                  { start: 30, value: 1 },
                 ],
               },
         ],

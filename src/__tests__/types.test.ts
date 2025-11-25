@@ -148,9 +148,9 @@ describe('Type Definitions', () => {
   describe('Animation', () => {
     it('should create a valid animation with keyframes', () => {
       const keyframes: Keyframe[] = [
-        { frame: 0, value: 0 },
-        { frame: 30, value: 100, easing: 'ease-out' },
-        { frame: 60, value: 0, easing: 'ease-in' },
+        { start: 0, value: 0 },
+        { start: 30, value: 100, easing: 'ease-out' },
+        { start: 60, value: 0, easing: 'ease-in' },
       ];
 
       const animation: Animation = {
@@ -198,15 +198,15 @@ describe('Type Definitions', () => {
               {
                 property: 'opacity',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 30, value: 1, easing: 'ease-in' },
+                  { start: 0, value: 0 },
+                  { start: 30, value: 1, easing: 'ease-in' },
                 ],
               },
               {
                 property: 'y',
                 keyframes: [
-                  { frame: 0, value: 400 },
-                  { frame: 30, value: 540, easing: 'ease-out' },
+                  { start: 0, value: 400 },
+                  { start: 30, value: 540, easing: 'ease-out' },
                 ],
               },
             ],
@@ -235,8 +235,8 @@ describe('Type Definitions', () => {
               {
                 property: 'rotation',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 60, value: 360, easing: 'linear' },
+                  { start: 0, value: 0 },
+                  { start: 60, value: 360, easing: 'linear' },
                 ],
               },
             ],

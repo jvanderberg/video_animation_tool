@@ -25,36 +25,7 @@
 
 ---
 
-### 2. Unify time parameters: use 'duration' and 'start' (both accept seconds or frames)
-
-**Goal**: Resolve the inconsistency between frames/duration and start/startTime/startFrame parameters.
-
-**Status**: 🔵 **TODO** - Not started
-
-**What needs to be done:**
-- [ ] Audit all places that use time parameters (effects, animations, groups, transitions)
-- [ ] Decide on unified parameter names: `start` and `duration` (both accept TimeValue)
-- [ ] Update type definitions to use consistent naming
-- [ ] Update all code that creates/processes these parameters
-- [ ] Update all example files
-- [ ] Update tests
-- [ ] Update documentation
-
-**Current inconsistencies:**
-- EffectAnimation uses `start` (good)
-- GroupAnimation uses `start` for effects, but `keyframes[].start` for property animations
-- GroupObject uses `start` and `duration`
-- Effects use `duration` (in effect files)
-- Some places may still reference `startTime` or `startFrame`
-
-**Desired outcome:**
-- Everywhere uses `start: TimeValue` and `duration: TimeValue`
-- TimeValue = number (frames) | string (e.g., "1.5s", "500ms")
-- Consistent across all animation types
-
----
-
-### 3. Support project-level duration parameter
+### 2. Support project-level duration parameter
 
 **Goal**: Allow specifying project duration as a TimeValue instead of requiring manual frame calculation.
 
@@ -84,7 +55,7 @@ This would automatically calculate `frames: 480` (20 * 24) at parse time.
 
 ---
 
-### 4. Remove debug logging from production code
+### 3. Remove debug logging from production code
 
 **Goal**: Clean up any console.log statements that were added during debugging.
 
@@ -98,7 +69,7 @@ This would automatically calculate `frames: 480` (20 * 24) at parse time.
 
 ---
 
-### 5. Review recent features for missing test coverage
+### 4. Review recent features for missing test coverage
 
 **Goal**: Ensure all recent features have adequate test coverage.
 
@@ -125,6 +96,51 @@ This would automatically calculate `frames: 480` (20 * 24) at parse time.
 ---
 
 ## Recent Completions
+
+### ✅ COMPLETED - Unify keyframe timing to use 'start: TimeValue'
+
+**Status**: ✅ **COMPLETE** - All tasks finished
+
+**What was done:**
+- ✅ Changed `Keyframe.frame` to `Keyframe.start: TimeValue` in types.ts
+- ✅ Updated preprocessor to parse all TimeValue `start` values to frames
+- ✅ Updated renderer to use `kf.start` instead of `kf.frame`
+- ✅ Simplified `processAnimations()` - removed `isGroupAnimation()` detection hack
+- ✅ Updated components.ts to use new format
+- ✅ Updated all 36 test files to use `start` instead of `frame`
+- ✅ Updated all example JSON files
+- ✅ Updated CLAUDE.md documentation
+- ✅ All 251 tests passing, build succeeds
+
+**The new mental model:**
+- `start` is always relative to the parent context
+- Root level: relative to frame 0 (effectively absolute)
+- Group level: relative to group's start time
+- Supports both frames (numbers) and time strings ("1s", "500ms")
+
+**API Change Example:**
+
+**Old format:**
+```json
+{
+  "keyframes": [
+    {"frame": 0, "value": 0},
+    {"frame": 60, "value": 100}
+  ]
+}
+```
+
+**New format:**
+```json
+{
+  "keyframes": [
+    {"start": 0, "value": 0},
+    {"start": "2s", "value": 100}
+  ]
+}
+```
+
+---
 
 ### ✅ COMPLETED - Fix group effect timing and add debug tools
 

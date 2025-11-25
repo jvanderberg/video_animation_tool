@@ -504,16 +504,16 @@
       "target": "battery-fast-clock",
       "property": "rotation",
       "keyframes": [
-        {"frame": 168, "value": 0},
-        {"frame": 288, "value": 360, "easing": "linear"}
+        {"start": 168, "value": 0},
+        {"start": 288, "value": 360, "easing": "linear"}
       ]
     },
     {
       "target": "battery-slow-clock",
       "property": "rotation",
       "keyframes": [
-        {"frame": 298, "value": 0},
-        {"frame": 418, "value": 3600, "easing": "linear"}
+        {"start": 298, "value": 0},
+        {"start": 418, "value": 3600, "easing": "linear"}
       ]
     },
 
@@ -521,45 +521,45 @@
       "target": "battery-fast-bar-1",
       "property": "opacity",
       "keyframes": [
-        {"frame": 0, "value": 1},
-        {"frame": 191, "value": 1},
-        {"frame": 192, "value": 0}
+        {"start": 0, "value": 1},
+        {"start": 191, "value": 1},
+        {"start": 192, "value": 0}
       ]
     },
     {
       "target": "battery-fast-bar-2",
       "property": "opacity",
       "keyframes": [
-        {"frame": 0, "value": 1},
-        {"frame": 215, "value": 1},
-        {"frame": 216, "value": 0}
+        {"start": 0, "value": 1},
+        {"start": 215, "value": 1},
+        {"start": 216, "value": 0}
       ]
     },
     {
       "target": "battery-fast-bar-3",
       "property": "opacity",
       "keyframes": [
-        {"frame": 0, "value": 1},
-        {"frame": 239, "value": 1},
-        {"frame": 240, "value": 0}
+        {"start": 0, "value": 1},
+        {"start": 239, "value": 1},
+        {"start": 240, "value": 0}
       ]
     },
     {
       "target": "battery-fast-bar-4",
       "property": "opacity",
       "keyframes": [
-        {"frame": 0, "value": 1},
-        {"frame": 263, "value": 1},
-        {"frame": 264, "value": 0}
+        {"start": 0, "value": 1},
+        {"start": 263, "value": 1},
+        {"start": 264, "value": 0}
       ]
     },
     {
       "target": "battery-fast-bar-5",
       "property": "opacity",
       "keyframes": [
-        {"frame": 0, "value": 1},
-        {"frame": 287, "value": 1},
-        {"frame": 288, "value": 0}
+        {"start": 0, "value": 1},
+        {"start": 287, "value": 1},
+        {"start": 288, "value": 0}
       ]
     },
 
@@ -567,90 +567,90 @@
       "target": "battery-slow-bar-1a",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 309, "value": 1},
-        {"frame": 310, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 309, "value": 1},
+        {"start": 310, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-1b",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 321, "value": 1},
-        {"frame": 322, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 321, "value": 1},
+        {"start": 322, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-2a",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 333, "value": 1},
-        {"frame": 334, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 333, "value": 1},
+        {"start": 334, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-2b",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 345, "value": 1},
-        {"frame": 346, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 345, "value": 1},
+        {"start": 346, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-3a",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 357, "value": 1},
-        {"frame": 358, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 357, "value": 1},
+        {"start": 358, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-3b",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 369, "value": 1},
-        {"frame": 370, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 369, "value": 1},
+        {"start": 370, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-4a",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 381, "value": 1},
-        {"frame": 382, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 381, "value": 1},
+        {"start": 382, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-4b",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 393, "value": 1},
-        {"frame": 394, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 393, "value": 1},
+        {"start": 394, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-5a",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 405, "value": 1},
-        {"frame": 406, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 405, "value": 1},
+        {"start": 406, "value": 0}
       ]
     },
     {
       "target": "battery-slow-bar-5b",
       "property": "opacity",
       "keyframes": [
-        {"frame": 298, "value": 1},
-        {"frame": 417, "value": 1},
-        {"frame": 418, "value": 0}
+        {"start": 298, "value": 1},
+        {"start": 417, "value": 1},
+        {"start": 418, "value": 0}
       ]
     }
   ]

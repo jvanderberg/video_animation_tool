@@ -29,8 +29,8 @@ describe('Preprocessor', () => {
         target: 'box',
         property: 'x',
         keyframes: [
-          { frame: 0, value: 0 },
-          { frame: 60, value: 100 }
+          { start: 0, value: 0 },
+          { start: 60, value: 100 }
         ]
       }]
     };
@@ -69,14 +69,14 @@ describe('Preprocessor', () => {
 
     // Check scale keyframes
     expect(scaleAnim!.keyframes).toHaveLength(2);
-    expect(scaleAnim!.keyframes[0].frame).toBe(0);
+    expect(scaleAnim!.keyframes[0].start).toBe(0);
     expect(scaleAnim!.keyframes[0].value).toBe(0);
     expect(scaleAnim!.keyframes[1].value).toBe(1);
     expect(scaleAnim!.keyframes[1].easing).toBe('cubic-bezier(0.34, 1.56, 0.64, 1)');
 
     // Check opacity keyframes
     expect(opacityAnim!.keyframes).toHaveLength(2);
-    expect(opacityAnim!.keyframes[0].frame).toBe(0);
+    expect(opacityAnim!.keyframes[0].start).toBe(0);
     expect(opacityAnim!.keyframes[0].value).toBe(0);
     expect(opacityAnim!.keyframes[1].value).toBe(1);
   });
@@ -101,9 +101,9 @@ describe('Preprocessor', () => {
 
     // Pop starts at 1.0 seconds = frame 60
     // Duration is 0.33 seconds = ~20 frames
-    expect(scaleAnim!.keyframes[0].frame).toBe(60);
-    expect(scaleAnim!.keyframes[1].frame).toBeGreaterThanOrEqual(79);
-    expect(scaleAnim!.keyframes[1].frame).toBeLessThanOrEqual(80);
+    expect(scaleAnim!.keyframes[0].start).toBe(60);
+    expect(scaleAnim!.keyframes[1].start).toBeGreaterThanOrEqual(79);
+    expect(scaleAnim!.keyframes[1].start).toBeLessThanOrEqual(80);
   });
 
   it('should handle mixed effect and property animations', async () => {
@@ -122,8 +122,8 @@ describe('Preprocessor', () => {
           target: 'title',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 50 },
-            { frame: 60, value: 150 }
+            { start: 0, value: 50 },
+            { start: 60, value: 150 }
           ]
         }
       ]
@@ -138,8 +138,8 @@ describe('Preprocessor', () => {
     const xAnim = animations.find(a => a.property === 'x');
     expect(xAnim).toBeDefined();
     expect(xAnim!.keyframes).toEqual([
-      { frame: 0, value: 50 },
-      { frame: 60, value: 150 }
+      { start: 0, value: 50 },
+      { start: 60, value: 150 }
     ]);
   });
 
@@ -204,7 +204,7 @@ describe('Preprocessor', () => {
 
     // Pop duration is 0.33 seconds
     // At 30fps: 0.33 * 30 = ~10 frames
-    const duration30 = scale30.keyframes[1].frame - scale30.keyframes[0].frame;
+    const duration30 = scale30.keyframes[1].start - scale30.keyframes[0].start;
     expect(duration30).toBeGreaterThanOrEqual(9);
     expect(duration30).toBeLessThanOrEqual(10);
 
@@ -225,7 +225,7 @@ describe('Preprocessor', () => {
     const scale60 = animations60.find(a => a.property === 'scale')!;
 
     // At 60fps: 0.33 * 60 = ~20 frames
-    const duration60 = scale60.keyframes[1].frame - scale60.keyframes[0].frame;
+    const duration60 = scale60.keyframes[1].start - scale60.keyframes[0].start;
     expect(duration60).toBeGreaterThanOrEqual(19);
     expect(duration60).toBeLessThanOrEqual(20);
   });
@@ -249,7 +249,7 @@ describe('Preprocessor', () => {
     const scaleAnim = animations.find(a => a.property === 'scale')!;
 
     // Pop with custom duration 0.6s at 60fps = 36 frames
-    const duration = scaleAnim.keyframes[scaleAnim.keyframes.length - 1].frame - scaleAnim.keyframes[0].frame;
+    const duration = scaleAnim.keyframes[scaleAnim.keyframes.length - 1].start - scaleAnim.keyframes[0].start;
     expect(duration).toBe(36);
   });
 

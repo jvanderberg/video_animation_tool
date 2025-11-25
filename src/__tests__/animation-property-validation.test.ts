@@ -14,8 +14,8 @@ describe('Animation Property Validation', () => {
           target: 'box',
           property: 'radius', // rect doesn't have radius
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: 50 }
+            { start: 0, value: 0 },
+            { start: 30, value: 50 }
           ]
         }
       ]
@@ -37,8 +37,8 @@ describe('Animation Property Validation', () => {
           target: 'circle',
           property: 'width', // circle doesn't have width
           keyframes: [
-            { frame: 0, value: 50 },
-            { frame: 30, value: 100 }
+            { start: 0, value: 50 },
+            { start: 30, value: 100 }
           ]
         }
       ]
@@ -60,8 +60,8 @@ describe('Animation Property Validation', () => {
           target: 'nonexistent',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: 100 }
+            { start: 0, value: 0 },
+            { start: 30, value: 100 }
           ]
         }
       ]
@@ -83,22 +83,22 @@ describe('Animation Property Validation', () => {
         {
           target: 'box',
           property: 'x',
-          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 100 }]
+          keyframes: [{ start: 0, value: 0 }, { start: 30, value: 100 }]
         },
         {
           target: 'box',
           property: 'opacity',
-          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 1 }]
+          keyframes: [{ start: 0, value: 0 }, { start: 30, value: 1 }]
         },
         {
           target: 'circle',
           property: 'rotation',
-          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 360 }]
+          keyframes: [{ start: 0, value: 0 }, { start: 30, value: 360 }]
         },
         {
           target: 'circle',
           property: 'scale',
-          keyframes: [{ frame: 0, value: 1 }, { frame: 30, value: 2 }]
+          keyframes: [{ start: 0, value: 1 }, { start: 30, value: 2 }]
         }
       ]
     };
@@ -118,17 +118,17 @@ describe('Animation Property Validation', () => {
         {
           target: 'box',
           property: 'width',
-          keyframes: [{ frame: 0, value: 100 }, { frame: 30, value: 200 }]
+          keyframes: [{ start: 0, value: 100 }, { start: 30, value: 200 }]
         },
         {
           target: 'circle',
           property: 'radius',
-          keyframes: [{ frame: 0, value: 50 }, { frame: 30, value: 100 }]
+          keyframes: [{ start: 0, value: 50 }, { start: 30, value: 100 }]
         },
         {
           target: 'ellipse',
           property: 'radiusX',
-          keyframes: [{ frame: 0, value: 50 }, { frame: 30, value: 100 }]
+          keyframes: [{ start: 0, value: 50 }, { start: 30, value: 100 }]
         }
       ]
     };
@@ -146,7 +146,7 @@ describe('Animation Property Validation', () => {
         {
           target: 'box',
           property: 'clip.width',
-          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 100 }]
+          keyframes: [{ start: 0, value: 0 }, { start: 30, value: 100 }]
         }
       ]
     };
@@ -169,7 +169,7 @@ describe('Animation Property Validation', () => {
         {
           target: 'box',
           property: 'radius', // invalid for rect
-          keyframes: [{ frame: 0, value: 0 }, { frame: 30, value: 50 }]
+          keyframes: [{ start: 0, value: 0 }, { start: 30, value: 50 }]
         }
       ]
     };

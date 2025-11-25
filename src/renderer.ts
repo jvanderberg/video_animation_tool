@@ -465,10 +465,12 @@ export class Renderer {
 
     for (let i = 0; i < keyframes.length; i++) {
       const kf = keyframes[i];
-      if (kf.frame <= frameNumber) {
+      // After preprocessing, start is always a number (frames)
+      const kfStart = kf.start as number;
+      if (kfStart <= frameNumber) {
         prevKeyframe = kf;
       }
-      if (kf.frame >= frameNumber && !nextKeyframe) {
+      if (kfStart >= frameNumber && !nextKeyframe) {
         nextKeyframe = kf;
       }
     }
@@ -483,14 +485,16 @@ export class Renderer {
       return prevKeyframe.value;
     }
 
-    // If exactly on a keyframe
-    if (prevKeyframe && prevKeyframe.frame === frameNumber) {
+    // If exactly on a keyframe (start is numeric after preprocessing)
+    const prevStart = prevKeyframe?.start as number;
+    if (prevKeyframe && prevStart === frameNumber) {
       return prevKeyframe.value;
     }
 
     // Interpolate between keyframes
     if (prevKeyframe && nextKeyframe) {
-      const t = (frameNumber - prevKeyframe.frame) / (nextKeyframe.frame - prevKeyframe.frame);
+      const nextStart = nextKeyframe.start as number;
+      const t = (frameNumber - prevStart) / (nextStart - prevStart);
       // Easing is associated with the target keyframe (where we're going TO)
       const easedT = this.applyEasing(t, nextKeyframe.easing || 'linear');
       return prevKeyframe.value + (nextKeyframe.value - prevKeyframe.value) * easedT;
