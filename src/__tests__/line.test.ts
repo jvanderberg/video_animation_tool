@@ -176,16 +176,16 @@ describe('Line Rendering', () => {
           target: 'moving-line',
           property: 'y',
           keyframes: [
-            { frame: 0, value: 50 },
-            { frame: 60, value: 150 }
+            { start: 0, value: 50 },
+            { start: 60, value: 150 }
           ]
         },
         {
           target: 'moving-line',
           property: 'y2',
           keyframes: [
-            { frame: 0, value: 50 },
-            { frame: 60, value: 150 }
+            { start: 0, value: 50 },
+            { start: 60, value: 150 }
           ]
         }
       ]

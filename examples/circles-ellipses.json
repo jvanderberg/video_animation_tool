@@ -92,16 +92,16 @@
       "target": "circle-1",
       "property": "radius",
       "keyframes": [
-        {"frame": 20, "value": 0},
-        {"frame": 40, "value": 80, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
+        {"start": 20, "value": 0},
+        {"start": 40, "value": 80, "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"}
       ]
     },
     {
       "target": "circle-1",
       "property": "opacity",
       "keyframes": [
-        {"frame": 20, "value": 0},
-        {"frame": 40, "value": 1}
+        {"start": 20, "value": 0},
+        {"start": 40, "value": 1}
       ]
     },
     {
@@ -113,24 +113,24 @@
       "target": "ellipse-1",
       "property": "radiusX",
       "keyframes": [
-        {"frame": 50, "value": 0},
-        {"frame": 70, "value": 100, "easing": "ease-out"}
+        {"start": 50, "value": 0},
+        {"start": 70, "value": 100, "easing": "ease-out"}
       ]
     },
     {
       "target": "ellipse-1",
       "property": "radiusY",
       "keyframes": [
-        {"frame": 50, "value": 0},
-        {"frame": 70, "value": 50, "easing": "ease-out"}
+        {"start": 50, "value": 0},
+        {"start": 70, "value": 50, "easing": "ease-out"}
       ]
     },
     {
       "target": "ellipse-1",
       "property": "opacity",
       "keyframes": [
-        {"frame": 50, "value": 0},
-        {"frame": 70, "value": 1}
+        {"start": 50, "value": 0},
+        {"start": 70, "value": 1}
       ]
     },
     {
@@ -147,11 +147,11 @@
       "target": "pulsing-circle",
       "property": "scale",
       "keyframes": [
-        {"frame": 115, "value": 1.0},
-        {"frame": 130, "value": 1.5, "easing": "ease-in-out"},
-        {"frame": 145, "value": 1.0, "easing": "ease-in-out"},
-        {"frame": 160, "value": 1.5, "easing": "ease-in-out"},
-        {"frame": 175, "value": 1.0, "easing": "ease-in-out"}
+        {"start": 115, "value": 1.0},
+        {"start": 130, "value": 1.5, "easing": "ease-in-out"},
+        {"start": 145, "value": 1.0, "easing": "ease-in-out"},
+        {"start": 160, "value": 1.5, "easing": "ease-in-out"},
+        {"start": 175, "value": 1.0, "easing": "ease-in-out"}
       ]
     },
     {
@@ -163,26 +163,26 @@
       "target": "morphing-ellipse",
       "property": "radiusX",
       "keyframes": [
-        {"frame": 135, "value": 80},
-        {"frame": 150, "value": 40, "easing": "ease-in-out"},
-        {"frame": 165, "value": 80, "easing": "ease-in-out"}
+        {"start": 135, "value": 80},
+        {"start": 150, "value": 40, "easing": "ease-in-out"},
+        {"start": 165, "value": 80, "easing": "ease-in-out"}
       ]
     },
     {
       "target": "morphing-ellipse",
       "property": "radiusY",
       "keyframes": [
-        {"frame": 135, "value": 40},
-        {"frame": 150, "value": 80, "easing": "ease-in-out"},
-        {"frame": 165, "value": 40, "easing": "ease-in-out"}
+        {"start": 135, "value": 40},
+        {"start": 150, "value": 80, "easing": "ease-in-out"},
+        {"start": 165, "value": 40, "easing": "ease-in-out"}
       ]
     },
     {
       "target": "morphing-ellipse",
       "property": "rotation",
       "keyframes": [
-        {"frame": 135, "value": 0},
-        {"frame": 165, "value": 90, "easing": "ease-in-out"}
+        {"start": 135, "value": 0},
+        {"start": 165, "value": 90, "easing": "ease-in-out"}
       ]
     }
   ]

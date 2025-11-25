@@ -22,8 +22,8 @@ describe('Animation Sequences', () => {
           target: 'box',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 50 }
+            { start: 0, value: 0 },
+            { start: 60, value: 50 }
           ]
         }
       ]
@@ -64,16 +64,16 @@ describe('Animation Sequences', () => {
           target: 'box',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: 50 }
+            { start: 0, value: 0 },
+            { start: 30, value: 50 }
           ]
         },
         {
           target: 'box',
           property: 'x',
           keyframes: [
-            { frame: 30, value: 50 },
-            { frame: 60, value: 100 }
+            { start: 30, value: 50 },
+            { start: 60, value: 100 }
           ]
         }
       ]
@@ -113,16 +113,16 @@ describe('Animation Sequences', () => {
           target: 'box',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: 50 }
+            { start: 0, value: 0 },
+            { start: 30, value: 50 }
           ]
         },
         {
           target: 'box',
           property: 'x',
           keyframes: [
-            { frame: 60, value: 50 },
-            { frame: 90, value: 100 }
+            { start: 60, value: 50 },
+            { start: 90, value: 100 }
           ]
         }
       ]
@@ -167,16 +167,16 @@ describe('Animation Sequences', () => {
           target: 'box',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 50 }
+            { start: 0, value: 0 },
+            { start: 60, value: 50 }
           ]
         },
         {
           target: 'box',
           property: 'opacity',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 1 }
+            { start: 0, value: 0 },
+            { start: 60, value: 1 }
           ]
         }
       ]
@@ -232,16 +232,16 @@ describe('Animation Sequences', () => {
           target: 'red-box',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 50 }
+            { start: 0, value: 0 },
+            { start: 60, value: 50 }
           ]
         },
         {
           target: 'blue-box',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 80 }
+            { start: 0, value: 0 },
+            { start: 60, value: 80 }
           ]
         }
       ]
@@ -285,8 +285,8 @@ describe('Animation Sequences', () => {
           target: 'my-group',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 50 }
+            { start: 0, value: 0 },
+            { start: 60, value: 50 }
           ]
         }
       ]

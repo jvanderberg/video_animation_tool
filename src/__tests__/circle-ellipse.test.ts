@@ -142,8 +142,8 @@ describe('Circle and Ellipse Rendering', () => {
               target: 'growing-circle',
               property: 'radius',
               keyframes: [
-                { frame: 0, value: 10 },
-                { frame: 30, value: 50 },
+                { start: 0, value: 10 },
+                { start: 30, value: 50 },
               ],
             },
       ],
@@ -187,16 +187,16 @@ describe('Circle and Ellipse Rendering', () => {
               target: 'changing-ellipse',
               property: 'radiusX',
               keyframes: [
-                { frame: 0, value: 20 },
-                { frame: 30, value: 60 },
+                { start: 0, value: 20 },
+                { start: 30, value: 60 },
               ],
             },
             {
               target: 'changing-ellipse',
               property: 'radiusY',
               keyframes: [
-                { frame: 0, value: 20 },
-                { frame: 30, value: 30 },
+                { start: 0, value: 20 },
+                { start: 30, value: 30 },
               ],
             },
       ],

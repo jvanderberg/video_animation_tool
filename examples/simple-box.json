@@ -33,16 +33,16 @@
       "target": "animated-box",
       "property": "x",
       "keyframes": [
-        {"frame": 0, "value": 100},
-        {"frame": 60, "value": 700, "easing": "ease-in-out"}
+        {"start": 0, "value": 100},
+        {"start": 60, "value": 700, "easing": "ease-in-out"}
       ]
     },
     {
       "target": "animated-box",
       "property": "rotation",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 60, "value": 360, "easing": "linear"}
+        {"start": 0, "value": 0},
+        {"start": 60, "value": 360, "easing": "linear"}
       ]
     }
   ]

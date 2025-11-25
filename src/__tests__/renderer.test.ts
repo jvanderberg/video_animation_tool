@@ -248,9 +248,9 @@ describe('Renderer', () => {
               {
                 property: 'x',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 30, value: 50 },
-                  { frame: 60, value: 80 },
+                  { start: 0, value: 0 },
+                  { start: 30, value: 50 },
+                  { start: 60, value: 80 },
                 ],
               },
             ],
@@ -293,8 +293,8 @@ describe('Renderer', () => {
               {
                 property: 'opacity',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 60, value: 1, easing: 'ease-in' },
+                  { start: 0, value: 0 },
+                  { start: 60, value: 1, easing: 'ease-in' },
                 ],
               },
             ],
@@ -335,8 +335,8 @@ describe('Renderer', () => {
               {
                 property: 'rotation',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 60, value: 360, easing: 'linear' },
+                  { start: 0, value: 0 },
+                  { start: 60, value: 360, easing: 'linear' },
                 ],
               },
             ],
@@ -375,23 +375,23 @@ describe('Renderer', () => {
               {
                 property: 'x',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 60, value: 80 },
+                  { start: 0, value: 0 },
+                  { start: 60, value: 80 },
                 ],
               },
               {
                 property: 'y',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 60, value: 80 },
+                  { start: 0, value: 0 },
+                  { start: 60, value: 80 },
                 ],
               },
               {
                 property: 'opacity',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 30, value: 1 },
-                  { frame: 60, value: 0 },
+                  { start: 0, value: 0 },
+                  { start: 30, value: 1 },
+                  { start: 60, value: 0 },
                 ],
               },
             ],

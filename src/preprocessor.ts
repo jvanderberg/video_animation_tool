@@ -65,9 +65,29 @@ function timeKeyframesToFrameKeyframes(
   durationFrames: number
 ): Keyframe[] {
   return timeKeyframes.map(tk => ({
-    frame: Math.round(startFrame + tk.time * durationFrames),
+    start: Math.round(startFrame + tk.time * durationFrames),
     value: tk.value,
     easing: tk.easing
+  }));
+}
+
+/**
+ * Convert keyframes with TimeValue start to numeric frame values
+ * @param keyframes - Keyframes with start as TimeValue
+ * @param fps - Frames per second
+ * @param startFrameOffset - Offset to add (for relative timing in groups)
+ * @param animationSpeed - Speed multiplier
+ */
+function convertKeyframesToFrames(
+  keyframes: Keyframe[],
+  fps: number,
+  startFrameOffset: number = 0,
+  animationSpeed: number = 1.0
+): Keyframe[] {
+  return keyframes.map(kf => ({
+    start: startFrameOffset + (parseTime(kf.start, fps) / animationSpeed),
+    value: kf.value,
+    easing: kf.easing
   }));
 }
 
@@ -373,15 +393,10 @@ function resolveClipPercentages(objects: AnimationObject[]): void {
 }
 
 /**
- * Check if animation is a GroupAnimation (has relative timing)
+ * Check if animation has keyframes (is a property animation, not an effect)
  */
-function isGroupAnimation(anim: any): boolean {
-  // GroupAnimation keyframes have 'start' property (relative timing)
-  // PropertyAnimation keyframes have 'frame' property (absolute timing)
-  if ('keyframes' in anim) {
-    return anim.keyframes?.[0]?.start !== undefined && anim.keyframes?.[0]?.frame === undefined;
-  }
-  return false;
+function hasKeyframes(anim: any): anim is PropertyAnimation {
+  return 'keyframes' in anim && Array.isArray(anim.keyframes);
 }
 
 /**
@@ -409,8 +424,10 @@ function findObjectPath(targetId: string, objects: AnimationObject[], currentPat
 }
 
 /**
- * Process animations (GroupAnimation or Animation format) and convert to absolute timing
- * This handles both root-level animations and nested group animations uniformly
+ * Process animations and convert to absolute frame timing
+ * All animations use 'start: TimeValue' - timing is relative to context:
+ * - Root level: relative to frame 0 (effectively absolute)
+ * - Group level: relative to group's start time
  */
 async function processAnimations(
   animations: (GroupAnimation | Animation)[],
@@ -423,60 +440,34 @@ async function processAnimations(
   const processed: Animation[] = [];
 
   for (const anim of animations) {
-    if (isGroupAnimation(anim)) {
-      // GroupAnimation with relative timing (effects already expanded)
-      const groupAnim = anim as GroupAnimation;
+    if (!hasKeyframes(anim)) {
+      continue; // Skip effect animations (should already be expanded)
+    }
 
-      // Find the full path to the target within the object tree
-      const targetPath = findObjectPath(groupAnim.target, objects);
-      if (!targetPath) {
-        throw new Error(`Animation target "${groupAnim.target}" not found in object tree`);
-      }
+    const propAnim = anim as PropertyAnimation | GroupAnimation;
 
-      const fullTarget = pathPrefix ? `${pathPrefix}.${targetPath}` : targetPath;
+    // Find the full path to the target within the object tree
+    const targetPath = findObjectPath(propAnim.target, objects);
+    if (!targetPath) {
+      throw new Error(`Animation target "${propAnim.target}" not found in object tree`);
+    }
 
-      if (groupAnim.property && groupAnim.keyframes) {
-        // Property animation - convert relative keyframes to absolute frames
-        // Apply animationSpeed to relative timing
-        const absoluteKeyframes: Keyframe[] = groupAnim.keyframes.map(kf => ({
-          frame: startFrameOffset + (parseTime(kf.start, fps) / animationSpeed),
-          value: kf.value,
-          easing: kf.easing
-        }));
+    const fullTarget = pathPrefix ? `${pathPrefix}.${targetPath}` : targetPath;
+    const property = propAnim.property || (propAnim as any).property;
 
-        processed.push({
-          target: fullTarget,
-          property: groupAnim.property,
-          keyframes: absoluteKeyframes
-        } as PropertyAnimation);
-      }
-    } else {
-      // Animation with absolute timing (effects already expanded)
-      // Apply animationSpeed to keyframes
-      const absAnim = anim as PropertyAnimation;
-      if ('keyframes' in absAnim && absAnim.keyframes) {
-        // Find the full path to the target within the object tree
-        const targetPath = findObjectPath(absAnim.target, objects);
-        if (!targetPath) {
-          throw new Error(`Animation target "${absAnim.target}" not found in object tree`);
-        }
+    if (property && propAnim.keyframes) {
+      // Convert all keyframes: parse TimeValue start + add offset + apply speed
+      const absoluteKeyframes: Keyframe[] = propAnim.keyframes.map((kf: any) => ({
+        start: startFrameOffset + (parseTime(kf.start, fps) / animationSpeed),
+        value: kf.value,
+        easing: kf.easing
+      }));
 
-        // Add path prefix to target
-        const fullTarget = pathPrefix ? `${pathPrefix}.${targetPath}` : targetPath;
-
-        // Apply speed to absolute keyframes
-        const speedAdjustedKeyframes: Keyframe[] = absAnim.keyframes.map(kf => ({
-          frame: kf.frame / animationSpeed,
-          value: kf.value,
-          easing: kf.easing
-        }));
-
-        processed.push({
-          ...absAnim,
-          target: fullTarget,
-          keyframes: speedAdjustedKeyframes
-        } as PropertyAnimation);
-      }
+      processed.push({
+        target: fullTarget,
+        property: property,
+        keyframes: absoluteKeyframes
+      } as PropertyAnimation);
     }
   }
 

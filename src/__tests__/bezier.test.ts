@@ -24,8 +24,8 @@ describe('Cubic Bezier Easing', () => {
               target: 'test-rect',
               property: 'x',
               keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 100, easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)' }
+                { start: 0, value: 0 },
+                { start: 60, value: 100, easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)' }
               ]
             }
       ]
@@ -72,9 +72,9 @@ describe('Cubic Bezier Easing', () => {
               target: 'test-rect',
               property: 'x',
               keyframes: [
-                { frame: 0, value: 0 },
+                { start: 0, value: 0 },
                 {
-                  frame: 60,
+                  start: 60,
                   value: 90,
                   easing: {
                     type: 'cubic-bezier',
@@ -113,9 +113,9 @@ describe('Cubic Bezier Easing', () => {
               target: 'test-rect',
               property: 'x',
               keyframes: [
-                { frame: 0, value: 0 },
+                { start: 0, value: 0 },
                 // This curve overshoots (goes above 1.0)
-                { frame: 60, value: 100, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }
+                { start: 60, value: 100, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }
               ]
             }
       ]
@@ -159,8 +159,8 @@ describe('Cubic Bezier Easing', () => {
               target: 'test-rect',
               property: 'x',
               keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 90, easing: 'ease-in-out' }
+                { start: 0, value: 0 },
+                { start: 60, value: 90, easing: 'ease-in-out' }
               ]
             }
       ]
@@ -184,8 +184,8 @@ describe('Cubic Bezier Easing', () => {
               target: 'test-rect',
               property: 'x',
               keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 90, easing: 'cubic-bezier(0.42, 0, 0.58, 1)' }
+                { start: 0, value: 0 },
+                { start: 60, value: 90, easing: 'cubic-bezier(0.42, 0, 0.58, 1)' }
               ]
             }
       ]
@@ -229,8 +229,8 @@ describe('Cubic Bezier Easing', () => {
               target: 'test-rect',
               property: 'opacity',
               keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 60, value: 1, easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)' }
+                { start: 0, value: 0 },
+                { start: 60, value: 1, easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)' }
               ]
             }
       ]
@@ -273,10 +273,10 @@ describe('Cubic Bezier Easing', () => {
               target: 'test-rect',
               property: 'x',
               keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 40, value: 100, easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' },
-                { frame: 80, value: 150, easing: 'cubic-bezier(0.42, 0, 1, 1)' },
-                { frame: 120, value: 250, easing: 'cubic-bezier(0, 0, 0.58, 1)' }
+                { start: 0, value: 0 },
+                { start: 40, value: 100, easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)' },
+                { start: 80, value: 150, easing: 'cubic-bezier(0.42, 0, 1, 1)' },
+                { start: 120, value: 250, easing: 'cubic-bezier(0, 0, 0.58, 1)' }
               ]
             }
       ]

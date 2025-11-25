@@ -70,8 +70,8 @@ describe('Clipping', () => {
           target: 'box',
           property: 'clip.width',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 100 }
+            { start: 0, value: 0 },
+            { start: 60, value: 100 }
           ]
         }
       ]

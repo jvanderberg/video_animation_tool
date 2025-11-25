@@ -114,16 +114,16 @@ describe('Image Rendering', () => {
           target: 'growing-image',
           property: 'width',
           keyframes: [
-            { frame: 0, value: 50 },
-            { frame: 30, value: 100 },
+            { start: 0, value: 50 },
+            { start: 30, value: 100 },
           ],
         },
         {
           target: 'growing-image',
           property: 'height',
           keyframes: [
-            { frame: 0, value: 50 },
-            { frame: 30, value: 100 },
+            { start: 0, value: 50 },
+            { start: 30, value: 100 },
           ],
         },
       ],

@@ -280,8 +280,8 @@ describe('Text Rendering', () => {
                 target: 'test-text',
                 property: 'x',
                 keyframes: [
-                  { frame: 0, value: 50 },
-                  { frame: 60, value: 300 },
+                  { start: 0, value: 50 },
+                  { start: 60, value: 300 },
                 ],
               },
         ],
@@ -328,8 +328,8 @@ describe('Text Rendering', () => {
                 target: 'test-text',
                 property: 'opacity',
                 keyframes: [
-                  { frame: 0, value: 0 },
-                  { frame: 30, value: 1 },
+                  { start: 0, value: 0 },
+                  { start: 30, value: 1 },
                 ],
               },
         ],

@@ -95,56 +95,56 @@
       "target": "logo-group",
       "property": "opacity",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 30, "value": 1, "easing": "ease-in"}
+        {"start": 0, "value": 0},
+        {"start": 30, "value": 1, "easing": "ease-in"}
       ]
     },
     {
       "target": "logo-group",
       "property": "rotation",
       "keyframes": [
-        {"frame": 60, "value": 0},
-        {"frame": 180, "value": 360, "easing": "ease-in-out"}
+        {"start": 60, "value": 0},
+        {"start": 180, "value": 360, "easing": "ease-in-out"}
       ]
     },
     {
       "target": "orbit-box-1",
       "property": "rotation",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 240, "value": -720, "easing": "linear"}
+        {"start": 0, "value": 0},
+        {"start": 240, "value": -720, "easing": "linear"}
       ]
     },
     {
       "target": "orbit-box-2",
       "property": "rotation",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 240, "value": -720, "easing": "linear"}
+        {"start": 0, "value": 0},
+        {"start": 240, "value": -720, "easing": "linear"}
       ]
     },
     {
       "target": "orbit-box-3",
       "property": "rotation",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 240, "value": -720, "easing": "linear"}
+        {"start": 0, "value": 0},
+        {"start": 240, "value": -720, "easing": "linear"}
       ]
     },
     {
       "target": "orbit-box-4",
       "property": "rotation",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 240, "value": -720, "easing": "linear"}
+        {"start": 0, "value": 0},
+        {"start": 240, "value": -720, "easing": "linear"}
       ]
     },
     {
       "target": "title",
       "property": "opacity",
       "keyframes": [
-        {"frame": 90, "value": 0},
-        {"frame": 120, "value": 1, "easing": "ease-in"}
+        {"start": 90, "value": 0},
+        {"start": 120, "value": 1, "easing": "ease-in"}
       ]
     }
   ]

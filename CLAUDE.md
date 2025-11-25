@@ -25,8 +25,19 @@ Transforms are applied in this specific order:
 **Declarative animations** (not inline):
 - Animations stored separately in `animations` array
 - Each animation targets an object by `id` and `property` name
-- Keyframes: `{frame: number, value: number, easing?: string}`
+- Keyframes: `{start: TimeValue, value: number, easing?: string}`
 - Objects must have an `id` to be animated
+
+**TimeValue format**: Can be a number (frames) or time string:
+- `30` - frame 30
+- `"1.5s"` - 1.5 seconds (converted to frames using fps)
+- `"500ms"` - 500 milliseconds
+- `"0.5m"` - 0.5 minutes
+
+**Contextual timing**: `start` is always relative to the parent context:
+- Root level: relative to frame 0 (effectively absolute)
+- Group level: relative to group's start time
+- Nested groups: relative to parent group's start
 
 ### Traditional Property Animation
 
@@ -36,7 +47,7 @@ Transforms are applied in this specific order:
   "animations": [{
     "target": "box",
     "property": "x",
-    "keyframes": [{"frame": 0, "value": 0}, {"frame": 60, "value": 100}]
+    "keyframes": [{"start": 0, "value": 0}, {"start": "2s", "value": 100}]
   }]
 }
 ```
@@ -51,7 +62,7 @@ Pre-composed effects stored in `effects/library.json`. Use time-based references
   "animations": [{
     "target": "title",
     "effect": "pop",
-    "startTime": 0.0  // seconds - converts to frames based on fps
+    "start": "0.5s"  // TimeValue - when effect starts
   }]
 }
 ```
@@ -75,16 +86,16 @@ Pre-composed effects stored in `effects/library.json`. Use time-based references
 ```json
 {
   "animations": [
-    {"target": "title", "effect": "pop", "startTime": 0.0},
-    {"target": "title", "property": "x", "keyframes": [{"frame": 0, "value": 50}, {"frame": 60, "value": 150}]}
+    {"target": "title", "effect": "pop", "start": 0},
+    {"target": "title", "property": "x", "keyframes": [{"start": 0, "value": 50}, {"start": "2s", "value": 150}]}
   ]
 }
 ```
 
 **Effect preprocessing:**
-- CLI loads `effects/library.json`
+- CLI loads effect definitions from `effects/*.json`
 - Expands effect references into property animations
-- Converts `startTime` (seconds) to `startFrame` using fps
+- Converts all `start` TimeValues to numeric frames using fps
 - Renderer always receives frame-based animations
 
 ## Rendering Engine
@@ -163,7 +174,7 @@ expect(pixel[3]).toBe(0); // Transparent
 
 - **Origin**: Top-left (0, 0)
 - **Units**: Pixels only (no percentages)
-- **Time**: Frame numbers (0-indexed), not seconds
+- **Time**: TimeValue format - frames (number) or time strings ("1s", "500ms")
 - **Z-order**: Document order by default, explicit `z` property optional
 
 ## Common Gotchas

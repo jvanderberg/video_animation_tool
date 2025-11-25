@@ -18,8 +18,8 @@ describe('Group animation start vs frame keyframes', () => {
               target: 'box',
               property: 'x',
               keyframes: [
-                { frame: 60, value: 0 },
-                { frame: 120, value: 100 }
+                { start: 60, value: 0 },
+                { start: 120, value: 100 }
               ]
             }
           ],
@@ -44,8 +44,8 @@ describe('Group animation start vs frame keyframes', () => {
     ) as PropertyAnimation;
 
     expect(xAnim).toBeDefined();
-    expect(xAnim.keyframes[0].frame).toBe(120);  // 60 / 0.5 = 120
-    expect(xAnim.keyframes[1].frame).toBe(240);  // 120 / 0.5 = 240
+    expect(xAnim.keyframes[0].start).toBe(120);  // 60 / 0.5 = 120
+    expect(xAnim.keyframes[1].start).toBe(240);  // 120 / 0.5 = 240
   });
 
   it('should process group animations with start-based keyframes (time strings)', async () => {
@@ -90,9 +90,9 @@ describe('Group animation start vs frame keyframes', () => {
 
     expect(xAnim).toBeDefined();
     // start: "1.0s" = 60 frames, then divided by animationSpeed 0.5 = 120
-    expect(xAnim.keyframes[0].frame).toBe(120);
+    expect(xAnim.keyframes[0].start).toBe(120);
     // start: "2.0s" = 120 frames, then divided by animationSpeed 0.5 = 240
-    expect(xAnim.keyframes[1].frame).toBe(240);
+    expect(xAnim.keyframes[1].start).toBe(240);
   });
 
   it('should produce identical results for frame vs start with same timing', async () => {
@@ -111,8 +111,8 @@ describe('Group animation start vs frame keyframes', () => {
               target: 'box',
               property: 'x',
               keyframes: [
-                { frame: 60, value: 0 },
-                { frame: 90, value: 100 }
+                { start: 60, value: 0 },
+                { start: 90, value: 100 }
               ]
             }
           ],
@@ -177,8 +177,8 @@ describe('Group animation start vs frame keyframes', () => {
     ) as PropertyAnimation;
 
     // Both should produce identical frame timings
-    expect(xAnim1.keyframes[0].frame).toBe(xAnim2.keyframes[0].frame);
-    expect(xAnim1.keyframes[1].frame).toBe(xAnim2.keyframes[1].frame);
+    expect(xAnim1.keyframes[0].start).toBe(xAnim2.keyframes[0].start);
+    expect(xAnim1.keyframes[1].start).toBe(xAnim2.keyframes[1].start);
     expect(xAnim1.keyframes[0].value).toBe(xAnim2.keyframes[0].value);
     expect(xAnim1.keyframes[1].value).toBe(xAnim2.keyframes[1].value);
   });

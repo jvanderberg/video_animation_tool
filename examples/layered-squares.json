@@ -82,11 +82,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 30,
+          "start": 30,
           "value": 0
         },
         {
-          "frame": 240,
+          "start": 240,
           "value": 360,
           "easing": "linear"
         }
@@ -97,16 +97,16 @@
       "property": "x",
       "keyframes": [
         {
-          "frame": 30,
+          "start": 30,
           "value": 960
         },
         {
-          "frame": 120,
+          "start": 120,
           "value": 700,
           "easing": "ease-in-out"
         },
         {
-          "frame": 210,
+          "start": 210,
           "value": 960,
           "easing": "ease-in-out"
         }
@@ -122,11 +122,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 50,
+          "start": 50,
           "value": 0
         },
         {
-          "frame": 240,
+          "start": 240,
           "value": -360,
           "easing": "linear"
         }
@@ -137,16 +137,16 @@
       "property": "x",
       "keyframes": [
         {
-          "frame": 50,
+          "start": 50,
           "value": 960
         },
         {
-          "frame": 120,
+          "start": 120,
           "value": 1220,
           "easing": "ease-in-out"
         },
         {
-          "frame": 210,
+          "start": 210,
           "value": 960,
           "easing": "ease-in-out"
         }
@@ -162,11 +162,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 70,
+          "start": 70,
           "value": 45
         },
         {
-          "frame": 240,
+          "start": 240,
           "value": 405,
           "easing": "linear"
         }
@@ -177,16 +177,16 @@
       "property": "y",
       "keyframes": [
         {
-          "frame": 70,
+          "start": 70,
           "value": 540
         },
         {
-          "frame": 120,
+          "start": 120,
           "value": 340,
           "easing": "ease-in-out"
         },
         {
-          "frame": 210,
+          "start": 210,
           "value": 540,
           "easing": "ease-in-out"
         }
@@ -202,11 +202,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 90,
+          "start": 90,
           "value": 90
         },
         {
-          "frame": 240,
+          "start": 240,
           "value": -270,
           "easing": "linear"
         }
@@ -217,16 +217,16 @@
       "property": "y",
       "keyframes": [
         {
-          "frame": 90,
+          "start": 90,
           "value": 540
         },
         {
-          "frame": 120,
+          "start": 120,
           "value": 740,
           "easing": "ease-in-out"
         },
         {
-          "frame": 210,
+          "start": 210,
           "value": 540,
           "easing": "ease-in-out"
         }
@@ -242,11 +242,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 105,
+          "start": 105,
           "value": 180
         },
         {
-          "frame": 240,
+          "start": 240,
           "value": 540,
           "easing": "linear"
         }
@@ -257,16 +257,16 @@
       "property": "scale",
       "keyframes": [
         {
-          "frame": 105,
+          "start": 105,
           "value": 1.0
         },
         {
-          "frame": 160,
+          "start": 160,
           "value": 1.5,
           "easing": "ease-in-out"
         },
         {
-          "frame": 210,
+          "start": 210,
           "value": 1.0,
           "easing": "ease-in-out"
         }

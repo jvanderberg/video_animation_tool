@@ -132,16 +132,16 @@
       "property": "scale",
       "keyframes": [
         {
-          "frame": 120,
+          "start": 120,
           "value": 3.0
         },
         {
-          "frame": 135,
+          "start": 135,
           "value": 4.0,
           "easing": "cubic-bezier(0.34, 1.56, 0.64, 1)"
         },
         {
-          "frame": 150,
+          "start": 150,
           "value": 3.0,
           "easing": "ease-in-out"
         }
@@ -167,26 +167,26 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 180,
+          "start": 180,
           "value": 0
         },
         {
-          "frame": 195,
+          "start": 195,
           "value": -20,
           "easing": "ease-in-out"
         },
         {
-          "frame": 210,
+          "start": 210,
           "value": 20,
           "easing": "ease-in-out"
         },
         {
-          "frame": 225,
+          "start": 225,
           "value": -15,
           "easing": "ease-in-out"
         },
         {
-          "frame": 240,
+          "start": 240,
           "value": 0,
           "easing": "ease-in-out"
         }
@@ -202,26 +202,26 @@
       "property": "y",
       "keyframes": [
         {
-          "frame": 195,
+          "start": 195,
           "value": 350
         },
         {
-          "frame": 210,
+          "start": 210,
           "value": 370,
           "easing": "ease-in-out"
         },
         {
-          "frame": 225,
+          "start": 225,
           "value": 350,
           "easing": "ease-in-out"
         },
         {
-          "frame": 240,
+          "start": 240,
           "value": 370,
           "easing": "ease-in-out"
         },
         {
-          "frame": 255,
+          "start": 255,
           "value": 350,
           "easing": "ease-in-out"
         }

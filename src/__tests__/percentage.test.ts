@@ -25,8 +25,8 @@ describe('Percentage Values', () => {
         target: 'box',
         property: 'clip.width',
         keyframes: [
-          { frame: 0, value: 0 },
-          { frame: 60, value: '100%' as any }
+          { start: 0, value: 0 },
+          { start: 60, value: '100%' as any }
         ]
       }]
     };
@@ -57,8 +57,8 @@ describe('Percentage Values', () => {
           target: 'box',
           property: 'clip.height',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: '100%' as any }
+            { start: 0, value: 0 },
+            { start: 60, value: '100%' as any }
           ]
         }]
     };
@@ -89,9 +89,9 @@ describe('Percentage Values', () => {
           target: 'box',
           property: 'clip.width',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: '50%' as any },
-            { frame: 60, value: '100%' as any }
+            { start: 0, value: 0 },
+            { start: 30, value: '50%' as any },
+            { start: 60, value: '100%' as any }
           ]
         }]
     };
@@ -122,8 +122,8 @@ describe('Percentage Values', () => {
           target: 'box',
           property: 'clip.width',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 250 }
+            { start: 0, value: 0 },
+            { start: 60, value: 250 }
           ]
         }]
     };
@@ -154,8 +154,8 @@ describe('Percentage Values', () => {
           target: 'title',
           property: 'clip.width',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: '100%' as any }
+            { start: 0, value: 0 },
+            { start: 60, value: '100%' as any }
           ]
         }]
     };

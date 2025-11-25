@@ -49,11 +49,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 45,
+          "start": 45,
           "value": 0
         },
         {
-          "frame": 105,
+          "start": 105,
           "value": 360,
           "easing": "ease-in-out"
         }
@@ -69,11 +69,11 @@
       "property": "y",
       "keyframes": [
         {
-          "frame": 105,
+          "start": 105,
           "value": 540
         },
         {
-          "frame": 135,
+          "start": 135,
           "value": 440,
           "easing": "ease-out"
         }
@@ -84,11 +84,11 @@
       "property": "y",
       "keyframes": [
         {
-          "frame": 105,
+          "start": 105,
           "value": 720
         },
         {
-          "frame": 135,
+          "start": 135,
           "value": 620,
           "easing": "ease-out"
         }

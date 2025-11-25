@@ -94,14 +94,14 @@ function processAnimations(
 
     // Check if it's a property animation or effect animation
     if ('keyframes' in anim) {
-      // Property animation - offset keyframe frames
+      // Property animation - offset keyframe start times
       const propAnim = anim as PropertyAnimation;
       return {
         ...propAnim,
         target: namespacedTarget,
         keyframes: propAnim.keyframes.map(kf => ({
           ...kf,
-          frame: kf.frame + startOffset
+          start: parseTime(kf.start, fps) + startOffset
         }))
       };
     } else {

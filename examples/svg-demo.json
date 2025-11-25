@@ -60,11 +60,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 30,
+          "start": 30,
           "value": 0
         },
         {
-          "frame": 180,
+          "start": 180,
           "value": 720,
           "easing": "linear"
         }
@@ -75,16 +75,16 @@
       "property": "scaleX",
       "keyframes": [
         {
-          "frame": 30,
+          "start": 30,
           "value": 1.0
         },
         {
-          "frame": 90,
+          "start": 90,
           "value": 1.5,
           "easing": "ease-in-out"
         },
         {
-          "frame": 150,
+          "start": 150,
           "value": 1.0,
           "easing": "ease-in-out"
         }
@@ -100,26 +100,26 @@
       "property": "scaleY",
       "keyframes": [
         {
-          "frame": 45,
+          "start": 45,
           "value": 1.0
         },
         {
-          "frame": 75,
+          "start": 75,
           "value": 0.8,
           "easing": "ease-in-out"
         },
         {
-          "frame": 105,
+          "start": 105,
           "value": 1.2,
           "easing": "ease-in-out"
         },
         {
-          "frame": 135,
+          "start": 135,
           "value": 0.9,
           "easing": "ease-in-out"
         },
         {
-          "frame": 165,
+          "start": 165,
           "value": 1.0,
           "easing": "ease-in-out"
         }
@@ -135,11 +135,11 @@
       "property": "rotation",
       "keyframes": [
         {
-          "frame": 60,
+          "start": 60,
           "value": 0
         },
         {
-          "frame": 180,
+          "start": 180,
           "value": -360,
           "easing": "linear"
         }
@@ -150,16 +150,16 @@
       "property": "scale",
       "keyframes": [
         {
-          "frame": 60,
+          "start": 60,
           "value": 1.0
         },
         {
-          "frame": 120,
+          "start": 120,
           "value": 2.0,
           "easing": "ease-in-out"
         },
         {
-          "frame": 180,
+          "start": 180,
           "value": 1.0,
           "easing": "ease-in-out"
         }

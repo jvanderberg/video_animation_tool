@@ -29,8 +29,8 @@ describe('Component Bundled Animations', () => {
           target: 'box',
           property: 'opacity',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: 1 }
+            { start: 0, value: 0 },
+            { start: 30, value: 1 }
           ]
         }
       ]
@@ -44,8 +44,8 @@ describe('Component Bundled Animations', () => {
 
     const anim = result.animations![0] as PropertyAnimation;
     expect(anim.target).toBe('animated-comp.box'); // Namespaced target
-    expect(anim.keyframes[0].frame).toBe(30); // 0 + 30 offset
-    expect(anim.keyframes[1].frame).toBe(60); // 30 + 30 offset
+    expect(anim.keyframes[0].start).toBe(30); // 0 + 30 offset
+    expect(anim.keyframes[1].start).toBe(60); // 30 + 30 offset
   });
 
   it('should offset effect start time by component start time', async () => {
@@ -95,8 +95,8 @@ describe('Component Bundled Animations', () => {
           target: 'box',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 60, value: 100 }
+            { start: 0, value: 0 },
+            { start: 60, value: 100 }
           ]
         }
       ]
@@ -107,8 +107,8 @@ describe('Component Bundled Animations', () => {
     expect(result.animations).toBeDefined();
     const anim = result.animations![0] as PropertyAnimation;
     // No offset - frames stay the same
-    expect(anim.keyframes[0].frame).toBe(0);
-    expect(anim.keyframes[1].frame).toBe(60);
+    expect(anim.keyframes[0].start).toBe(0);
+    expect(anim.keyframes[1].start).toBe(60);
   });
 
   it('should handle both animations and effects in same component', async () => {
@@ -129,8 +129,8 @@ describe('Component Bundled Animations', () => {
           target: 'box1',
           property: 'x',
           keyframes: [
-            { frame: 0, value: 0 },
-            { frame: 30, value: 100 }
+            { start: 0, value: 0 },
+            { start: 30, value: 100 }
           ]
         },
         {
@@ -146,8 +146,8 @@ describe('Component Bundled Animations', () => {
     expect(result.animations?.length).toBe(2);
 
     const propAnim = result.animations![0] as PropertyAnimation;
-    expect(propAnim.keyframes[0].frame).toBe(15); // 0 + 15
-    expect(propAnim.keyframes[1].frame).toBe(45); // 30 + 15
+    expect(propAnim.keyframes[0].start).toBe(15); // 0 + 15
+    expect(propAnim.keyframes[1].start).toBe(45); // 30 + 15
 
     const effect = result.animations![1] as EffectAnimation;
     expect(effect.start).toBe(25); // 10 + 15
@@ -208,8 +208,8 @@ describe('Component Bundled Animations', () => {
               target: 'box',
               property: 'opacity',
               keyframes: [
-                { frame: 0, value: 0 },
-                { frame: 30, value: 1 }
+                { start: 0, value: 0 },
+                { start: 30, value: 1 }
               ]
             }
           ]
@@ -240,7 +240,7 @@ describe('Component Bundled Animations', () => {
     expect(innerGroup.animations).toBeDefined();
 
     const anim = innerGroup.animations[0] as PropertyAnimation;
-    expect(anim.keyframes[0].frame).toBe(30); // 0 + 10 + 20
-    expect(anim.keyframes[1].frame).toBe(60); // 30 + 10 + 20
+    expect(anim.keyframes[0].start).toBe(30); // 0 + 10 + 20
+    expect(anim.keyframes[1].start).toBe(60); // 30 + 10 + 20
   });
 });
