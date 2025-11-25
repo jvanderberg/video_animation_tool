@@ -1,0 +1,202 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "frames": 360
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "bg",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "rgba(0, 0, 0, 0.8)",
+      "z": 0
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Battery Runtime (1.2 mA draw)",
+      "x": 960,
+      "y": 120,
+      "anchor": "top-center",
+      "size": 68,
+      "color": "#FFFFFF",
+      "z": 5
+    },
+    {
+      "type": "text",
+      "id": "step1",
+      "content": "Power = Voltage × Current",
+      "x": 960,
+      "y": 320,
+      "anchor": "center",
+      "size": 56,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "step1-detail",
+      "content": "Assume 3.7 V system, current = 1.2 mA = 0.0012 A",
+      "x": 960,
+      "y": 400,
+      "anchor": "center",
+      "size": 40,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "power-result",
+      "content": "Power draw = 3.7 V × 0.0012 A ≈ 0.00444 W",
+      "x": 960,
+      "y": 320,
+      "anchor": "center",
+      "size": 52,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "runtime-equation",
+      "content": "Runtime (hours) = Capacity ÷ Power",
+      "x": 960,
+      "y": 320,
+      "anchor": "center",
+      "size": 56,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "runtime-result",
+      "content": "10 Wh ÷ 0.00444 W ≈ 2,250 hours",
+      "x": 960,
+      "y": 400,
+      "anchor": "center",
+      "size": 48,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "days-equation",
+      "content": "Convert hours to days",
+      "x": 960,
+      "y": 320,
+      "anchor": "center",
+      "size": 56,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "days-result",
+      "content": "2,250 h ÷ 24 ≈ 94 days",
+      "x": 960,
+      "y": 400,
+      "anchor": "center",
+      "size": 48,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "group",
+      "id": "final-battery",
+      "x": 960,
+      "y": 720,
+      "anchor": "center",
+      "children": [
+        {
+          "type": "rect",
+          "id": "final-body",
+          "x": 0,
+          "y": 0,
+          "width": 360,
+          "height": 160,
+          "stroke": "#FFFFFF",
+          "strokeWidth": 6,
+          "fill": "rgba(255, 255, 255, 0.05)",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "final-tip",
+          "x": 200,
+          "y": 0,
+          "width": 40,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "final-bar-1",
+          "x": -120,
+          "y": 0,
+          "width": 48,
+          "height": 120,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "final-bar-2",
+          "x": -48,
+          "y": 0,
+          "width": 48,
+          "height": 120,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "final-bar-3",
+          "x": 24,
+          "y": 0,
+          "width": 48,
+          "height": 120,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "final-callout",
+      "content": "≈ 94 days of runtime on 10 Wh",
+      "x": 960,
+      "y": 560,
+      "anchor": "center",
+      "size": 60,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "content": "*These numbers are correct; in the video I accidentally used 3.3 V, which yields slightly longer runtime.",
+      "x": 960,
+      "y": 1030,
+      "anchor": "bottom-center",
+      "size": 32,
+      "color": "#FFFFFF"
+    }
+  ],
+  "animations": [
+    {"target": "title", "effect": "pop", "start": "0s"},
+    {"target": "step1", "effect": "slideInLeft", "start": "0.4s"},
+    {"target": "step1-detail", "effect": "pop", "start": "0.8s"},
+    {"target": "step1", "effect": "fadeOut", "start": "3s"},
+    {"target": "step1-detail", "effect": "fadeOut", "start": "3s"},
+    {"target": "power-result", "effect": "slideInRight", "start": "3.2s"},
+    {"target": "power-result", "effect": "fadeOut", "start": "5.5s"},
+    {"target": "runtime-equation", "effect": "slideInLeft", "start": "5.6s"},
+    {"target": "runtime-result", "effect": "pop", "start": "6s"},
+    {"target": "runtime-equation", "effect": "fadeOut", "start": "8s"},
+    {"target": "runtime-result", "effect": "fadeOut", "start": "8s"},
+    {"target": "days-equation", "effect": "slideInRight", "start": "8.2s"},
+    {"target": "days-result", "effect": "pop", "start": "8.6s"},
+    {"target": "days-equation", "effect": "fadeOut", "start": "10.6s"},
+    {"target": "days-result", "effect": "fadeOut", "start": "10.6s"},
+    {"target": "final-callout", "effect": "pop", "start": "11s"},
+    {"target": "final-battery", "effect": "pop", "start": "11.2s"},
+    {"target": "note", "effect": "fadeIn", "start": "1s"}
+  ]
+}

@@ -1,0 +1,657 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "frames": 720
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "backdrop",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "rgba(0, 0, 0, 0.75)",
+      "z": 0
+    },
+    {
+      "type": "text",
+      "id": "sidebar-title",
+      "content": "Battery Runtime",
+      "x": 960,
+      "y": 90,
+      "anchor": "top-center",
+      "size": 72,
+      "color": "#FFFFFF",
+      "z": 5
+    },
+    {
+      "type": "text",
+      "id": "power-equation",
+      "content": "Power = Voltage × Current",
+      "x": 960,
+      "y": 250,
+      "anchor": "center",
+      "size": 60,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "power-equation-detail",
+      "content": "Use 3.7 V system voltage and 25 mA (0.025 A)",
+      "x": 960,
+      "y": 330,
+      "anchor": "center",
+      "size": 44,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "power-result",
+      "content": "Power draw = 0.0925 W",
+      "x": 960,
+      "y": 250,
+      "anchor": "center",
+      "size": 60,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "power-result-detail",
+      "content": "3.7 V × 0.025 A = 0.0925 W",
+      "x": 960,
+      "y": 330,
+      "anchor": "center",
+      "size": 44,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "capacity-line",
+      "content": "10 Wh battery capacity",
+      "x": 960,
+      "y": 250,
+      "anchor": "center",
+      "size": 60,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "capacity-detail",
+      "content": "Delivers 10 W for 1 h or 1 W for 10 h",
+      "x": 960,
+      "y": 330,
+      "anchor": "center",
+      "size": 44,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "runtime-formula",
+      "content": "Runtime = Capacity ÷ Power draw",
+      "x": 960,
+      "y": 250,
+      "anchor": "center",
+      "size": 60,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "runtime-detail",
+      "content": "10 Wh ÷ 0.0925 W ≈ 108 hours",
+      "x": 960,
+      "y": 330,
+      "anchor": "center",
+      "size": 80,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "days-formula",
+      "content": "Convert hours to days",
+      "x": 960,
+      "y": 250,
+      "anchor": "center",
+      "size": 60,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "days-detail",
+      "content": "108 h ÷ 24 ≈ 4.5 days",
+      "x": 960,
+      "y": 330,
+      "anchor": "center",
+      "size": 44,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "group",
+      "id": "final-battery",
+      "x": 960,
+      "y": 700,
+      "anchor": "center",
+      "children": [
+        {
+          "type": "rect",
+          "id": "final-battery-body",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 150,
+          "stroke": "#FFFFFF",
+          "strokeWidth": 6,
+          "fill": "rgba(255, 255, 255, 0.08)",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "final-battery-tip",
+          "x": 180,
+          "y": 0,
+          "width": 36,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "final-battery-red-cell",
+          "x": -120,
+          "y": 0,
+          "width": 40,
+          "height": 100,
+          "fill": "#FF4B4B",
+          "anchor": "center"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "final-callout",
+      "content": "≈ 4.5 days of runtime at 25 mA draw",
+      "x": 960,
+      "y": 250,
+      "anchor": "center",
+      "size": 68,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "group",
+      "id": "battery-fast",
+      "x": 960,
+      "y": 700,
+      "anchor": "center",
+      "children": [
+        {
+          "type": "rect",
+          "id": "battery-fast-body",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 150,
+          "stroke": "#FFFFFF",
+          "strokeWidth": 6,
+          "fill": "rgba(255, 255, 255, 0.08)",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-fast-tip",
+          "x": 180,
+          "y": 0,
+          "width": 36,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-fast-bar-1",
+          "x": -128,
+          "y": 0,
+          "width": 48,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-fast-bar-2",
+          "x": -64,
+          "y": 0,
+          "width": 48,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-fast-bar-3",
+          "x": 0,
+          "y": 0,
+          "width": 48,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-fast-bar-4",
+          "x": 64,
+          "y": 0,
+          "width": 48,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-fast-bar-5",
+          "x": 128,
+          "y": 0,
+          "width": 48,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "group",
+          "id": "battery-fast-clock",
+          "x": 0,
+          "y": -220,
+          "anchor": "center",
+          "children": [
+            {
+              "type": "circle",
+              "id": "battery-fast-clock-face",
+              "x": 0,
+              "y": 0,
+              "radius": 80,
+              "stroke": "#FFFFFF",
+              "strokeWidth": 4
+            },
+            {
+              "type": "line",
+              "id": "battery-fast-clock-hand",
+              "x": 0,
+              "y": 0,
+              "x2": 0,
+              "y2": -75,
+              "stroke": "#FFFFFF",
+              "strokeWidth": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "power-output-fast",
+      "content": "10 W output",
+      "x": 960,
+      "y": 900,
+      "anchor": "center",
+      "size": 40,
+      "color": "#FFFFFF"
+    },
+    {
+      "type": "group",
+      "id": "battery-slow",
+      "x": 960,
+      "y": 700,
+      "anchor": "center",
+      "children": [
+        {
+          "type": "rect",
+          "id": "battery-slow-body",
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 150,
+          "stroke": "#FFFFFF",
+          "strokeWidth": 6,
+          "fill": "rgba(255, 255, 255, 0.08)",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-tip",
+          "x": 180,
+          "y": 0,
+          "width": 36,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-1a",
+          "x": -140,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-1b",
+          "x": -118,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-2a",
+          "x": -76,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-2b",
+          "x": -54,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-3a",
+          "x": -12,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-3b",
+          "x": 12,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-4a",
+          "x": 54,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-4b",
+          "x": 76,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-5a",
+          "x": 118,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "rect",
+          "id": "battery-slow-bar-5b",
+          "x": 140,
+          "y": 0,
+          "width": 20,
+          "height": 100,
+          "fill": "#3DDC84",
+          "anchor": "center"
+        },
+        {
+          "type": "group",
+          "id": "battery-slow-clock",
+          "x": 0,
+          "y": -220,
+          "anchor": "center",
+          "children": [
+            {
+              "type": "circle",
+              "id": "battery-slow-clock-face",
+              "x": 0,
+              "y": 0,
+              "radius": 80,
+              "stroke": "#FFFFFF",
+              "strokeWidth": 4
+            },
+            {
+              "type": "line",
+              "id": "battery-slow-clock-hand",
+              "x": 0,
+              "y": 0,
+              "x2": 0,
+              "y2": -75,
+              "stroke": "#FFFFFF",
+              "strokeWidth": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "power-output-slow",
+      "content": "1 W output",
+      "x": 960,
+      "y": 900,
+      "anchor": "center",
+      "size": 40,
+      "color": "#FFFFFF"
+    }
+  ],
+  "animations": [
+    {"target": "sidebar-title", "effect": "pop", "start": "0s"},
+    {"target": "power-equation", "effect": "slideInLeft", "start": "0.4s"},
+    {"target": "power-equation-detail", "effect": "pop", "start": "0.8s"},
+    {"target": "power-equation", "effect": "fadeOut", "start": "3s"},
+    {"target": "power-equation-detail", "effect": "fadeOut", "start": "3s"},
+    {"target": "power-result", "effect": "slideInRight", "start": "3.4s"},
+    {"target": "power-result-detail", "effect": "pop", "start": "3.8s"},
+    {"target": "power-result", "effect": "fadeOut", "start": "6s"},
+    {"target": "power-result-detail", "effect": "fadeOut", "start": "6s"},
+    {"target": "capacity-line", "effect": "pop", "start": "6.2s"},
+    {"target": "capacity-detail", "effect": "slideInLeft", "start": "6.6s"},
+    {"target": "battery-fast", "effect": "pop", "start": "7s"},
+    {"target": "power-output-fast", "effect": "pop", "start": "7.2s"},
+    {"target": "battery-fast", "effect": "fadeOut", "start": "12.8s"},
+    {"target": "power-output-fast", "effect": "fadeOut", "start": "12.8s"},
+    {"target": "battery-slow", "effect": "pop", "start": "12.4s"},
+    {"target": "power-output-slow", "effect": "pop", "start": "12.6s"},
+    {"target": "battery-slow", "effect": "fadeOut", "start": "18s"},
+    {"target": "power-output-slow", "effect": "fadeOut", "start": "18s"},
+    {"target": "capacity-line", "effect": "fadeOut", "start": "18s"},
+    {"target": "capacity-detail", "effect": "fadeOut", "start": "18s"},
+    {"target": "runtime-formula", "effect": "slideInRight", "start": "18.3s"},
+    {"target": "runtime-detail", "effect": "pop", "start": "18.7s"},
+    {"target": "runtime-formula", "effect": "fadeOut", "start": "20.6s"},
+    {"target": "runtime-detail", "effect": "fadeOut", "start": "20.6s"},
+    {"target": "days-formula", "effect": "pop", "start": "20.9s"},
+    {"target": "days-detail", "effect": "slideInLeft", "start": "21.3s"},
+    {"target": "days-formula", "effect": "fadeOut", "start": "23.2s"},
+    {"target": "days-detail", "effect": "fadeOut", "start": "23.2s"},
+    {"target": "final-battery", "effect": "pop", "start": "23.4s"},
+    {"target": "final-callout", "effect": "pop", "start": "23.6s"},
+
+    {
+      "target": "battery-fast-clock",
+      "property": "rotation",
+      "keyframes": [
+        {"frame": 168, "value": 0},
+        {"frame": 288, "value": 360, "easing": "linear"}
+      ]
+    },
+    {
+      "target": "battery-slow-clock",
+      "property": "rotation",
+      "keyframes": [
+        {"frame": 298, "value": 0},
+        {"frame": 418, "value": 3600, "easing": "linear"}
+      ]
+    },
+
+    {
+      "target": "battery-fast-bar-1",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 0, "value": 1},
+        {"frame": 191, "value": 1},
+        {"frame": 192, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-fast-bar-2",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 0, "value": 1},
+        {"frame": 215, "value": 1},
+        {"frame": 216, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-fast-bar-3",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 0, "value": 1},
+        {"frame": 239, "value": 1},
+        {"frame": 240, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-fast-bar-4",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 0, "value": 1},
+        {"frame": 263, "value": 1},
+        {"frame": 264, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-fast-bar-5",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 0, "value": 1},
+        {"frame": 287, "value": 1},
+        {"frame": 288, "value": 0}
+      ]
+    },
+
+    {
+      "target": "battery-slow-bar-1a",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 309, "value": 1},
+        {"frame": 310, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-1b",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 321, "value": 1},
+        {"frame": 322, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-2a",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 333, "value": 1},
+        {"frame": 334, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-2b",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 345, "value": 1},
+        {"frame": 346, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-3a",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 357, "value": 1},
+        {"frame": 358, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-3b",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 369, "value": 1},
+        {"frame": 370, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-4a",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 381, "value": 1},
+        {"frame": 382, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-4b",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 393, "value": 1},
+        {"frame": 394, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-5a",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 405, "value": 1},
+        {"frame": 406, "value": 0}
+      ]
+    },
+    {
+      "target": "battery-slow-bar-5b",
+      "property": "opacity",
+      "keyframes": [
+        {"frame": 298, "value": 1},
+        {"frame": 417, "value": 1},
+        {"frame": 418, "value": 0}
+      ]
+    }
+  ]
+}

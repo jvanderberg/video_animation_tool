@@ -1,0 +1,1815 @@
+{
+  "project": {
+    "width": 4200,
+    "height": 2160,
+    "fps": 120,
+    "frames": 600
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 4200,
+      "height": 2160,
+      "fill": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "content": "LED Video Wall Construction",
+      "x": 2100,
+      "y": 80,
+      "size": 96,
+      "color": "#FFFFFF",
+      "anchor": "center"
+    },
+    {
+      "type": "text",
+      "id": "specs",
+      "content": "4.3m wide × 2m tall • 147 vertical strips • 8,820 LEDs total",
+      "x": 2100,
+      "y": 200,
+      "size": 48,
+      "color": "#888888",
+      "anchor": "center"
+    },
+    {
+      "type": "component",
+      "id": "strip-1",
+      "source": "./components/led-strip.json",
+      "x": 194.69999999999982,
+      "y": 300,
+      "scale": 2,
+      "start": 0,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-2",
+      "source": "./components/led-strip.json",
+      "x": 220.7999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 3,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-3",
+      "source": "./components/led-strip.json",
+      "x": 246.8999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 3,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-4",
+      "source": "./components/led-strip.json",
+      "x": 272.99999999999983,
+      "y": 300,
+      "scale": 2,
+      "start": 7,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-5",
+      "source": "./components/led-strip.json",
+      "x": 299.0999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 6,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-6",
+      "source": "./components/led-strip.json",
+      "x": 325.1999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 11,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-7",
+      "source": "./components/led-strip.json",
+      "x": 351.29999999999984,
+      "y": 300,
+      "scale": 2,
+      "start": 14,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-8",
+      "source": "./components/led-strip.json",
+      "x": 377.39999999999986,
+      "y": 300,
+      "scale": 2,
+      "start": 16,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-9",
+      "source": "./components/led-strip.json",
+      "x": 403.49999999999983,
+      "y": 300,
+      "scale": 2,
+      "start": 17,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-10",
+      "source": "./components/led-strip.json",
+      "x": 429.5999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 18,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-11",
+      "source": "./components/led-strip.json",
+      "x": 455.6999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 21,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-12",
+      "source": "./components/led-strip.json",
+      "x": 481.79999999999984,
+      "y": 300,
+      "scale": 2,
+      "start": 20,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-13",
+      "source": "./components/led-strip.json",
+      "x": 507.89999999999986,
+      "y": 300,
+      "scale": 2,
+      "start": 25,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-14",
+      "source": "./components/led-strip.json",
+      "x": 533.9999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 26,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-15",
+      "source": "./components/led-strip.json",
+      "x": 560.0999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 27,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-16",
+      "source": "./components/led-strip.json",
+      "x": 586.1999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 30,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-17",
+      "source": "./components/led-strip.json",
+      "x": 612.2999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 33,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-18",
+      "source": "./components/led-strip.json",
+      "x": 638.3999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 36,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-19",
+      "source": "./components/led-strip.json",
+      "x": 664.4999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 34,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-20",
+      "source": "./components/led-strip.json",
+      "x": 690.5999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 36,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-21",
+      "source": "./components/led-strip.json",
+      "x": 716.6999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 41,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-22",
+      "source": "./components/led-strip.json",
+      "x": 742.7999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 44,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-23",
+      "source": "./components/led-strip.json",
+      "x": 768.8999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 45,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-24",
+      "source": "./components/led-strip.json",
+      "x": 794.9999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 46,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-25",
+      "source": "./components/led-strip.json",
+      "x": 821.0999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 48,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-26",
+      "source": "./components/led-strip.json",
+      "x": 847.1999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 50,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-27",
+      "source": "./components/led-strip.json",
+      "x": 873.2999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 50,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-28",
+      "source": "./components/led-strip.json",
+      "x": 899.3999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 54,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-29",
+      "source": "./components/led-strip.json",
+      "x": 925.4999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 54,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-30",
+      "source": "./components/led-strip.json",
+      "x": 951.5999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 56,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-31",
+      "source": "./components/led-strip.json",
+      "x": 977.6999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 60,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-32",
+      "source": "./components/led-strip.json",
+      "x": 1003.7999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 61,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-33",
+      "source": "./components/led-strip.json",
+      "x": 1029.8999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 65,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-34",
+      "source": "./components/led-strip.json",
+      "x": 1056,
+      "y": 300,
+      "scale": 2,
+      "start": 64,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-35",
+      "source": "./components/led-strip.json",
+      "x": 1082.1,
+      "y": 300,
+      "scale": 2,
+      "start": 70,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-36",
+      "source": "./components/led-strip.json",
+      "x": 1108.1999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 68,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-37",
+      "source": "./components/led-strip.json",
+      "x": 1134.2999999999997,
+      "y": 300,
+      "scale": 2,
+      "start": 72,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-38",
+      "source": "./components/led-strip.json",
+      "x": 1160.3999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 75,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-39",
+      "source": "./components/led-strip.json",
+      "x": 1186.5,
+      "y": 300,
+      "scale": 2,
+      "start": 77,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-40",
+      "source": "./components/led-strip.json",
+      "x": 1212.6,
+      "y": 300,
+      "scale": 2,
+      "start": 76,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-41",
+      "source": "./components/led-strip.json",
+      "x": 1238.6999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 81,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-42",
+      "source": "./components/led-strip.json",
+      "x": 1264.8,
+      "y": 300,
+      "scale": 2,
+      "start": 80,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-43",
+      "source": "./components/led-strip.json",
+      "x": 1290.8999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 83,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-44",
+      "source": "./components/led-strip.json",
+      "x": 1316.9999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 87,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-45",
+      "source": "./components/led-strip.json",
+      "x": 1343.1,
+      "y": 300,
+      "scale": 2,
+      "start": 89,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-46",
+      "source": "./components/led-strip.json",
+      "x": 1369.1999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 90,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-47",
+      "source": "./components/led-strip.json",
+      "x": 1395.3,
+      "y": 300,
+      "scale": 2,
+      "start": 92,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-48",
+      "source": "./components/led-strip.json",
+      "x": 1421.3999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 96,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-49",
+      "source": "./components/led-strip.json",
+      "x": 1447.5,
+      "y": 300,
+      "scale": 2,
+      "start": 96,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-50",
+      "source": "./components/led-strip.json",
+      "x": 1473.6,
+      "y": 300,
+      "scale": 2,
+      "start": 97,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-51",
+      "source": "./components/led-strip.json",
+      "x": 1499.6999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 100,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-52",
+      "source": "./components/led-strip.json",
+      "x": 1525.8,
+      "y": 300,
+      "scale": 2,
+      "start": 101,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-53",
+      "source": "./components/led-strip.json",
+      "x": 1551.8999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 106,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-54",
+      "source": "./components/led-strip.json",
+      "x": 1578,
+      "y": 300,
+      "scale": 2,
+      "start": 104,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-55",
+      "source": "./components/led-strip.json",
+      "x": 1604.1,
+      "y": 300,
+      "scale": 2,
+      "start": 106,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-56",
+      "source": "./components/led-strip.json",
+      "x": 1630.1999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 111,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-57",
+      "source": "./components/led-strip.json",
+      "x": 1656.3,
+      "y": 300,
+      "scale": 2,
+      "start": 111,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-58",
+      "source": "./components/led-strip.json",
+      "x": 1682.3999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 112,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-59",
+      "source": "./components/led-strip.json",
+      "x": 1708.5,
+      "y": 300,
+      "scale": 2,
+      "start": 117,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-60",
+      "source": "./components/led-strip.json",
+      "x": 1734.6,
+      "y": 300,
+      "scale": 2,
+      "start": 116,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-61",
+      "source": "./components/led-strip.json",
+      "x": 1760.6999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 118,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-62",
+      "source": "./components/led-strip.json",
+      "x": 1786.8,
+      "y": 300,
+      "scale": 2,
+      "start": 124,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-63",
+      "source": "./components/led-strip.json",
+      "x": 1812.8999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 126,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-64",
+      "source": "./components/led-strip.json",
+      "x": 1839,
+      "y": 300,
+      "scale": 2,
+      "start": 124,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-65",
+      "source": "./components/led-strip.json",
+      "x": 1865.1,
+      "y": 300,
+      "scale": 2,
+      "start": 128,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-66",
+      "source": "./components/led-strip.json",
+      "x": 1891.1999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 132,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-67",
+      "source": "./components/led-strip.json",
+      "x": 1917.3,
+      "y": 300,
+      "scale": 2,
+      "start": 131,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-68",
+      "source": "./components/led-strip.json",
+      "x": 1943.3999999999999,
+      "y": 300,
+      "scale": 2,
+      "start": 132,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-69",
+      "source": "./components/led-strip.json",
+      "x": 1969.5,
+      "y": 300,
+      "scale": 2,
+      "start": 138,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-70",
+      "source": "./components/led-strip.json",
+      "x": 1995.6,
+      "y": 300,
+      "scale": 2,
+      "start": 138,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-71",
+      "source": "./components/led-strip.json",
+      "x": 2021.6999999999998,
+      "y": 300,
+      "scale": 2,
+      "start": 140,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-72",
+      "source": "./components/led-strip.json",
+      "x": 2047.8,
+      "y": 300,
+      "scale": 2,
+      "start": 140,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-73",
+      "source": "./components/led-strip.json",
+      "x": 2073.8999999999996,
+      "y": 300,
+      "scale": 2,
+      "start": 145,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-74",
+      "source": "./components/led-strip.json",
+      "x": 2100,
+      "y": 300,
+      "scale": 2,
+      "start": 146,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-75",
+      "source": "./components/led-strip.json",
+      "x": 2126.1,
+      "y": 300,
+      "scale": 2,
+      "start": 147,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-76",
+      "source": "./components/led-strip.json",
+      "x": 2152.2,
+      "y": 300,
+      "scale": 2,
+      "start": 149,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-77",
+      "source": "./components/led-strip.json",
+      "x": 2178.3,
+      "y": 300,
+      "scale": 2,
+      "start": 154,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-78",
+      "source": "./components/led-strip.json",
+      "x": 2204.3999999999996,
+      "y": 300,
+      "scale": 2,
+      "start": 154,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-79",
+      "source": "./components/led-strip.json",
+      "x": 2230.5,
+      "y": 300,
+      "scale": 2,
+      "start": 157,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-80",
+      "source": "./components/led-strip.json",
+      "x": 2256.6,
+      "y": 300,
+      "scale": 2,
+      "start": 157,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-81",
+      "source": "./components/led-strip.json",
+      "x": 2282.7,
+      "y": 300,
+      "scale": 2,
+      "start": 162,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-82",
+      "source": "./components/led-strip.json",
+      "x": 2308.7999999999997,
+      "y": 300,
+      "scale": 2,
+      "start": 160,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-83",
+      "source": "./components/led-strip.json",
+      "x": 2334.9,
+      "y": 300,
+      "scale": 2,
+      "start": 163,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-84",
+      "source": "./components/led-strip.json",
+      "x": 2361,
+      "y": 300,
+      "scale": 2,
+      "start": 167,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-85",
+      "source": "./components/led-strip.json",
+      "x": 2387.1,
+      "y": 300,
+      "scale": 2,
+      "start": 166,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-86",
+      "source": "./components/led-strip.json",
+      "x": 2413.2,
+      "y": 300,
+      "scale": 2,
+      "start": 169,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-87",
+      "source": "./components/led-strip.json",
+      "x": 2439.2999999999997,
+      "y": 300,
+      "scale": 2,
+      "start": 173,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-88",
+      "source": "./components/led-strip.json",
+      "x": 2465.4,
+      "y": 300,
+      "scale": 2,
+      "start": 173,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-89",
+      "source": "./components/led-strip.json",
+      "x": 2491.5,
+      "y": 300,
+      "scale": 2,
+      "start": 176,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-90",
+      "source": "./components/led-strip.json",
+      "x": 2517.6,
+      "y": 300,
+      "scale": 2,
+      "start": 176,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-91",
+      "source": "./components/led-strip.json",
+      "x": 2543.7,
+      "y": 300,
+      "scale": 2,
+      "start": 182,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-92",
+      "source": "./components/led-strip.json",
+      "x": 2569.7999999999997,
+      "y": 300,
+      "scale": 2,
+      "start": 181,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-93",
+      "source": "./components/led-strip.json",
+      "x": 2595.9,
+      "y": 300,
+      "scale": 2,
+      "start": 186,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-94",
+      "source": "./components/led-strip.json",
+      "x": 2622,
+      "y": 300,
+      "scale": 2,
+      "start": 185,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-95",
+      "source": "./components/led-strip.json",
+      "x": 2648.1,
+      "y": 300,
+      "scale": 2,
+      "start": 186,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-96",
+      "source": "./components/led-strip.json",
+      "x": 2674.2,
+      "y": 300,
+      "scale": 2,
+      "start": 189,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-97",
+      "source": "./components/led-strip.json",
+      "x": 2700.3,
+      "y": 300,
+      "scale": 2,
+      "start": 190,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-98",
+      "source": "./components/led-strip.json",
+      "x": 2726.4,
+      "y": 300,
+      "scale": 2,
+      "start": 196,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-99",
+      "source": "./components/led-strip.json",
+      "x": 2752.5,
+      "y": 300,
+      "scale": 2,
+      "start": 194,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-100",
+      "source": "./components/led-strip.json",
+      "x": 2778.6,
+      "y": 300,
+      "scale": 2,
+      "start": 200,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-101",
+      "source": "./components/led-strip.json",
+      "x": 2804.7,
+      "y": 300,
+      "scale": 2,
+      "start": 202,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-102",
+      "source": "./components/led-strip.json",
+      "x": 2830.8,
+      "y": 300,
+      "scale": 2,
+      "start": 202,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-103",
+      "source": "./components/led-strip.json",
+      "x": 2856.9,
+      "y": 300,
+      "scale": 2,
+      "start": 204,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-104",
+      "source": "./components/led-strip.json",
+      "x": 2883,
+      "y": 300,
+      "scale": 2,
+      "start": 204,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-105",
+      "source": "./components/led-strip.json",
+      "x": 2909.1,
+      "y": 300,
+      "scale": 2,
+      "start": 209,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-106",
+      "source": "./components/led-strip.json",
+      "x": 2935.2,
+      "y": 300,
+      "scale": 2,
+      "start": 210,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-107",
+      "source": "./components/led-strip.json",
+      "x": 2961.3,
+      "y": 300,
+      "scale": 2,
+      "start": 212,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-108",
+      "source": "./components/led-strip.json",
+      "x": 2987.4,
+      "y": 300,
+      "scale": 2,
+      "start": 213,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-109",
+      "source": "./components/led-strip.json",
+      "x": 3013.5,
+      "y": 300,
+      "scale": 2,
+      "start": 218,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-110",
+      "source": "./components/led-strip.json",
+      "x": 3039.6,
+      "y": 300,
+      "scale": 2,
+      "start": 219,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-111",
+      "source": "./components/led-strip.json",
+      "x": 3065.7,
+      "y": 300,
+      "scale": 2,
+      "start": 220,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-112",
+      "source": "./components/led-strip.json",
+      "x": 3091.8,
+      "y": 300,
+      "scale": 2,
+      "start": 224,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-113",
+      "source": "./components/led-strip.json",
+      "x": 3117.9,
+      "y": 300,
+      "scale": 2,
+      "start": 222,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-114",
+      "source": "./components/led-strip.json",
+      "x": 3144,
+      "y": 300,
+      "scale": 2,
+      "start": 227,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-115",
+      "source": "./components/led-strip.json",
+      "x": 3170.1,
+      "y": 300,
+      "scale": 2,
+      "start": 226,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-116",
+      "source": "./components/led-strip.json",
+      "x": 3196.2,
+      "y": 300,
+      "scale": 2,
+      "start": 228,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-117",
+      "source": "./components/led-strip.json",
+      "x": 3222.3,
+      "y": 300,
+      "scale": 2,
+      "start": 234,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-118",
+      "source": "./components/led-strip.json",
+      "x": 3248.4,
+      "y": 300,
+      "scale": 2,
+      "start": 236,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-119",
+      "source": "./components/led-strip.json",
+      "x": 3274.5,
+      "y": 300,
+      "scale": 2,
+      "start": 236,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-120",
+      "source": "./components/led-strip.json",
+      "x": 3300.6,
+      "y": 300,
+      "scale": 2,
+      "start": 237,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-121",
+      "source": "./components/led-strip.json",
+      "x": 3326.7,
+      "y": 300,
+      "scale": 2,
+      "start": 241,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-122",
+      "source": "./components/led-strip.json",
+      "x": 3352.8,
+      "y": 300,
+      "scale": 2,
+      "start": 243,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-123",
+      "source": "./components/led-strip.json",
+      "x": 3378.9,
+      "y": 300,
+      "scale": 2,
+      "start": 245,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-124",
+      "source": "./components/led-strip.json",
+      "x": 3405,
+      "y": 300,
+      "scale": 2,
+      "start": 245,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-125",
+      "source": "./components/led-strip.json",
+      "x": 3431.1,
+      "y": 300,
+      "scale": 2,
+      "start": 250,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-126",
+      "source": "./components/led-strip.json",
+      "x": 3457.2,
+      "y": 300,
+      "scale": 2,
+      "start": 252,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-127",
+      "source": "./components/led-strip.json",
+      "x": 3483.3,
+      "y": 300,
+      "scale": 2,
+      "start": 252,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-128",
+      "source": "./components/led-strip.json",
+      "x": 3509.4,
+      "y": 300,
+      "scale": 2,
+      "start": 252,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-129",
+      "source": "./components/led-strip.json",
+      "x": 3535.5,
+      "y": 300,
+      "scale": 2,
+      "start": 257,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-130",
+      "source": "./components/led-strip.json",
+      "x": 3561.6,
+      "y": 300,
+      "scale": 2,
+      "start": 260,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-131",
+      "source": "./components/led-strip.json",
+      "x": 3587.7,
+      "y": 300,
+      "scale": 2,
+      "start": 258,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-132",
+      "source": "./components/led-strip.json",
+      "x": 3613.8,
+      "y": 300,
+      "scale": 2,
+      "start": 260,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-133",
+      "source": "./components/led-strip.json",
+      "x": 3639.9,
+      "y": 300,
+      "scale": 2,
+      "start": 263,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-134",
+      "source": "./components/led-strip.json",
+      "x": 3666,
+      "y": 300,
+      "scale": 2,
+      "start": 267,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-135",
+      "source": "./components/led-strip.json",
+      "x": 3692.1,
+      "y": 300,
+      "scale": 2,
+      "start": 266,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-136",
+      "source": "./components/led-strip.json",
+      "x": 3718.2,
+      "y": 300,
+      "scale": 2,
+      "start": 271,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-137",
+      "source": "./components/led-strip.json",
+      "x": 3744.3,
+      "y": 300,
+      "scale": 2,
+      "start": 273,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-138",
+      "source": "./components/led-strip.json",
+      "x": 3770.4,
+      "y": 300,
+      "scale": 2,
+      "start": 275,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-139",
+      "source": "./components/led-strip.json",
+      "x": 3796.5,
+      "y": 300,
+      "scale": 2,
+      "start": 275,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-140",
+      "source": "./components/led-strip.json",
+      "x": 3822.6,
+      "y": 300,
+      "scale": 2,
+      "start": 276,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-141",
+      "source": "./components/led-strip.json",
+      "x": 3848.7,
+      "y": 300,
+      "scale": 2,
+      "start": 282,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-142",
+      "source": "./components/led-strip.json",
+      "x": 3874.8,
+      "y": 300,
+      "scale": 2,
+      "start": 283,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-143",
+      "source": "./components/led-strip.json",
+      "x": 3900.9,
+      "y": 300,
+      "scale": 2,
+      "start": 285,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-144",
+      "source": "./components/led-strip.json",
+      "x": 3927,
+      "y": 300,
+      "scale": 2,
+      "start": 286,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-145",
+      "source": "./components/led-strip.json",
+      "x": 3953.1,
+      "y": 300,
+      "scale": 2,
+      "start": 290,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-146",
+      "source": "./components/led-strip.json",
+      "x": 3979.2,
+      "y": 300,
+      "scale": 2,
+      "start": 288,
+      "params": {
+        "opacity": 0.5
+      }
+    },
+    {
+      "type": "component",
+      "id": "strip-147",
+      "source": "./components/led-strip.json",
+      "x": 4005.3,
+      "y": 300,
+      "scale": 2,
+      "start": 294,
+      "params": {
+        "opacity": 0.5
+      }
+    }
+  ],
+  "animations": [
+    {
+      "target": "title",
+      "effect": "fadeIn",
+      "start": 0
+    },
+    {
+      "target": "specs",
+      "effect": "fadeIn",
+      "start": "0.5s"
+    }
+  ]
+}

@@ -1,0 +1,2367 @@
+{
+  "description": "2m vertical LED strip, 1cm wide. 60 LEDs (5mm×5mm, 30/meter). Scale: 4.465px/cm. LED spacing: 3.33cm = 15px. RGB pattern.",
+  "parameters": {
+    "x": 0,
+    "y": 0,
+    "opacity": 1
+  },
+  "objects": [
+    {
+      "type": "rect",
+      "id": "strip-backing",
+      "x": -1,
+      "y": 0,
+      "width": 4,
+      "height": 900,
+      "fill": "#AAAAAA",
+      "opacity": "{{opacity}}"
+    },
+    {
+      "type": "rect",
+      "id": "led-0",
+      "x": 0,
+      "y": 0,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-1",
+      "x": 0,
+      "y": 15,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-2",
+      "x": 0,
+      "y": 30,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-3",
+      "x": 0,
+      "y": 45,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-4",
+      "x": 0,
+      "y": 60,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-5",
+      "x": 0,
+      "y": 75,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-6",
+      "x": 0,
+      "y": 90,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-7",
+      "x": 0,
+      "y": 105,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-8",
+      "x": 0,
+      "y": 120,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-9",
+      "x": 0,
+      "y": 135,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-10",
+      "x": 0,
+      "y": 150,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-11",
+      "x": 0,
+      "y": 165,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-12",
+      "x": 0,
+      "y": 180,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-13",
+      "x": 0,
+      "y": 195,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-14",
+      "x": 0,
+      "y": 210,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-15",
+      "x": 0,
+      "y": 225,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-16",
+      "x": 0,
+      "y": 240,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-17",
+      "x": 0,
+      "y": 255,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-18",
+      "x": 0,
+      "y": 270,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-19",
+      "x": 0,
+      "y": 285,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-20",
+      "x": 0,
+      "y": 300,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-21",
+      "x": 0,
+      "y": 315,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-22",
+      "x": 0,
+      "y": 330,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-23",
+      "x": 0,
+      "y": 345,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-24",
+      "x": 0,
+      "y": 360,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-25",
+      "x": 0,
+      "y": 375,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-26",
+      "x": 0,
+      "y": 390,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-27",
+      "x": 0,
+      "y": 405,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-28",
+      "x": 0,
+      "y": 420,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-29",
+      "x": 0,
+      "y": 435,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-30",
+      "x": 0,
+      "y": 450,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-31",
+      "x": 0,
+      "y": 465,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-32",
+      "x": 0,
+      "y": 480,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-33",
+      "x": 0,
+      "y": 495,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-34",
+      "x": 0,
+      "y": 510,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-35",
+      "x": 0,
+      "y": 525,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-36",
+      "x": 0,
+      "y": 540,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-37",
+      "x": 0,
+      "y": 555,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-38",
+      "x": 0,
+      "y": 570,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-39",
+      "x": 0,
+      "y": 585,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-40",
+      "x": 0,
+      "y": 600,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-41",
+      "x": 0,
+      "y": 615,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-42",
+      "x": 0,
+      "y": 630,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-43",
+      "x": 0,
+      "y": 645,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-44",
+      "x": 0,
+      "y": 660,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-45",
+      "x": 0,
+      "y": 675,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-46",
+      "x": 0,
+      "y": 690,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-47",
+      "x": 0,
+      "y": 705,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-48",
+      "x": 0,
+      "y": 720,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-49",
+      "x": 0,
+      "y": 735,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-50",
+      "x": 0,
+      "y": 750,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-51",
+      "x": 0,
+      "y": 765,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-52",
+      "x": 0,
+      "y": 780,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-53",
+      "x": 0,
+      "y": 795,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-54",
+      "x": 0,
+      "y": 810,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-55",
+      "x": 0,
+      "y": 825,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-56",
+      "x": 0,
+      "y": 840,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-57",
+      "x": 0,
+      "y": 855,
+      "width": 2,
+      "height": 2,
+      "fill": "#FF0000",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-58",
+      "x": 0,
+      "y": 870,
+      "width": 2,
+      "height": 2,
+      "fill": "#00FF00",
+      "opacity": 1
+    },
+    {
+      "type": "rect",
+      "id": "led-59",
+      "x": 0,
+      "y": 885,
+      "width": 2,
+      "height": 2,
+      "fill": "#0000FF",
+      "opacity": 1
+    }
+  ],
+  "animations": [
+    {
+      "target": "strip-backing",
+      "effect": "dropIn",
+      "start": 0
+    },
+    {
+      "target": "led-0",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 2,
+          "value": 0
+        },
+        {
+          "frame": 22,
+          "value": 0,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-0",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 2,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-1",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 20,
+          "value": 15,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-1",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 0,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-2",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 1,
+          "value": 0
+        },
+        {
+          "frame": 21,
+          "value": 30,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-2",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 1,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-3",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 3,
+          "value": 0
+        },
+        {
+          "frame": 23,
+          "value": 45,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-3",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 3,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-4",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 3,
+          "value": 0
+        },
+        {
+          "frame": 23,
+          "value": 60,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-4",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 3,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-5",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 6,
+          "value": 0
+        },
+        {
+          "frame": 26,
+          "value": 75,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-5",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 6,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-6",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 8,
+          "value": 0
+        },
+        {
+          "frame": 28,
+          "value": 90,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-6",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 8,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-7",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 5,
+          "value": 0
+        },
+        {
+          "frame": 25,
+          "value": 105,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-7",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 5,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-8",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 8,
+          "value": 0
+        },
+        {
+          "frame": 28,
+          "value": 120,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-8",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 8,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-9",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 10,
+          "value": 0
+        },
+        {
+          "frame": 30,
+          "value": 135,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-9",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 10,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-10",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 8,
+          "value": 0
+        },
+        {
+          "frame": 28,
+          "value": 150,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-10",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 8,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-11",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 11,
+          "value": 0
+        },
+        {
+          "frame": 31,
+          "value": 165,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-11",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 11,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-12",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 14,
+          "value": 0
+        },
+        {
+          "frame": 34,
+          "value": 180,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-12",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 14,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-13",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 11,
+          "value": 0
+        },
+        {
+          "frame": 31,
+          "value": 195,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-13",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 11,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-14",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 16,
+          "value": 0
+        },
+        {
+          "frame": 36,
+          "value": 210,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-14",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 16,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-15",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 13,
+          "value": 0
+        },
+        {
+          "frame": 33,
+          "value": 225,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-15",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 13,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-16",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 18,
+          "value": 0
+        },
+        {
+          "frame": 38,
+          "value": 240,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-16",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 18,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-17",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 18,
+          "value": 0
+        },
+        {
+          "frame": 38,
+          "value": 255,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-17",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 18,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-18",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 19,
+          "value": 0
+        },
+        {
+          "frame": 39,
+          "value": 270,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-18",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 19,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-19",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 18,
+          "value": 0
+        },
+        {
+          "frame": 38,
+          "value": 285,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-19",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 18,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-20",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 21,
+          "value": 0
+        },
+        {
+          "frame": 41,
+          "value": 300,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-20",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 21,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-21",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 20,
+          "value": 0
+        },
+        {
+          "frame": 40,
+          "value": 315,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-21",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 20,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-22",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 22,
+          "value": 0
+        },
+        {
+          "frame": 42,
+          "value": 330,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-22",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 22,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-23",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 23,
+          "value": 0
+        },
+        {
+          "frame": 43,
+          "value": 345,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-23",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 23,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-24",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 22,
+          "value": 0
+        },
+        {
+          "frame": 42,
+          "value": 360,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-24",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 22,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-25",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 27,
+          "value": 0
+        },
+        {
+          "frame": 47,
+          "value": 375,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-25",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 27,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-26",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 26,
+          "value": 0
+        },
+        {
+          "frame": 46,
+          "value": 390,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-26",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 26,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-27",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 29,
+          "value": 0
+        },
+        {
+          "frame": 49,
+          "value": 405,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-27",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 29,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-28",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 29,
+          "value": 0
+        },
+        {
+          "frame": 49,
+          "value": 420,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-28",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 29,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-29",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 31,
+          "value": 0
+        },
+        {
+          "frame": 51,
+          "value": 435,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-29",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 31,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-30",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 28,
+          "value": 0
+        },
+        {
+          "frame": 48,
+          "value": 450,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-30",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 28,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-31",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 32,
+          "value": 0
+        },
+        {
+          "frame": 52,
+          "value": 465,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-31",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 32,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-32",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 31,
+          "value": 0
+        },
+        {
+          "frame": 51,
+          "value": 480,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-32",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 31,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-33",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 35,
+          "value": 0
+        },
+        {
+          "frame": 55,
+          "value": 495,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-33",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 35,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-34",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 32,
+          "value": 0
+        },
+        {
+          "frame": 52,
+          "value": 510,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-34",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 32,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-35",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 35,
+          "value": 0
+        },
+        {
+          "frame": 55,
+          "value": 525,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-35",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 35,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-36",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 38,
+          "value": 0
+        },
+        {
+          "frame": 58,
+          "value": 540,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-36",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 38,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-37",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 39,
+          "value": 0
+        },
+        {
+          "frame": 59,
+          "value": 555,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-37",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 39,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-38",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 39,
+          "value": 0
+        },
+        {
+          "frame": 59,
+          "value": 570,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-38",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 39,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-39",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 40,
+          "value": 0
+        },
+        {
+          "frame": 60,
+          "value": 585,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-39",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 40,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-40",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 40,
+          "value": 0
+        },
+        {
+          "frame": 60,
+          "value": 600,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-40",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 40,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-41",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 41,
+          "value": 0
+        },
+        {
+          "frame": 61,
+          "value": 615,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-41",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 41,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-42",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 42,
+          "value": 0
+        },
+        {
+          "frame": 62,
+          "value": 630,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-42",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 42,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-43",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 44,
+          "value": 0
+        },
+        {
+          "frame": 64,
+          "value": 645,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-43",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 44,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-44",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 44,
+          "value": 0
+        },
+        {
+          "frame": 64,
+          "value": 660,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-44",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 44,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-45",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 45,
+          "value": 0
+        },
+        {
+          "frame": 65,
+          "value": 675,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-45",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 45,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-46",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 46,
+          "value": 0
+        },
+        {
+          "frame": 66,
+          "value": 690,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-46",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 46,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-47",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 48,
+          "value": 0
+        },
+        {
+          "frame": 68,
+          "value": 705,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-47",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 48,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-48",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 47,
+          "value": 0
+        },
+        {
+          "frame": 67,
+          "value": 720,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-48",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 47,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-49",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 51,
+          "value": 0
+        },
+        {
+          "frame": 71,
+          "value": 735,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-49",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 51,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-50",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 50,
+          "value": 0
+        },
+        {
+          "frame": 70,
+          "value": 750,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-50",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 50,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-51",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 51,
+          "value": 0
+        },
+        {
+          "frame": 71,
+          "value": 765,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-51",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 51,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-52",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 54,
+          "value": 0
+        },
+        {
+          "frame": 74,
+          "value": 780,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-52",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 54,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-53",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 51,
+          "value": 0
+        },
+        {
+          "frame": 71,
+          "value": 795,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-53",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 51,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-54",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 56,
+          "value": 0
+        },
+        {
+          "frame": 76,
+          "value": 810,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-54",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 56,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-55",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 57,
+          "value": 0
+        },
+        {
+          "frame": 77,
+          "value": 825,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-55",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 57,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-56",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 55,
+          "value": 0
+        },
+        {
+          "frame": 75,
+          "value": 840,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-56",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 55,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-57",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 56,
+          "value": 0
+        },
+        {
+          "frame": 76,
+          "value": 855,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-57",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 56,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-58",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 56,
+          "value": 0
+        },
+        {
+          "frame": 76,
+          "value": 870,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-58",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 56,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "target": "led-59",
+      "property": "y",
+      "keyframes": [
+        {
+          "frame": 57,
+          "value": 0
+        },
+        {
+          "frame": 77,
+          "value": 885,
+          "easing": "ease-out"
+        }
+      ]
+    },
+    {
+      "target": "led-59",
+      "property": "opacity",
+      "keyframes": [
+        {
+          "frame": 0,
+          "value": 0
+        },
+        {
+          "frame": 57,
+          "value": 1
+        }
+      ]
+    }
+  ]
+}
