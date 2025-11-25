@@ -54,7 +54,37 @@
 
 ---
 
-### 2. Remove debug logging from production code
+### 3. Support project-level duration parameter
+
+**Goal**: Allow specifying project duration as a TimeValue instead of requiring manual frame calculation.
+
+**Status**: 🔵 **TODO** - Not started
+
+**What needs to be done:**
+- [ ] Add `duration?: TimeValue` to ProjectConfig type
+- [ ] Parse duration at load time and convert to frames based on fps
+- [ ] Make `frames` optional if `duration` is specified
+- [ ] Validate that either `frames` or `duration` is provided
+- [ ] Update documentation with examples
+- [ ] Add tests for duration parsing at project level
+
+**Example usage:**
+```json
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "duration": "20s"
+  }
+}
+```
+
+This would automatically calculate `frames: 480` (20 * 24) at parse time.
+
+---
+
+### 4. Remove debug logging from production code
 
 **Goal**: Clean up any console.log statements that were added during debugging.
 
@@ -68,7 +98,7 @@
 
 ---
 
-### 3. Review recent features for missing test coverage
+### 5. Review recent features for missing test coverage
 
 **Goal**: Ensure all recent features have adequate test coverage.
 
