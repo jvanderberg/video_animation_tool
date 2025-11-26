@@ -14,7 +14,7 @@ A declarative animation tool for creating video content, designed to be both han
 ### Coordinate System & Units
 - **Origin**: Top-left (0, 0)
 - **Units**: Pixels only
-- **Time**: Frame numbers (not seconds)
+- **Time**: TimeValue format - frame numbers (e.g., `30`) or time strings (e.g., `"1s"`, `"500ms"`, `"0.5m"`)
 - **Layering**: Document order (first = bottom), explicit z-index optional
 
 ### Output Format
@@ -123,6 +123,44 @@ Common properties across all object types:
 
 ### Animation System
 
+#### Where Animations Can Be Defined
+
+Animations can be defined in three places:
+
+1. **Root level** - For animating any object in the file:
+   ```json
+   {
+     "project": {...},
+     "objects": [...],
+     "animations": [
+       {"target": "objectId", "property": "x", "keyframes": [...]}
+     ]
+   }
+   ```
+
+2. **Inline on objects** - Scoped to that object (no `target` needed):
+   ```json
+   {
+     "type": "text",
+     "id": "title",
+     "content": "Hello",
+     "animations": [
+       {"property": "opacity", "keyframes": [...]}
+     ]
+   }
+   ```
+
+3. **In groups** - For animating the group or its children:
+   ```json
+   {
+     "type": "group",
+     "children": [...],
+     "animations": [
+       {"target": "childId", "property": "x", "keyframes": [...]}
+     ]
+   }
+   ```
+
 #### Keyframe-based
 ```json
 {
@@ -130,9 +168,9 @@ Common properties across all object types:
     {
       "property": "x",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 30, "value": 100, "easing": "ease-out"},
-        {"frame": 60, "value": 200}
+        {"start": 0, "value": 0},
+        {"start": 30, "value": 100, "easing": "ease-out"},
+        {"start": 60, "value": 200}
       ]
     }
   ]
@@ -195,16 +233,16 @@ Clip properties can be animated using nested property paths:
       }
     }
   ],
-  "sequences": [{
-    "animations": [{
+  "animations": [
+    {
       "target": "title",
       "property": "clip.width",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 30, "value": 960}
+        {"start": 0, "value": 0},
+        {"start": 30, "value": 960}
       ]
-    }]
-  }]
+    }
+  ]
 }
 ```
 
@@ -226,8 +264,8 @@ Example:
 {
   "property": "clip.width",
   "keyframes": [
-    {"frame": 0, "value": 0},
-    {"frame": 30, "value": "100%"}  // Resolves to object's width
+    {"start": 0, "value": 0},
+    {"start": 30, "value": "100%"}  // Resolves to object's width
   ]
 }
 ```
@@ -261,16 +299,11 @@ Effects are applied through sequences using the `effect` property:
       "opacity": 0
     }
   ],
-  "sequences": [
+  "animations": [
     {
-      "name": "main",
-      "animations": [
-        {
-          "target": "title",
-          "effect": "pop",
-          "start": "0.5s"
-        }
-      ]
+      "target": "title",
+      "effect": "pop",
+      "start": "0.5s"
     }
   ]
 }
@@ -469,23 +502,21 @@ You can combine effects with traditional property animations in the same sequenc
 
 ```json
 {
-  "sequences": [{
-    "animations": [
-      {
-        "target": "title",
-        "effect": "pop",
-        "start": 0
-      },
-      {
-        "target": "title",
-        "property": "rotation",
-        "keyframes": [
-          {"frame": 30, "value": 0},
-          {"frame": 90, "value": 360}
-        ]
-      }
-    ]
-  }]
+  "animations": [
+    {
+      "target": "title",
+      "effect": "pop",
+      "start": 0
+    },
+    {
+      "target": "title",
+      "property": "rotation",
+      "keyframes": [
+        {"start": 30, "value": 0},
+        {"start": 90, "value": 360}
+      ]
+    }
+  ]
 }
 ```
 
@@ -504,7 +535,7 @@ You can combine effects with traditional property animations in the same sequenc
 String format (CSS-style):
 ```json
 {
-  "frame": 60,
+  "start": 60,
   "value": 100,
   "easing": "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
 }
@@ -513,7 +544,7 @@ String format (CSS-style):
 Object format:
 ```json
 {
-  "frame": 60,
+  "start": 60,
   "value": 100,
   "easing": {
     "type": "cubic-bezier",
@@ -653,8 +684,8 @@ Groups allow animating multiple objects together:
     {
       "property": "rotation",
       "keyframes": [
-        {"frame": 0, "value": 0},
-        {"frame": 60, "value": 360}
+        {"start": 0, "value": 0},
+        {"start": 60, "value": 360}
       ]
     }
   ]
@@ -706,8 +737,8 @@ Groups allow animating multiple objects together:
         {
           "property": "opacity",
           "keyframes": [
-            {"frame": 0, "value": 0},
-            {"frame": 30, "value": 1, "easing": "ease-in"}
+            {"start": 0, "value": 0},
+            {"start": 30, "value": 1, "easing": "ease-in"}
           ]
         }
       ]
