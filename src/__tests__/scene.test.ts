@@ -603,6 +603,49 @@ describe('Scene Object Type', () => {
     });
   });
 
+  describe('Scene animation timing (off-by-one fix)', () => {
+    let tempDir: string;
+
+    beforeEach(async () => {
+      tempDir = join(tmpdir(), `scene-timing-test-${Date.now()}`);
+      await mkdir(tempDir, { recursive: true });
+    });
+
+    afterEach(async () => {
+      await rm(tempDir, { recursive: true, force: true });
+    });
+
+    it('should complete fadeOut by the last frame of scene duration', async () => {
+      // Scene duration "2s" at 30fps = 60 frames (0-59)
+      // fadeOut at 1.5s with 0.5s duration should complete BY frame 59, not AT frame 60
+      const sceneFile: SceneFile = {
+        duration: '2s',  // frames 0-59 relative
+        objects: [
+          { type: 'rect', id: 'box', x: 100, y: 100, width: 50, height: 50, fill: '#FF0000', opacity: 1 },
+        ],
+        animations: [
+          { target: 'box', effect: 'fadeOut', start: '1.5s' },  // 0.5s duration
+        ],
+      };
+      await writeFile(join(tempDir, 'timing.json'), JSON.stringify(sceneFile));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },  // Exactly 2 seconds
+        objects: [
+          { type: 'scene', id: 'test', source: './timing.json', start: '0s' } as SceneObject,
+        ],
+      };
+
+      const processed = await preprocessAnimation(animation, tempDir);
+      const renderer = new Renderer(processed);
+
+      // At frame 59 (the LAST frame), fadeOut should be COMPLETE (fully transparent)
+      const buffer59 = await renderer.exportFrame(59);
+      const pixel59 = await getPixelFromPNG(buffer59, 100, 100);
+      expect(pixel59[3]).toBe(0);  // Should be fully transparent, not ~10%
+    });
+  });
+
   describe('Scene effect animations', () => {
     let tempDir: string;
 

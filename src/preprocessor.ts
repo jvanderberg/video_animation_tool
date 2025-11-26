@@ -253,8 +253,10 @@ function timeKeyframesToFrameKeyframes(
   startFrame: number,
   durationFrames: number
 ): Keyframe[] {
+  // Use (durationFrames - 1) so that time=1.0 maps to the last frame WITHIN the duration
+  // e.g., if durationFrames=15 (frames 0-14), time=1.0 should be frame 14, not frame 15
   return timeKeyframes.map(tk => ({
-    start: Math.round(startFrame + tk.time * durationFrames),
+    start: Math.round(startFrame + tk.time * (durationFrames - 1)),
     value: tk.value,
     easing: tk.easing
   }));
@@ -521,7 +523,10 @@ async function expandEffectToRelativeAnimations(
       const relativeStart = effectAnim.start !== undefined
         ? parseTime(effectAnim.start, fps)
         : 0;
-      const timeOffset = kf.time * durationSeconds;
+      // Use (durationSeconds - 1/fps) so time=1.0 maps to the last frame WITHIN the duration
+      // e.g., 0.5s duration at 30fps: time=1.0 maps to 0.4667s offset, not 0.5s
+      const adjustedDuration = durationSeconds - 1/fps;
+      const timeOffset = kf.time * adjustedDuration;
 
       return {
         start: `${(relativeStart / fps) + timeOffset}s` as TimeValue,
