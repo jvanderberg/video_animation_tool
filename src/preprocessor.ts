@@ -18,7 +18,9 @@ import type {
   TimeKeyframe,
   GroupAnimation,
   GroupObject,
-  GroupTransition
+  GroupTransition,
+  SceneObject,
+  SceneFile
 } from './types.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,6 +28,180 @@ const __dirname = dirname(__filename);
 
 // Cache for individual effect definitions
 const effectCache = new Map<string, EffectDefinition>();
+
+// Cache for loaded scene files
+const sceneCache = new Map<string, SceneFile>();
+
+/**
+ * Load a scene file from disk (with caching)
+ */
+async function loadSceneFile(scenePath: string): Promise<SceneFile> {
+  if (sceneCache.has(scenePath)) {
+    return sceneCache.get(scenePath)!;
+  }
+
+  try {
+    const data = await readFile(scenePath, 'utf-8');
+    const sceneFile = JSON.parse(data) as SceneFile;
+    sceneCache.set(scenePath, sceneFile);
+    return sceneFile;
+  } catch (error) {
+    throw new Error(`Scene file '${scenePath}' not found or invalid`);
+  }
+}
+
+/**
+ * Check if an object is a scene object
+ */
+function isSceneObject(obj: AnimationObject): obj is SceneObject {
+  return obj.type === 'scene';
+}
+
+/**
+ * Namespace object IDs with a prefix
+ */
+function namespaceObjectIds(objects: AnimationObject[], prefix: string): AnimationObject[] {
+  return objects.map(obj => {
+    const newObj = { ...obj };
+    if (newObj.id) {
+      newObj.id = `${prefix}.${newObj.id}`;
+    }
+
+    // Recursively namespace children in groups
+    if (newObj.type === 'group' && 'children' in newObj) {
+      (newObj as GroupObject).children = namespaceObjectIds(
+        (newObj as GroupObject).children,
+        prefix
+      );
+    }
+
+    return newObj;
+  });
+}
+
+/**
+ * Namespace animation targets with a prefix
+ */
+function namespaceAnimations(animations: Animation[], prefix: string): Animation[] {
+  return animations.map(anim => ({
+    ...anim,
+    target: `${prefix}.${anim.target}`
+  }));
+}
+
+/**
+ * Expand scene objects into their contents
+ */
+async function expandSceneObjects(
+  objects: AnimationObject[],
+  basePath: string,
+  fps: number,
+  parentStartFrame: number = 0
+): Promise<{ objects: AnimationObject[]; animations: Animation[] }> {
+  const expandedObjects: AnimationObject[] = [];
+  const extractedAnimations: Animation[] = [];
+
+  for (const obj of objects) {
+    if (isSceneObject(obj)) {
+      const sceneObj = obj as SceneObject;
+      const scenePath = join(basePath, sceneObj.source);
+      const sceneFile = await loadSceneFile(scenePath);
+      const sceneDir = dirname(scenePath);
+
+      // Calculate scene start frame
+      const sceneStartFrame = sceneObj.start !== undefined
+        ? parentStartFrame + parseTime(sceneObj.start, fps)
+        : parentStartFrame;
+
+      // Recursively expand any nested scenes
+      const { objects: nestedObjects, animations: nestedAnimations } = await expandSceneObjects(
+        sceneFile.objects,
+        sceneDir,
+        fps,
+        sceneStartFrame
+      );
+
+      // Namespace IDs if scene has an ID
+      let finalObjects = nestedObjects;
+      let finalAnimations = nestedAnimations;
+
+      if (sceneObj.id) {
+        finalObjects = namespaceObjectIds(nestedObjects, sceneObj.id);
+        finalAnimations = namespaceAnimations(nestedAnimations, sceneObj.id);
+      }
+
+      // Process scene's own animations
+      if (sceneFile.animations && sceneFile.animations.length > 0) {
+        for (const anim of sceneFile.animations) {
+          const namespacedTarget = sceneObj.id ? `${sceneObj.id}.${anim.target}` : anim.target;
+
+          if ('keyframes' in anim) {
+            // Property animation - offset keyframe timings by scene start
+            const offsetAnim: PropertyAnimation = {
+              ...anim as PropertyAnimation,
+              target: namespacedTarget,
+              keyframes: (anim as PropertyAnimation).keyframes.map(kf => ({
+                ...kf,
+                start: sceneStartFrame + parseTime(kf.start, fps)
+              }))
+            };
+            extractedAnimations.push(offsetAnim);
+          } else if ('effect' in anim) {
+            // Effect animation - offset start time by scene start
+            const effectAnim = anim as EffectAnimation;
+            const animStart = effectAnim.start !== undefined ? parseTime(effectAnim.start, fps) : 0;
+            const offsetEffectAnim: EffectAnimation = {
+              ...effectAnim,
+              target: namespacedTarget,
+              start: sceneStartFrame + animStart
+            };
+            extractedAnimations.push(offsetEffectAnim);
+          }
+        }
+      }
+
+      // Wrap scene contents in a group to handle visibility (start/duration)
+      // This ensures the scene respects its timing window
+      if (sceneObj.id && (sceneObj.start !== undefined || sceneFile.duration !== undefined)) {
+        const sceneGroup: GroupObject = {
+          type: 'group',
+          id: sceneObj.id,
+          x: sceneObj.x ?? 0,
+          y: sceneObj.y ?? 0,
+          start: sceneObj.start,
+          duration: sceneFile.duration,
+          children: finalObjects as AnimationObject[],
+          opacity: sceneObj.opacity,
+          scale: sceneObj.scale,
+          rotation: sceneObj.rotation,
+        };
+        expandedObjects.push(sceneGroup);
+      } else {
+        expandedObjects.push(...finalObjects);
+      }
+      extractedAnimations.push(...finalAnimations);
+    } else if (obj.type === 'group') {
+      // Recursively process groups for nested scenes
+      const group = obj as GroupObject;
+      const { objects: expandedChildren, animations: childAnimations } = await expandSceneObjects(
+        group.children,
+        basePath,
+        fps,
+        parentStartFrame
+      );
+
+      expandedObjects.push({
+        ...group,
+        children: expandedChildren
+      });
+      extractedAnimations.push(...childAnimations);
+    } else {
+      expandedObjects.push(obj);
+    }
+  }
+
+  return { objects: expandedObjects, animations: extractedAnimations };
+}
 
 /**
  * Load a single effect from its file (with caching)
@@ -568,12 +744,27 @@ async function extractGroupAnimations(
   return extracted;
 }
 
-export async function preprocessAnimation(animation: AnimationFile): Promise<AnimationFile> {
-  // Validate objects first
-  validateObjects(animation.objects);
+export async function preprocessAnimation(animation: AnimationFile, basePath?: string): Promise<AnimationFile> {
+  // Expand scene objects first (before validation)
+  let expandedAnimation = animation;
+  if (basePath) {
+    const { objects: expandedObjects, animations: sceneAnimations } = await expandSceneObjects(
+      animation.objects,
+      basePath,
+      animation.project.fps
+    );
+    expandedAnimation = {
+      ...animation,
+      objects: expandedObjects,
+      animations: [...(animation.animations || []), ...sceneAnimations]
+    };
+  }
+
+  // Validate objects after scene expansion
+  validateObjects(expandedAnimation.objects);
 
   // Resolve percentages in object clip properties
-  resolveClipPercentages(animation.objects);
+  resolveClipPercentages(expandedAnimation.objects);
 
   // Collect all animations from:
   // 1. Root-level animations array
@@ -582,14 +773,14 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
   const allAnimations: Animation[] = [];
 
   // Process root-level animations (treat as group with start=0)
-  if (animation.animations && animation.animations.length > 0) {
+  if (expandedAnimation.animations && expandedAnimation.animations.length > 0) {
     // Expand effect animations to property animations FIRST
     const expandedRootAnimations: (GroupAnimation | Animation)[] = [];
-    for (const anim of animation.animations) {
+    for (const anim of expandedAnimation.animations) {
       // Check if this is an EffectAnimation
       if ('effect' in anim && 'start' in anim && !('keyframes' in anim)) {
         // EffectAnimation - expand to property animations
-        const expanded = await expandEffectAnimation(anim as EffectAnimation, animation.project.fps, animation.objects);
+        const expanded = await expandEffectAnimation(anim as EffectAnimation, expandedAnimation.project.fps, expandedAnimation.objects);
         expandedRootAnimations.push(...expanded);
       } else {
         // Already a property animation
@@ -597,11 +788,11 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
       }
     }
 
-    const rootSpeed = animation.animationSpeed || 1.0;
+    const rootSpeed = expandedAnimation.animationSpeed || 1.0;
     const rootAnimations = await processAnimations(
       expandedRootAnimations,
-      animation.objects,
-      animation.project.fps,
+      expandedAnimation.objects,
+      expandedAnimation.project.fps,
       '',  // No path prefix for root
       0,   // Start at frame 0
       rootSpeed  // Apply root animation speed
@@ -610,10 +801,10 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
   }
 
   // Extract animations from nested groups (pass root speed for multiplicative combination)
-  const rootSpeed = animation.animationSpeed || 1.0;
+  const rootSpeed = expandedAnimation.animationSpeed || 1.0;
   const groupAnimations = await extractGroupAnimations(
-    animation.objects,
-    animation.project.fps,
+    expandedAnimation.objects,
+    expandedAnimation.project.fps,
     '',  // No parent path
     0,   // No parent start offset
     rootSpeed  // Pass root speed to groups
@@ -622,33 +813,33 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
 
   // If no animations at all, nothing more to preprocess
   if (allAnimations.length === 0) {
-    return animation;
+    return expandedAnimation;
   }
 
   // Expand any remaining effect animations (e.g., group transitions)
-  const expandedAnimations: PropertyAnimation[] = [];
+  const finalExpandedAnimations: PropertyAnimation[] = [];
   for (const anim of allAnimations) {
     if (isEffectAnimation(anim)) {
-      const propertyAnims = await expandEffectAnimation(anim as EffectAnimation, animation.project.fps, animation.objects);
-      expandedAnimations.push(...propertyAnims);
+      const propertyAnims = await expandEffectAnimation(anim as EffectAnimation, expandedAnimation.project.fps, expandedAnimation.objects);
+      finalExpandedAnimations.push(...propertyAnims);
     } else {
-      expandedAnimations.push(anim as PropertyAnimation);
+      finalExpandedAnimations.push(anim as PropertyAnimation);
     }
   }
 
   // Validate all animations
-  for (const anim of expandedAnimations) {
-    validateAnimationProperty(anim, animation.objects);
+  for (const anim of finalExpandedAnimations) {
+    validateAnimationProperty(anim, expandedAnimation.objects);
   }
 
   // Resolve percentage values in all animations
-  const resolvedAnimations = expandedAnimations.map(anim =>
-    resolvePercentagesInAnimation(anim, animation.objects)
+  const resolvedAnimations = finalExpandedAnimations.map(anim =>
+    resolvePercentagesInAnimation(anim, expandedAnimation.objects)
   );
 
   // Return with processed animations
   return {
-    ...animation,
+    ...expandedAnimation,
     animations: resolvedAnimations
   };
 }
@@ -658,4 +849,11 @@ export async function preprocessAnimation(animation: AnimationFile): Promise<Ani
  */
 export function clearEffectsCache(): void {
   effectCache.clear();
+}
+
+/**
+ * Clear the cached scenes (useful for testing)
+ */
+export function clearSceneCache(): void {
+  sceneCache.clear();
 }

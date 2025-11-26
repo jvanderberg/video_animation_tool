@@ -108,11 +108,13 @@ async function main() {
       throw new Error('Invalid animation file: missing project or objects');
     }
 
-    // Preprocess: expand effects and convert time to frames
-    animation = await preprocessAnimation(animation);
+    // Get base path for resolving relative paths (scenes, components)
+    const basePath = dirname(animationPath);
+
+    // Preprocess: expand scenes, effects and convert time to frames
+    animation = await preprocessAnimation(animation, basePath);
 
     // Expand components: load external components and substitute parameters
-    const basePath = dirname(animationPath);
     animation.objects = await expandComponents(animation.objects, basePath, animation.project.fps);
 
     // Extract animations from component groups and add to animations

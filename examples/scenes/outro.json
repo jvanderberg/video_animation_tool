@@ -1,0 +1,28 @@
+{
+  "duration": "2s",
+  "objects": [
+    {
+      "type": "text",
+      "id": "thanks",
+      "content": "Thanks for watching!",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "size": 56,
+      "color": "#ffffff",
+      "opacity": 0
+    }
+  ],
+  "animations": [
+    {
+      "target": "thanks",
+      "effect": "fadeIn",
+      "start": "0s"
+    },
+    {
+      "target": "thanks",
+      "effect": "fadeOut",
+      "start": "1.5s"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "duration": "3s",
+  "objects": [
+    {
+      "type": "rect",
+      "id": "bg",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#1a1a2e"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "content": "Welcome",
+      "x": 960,
+      "y": 540,
+      "anchor": "center",
+      "size": 72,
+      "color": "#ffffff",
+      "opacity": 0,
+      "scale": 0
+    }
+  ],
+  "animations": [
+    {
+      "target": "title",
+      "effect": "pop",
+      "start": "0.5s"
+    }
+  ]
+}

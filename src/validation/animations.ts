@@ -57,9 +57,21 @@ function getValidProperties(obj: AnimationObject): Set<string> {
 /**
  * Find an object by ID in the objects tree (including nested groups)
  * Supports dot notation for accessing children within groups (e.g., "groupId.childId")
+ * Also supports flat namespaced IDs (e.g., "scene.object" as a single ID)
  */
 function findObjectById(objects: AnimationObject[], id: string): AnimationObject | null {
-  // Check if id contains dot notation (e.g., "solutions.solution-1")
+  // First try exact match (for flat namespaced IDs like "scene.object")
+  for (const obj of objects) {
+    if (obj.id === id) {
+      return obj;
+    }
+    if (obj.type === 'group' && 'children' in obj) {
+      const found = findObjectById((obj as any).children, id);
+      if (found) return found;
+    }
+  }
+
+  // If not found and id contains dots, try hierarchical search (e.g., "solutions.solution-1")
   if (id.includes('.')) {
     const parts = id.split('.');
     const groupId = parts[0];
@@ -71,19 +83,8 @@ function findObjectById(objects: AnimationObject[], id: string): AnimationObject
       // Recursively search in the group's children
       return findObjectById((group as any).children, childPath);
     }
-    return null;
   }
 
-  // Regular search without dot notation
-  for (const obj of objects) {
-    if (obj.id === id) {
-      return obj;
-    }
-    if (obj.type === 'group' && 'children' in obj) {
-      const found = findObjectById((obj as any).children, id);
-      if (found) return found;
-    }
-  }
   return null;
 }
 

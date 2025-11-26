@@ -243,11 +243,15 @@ export interface PathObject extends BaseObject {
   strokeWidth?: number;
 }
 
-// Group transition specification
-export interface GroupTransition {
+// Transition specification (for groups and scenes)
+// Note: GroupTransition is deprecated, use Transition instead
+export interface Transition {
   effect: string;  // Effect name like "fadeIn", "slideInFromRight"
   duration?: TimeValue;  // Override effect duration
 }
+
+// Alias for backwards compatibility
+export type GroupTransition = Transition;
 
 // Group animation (animations with timing relative to group start)
 export interface GroupAnimation {
@@ -285,6 +289,19 @@ export interface ComponentObject extends BaseObject {
   params?: Record<string, any>;
 }
 
+// Scene object (reference to external scene file)
+// Scenes are organizational units for breaking large animations into smaller files
+// Unlike components, scenes have no parameters - they play as authored
+export interface SceneObject extends BaseObject {
+  type: 'scene';
+  source: string;  // Path to scene file
+  start?: TimeValue;  // When scene starts (relative to parent)
+  transition?: {
+    in?: Transition;
+    out?: Transition;
+  };
+}
+
 // Union type of all object types
 export type AnimationObject =
   | TextObject
@@ -296,7 +313,8 @@ export type AnimationObject =
   | EllipseObject
   | PathObject
   | GroupObject
-  | ComponentObject;
+  | ComponentObject
+  | SceneObject;
 
 // Component definition (for reusable components)
 export interface ComponentParameter {
@@ -310,6 +328,14 @@ export interface ComponentDefinition {
   animations?: Animation[];  // Animations (property or effect) for objects in this component
   width?: number;   // Optional bounding box width (for reference)
   height?: number;  // Optional bounding box height (for reference)
+}
+
+// Scene file structure (external scene definition)
+// Scenes are organizational units - no parameters, plays as authored
+export interface SceneFile {
+  duration?: TimeValue;  // How long this scene runs (for sequencing/preview)
+  objects: AnimationObject[];  // Objects in this scene
+  animations?: Animation[];  // Animations for objects in this scene
 }
 
 // Main animation file structure
