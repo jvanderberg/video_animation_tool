@@ -10,6 +10,7 @@ import type {
   SceneObject,
   SceneFile,
   Transition,
+  GroupObject,
 } from '../types.js';
 
 describe('Scene Object Type', () => {
@@ -134,7 +135,7 @@ describe('Scene Object Type', () => {
       expect(processed.objects[0].type).toBe('rect');
     });
 
-    it('should namespace scene object IDs', async () => {
+    it('should wrap scene in group with scene ID', async () => {
       const sceneFile: SceneFile = {
         objects: [
           { type: 'rect', id: 'box', x: 0, y: 0, width: 100, height: 100 },
@@ -155,8 +156,12 @@ describe('Scene Object Type', () => {
 
       const processed = await preprocessAnimation(animation, tempDir);
 
-      // Object IDs should be namespaced with scene ID
-      expect(processed.objects[0].id).toBe('intro.box');
+      // Scene should be wrapped in a group with the scene ID
+      expect(processed.objects[0].type).toBe('group');
+      expect(processed.objects[0].id).toBe('intro');
+      // Child object should have its original ID (group provides namespace)
+      const group = processed.objects[0] as GroupObject;
+      expect(group.children[0].id).toBe('box');
     });
 
     it('should offset scene animations by scene start time', async () => {
@@ -170,12 +175,12 @@ describe('Scene Object Type', () => {
             property: 'x',
             keyframes: [
               { start: 0, value: 0 },
-              { start: 30, value: 100 },
+              { start: '1s', value: 100 },  // 30 frames
             ],
           },
         ],
       };
-      await writeFile(join(tempDir, 'intro.json'), JSON.stringify(sceneFile));
+      await writeFile(join(tempDir, 'offset-test.json'), JSON.stringify(sceneFile));
 
       const animation: AnimationFile = {
         project: { width: 200, height: 200, fps: 30, frames: 120 },
@@ -183,7 +188,7 @@ describe('Scene Object Type', () => {
           {
             type: 'scene',
             id: 'intro',
-            source: './intro.json',
+            source: './offset-test.json',
             start: '1s', // 30 frames at 30fps
           } as SceneObject,
         ],
@@ -191,9 +196,12 @@ describe('Scene Object Type', () => {
 
       const processed = await preprocessAnimation(animation, tempDir);
 
-      // Animation keyframes should be offset by scene start time
+      // Animation keyframes should be offset by scene start time (30 frames)
+      // Scene animation: 0→30 becomes 30→60
       const anims = processed.animations || [];
       expect(anims).toHaveLength(1);
+      // Target should include the group path
+      expect((anims[0] as any).target).toBe('intro.box');
       expect((anims[0] as any).keyframes[0].start).toBe(30); // 0 + 30 offset
       expect((anims[0] as any).keyframes[1].start).toBe(60); // 30 + 30 offset
     });
@@ -232,8 +240,19 @@ describe('Scene Object Type', () => {
 
       const processed = await preprocessAnimation(animation, tempDir);
 
-      // Should have the text object with nested namespace
-      expect(processed.objects[0].id).toBe('outer.nested.label');
+      // Outer scene becomes a group with id='outer'
+      expect(processed.objects[0].type).toBe('group');
+      expect(processed.objects[0].id).toBe('outer');
+
+      // Inner scene becomes a nested group with id='nested'
+      const outerGroup = processed.objects[0] as GroupObject;
+      expect(outerGroup.children[0].type).toBe('group');
+      expect(outerGroup.children[0].id).toBe('nested');
+
+      // The text is inside the nested group
+      const innerGroup = outerGroup.children[0] as GroupObject;
+      expect(innerGroup.children[0].type).toBe('text');
+      expect(innerGroup.children[0].id).toBe('label');
     });
   });
 
@@ -311,6 +330,170 @@ describe('Scene Object Type', () => {
 
       expect(transition.effect).toBe('fadeIn');
       expect(transition.duration).toBe('0.5s');
+    });
+  });
+
+  describe('Scene effect animations', () => {
+    let tempDir: string;
+
+    beforeEach(async () => {
+      tempDir = join(tmpdir(), `scene-effect-test-${Date.now()}`);
+      await mkdir(tempDir, { recursive: true });
+    });
+
+    afterEach(async () => {
+      await rm(tempDir, { recursive: true, force: true });
+    });
+
+    it('should complete fadeOut animation in scene (object becomes transparent)', async () => {
+      // Create a scene with a fadeOut animation
+      // The bug: fadeOut doesn't complete - object stays at ~10% opacity
+      const sceneFile: SceneFile = {
+        duration: '2s',  // 60 frames at 30fps
+        objects: [
+          {
+            type: 'rect',
+            id: 'box',
+            x: 100,
+            y: 100,
+            width: 50,
+            height: 50,
+            fill: '#FF0000',
+            opacity: 1,  // Start fully visible
+          },
+        ],
+        animations: [
+          {
+            target: 'box',
+            effect: 'fadeOut',
+            start: '1s',  // Start fadeOut at 1 second (frame 30)
+          },
+        ],
+      };
+      await writeFile(join(tempDir, 'fadeout-scene.json'), JSON.stringify(sceneFile));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 90 },
+        objects: [
+          {
+            type: 'scene',
+            id: 'test',
+            source: './fadeout-scene.json',
+            start: '0s',
+          } as SceneObject,
+        ],
+      };
+
+      const processed = await preprocessAnimation(animation, tempDir);
+      const renderer = new Renderer(processed);
+
+      // At frame 0 (start), box should be visible
+      const buffer0 = await renderer.exportFrame(0);
+      const pixel0 = await getPixelFromPNG(buffer0, 100, 100);
+      expect(pixel0[0]).toBeGreaterThan(200); // Red channel
+      expect(pixel0[3]).toBeGreaterThan(200); // Fully opaque
+
+      // At frame 45 (after fadeOut completes: 30 + 15 frames = 0.5s duration)
+      // The fadeOut effect has 0.5s duration, so it should complete by frame 45
+      const buffer45 = await renderer.exportFrame(45);
+      const pixel45 = await getPixelFromPNG(buffer45, 100, 100);
+      expect(pixel45[3]).toBe(0); // Should be fully transparent
+    });
+
+    it('should correctly namespace animation targets in scenes', async () => {
+      // Create a scene and verify animation targets are properly namespaced
+      const sceneFile: SceneFile = {
+        objects: [
+          { type: 'rect', id: 'box', x: 50, y: 50, width: 100, height: 100, fill: '#FF0000' },
+        ],
+        animations: [
+          {
+            target: 'box',
+            property: 'opacity',
+            keyframes: [
+              { start: 0, value: 1 },
+              { start: 30, value: 0 },
+            ],
+          },
+        ],
+      };
+      await writeFile(join(tempDir, 'namespaced.json'), JSON.stringify(sceneFile));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          {
+            type: 'scene',
+            id: 'myscene',
+            source: './namespaced.json',
+          } as SceneObject,
+        ],
+      };
+
+      const processed = await preprocessAnimation(animation, tempDir);
+
+      // Animation target should be 'myscene.box', not 'myscene.myscene.box'
+      expect(processed.animations).toHaveLength(1);
+      expect((processed.animations![0] as any).target).toBe('myscene.box');
+    });
+
+    it('should handle scene with multiple effect animations', async () => {
+      // Test case from the actual example - fadeIn followed by fadeOut
+      const sceneFile: SceneFile = {
+        duration: '2s',
+        objects: [
+          {
+            type: 'rect',
+            id: 'box',
+            x: 100,
+            y: 100,
+            width: 50,
+            height: 50,
+            fill: '#00FF00',
+            opacity: 0,  // Start invisible
+          },
+        ],
+        animations: [
+          { target: 'box', effect: 'fadeIn', start: '0s' },
+          { target: 'box', effect: 'fadeOut', start: '1.5s' },
+        ],
+      };
+      await writeFile(join(tempDir, 'multi-effect.json'), JSON.stringify(sceneFile));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 90 },
+        objects: [
+          {
+            type: 'scene',
+            id: 'multi',
+            source: './multi-effect.json',
+            start: '0s',
+          } as SceneObject,
+        ],
+      };
+
+      const processed = await preprocessAnimation(animation, tempDir);
+      const renderer = new Renderer(processed);
+
+      // Frame 0: should be invisible (opacity 0, fadeIn just starting)
+      const buffer0 = await renderer.exportFrame(0);
+      const pixel0 = await getPixelFromPNG(buffer0, 100, 100);
+      expect(pixel0[3]).toBe(0); // Transparent at start
+
+      // Frame 15 (mid fadeIn): should be partially visible
+      const buffer15 = await renderer.exportFrame(15);
+      const pixel15 = await getPixelFromPNG(buffer15, 100, 100);
+      expect(pixel15[3]).toBeGreaterThan(200); // Mostly visible
+
+      // Frame 30 (after fadeIn completes): should be fully visible
+      const buffer30 = await renderer.exportFrame(30);
+      const pixel30 = await getPixelFromPNG(buffer30, 100, 100);
+      expect(pixel30[3]).toBe(255); // Fully opaque
+
+      // Frame 60 (after fadeOut completes at 1.5s + 0.5s = 2s = frame 60)
+      const buffer60 = await renderer.exportFrame(60);
+      const pixel60 = await getPixelFromPNG(buffer60, 100, 100);
+      expect(pixel60[3]).toBe(0); // Should be transparent
     });
   });
 });

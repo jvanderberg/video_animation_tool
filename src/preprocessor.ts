@@ -121,48 +121,21 @@ async function expandSceneObjects(
         sceneStartFrame
       );
 
-      // Namespace IDs if scene has an ID
-      let finalObjects = nestedObjects;
-      let finalAnimations = nestedAnimations;
-
-      if (sceneObj.id) {
-        finalObjects = namespaceObjectIds(nestedObjects, sceneObj.id);
-        finalAnimations = namespaceAnimations(nestedAnimations, sceneObj.id);
-      }
-
-      // Process scene's own animations
+      // Process scene's own animations (targets use simple IDs from scene file)
+      // Note: DO NOT offset timing here - animations will be stored on the group
+      // and extractGroupAnimations() will handle timing offset based on group.start
+      const sceneAnimations: Animation[] = [];
       if (sceneFile.animations && sceneFile.animations.length > 0) {
         for (const anim of sceneFile.animations) {
-          const namespacedTarget = sceneObj.id ? `${sceneObj.id}.${anim.target}` : anim.target;
-
-          if ('keyframes' in anim) {
-            // Property animation - offset keyframe timings by scene start
-            const offsetAnim: PropertyAnimation = {
-              ...anim as PropertyAnimation,
-              target: namespacedTarget,
-              keyframes: (anim as PropertyAnimation).keyframes.map(kf => ({
-                ...kf,
-                start: sceneStartFrame + parseTime(kf.start, fps)
-              }))
-            };
-            extractedAnimations.push(offsetAnim);
-          } else if ('effect' in anim) {
-            // Effect animation - offset start time by scene start
-            const effectAnim = anim as EffectAnimation;
-            const animStart = effectAnim.start !== undefined ? parseTime(effectAnim.start, fps) : 0;
-            const offsetEffectAnim: EffectAnimation = {
-              ...effectAnim,
-              target: namespacedTarget,
-              start: sceneStartFrame + animStart
-            };
-            extractedAnimations.push(offsetEffectAnim);
-          }
+          // Keep animations with their original relative timing
+          // The group wrapper will provide the start offset
+          sceneAnimations.push({ ...anim });
         }
       }
 
-      // Wrap scene contents in a group to handle visibility (start/duration)
-      // This ensures the scene respects its timing window
-      if (sceneObj.id && (sceneObj.start !== undefined || sceneFile.duration !== undefined)) {
+      // Wrap scene contents in a group to handle visibility and provide namespace
+      // The group ID becomes the namespace prefix for child objects
+      if (sceneObj.id) {
         const sceneGroup: GroupObject = {
           type: 'group',
           id: sceneObj.id,
@@ -170,16 +143,19 @@ async function expandSceneObjects(
           y: sceneObj.y ?? 0,
           start: sceneObj.start,
           duration: sceneFile.duration,
-          children: finalObjects as AnimationObject[],
+          children: nestedObjects as AnimationObject[], // Don't namespace - group provides context
+          animations: sceneAnimations.length > 0 ? sceneAnimations as any : undefined, // Store scene animations on group
           opacity: sceneObj.opacity,
           scale: sceneObj.scale,
           rotation: sceneObj.rotation,
         };
         expandedObjects.push(sceneGroup);
+        extractedAnimations.push(...nestedAnimations);
       } else {
-        expandedObjects.push(...finalObjects);
+        // No scene ID - flatten objects with namespace
+        expandedObjects.push(...nestedObjects);
+        extractedAnimations.push(...nestedAnimations);
       }
-      extractedAnimations.push(...finalAnimations);
     } else if (obj.type === 'group') {
       // Recursively process groups for nested scenes
       const group = obj as GroupObject;
