@@ -107,7 +107,8 @@ describe('Component Effects', () => {
     expect(xAnim.keyframes.length).toBe(2);
     expect(xAnim.keyframes[0].start).toBe(0);
     expect(xAnim.keyframes[0].value).toBe(0);
-    expect(xAnim.keyframes[1].start).toBe(30); // 1s at 30fps
+    // 1s at 30fps = 30 frames (0-29), with off-by-one fix final keyframe at 29
+    expect(xAnim.keyframes[1].start).toBe(29);
     expect(xAnim.keyframes[1].value).toBe(100);
   });
 

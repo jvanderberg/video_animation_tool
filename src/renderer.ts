@@ -4,6 +4,7 @@ import type { AnimationFile, AnimationObject, GroupObject, PropertyAnimation } f
 import { getAnchorOffset, renderRect, renderLine, renderCircle, renderEllipse, renderPath } from './renderer/shapes.js';
 import { renderText } from './renderer/text.js';
 import { loadImageIfNeeded, renderImage } from './renderer/image.js';
+import { parseTime } from './time-utils.js';
 
 export class Renderer {
   private canvas: Canvas;
@@ -136,6 +137,30 @@ export class Renderer {
    * Render a single object
    */
   private renderObject(obj: AnimationObject, frameNumber: number, parentPath?: string): void {
+    // Check duration-based visibility for groups
+    if (obj.type === 'group') {
+      const group = obj as GroupObject;
+      const fps = this.animation.project.fps;
+
+      // Check start time - don't render before start
+      if (group.start !== undefined) {
+        const startFrame = parseTime(group.start, fps);
+        if (frameNumber < startFrame) {
+          return; // Not visible yet
+        }
+      }
+
+      // Check duration - don't render after start + duration
+      if (group.duration !== undefined) {
+        const startFrame = group.start !== undefined ? parseTime(group.start, fps) : 0;
+        const durationFrames = parseTime(group.duration, fps);
+        const endFrame = startFrame + durationFrames;
+        if (frameNumber > endFrame) {
+          return; // No longer visible
+        }
+      }
+    }
+
     // Get animated properties for this frame
     const props = this.getPropertiesAtFrame(obj, frameNumber, parentPath);
 

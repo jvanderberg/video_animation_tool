@@ -248,9 +248,10 @@ describe('Preprocessor', () => {
     const animations = result.animations as PropertyAnimation[];
     const scaleAnim = animations.find(a => a.property === 'scale')!;
 
-    // Pop with custom duration 0.6s at 60fps = 36 frames
+    // Pop with custom duration 0.6s at 60fps = 36 frames (0-35)
+    // With off-by-one fix: duration is lastFrame - firstFrame = 35 - 0 = 35
     const duration = scaleAnim.keyframes[scaleAnim.keyframes.length - 1].start - scaleAnim.keyframes[0].start;
-    expect(duration).toBe(36);
+    expect(duration).toBe(35);
   });
 
   it('should load effects from individual files', async () => {

@@ -152,21 +152,24 @@ describe('Animation Speed', () => {
         a.keyframes[0].start === 0
       );
 
-      // Find fadeOut animation (starts at 120 = 2s duration)
+      // Find fadeOut animation (starts at 90 = 2s - 0.5s, so it ends at 120)
       const fadeOutAnim = opacityAnims.find(a =>
-        a.keyframes[0].start === 120
+        a.keyframes[0].start === 90
       );
 
       // Transitions should not be affected by animationSpeed
-      // fadeIn should be 0.5s = 30 frames at 60fps
+      // fadeIn should be 0.5s = 30 frames at 60fps (frames 0-29)
+      // With off-by-one fix: final keyframe at frame 29, not 30
       expect(fadeInAnim).toBeDefined();
       expect(fadeInAnim!.keyframes[0].start).toBe(0);
-      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].start).toBe(30); // 0.5s
+      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].start).toBe(29); // 0.5s = frames 0-29
 
-      // fadeOut should also be 0.5s = 30 frames
+      // fadeOut should also be 0.5s = 30 frames, starting 30 frames before end
+      // so it COMPLETES when the group duration ends
+      // With off-by-one fix: final keyframe at frame 119, not 120
       expect(fadeOutAnim).toBeDefined();
-      expect(fadeOutAnim!.keyframes[0].start).toBe(120); // Start of fadeOut
-      expect(fadeOutAnim!.keyframes[fadeOutAnim!.keyframes.length - 1].start).toBe(150); // 120 + 30
+      expect(fadeOutAnim!.keyframes[0].start).toBe(90); // Start of fadeOut (120 - 30)
+      expect(fadeOutAnim!.keyframes[fadeOutAnim!.keyframes.length - 1].start).toBe(119); // Ends at frame 119 (last frame of 120-frame animation)
     });
   });
 
@@ -259,9 +262,10 @@ describe('Animation Speed', () => {
 
       // Transitions should not be affected by root animationSpeed
       // fadeIn should be 0.5s = 30 frames at 60fps (not affected by 2x speed)
+      // With off-by-one fix: final keyframe at frame 29, not 30
       expect(fadeInAnim).toBeDefined();
       expect(fadeInAnim!.keyframes[0].start).toBe(0);
-      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].start).toBe(30); // 0.5s
+      expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].start).toBe(29); // 0.5s = frames 0-29
     });
   });
 

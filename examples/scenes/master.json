@@ -1,0 +1,28 @@
+{
+  "project": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 300
+  },
+  "objects": [
+    {
+      "type": "scene",
+      "id": "intro",
+      "source": "./intro.json",
+      "start": "0s"
+    },
+    {
+      "type": "scene",
+      "id": "main",
+      "source": "./main-content.json",
+      "start": "3s"
+    },
+    {
+      "type": "scene",
+      "id": "outro",
+      "source": "./outro.json",
+      "start": "8s"
+    }
+  ]
+}
