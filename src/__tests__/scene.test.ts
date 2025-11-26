@@ -333,6 +333,276 @@ describe('Scene Object Type', () => {
     });
   });
 
+  describe('Error handling', () => {
+    let tempDir: string;
+
+    beforeEach(async () => {
+      tempDir = join(tmpdir(), `scene-error-test-${Date.now()}`);
+      await mkdir(tempDir, { recursive: true });
+    });
+
+    afterEach(async () => {
+      await rm(tempDir, { recursive: true, force: true });
+    });
+
+    it('should give clear error for non-existent scene file', async () => {
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'missing', source: './does-not-exist.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/not found/i);
+      // Should NOT say "invalid" since file doesn't exist
+      await expect(preprocessAnimation(animation, tempDir)).rejects.not.toThrow(/invalid/i);
+    });
+
+    it('should give clear error for invalid JSON in scene file', async () => {
+      await writeFile(join(tempDir, 'bad.json'), '{ this is not valid json }');
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'bad', source: './bad.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/invalid json/i);
+    });
+
+    it('should include scene path in error message', async () => {
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'missing', source: './my-scene.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/my-scene\.json/);
+    });
+
+    it('should error when scene file has no objects array', async () => {
+      await writeFile(join(tempDir, 'no-objects.json'), JSON.stringify({ duration: '5s' }));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'bad', source: './no-objects.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/objects/i);
+    });
+
+    it('should error when scene file objects is not an array', async () => {
+      await writeFile(join(tempDir, 'objects-not-array.json'), JSON.stringify({ objects: 'not an array' }));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'bad', source: './objects-not-array.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/objects.*array/i);
+    });
+
+    it('should error when scene file has null objects', async () => {
+      await writeFile(join(tempDir, 'null-objects.json'), JSON.stringify({ objects: null }));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'bad', source: './null-objects.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/objects/i);
+    });
+  });
+
+  describe('Circular reference detection', () => {
+    let tempDir: string;
+
+    beforeEach(async () => {
+      tempDir = join(tmpdir(), `scene-circular-test-${Date.now()}`);
+      await mkdir(tempDir, { recursive: true });
+    });
+
+    afterEach(async () => {
+      await rm(tempDir, { recursive: true, force: true });
+    });
+
+    it('should detect scene referencing itself (A → A)', async () => {
+      // Scene A references itself
+      const sceneA: SceneFile = {
+        objects: [
+          { type: 'scene', id: 'self', source: './a.json' } as SceneObject,
+        ],
+      };
+      await writeFile(join(tempDir, 'a.json'), JSON.stringify(sceneA));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'a', source: './a.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/circular/i);
+    });
+
+    it('should detect two scenes referencing each other (A → B → A)', async () => {
+      // Scene A references B
+      const sceneA: SceneFile = {
+        objects: [
+          { type: 'scene', id: 'b', source: './b.json' } as SceneObject,
+        ],
+      };
+      await writeFile(join(tempDir, 'a.json'), JSON.stringify(sceneA));
+
+      // Scene B references A
+      const sceneB: SceneFile = {
+        objects: [
+          { type: 'scene', id: 'a', source: './a.json' } as SceneObject,
+        ],
+      };
+      await writeFile(join(tempDir, 'b.json'), JSON.stringify(sceneB));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'a', source: './a.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/circular/i);
+    });
+
+    it('should detect chain of three (A → B → C → A)', async () => {
+      const sceneA: SceneFile = {
+        objects: [
+          { type: 'scene', id: 'b', source: './b.json' } as SceneObject,
+        ],
+      };
+      await writeFile(join(tempDir, 'a.json'), JSON.stringify(sceneA));
+
+      const sceneB: SceneFile = {
+        objects: [
+          { type: 'scene', id: 'c', source: './c.json' } as SceneObject,
+        ],
+      };
+      await writeFile(join(tempDir, 'b.json'), JSON.stringify(sceneB));
+
+      const sceneC: SceneFile = {
+        objects: [
+          { type: 'scene', id: 'a', source: './a.json' } as SceneObject,
+        ],
+      };
+      await writeFile(join(tempDir, 'c.json'), JSON.stringify(sceneC));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          { type: 'scene', id: 'a', source: './a.json' } as SceneObject,
+        ],
+      };
+
+      await expect(preprocessAnimation(animation, tempDir)).rejects.toThrow(/circular/i);
+    });
+  });
+
+  describe('Scene transitions', () => {
+    let tempDir: string;
+
+    beforeEach(async () => {
+      tempDir = join(tmpdir(), `scene-transition-test-${Date.now()}`);
+      await mkdir(tempDir, { recursive: true });
+    });
+
+    afterEach(async () => {
+      await rm(tempDir, { recursive: true, force: true });
+    });
+
+    it('should apply transition.in effect when scene starts', async () => {
+      // Create a scene with a visible rect
+      const sceneFile: SceneFile = {
+        objects: [
+          { type: 'rect', id: 'box', x: 100, y: 100, width: 50, height: 50, fill: '#FF0000' },
+        ],
+      };
+      await writeFile(join(tempDir, 'transition-in.json'), JSON.stringify(sceneFile));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          {
+            type: 'scene',
+            id: 'test',
+            source: './transition-in.json',
+            start: '0s',
+            transition: {
+              in: { effect: 'fadeIn', duration: '0.5s' },
+            },
+          } as SceneObject,
+        ],
+      };
+
+      const processed = await preprocessAnimation(animation, tempDir);
+      const renderer = new Renderer(processed);
+
+      // At frame 0, fadeIn should just be starting (opacity near 0)
+      const buffer0 = await renderer.exportFrame(0);
+      const pixel0 = await getPixelFromPNG(buffer0, 100, 100);
+      expect(pixel0[3]).toBeLessThan(50); // Should be mostly transparent
+
+      // At frame 15 (0.5s fadeIn complete), should be fully visible
+      const buffer15 = await renderer.exportFrame(15);
+      const pixel15 = await getPixelFromPNG(buffer15, 100, 100);
+      expect(pixel15[3]).toBeGreaterThan(200); // Should be mostly opaque
+    });
+
+    it('should apply transition.out effect at end of scene duration', async () => {
+      // Create a scene with duration and visible rect
+      const sceneFile: SceneFile = {
+        duration: '1s', // 30 frames
+        objects: [
+          { type: 'rect', id: 'box', x: 100, y: 100, width: 50, height: 50, fill: '#00FF00', opacity: 1 },
+        ],
+      };
+      await writeFile(join(tempDir, 'transition-out.json'), JSON.stringify(sceneFile));
+
+      const animation: AnimationFile = {
+        project: { width: 200, height: 200, fps: 30, frames: 60 },
+        objects: [
+          {
+            type: 'scene',
+            id: 'test',
+            source: './transition-out.json',
+            start: '0s',
+            transition: {
+              out: { effect: 'fadeOut', duration: '0.5s' },
+            },
+          } as SceneObject,
+        ],
+      };
+
+      const processed = await preprocessAnimation(animation, tempDir);
+      const renderer = new Renderer(processed);
+
+      // At frame 15 (middle of scene), should be fully visible
+      const buffer15 = await renderer.exportFrame(15);
+      const pixel15 = await getPixelFromPNG(buffer15, 100, 100);
+      expect(pixel15[3]).toBe(255); // Fully opaque
+
+      // At frame 29 (just before end, during fadeOut), should be fading
+      const buffer29 = await renderer.exportFrame(29);
+      const pixel29 = await getPixelFromPNG(buffer29, 100, 100);
+      expect(pixel29[3]).toBeLessThan(200); // Should be fading out
+    });
+  });
+
   describe('Scene effect animations', () => {
     let tempDir: string;
 

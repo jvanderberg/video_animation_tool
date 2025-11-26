@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import { readFile, access } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { createCanvas } from 'canvas';
@@ -40,14 +40,35 @@ async function loadSceneFile(scenePath: string): Promise<SceneFile> {
     return sceneCache.get(scenePath)!;
   }
 
+  // Check if file exists first
   try {
-    const data = await readFile(scenePath, 'utf-8');
-    const sceneFile = JSON.parse(data) as SceneFile;
-    sceneCache.set(scenePath, sceneFile);
-    return sceneFile;
-  } catch (error) {
-    throw new Error(`Scene file '${scenePath}' not found or invalid`);
+    await access(scenePath);
+  } catch {
+    throw new Error(`Scene file '${scenePath}' not found`);
   }
+
+  // Read file content
+  const data = await readFile(scenePath, 'utf-8');
+
+  // Parse JSON
+  let sceneFile: SceneFile;
+  try {
+    sceneFile = JSON.parse(data) as SceneFile;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'unknown error';
+    throw new Error(`Scene file '${scenePath}' contains invalid JSON: ${message}`);
+  }
+
+  // Validate scene file structure
+  if (!sceneFile.objects) {
+    throw new Error(`Scene file '${scenePath}' is missing required 'objects' array`);
+  }
+  if (!Array.isArray(sceneFile.objects)) {
+    throw new Error(`Scene file '${scenePath}' has invalid 'objects' property: must be an array`);
+  }
+
+  sceneCache.set(scenePath, sceneFile);
+  return sceneFile;
 }
 
 /**
@@ -91,12 +112,14 @@ function namespaceAnimations(animations: Animation[], prefix: string): Animation
 
 /**
  * Expand scene objects into their contents
+ * @param visitedPaths - Set of scene file paths already in the expansion stack (for circular reference detection)
  */
 async function expandSceneObjects(
   objects: AnimationObject[],
   basePath: string,
   fps: number,
-  parentStartFrame: number = 0
+  parentStartFrame: number = 0,
+  visitedPaths: Set<string> = new Set()
 ): Promise<{ objects: AnimationObject[]; animations: Animation[] }> {
   const expandedObjects: AnimationObject[] = [];
   const extractedAnimations: Animation[] = [];
@@ -105,6 +128,17 @@ async function expandSceneObjects(
     if (isSceneObject(obj)) {
       const sceneObj = obj as SceneObject;
       const scenePath = join(basePath, sceneObj.source);
+
+      // Check for circular reference
+      const normalizedPath = scenePath.replace(/\\/g, '/');
+      if (visitedPaths.has(normalizedPath)) {
+        throw new Error(`Circular scene reference detected: '${sceneObj.source}' is already in the expansion chain`);
+      }
+
+      // Add to visited paths before loading
+      const newVisitedPaths = new Set(visitedPaths);
+      newVisitedPaths.add(normalizedPath);
+
       const sceneFile = await loadSceneFile(scenePath);
       const sceneDir = dirname(scenePath);
 
@@ -113,12 +147,13 @@ async function expandSceneObjects(
         ? parentStartFrame + parseTime(sceneObj.start, fps)
         : parentStartFrame;
 
-      // Recursively expand any nested scenes
+      // Recursively expand any nested scenes (passing visited paths for circular reference detection)
       const { objects: nestedObjects, animations: nestedAnimations } = await expandSceneObjects(
         sceneFile.objects,
         sceneDir,
         fps,
-        sceneStartFrame
+        sceneStartFrame,
+        newVisitedPaths
       );
 
       // Process scene's own animations (targets use simple IDs from scene file)
@@ -145,6 +180,7 @@ async function expandSceneObjects(
           duration: sceneFile.duration,
           children: nestedObjects as AnimationObject[], // Don't namespace - group provides context
           animations: sceneAnimations.length > 0 ? sceneAnimations as any : undefined, // Store scene animations on group
+          transition: sceneObj.transition, // Pass through scene transitions to the group
           opacity: sceneObj.opacity,
           scale: sceneObj.scale,
           rotation: sceneObj.rotation,
@@ -163,7 +199,8 @@ async function expandSceneObjects(
         group.children,
         basePath,
         fps,
-        parentStartFrame
+        parentStartFrame,
+        visitedPaths
       );
 
       expandedObjects.push({
@@ -663,7 +700,12 @@ async function extractGroupAnimations(
       if (group.transition?.out && group.duration !== undefined) {
         const trans = group.transition.out;
         const groupDurationFrames = parseTime(group.duration, fps);
-        const transitionStartFrame = groupStartFrame + groupDurationFrames;
+        // Calculate transition duration (default to effect's default if not specified)
+        const transitionDurationFrames = trans.duration !== undefined
+          ? parseTime(trans.duration, fps)
+          : 15; // Default 0.5s at 30fps
+        // Start the out transition BEFORE the end so it completes BY the end
+        const transitionStartFrame = groupStartFrame + groupDurationFrames - transitionDurationFrames;
 
         extracted.push({
           target: groupPath,

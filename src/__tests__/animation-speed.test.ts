@@ -152,9 +152,9 @@ describe('Animation Speed', () => {
         a.keyframes[0].start === 0
       );
 
-      // Find fadeOut animation (starts at 120 = 2s duration)
+      // Find fadeOut animation (starts at 90 = 2s - 0.5s, so it ends at 120)
       const fadeOutAnim = opacityAnims.find(a =>
-        a.keyframes[0].start === 120
+        a.keyframes[0].start === 90
       );
 
       // Transitions should not be affected by animationSpeed
@@ -163,10 +163,11 @@ describe('Animation Speed', () => {
       expect(fadeInAnim!.keyframes[0].start).toBe(0);
       expect(fadeInAnim!.keyframes[fadeInAnim!.keyframes.length - 1].start).toBe(30); // 0.5s
 
-      // fadeOut should also be 0.5s = 30 frames
+      // fadeOut should also be 0.5s = 30 frames, starting 30 frames before end
+      // so it COMPLETES when the group duration ends
       expect(fadeOutAnim).toBeDefined();
-      expect(fadeOutAnim!.keyframes[0].start).toBe(120); // Start of fadeOut
-      expect(fadeOutAnim!.keyframes[fadeOutAnim!.keyframes.length - 1].start).toBe(150); // 120 + 30
+      expect(fadeOutAnim!.keyframes[0].start).toBe(90); // Start of fadeOut (120 - 30)
+      expect(fadeOutAnim!.keyframes[fadeOutAnim!.keyframes.length - 1].start).toBe(120); // Ends at group duration
     });
   });
 
